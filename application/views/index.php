@@ -73,8 +73,8 @@
                       <option>SUB DIVRE PLP</option>
                       <option>SUB DIVRE MKSR</option>
                       <option>DIVRE SULSEL</option> -->
-                      <?php foreach ($aset as $row_k){ ?>
-                      <option><?php echo $row_k->nama_aset; ?></option>
+                      <?php foreach ($aset as $row_a){ ?>
+                      <option><?php echo $row_a->nama_aset; ?></option>
                       <?php }?>
                     </select>
                   </div>
@@ -103,8 +103,9 @@
                       <option>Biaya Bank</option>
                       <option>Biaya Admin</option>
                       <option>Biaya Penyusutan</option> -->
-                      
-                      <option></option>
+                      <?php foreach($kategori as $row_k){?>
+                      <option> <?php echo $row_k->nama_kategori; ?></option>
+                      <?php } ?>
                     </select>
                   </div>
 
