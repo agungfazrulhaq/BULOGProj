@@ -400,7 +400,6 @@
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">Rp. 2,000,000.00</td>
                   </tr>
-                  
                   </tbody>
                 </table>
                 <!-- /.table -->
