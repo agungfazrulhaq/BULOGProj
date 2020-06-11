@@ -298,7 +298,7 @@
                         <label for="check1"></label>
                       </div>
                     </td>
-                    <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm">View</a></td>
+                    <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">View</a></td>
                     <td class="mailbox-star"><?php echo $row_t->tanggal; ?></td>
                     <td class="mailbox-star"><?php echo $row_t->ref; ?></a></td>
                     <td class="mailbox-name"><?php echo $row_t->nama_aset; ?></td>
@@ -307,7 +307,7 @@
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date"><?php echo $row_t->saldo; ?></td>
                   </tr>
-                  <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                           <div class="modal-content">
                             <div class="card card-primary card-outline">
