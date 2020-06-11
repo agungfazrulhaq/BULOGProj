@@ -385,6 +385,7 @@
                       </div>
                     </div>
                   <tbody id="myTable">
+                  <?php foreach ($transaksi as $row_t){?>
                   <tr>
                     <td>
                       <div class="icheck-primary">
@@ -393,15 +394,15 @@
                       </div>
                     </td>
                     <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm">View</a></td>
-                    <td class="mailbox-star">1</td>
-                    <td class="mailbox-star">D01</a></td>
-                    <td class="mailbox-name">RUKO DAN LAHAN</td>
-                    <td class="mailbox-subject"> - Biaya pembelian kabel
+                    <td class="mailbox-star"><?php echo $row_t->tanggal; ?></td>
+                    <td class="mailbox-star"><?php echo $row_t->ref; ?></a></td>
+                    <td class="mailbox-name"><?php echo $row_t->nama_aset; ?></td>
+                    <td class="mailbox-subject"><?php echo $row_t->uraian; ?>
                     </td>
                     <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">Rp. 2,000,000.00</td>
+                    <td class="mailbox-date"><?php echo $row_t->saldo; ?></td>
                   </tr>
-                  
+                  <?php } ?>
                   </tbody>
                 </table>
                 <!-- /.table -->

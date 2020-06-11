@@ -29,6 +29,7 @@ class Home extends CI_Controller {
 	{
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
+        $data["transaksi"] = $this->M_data->getTransaksi();
         
 		$this->load->view('index.php',$data);
 	}
