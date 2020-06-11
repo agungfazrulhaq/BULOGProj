@@ -8,7 +8,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo base_url('<?php echo  ?>plugins/fontawesome-free/css/all.min.css')?>">
+  <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css')?>">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css')?>">
    <!-- Tempusdominus Bootstrap 4 -->
@@ -64,7 +64,7 @@
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
                     <select class="form-control select2" style="width: 100%;">
                       <option selected="selected" value="null">Pilih Unit</option>
-                      <option>BARUGA LAPPO ASE</option>
+                      <!-- <option>BARUGA LAPPO ASE</option>
                       <option>WISMA LAPPO ASE</option>
                       <option>GEDUNG OLAH RAGA (GOR)</option>
                       <option>MESS MALINO</option>
@@ -72,14 +72,17 @@
                       <option>SUB DIVRE PARE</option>
                       <option>SUB DIVRE PLP</option>
                       <option>SUB DIVRE MKSR</option>
-                      <option>DIVRE SULSEL</option>
+                      <option>DIVRE SULSEL</option> -->
+                      <?php foreach ($aset as $row_k){ ?>
+                      <option><?php echo $row_k->nama_aset; ?></option>
+                      <?php }?>
                     </select>
                   </div>
 
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
                     <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected" value="null">Pilih Kategori</option>
+                      <!-- <option selected="selected" value="null">Pilih Kategori</option>
                       <option>Sewa Assets</option>
                       <option>Sewa Assets dari PYD/Hotel</option>
                       <option>Biaya Operasional</option>
@@ -99,7 +102,8 @@
                       <option>Pendapatan Lain-Lain</option>
                       <option>Biaya Bank</option>
                       <option>Biaya Admin</option>
-                      <option>Biaya Penyusutan</option>
+                      <option>Biaya Penyusutan</option> -->
+                      <option></option>
                     </select>
                   </div>
 
