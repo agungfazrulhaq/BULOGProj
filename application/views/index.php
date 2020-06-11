@@ -294,8 +294,8 @@
                   <tr>
                     <td>
                       <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check1">
-                        <label for="check1"></label>
+                        <input type="checkbox" value="" id="check<?php echo $row_t->id_transaksi; ?>">
+                        <label for="check<?php echo $row_t->id_transaksi; ?>"></label>
                       </div>
                     </td>
                     <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">View</a></td>
