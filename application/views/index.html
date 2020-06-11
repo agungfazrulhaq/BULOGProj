@@ -77,9 +77,41 @@
                   </div>
 
                   <div class="md-form mb-3">
+                    <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
+                    <select class="form-control select2" style="width: 100%;">
+                      <option selected="selected" value="null">Pilih Kategori</option>
+                      <option>Sewa Assets</option>
+                      <option>Sewa Assets dari PYD/Hotel</option>
+                      <option>Biaya Operasional</option>
+                      <option>Harga Pokok Penjualan</option>
+                      <option>Biaya Pegawai</option>
+                      <option>Biaya Kantor, ATK</option>
+                      <option>Biaya Listrik/Telp/Air</option>
+                      <option>Biaya Perjalanan Dinas</option>
+                      <option>Biaya Perbaikan/Pemeliharaan</option>
+                      <option>Biaya PPN</option>
+                      <option>Biaya Pajak PPh Pasal 4(2)</option>
+                      <option>Biaya Pajak PPh Pasal 21</option>
+                      <option>Biaya Pajak Restoran & Hotel</option>
+                      <option>PBB</option>
+                      <option>Biaya Lain-lain</option>
+                      <option>Pendapatan Bunga Bank</option>
+                      <option>Pendapatan Lain-Lain</option>
+                      <option>Biaya Bank</option>
+                      <option>Biaya Admin</option>
+                      <option>Biaya Penyusutan</option>
+                    </select>
+                  </div>
+
+                  <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
                     <textarea type="textarea" class="form-control validate"></textarea>
                   </div>
+
+                  <div class="md-form mb-3">
+                    <button class="btn btn-default">Unggah</button>
+                  </div>
+                  
 
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
@@ -222,8 +254,6 @@
                 <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i></button>
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                 </div>
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
@@ -238,7 +268,7 @@
                 <!-- /.float-right -->
               </div>
               <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-bordered table-sm"  style="text-align: center;">
+                <table class="table table-hover table-sm"  style="text-align: center;">
                   <thead class="" >
                     <tr>
                       <b>
@@ -395,8 +425,6 @@
                 </button>
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                 </div>
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
@@ -474,7 +502,7 @@
 		    curr_hour = checkTime(curr_hour);
 		    curr_minute = checkTime(curr_minute);
 		    curr_second = checkTime(curr_second);
-		 document.getElementById('clock').innerHTML=curr_hour + ":" + curr_minute + ":" + " " + a_p;
+		 document.getElementById('clock').innerHTML=curr_hour + ":" + curr_minute + " " + a_p;
 		    }
  
 		function checkTime(i) {
