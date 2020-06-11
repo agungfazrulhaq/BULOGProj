@@ -298,7 +298,7 @@
                         <label for="check<?php echo $row_t->id_transaksi; ?>"></label>
                       </div>
                     </td>
-                    <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">View</a></td>
+                    <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</a></td>
                     <td class="mailbox-star"><?php echo $row_t->tanggal; ?></td>
                     <td class="mailbox-star"><?php echo $row_t->ref; ?></a></td>
                     <td class="mailbox-name"><?php echo $row_t->nama_aset; ?></td>
