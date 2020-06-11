@@ -401,22 +401,7 @@
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">Rp. 2,000,000.00</td>
                   </tr>
-                  <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check2">
-                        <label for="check2"></label>
-                      </div>
-                    </td>
-                    <td><a class="btn btn-primary btn-sm" href="read-mail.html">View</a></td>
-                    <td class="mailbox-star">3</td>
-                    <td class="mailbox-star">K01</td>
-                    <td class="mailbox-name">WISMA</td>
-                    <td class="mailbox-subject"><b>PPh</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                    <td class="mailbox-date">Rp. 2,000,000.00</td>
-                  </tr>
+                  
                   </tbody>
                 </table>
                 <!-- /.table -->
