@@ -82,8 +82,8 @@
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
                     <select class="form-control select2" style="width: 100%;">
-                      <!-- <option selected="selected" value="null">Pilih Kategori</option>
-                      <option>Sewa Assets</option>
+                      <option selected="selected" value="null">Pilih Kategori</option>
+                      <!-- <option>Sewa Assets</option>
                       <option>Sewa Assets dari PYD/Hotel</option>
                       <option>Biaya Operasional</option>
                       <option>Harga Pokok Penjualan</option>
@@ -289,12 +289,15 @@
                       </b>
                     </tr>
                   </thead>
+                  <?php foreach ($transaksi as $row_t){?>
+                  <tbody id="myTable">
+                  <tr>
                   <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                           <div class="modal-content">
                             <div class="card card-primary card-outline">
                               <div class="card-header">
-                                <h3 class="card-title">|<b>D01</b>| 01 Juni 2020</h3>
+                                <h3 class="card-title">|<b><?php echo $row_t->ref;?></b>| 01 Juni 2020</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">Kembali</span>
                                 </button>
@@ -302,8 +305,8 @@
                               <!-- /.card-header -->
                               <div class="card-body p-0">
                                 <div class="mailbox-read-info">
-                                  <h4>RUKO DAN LAHAN</h4>
-                                  <h3>DEBIT <b>Rp. 2,000,000.00</b>
+                                  <h4><?php echo $row_t->nama_aset; ?></h4>
+                                  <h3>DEBIT <b>Rp. <?php echo $row_t->saldo; ?></b>
                                     <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span></h3>
                                 </div>
                                 <div class="mailbox-read-message">
@@ -384,9 +387,6 @@
                         </div>
                       </div>
                     </div>
-                  <tbody id="myTable">
-                  <?php foreach ($transaksi as $row_t){?>
-                  <tr>
                     <td>
                       <div class="icheck-primary">
                         <input type="checkbox" value="" id="check1">
