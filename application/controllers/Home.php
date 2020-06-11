@@ -28,6 +28,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
         $data["aset"] = $this->M_data->getAset();
+        $data["kategori"] = $this->M_data->getKategori();
 		$this->load->view('index.php',$data);
 	}
 }

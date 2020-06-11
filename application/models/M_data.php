@@ -2,8 +2,14 @@
 
 class M_data extends CI_Model
 {
-    private $_table = "tb_aset";
+    private $_tableaset = "tb_aset";
+    private $_tablekategori = "tb_kategori";
+
     public function getAset(){
-        return $this->db->get($this->_table)->result();
+        return $this->db->get($this->_tableaset)->result();
+    }
+
+    public function getKategori(){
+        return $this->db->get($this->_tablekategori)->result();
     }
 }
