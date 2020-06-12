@@ -25,4 +25,19 @@ class Home extends CI_Controller {
         
         return redirect(base_url());
     }
+
+    public function del($id=null){
+        if (!isset($id)) show_404();
+        
+        if ($this->M_data->delete($id)) {
+            redirect(site_url());
+        }
+    }
+
+    public function deletechecked(){
+        $data__ = $this->M_data;
+        $data__->delcheck();
+
+        return redirect(base_url());
+    }
 }

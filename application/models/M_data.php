@@ -65,7 +65,19 @@ class M_data extends CI_Model
                                     .$saldo."','".$year_."')");
     }
 
+    public function delete($id){
+        return $this->db->delete($this->_tabletransaksi,array("id_transaksi"=>$id));
+    }
+
     public function rules(){
 
+    }
+
+    public function delcheck(){
+        $delid = $post['checkdel'];
+        $sql = "DELETE FROM tb_transaksi WHERE id_transaksi in ";
+        $sql.= "('".implode("','",array_values($post['checkdel']))."')";
+
+        return $this->db->query($sql);
     }
 }
