@@ -16,6 +16,9 @@
    <!-- Select2 -->
    <link rel="stylesheet" href="<?php echo base_url('plugins/select2/css/select2.min.css')?>">
    <link rel="stylesheet" href="<?php echo base_url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')?>">
+   <!-- DataTables -->
+   <link rel="stylesheet" href="<?php echo base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')?>">
+   <link rel="stylesheet" href="<?php echo base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')?>">
    <!-- Bootstrap4 Duallistbox -->
    <link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')?>">
    <!-- Theme style -->
@@ -161,42 +164,11 @@
             </div>
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
+              <?php foreach($aset as $row_a){?>  
                 <li class="nav-item active">
-                  <a href="#" class="nav-link">
-                   Januari
-                    <span class="badge bg-success float-right">selesai</span>
-                  </a>
+                  <a href="#" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
-                <li class="nav-item active">
-                  <a href="#" class="nav-link">
-                   Februari
-                    <span class="badge bg-success float-right">selesai</span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a href="#" class="nav-link">
-                    Maret
-                    <span class="badge bg-success float-right">selesai</span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a href="#" class="nav-link">
-                   April
-                    <span class="badge bg-success float-right">selesai</span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a href="#" class="nav-link">
-                    Mei
-                    <span class="badge bg-success float-right">selesai</span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a href="#" class="nav-link">
-                   Juni
-                    <span class="badge bg-warning float-right">sedang berjalan</span>
-                  </a>
-                </li>
+              <?php } ?>
               </ul>
             </div>
             <!-- /.card-body -->
@@ -264,17 +236,14 @@
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
                 <div class="float-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                  
                   </div>
                   <!-- /.btn-group -->
                 </div>
                 <!-- /.float-right -->
               </div>
               <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-sm"  style="text-align: center;" id="example">
+                <table class="table table-hover table-bordered table-sm"  style="text-align: center;" id="example1">
                   <thead class="" >
                     <tr>
                       <b>
@@ -282,7 +251,6 @@
                         <td></td>
                         <td>TANGGAL</td>
                         <td>REF</td>
-                        <td>ASET</td>
                         <td>URAIAN</td>
                         <td></td>  
                         <td>SALDO</td>
@@ -302,7 +270,7 @@
                     <td class="mailbox-star"><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
                     <td class="mailbox-star"><?php echo $row_t->ref; ?></a></td>
                     <td class="mailbox-name"><?php echo $row_t->nama_aset; ?></td>
-                    <td class="mailbox-subject"><?php echo $row_t->uraian; ?>
+                    <td class="mailbox-subject"><?php $out = strlen($row_t->uraian) > 75 ? substr($row_t->uraian,0,75)."..." : $row_t->uraian; echo $out;  ?>
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
@@ -411,11 +379,7 @@
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
                 <div class="float-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                  </div>
+                  
                   <!-- /.btn-group -->
                 </div>
                 <!-- /.float-right -->
@@ -469,7 +433,7 @@
   </script>
   <script>
   $(function () {
-    $("#example").DataTable({
+    $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
     });
