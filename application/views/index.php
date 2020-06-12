@@ -363,7 +363,7 @@
                                 <div class="float-right">
                                   <button type="button" class="btn  bg-gradient-warning "><i class="fas fa-share"></i> UBAH</button>
                                 </div>
-                                <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> HAPUS</button>
+                                <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi);?>"><button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> HAPUS</button></a>
                                 <button type="button" class="btn btn-default"><i class="fas fa-print"></i> CETAK</button>
                               </div>
                               <!-- /.card-footer -->
