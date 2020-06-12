@@ -22,5 +22,7 @@ class Home extends CI_Controller {
     public function add(){
         $data_ = $this->M_data;
         $data_->addTransaksi();
+        
+        return redirect(base_url());
     }
 }

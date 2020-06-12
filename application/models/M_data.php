@@ -28,11 +28,6 @@ class M_data extends CI_Model
 
     public function addTransaksi(){
         $post=$this->input->post();
-        $this->$id_aset = $post['aset'];
-        $this->$id_kategori = $post['kategori'];
-        $this->$uraian = $post['uraian'];
-        $this->$saldo = $post['saldo'];
-        $this->$tanggal = $post['tanggal'];
 
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
 
@@ -47,7 +42,18 @@ class M_data extends CI_Model
             else {
                 $ref_ .= $refcount+1;
             }
-            $this->$ref = $ref_;
+        }
+        else {
+            $ref_ = "K";
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' ");
+            $refcount = $query_ref->num_rows();
+            if($refcount < 9){
+                $ref_ .= '0';
+                $ref_ .= $refcount+1;
+            }
+            else {
+                $ref_ .= $refcount+1;
+            }
         }
         $year_ = $date_y->format('Y');
         return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,id_aset,id_kategori,uraian,saldo,tahun) VALUES('".$ref_."','".$post['tanggal']."','".$post['aset']."','".$post['kategori']."','".$post['uraian']."','".$post['saldo']."','".$year_."')");
