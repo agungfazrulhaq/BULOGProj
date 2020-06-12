@@ -34,12 +34,14 @@ class M_data extends CI_Model
         $this->$saldo = $post['saldo'];
         $this->$tanggal = $post['tanggal'];
 
+        $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
+
         if($post['customRadio'] == "D"){
             $ref_ = "D";
             $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' ");
             $refcount = $query_ref->num_rows();
             if($refcount < 9){
-                $ref_ .= '0'
+                $ref_ .= '0';
                 $ref_ .= $refcount+1;
             }
             else {
@@ -47,6 +49,7 @@ class M_data extends CI_Model
             }
             $this->$ref = $ref_;
         }
-        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,id_aset,id_kategori,uraian,saldo,tahun)");
+        $year_ = $date_y->format('Y');
+        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,id_aset,id_kategori,uraian,saldo,tahun) VALUES('".$ref_."','".$post['tanggal']."','".$post['aset']."','".$post['kategori']."','".$post['uraian']."','".$post['saldo']."','".$year_."')");
     }
 }

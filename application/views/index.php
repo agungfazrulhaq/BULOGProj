@@ -51,6 +51,7 @@
           <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
+              <form action="<?php echo site_url('add') ?>" method="post" enctype="multipart/form-data" >
                 <div class="modal-header text-center">
                   <h4 class="modal-title w-100 font-weight-bold">Masukkan Data</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -152,7 +153,7 @@
             </div>
           </div>
           <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
-        
+                      </form>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
