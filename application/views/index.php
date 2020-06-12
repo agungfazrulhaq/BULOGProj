@@ -60,12 +60,12 @@
                 <div class="modal-body mx-3">
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                    <input type="date" id="defaultForm-email" class="form-control validate">
+                    <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal">
                   </div>
 
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                    <select class="form-control select2" style="width: 100%;">
+                    <select class="form-control select2" style="width: 100%;" name="aset">
                       <option selected="selected" value="null">Pilih Unit</option>
                       <!-- <option>BARUGA LAPPO ASE</option>
                       <option>WISMA LAPPO ASE</option>
@@ -77,14 +77,14 @@
                       <option>SUB DIVRE MKSR</option>
                       <option>DIVRE SULSEL</option> -->
                       <?php foreach ($aset as $row_a){ ?>
-                      <option><?php echo $row_a->nama_aset; ?></option>
+                      <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
                       <?php }?>
                     </select>
                   </div>
 
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                    <select class="form-control select2" style="width: 100%;">
+                    <select class="form-control select2" style="width: 100%;" name="kategori">
                       <option selected="selected" value="null">Pilih Kategori</option>
                       <!-- <option>Sewa Assets</option>
                       <option>Sewa Assets dari PYD/Hotel</option>
@@ -107,14 +107,14 @@
                       <option>Biaya Admin</option>
                       <option>Biaya Penyusutan</option> -->
                       <?php foreach($kategori as $row_k){?>
-                      <option> <?php echo $row_k->nama_kategori; ?></option>
+                      <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
                       <?php } ?>
                     </select>
                   </div>
 
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                    <textarea type="textarea" class="form-control validate"></textarea>
+                    <textarea type="textarea" class="form-control validate" name="uraian"></textarea>
                   </div>
 
                   <div class="md-form mb-3">
@@ -125,11 +125,11 @@
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
                     <div class="custom-control custom-check">
-                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
+                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D">
                       <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
                     </div>
                     <div class="custom-control custom-check">
-                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
+                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K">
                       <label for="customRadio2" class="custom-control-label">Kredit</label>
                     </div>
                   </div>
@@ -140,7 +140,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="">Rp.</i></span>
                       </div>
-                      <input type="text" id="rupiah" class="form-control">
+                      <input type="text" id="rupiah" class="form-control" name="saldo">
                     </div>
                   </div>
 
