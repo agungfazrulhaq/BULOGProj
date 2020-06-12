@@ -51,7 +51,7 @@
           <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-              <form action="<?php echo site_url('add') ?>" method="post" enctype="multipart/form-data" >
+              <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data" >
                 <div class="modal-header text-center">
                   <h4 class="modal-title w-100 font-weight-bold">Masukkan Data</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -134,7 +134,7 @@
                       <label for="customRadio2" class="custom-control-label">Kredit</label>
                     </div>
                   </div>
-
+                  
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
                     <div class="input-group">
@@ -142,6 +142,7 @@
                         <span class="input-group-text"><i class="">Rp.</i></span>
                       </div>
                       <input type="text" id="rupiah" class="form-control" name="saldo">
+
                     </div>
                   </div>
 
@@ -415,22 +416,22 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url();?>plugins/select2/js/select2.full.min.js"></script>
 <!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="<?php echo base_url();?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="<?php echo base_url();?>plugins/moment/moment.min.js"></script>
+<script src="<?php echo base_url();?>plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <script>
   $(document).ready(function(){
     $("#myInput").on("keyup", function() {
@@ -559,6 +560,8 @@ rupiah.addEventListener("keyup", function(e) {
   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
   rupiah.value = formatRupiah(this.value, " ");
 });
+//input saldo ke php
+
 
 /* Fungsi formatRupiah */
 function formatRupiah(angka, prefix) {
