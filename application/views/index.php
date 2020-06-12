@@ -25,6 +25,7 @@
    <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css')?>">
 </head>
 <body class="layout-top-nav" style="height: auto;">
+
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -32,13 +33,21 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-6">
-            <h1>Mutasi Kas Opaset</h1>
+          <div class="col-2">
+              <img class="img-thumbnail" src="dist/img/BULOG.jpg"  alt="Logo Bulog">
           </div>
-          <div class="col-sm-6">
+          <div class="col-7">
+              <h1><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
+          </div>
+          
+          <div class="col-sm-3">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><div id="clock"></div></li>
+              <li class="btn btn-secondary btn-sm breadcrumb-item"><div id="clock"></div></li>
+              
             </ol>
+            <ul>
+            <li class="btn btn-danger btn-sm breadcrumb-item">Powered By Telkom University</li>
+            </ul>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -154,7 +163,6 @@
             </div>
           </div>
           <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
-                      </form>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
@@ -224,9 +232,30 @@
         <div class="col-md-10">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title">Dashboard <b>[ Bulan : <span id="hari"></span> ]</b></h3>
+              <h3 class="card-title">Dashboard<b>
+                <div class="btn-group dropdown">
+                  <button type="button" class="ml-1 btn btn-block btn-outline-primary btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Juni
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Januari</a>
+                    <a class="dropdown-item" href="#">Februari</a>
+                    <a class="dropdown-item" href="#">Maret</a>
+                    <a class="dropdown-item" href="#">April</a>
+                    <a class="dropdown-item" href="#">Mei</a>
+                    <a class="dropdown-item" href="#">Juni</a>
+                    <a class="dropdown-item active" href="#">Juli</a>
+                    <a class="dropdown-item" href="#">Agustus</a>
+                    <a class="dropdown-item" href="#">September</a>
+                    <a class="dropdown-item" href="#">Oktober</a>
+                    <a class="dropdown-item" href="#">November</a>
+                    <a class="dropdown-item" href="#">Desember</a>
+
+                  </div>
+                </div>  
+              </b></h3>
               <div class="card-tools">
-                <div class="input-group input-group-sm">
+                <div class="input-group input-group-sm mt-1">
                   <input type="text" class="form-control" id="myInput" placeholder="Search">
                   <div class="input-group-append">
                     <div class="btn btn-primary">
@@ -242,21 +271,29 @@
               <div class="table-responsive">
               <div class="card-body">
                 <table class="table table-hover table-bordered table-sm"  style="text-align: center;" id="example1">
-                    <div class="mailbox-controls">
+                 <div class="col-sm-12">
                     <!-- Check all button -->
                     <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i></button>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                    </div>
-                    <!-- /.btn-group -->
+                    <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
                     <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
-                    <div class="float-right">
-                      
-                      </div>
-                      <!-- /.btn-group -->
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Urutkan : </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Nama</a>
+                      <a class="dropdown-item" href="#">Waktu</a>
+                      <a class="dropdown-item" href="#">Saldo Terendah</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Waktu Sekarang</a>
                     </div>
-                    <!-- /.float-right -->
-                  </div>
+                    <div class="float-right">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-dark btn-sm disabled">Impor Ke:</i></button>
+                        <button type="button" class="btn btn-default btn-sm">PDF</i></button>
+                        <button type="button" class="btn btn-default btn-sm">EXCEL</i></button>
+                        <button type="button" class="btn btn-default btn-sm">SVG</i></button>
+                      </div>
+                    </div>
+                 </div>
+                   
                   <thead class="" >
                     <tr>
                       <b>
@@ -448,9 +485,11 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "searching": false,
       "paging": false,
+      "info": false,
+      "ordering": false,
     });
     $('#example2').DataTable({
       "paging": true,
