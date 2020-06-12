@@ -299,20 +299,20 @@
                       </div>
                     </td>
                     <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</a></td>
-                    <td class="mailbox-star"><?php echo $row_t->tanggal; ?></td>
+                    <td class="mailbox-star"><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
                     <td class="mailbox-star"><?php echo $row_t->ref; ?></a></td>
                     <td class="mailbox-name"><?php echo $row_t->nama_aset; ?></td>
                     <td class="mailbox-subject"><?php echo $row_t->uraian; ?>
                     </td>
                     <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date"><?php echo $row_t->saldo; ?></td>
+                    <td class="mailbox-date"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
                   </tr>
                   <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                           <div class="modal-content">
                             <div class="card card-primary card-outline">
                               <div class="card-header">
-                                <h3 class="card-title">|<b><?php echo $row_t->ref;?></b>| 01 Juni 2020</h3>
+                                <h3 class="card-title"><b>| <?php echo $row_t->ref;?> | </b><?php echo date('d F Y', strtotime($row_t->tanggal)); ?></h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">Kembali</span>
                                 </button>
@@ -321,21 +321,11 @@
                               <div class="card-body p-0">
                                 <div class="mailbox-read-info">
                                   <h4><?php echo $row_t->nama_aset; ?></h4>
-                                  <h3>DEBIT <b>Rp. <?php echo $row_t->saldo; ?></b>
+                                  <h3>DEBIT <b><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></b>
                                     <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span></h3>
                                 </div>
                                 <div class="mailbox-read-message">
-                                  <p>Hello John,</p>
-                  
-                                  <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird
-                                    on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical
-                                    master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack
-                                    gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon
-                                    asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu
-                                    blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American
-                                    Apparel.</p>
-                  
-                                  <p>Thanks,<br>Jane</p>
+                                  <p><br><?php echo $row_t->uraian;  ?></p>
                                 </div>
                                 <!-- /.mailbox-read-message -->
                               </div>
