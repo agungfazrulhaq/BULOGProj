@@ -275,7 +275,7 @@
                   <tr>
                     <td>
                       <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check<?php echo $row_t->id_transaksi; ?>">
+                        <input type="checkbox" value="<?php echo $row_t->id_transaksi; ?>" id="check<?php echo $row_t->id_transaksi; ?>">
                         <label for="check<?php echo $row_t->id_transaksi; ?>"></label>
                       </div>
                     </td>
