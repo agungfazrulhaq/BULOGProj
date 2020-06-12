@@ -176,7 +176,7 @@
                 <li class="nav-item active">
                 <span class="input-group-text">
                 <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
-                <button type="button" class="btn btn-primary btn-sm ml-1"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-success btn-sm ml-1"><i class="fas fa-plus"></i></button>
                 </span>
                 
               </li>
