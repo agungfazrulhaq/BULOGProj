@@ -487,7 +487,7 @@
       "responsive": true,
       "autoWidth": true,
       "searching": false,
-      "paging": false,
+      "paging": true,
       "info": false,
       "ordering": false,
     });
