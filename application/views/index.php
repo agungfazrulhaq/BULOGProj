@@ -31,7 +31,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
             <h1>Mutasi Kas Opaset</h1>
           </div>
@@ -239,24 +239,24 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i></button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
-                <div class="float-right">
-                  
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.float-right -->
-              </div>
-              <div class="table-responsive mailbox-messages">
+              <div class="table-responsive">
               <div class="card-body">
                 <table class="table table-hover table-bordered table-sm"  style="text-align: center;" id="example1">
+                    <div class="mailbox-controls">
+                    <!-- Check all button -->
+                    <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i></button>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                    <!-- /.btn-group -->
+                    <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
+                    <div class="float-right">
+                      
+                      </div>
+                      <!-- /.btn-group -->
+                    </div>
+                    <!-- /.float-right -->
+                  </div>
                   <thead class="" >
                     <tr>
                       <b>
@@ -450,6 +450,7 @@
       "responsive": true,
       "autoWidth": false,
       "searching": false,
+      "paging": false,
     });
     $('#example2').DataTable({
       "paging": true,
