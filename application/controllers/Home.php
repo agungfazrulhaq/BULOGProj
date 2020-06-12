@@ -33,4 +33,11 @@ class Home extends CI_Controller {
             redirect(site_url());
         }
     }
+
+    public function deletechecked(){
+        $data__ = $this->M_data;
+        $data__->delcheck();
+
+        return redirect(base_url());
+    }
 }

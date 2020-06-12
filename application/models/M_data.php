@@ -72,4 +72,12 @@ class M_data extends CI_Model
     public function rules(){
 
     }
+
+    public function delcheck(){
+        $delid = $post['checkdel'];
+        $sql = "DELETE FROM tb_transaksi WHERE id_transaksi in ";
+        $sql.= "('".implode("','",array_values($post['checkdel']))."')";
+
+        return $this->db->query($sql);
+    }
 }

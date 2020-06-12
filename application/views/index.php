@@ -150,11 +150,11 @@
                 <div class="modal-footer d-flex justify-content-center">
                   <button class="btn btn-default">Simpan</button>
                 </div>
+                </form>
               </div>
             </div>
           </div>
           <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
-                      </form>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
@@ -245,8 +245,9 @@
                     <div class="mailbox-controls">
                     <!-- Check all button -->
                     <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i></button>
+                    <!-- <form action="<?php echo site_url('Home/deletechecked') ?>" method="post" enctype="multipart/form-data" id="checkdeleteform"> -->
                     <div class="btn-group">
-                      <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                      <button type="button" class="btn btn-default btn-sm" id="btn-delete-check"><i class="far fa-trash-alt"></i></button>
                     </div>
                     <!-- /.btn-group -->
                     <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
@@ -275,10 +276,11 @@
                   <tr>
                     <td>
                       <div class="icheck-primary">
-                        <input type="checkbox" value="<?php echo $row_t->id_transaksi; ?>" id="check<?php echo $row_t->id_transaksi; ?>">
+                        <input type="checkbox" value="<?php echo $row_t->id_transaksi; ?>" id="check<?php echo $row_t->id_transaksi; ?>" name="checkdel[]">
                         <label for="check<?php echo $row_t->id_transaksi; ?>"></label>
                       </div>
                     </td>
+                  </form>
                     <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</a></td>
                     <td class="mailbox-star"><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
                     <td class="mailbox-star"><?php echo $row_t->ref; ?></a></td>
@@ -584,7 +586,6 @@ function formatRupiah(angka, prefix) {
   rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
   return prefix == undefined ? rupiah : rupiah ? " " + rupiah : "";
 }
-
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
