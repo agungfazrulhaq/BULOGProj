@@ -55,7 +55,17 @@ class M_data extends CI_Model
                 $ref_ .= $refcount+1;
             }
         }
+        $saldo_1 = str_replace(".","",$post['saldo']);
+        $saldo_ = str_replace(",",".",$saldo_1);
+        $saldo = floatval($saldo_);
         $year_ = $date_y->format('Y');
-        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,id_aset,id_kategori,uraian,saldo,tahun) VALUES('".$ref_."','".$post['tanggal']."','".$post['aset']."','".$post['kategori']."','".$post['uraian']."','".$post['saldo']."','".$year_."')");
+        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,id_aset,id_kategori,uraian,saldo,tahun) 
+                                    VALUES('".$ref_."','".$post['tanggal']."','".$post['aset']."','"
+                                    .$post['kategori']."','".$post['uraian']."','"
+                                    .$saldo."','".$year_."')");
+    }
+
+    public function rules(){
+
     }
 }

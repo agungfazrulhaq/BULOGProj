@@ -135,14 +135,13 @@
                     </div>
                   </div>
                   
-                  <input type="number" id="realsaldo" name="saldo">
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="">Rp.</i></span>
                       </div>
-                      <input type="text" id="rupiah" class="form-control">
+                      <input type="text" id="rupiah" class="form-control" name="saldo">
 
                     </div>
                   </div>
@@ -556,7 +555,6 @@
   })
 
   var rupiah = document.getElementById("rupiah");
-  document.getElementById("realsaldo").value = this.value;
 rupiah.addEventListener("keyup", function(e) {
   // tambahkan 'Rp.' pada saat form di ketik
   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
