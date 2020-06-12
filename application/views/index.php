@@ -255,6 +255,7 @@
                 <!-- /.float-right -->
               </div>
               <div class="table-responsive mailbox-messages">
+              <div class="card-body">
                 <table class="table table-hover table-bordered table-sm"  style="text-align: center;" id="example1">
                   <thead class="" >
                     <tr>
@@ -374,6 +375,7 @@
                   <?php } ?>
                   </tbody>
                 </table>
+              </div>
                 <!-- /.table -->
               </div>
               <!-- /.mail-box-messages -->
