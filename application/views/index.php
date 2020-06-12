@@ -155,7 +155,10 @@
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Bulan : <span id="hari"></span></h3>
+              <h3 class="card-title">
+              Optimalisasi Assets
+              <br>  
+              </h3>
               
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -165,10 +168,17 @@
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
               <?php foreach($aset as $row_a){?>  
-                <li class="nav-item active">
-                  <a href="#" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
+                <li class="nav-item">
+                  <a href="" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
               <?php } ?>
+                <li class="nav-item active">
+                <span class="input-group-text">
+                <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
+                <button type="button" class="btn btn-primary btn-sm ml-1"><i class="fas fa-plus"></i></button>
+                </span>
+                
+              </li>
               </ul>
             </div>
             <!-- /.card-body -->
@@ -179,7 +189,7 @@
               <h3 class="card-title">Tahun</h3>
 
               <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 </button>
               </div>
             </div>
@@ -212,7 +222,7 @@
         <div class="col-md-10">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title">Dashboard</h3>
+              <h3 class="card-title">Dashboard <b>[ Bulan : <span id="hari"></span> ]</b></h3>
               <div class="card-tools">
                 <div class="input-group input-group-sm">
                   <input type="text" class="form-control" id="myInput" placeholder="Search">
