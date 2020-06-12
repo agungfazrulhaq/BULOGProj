@@ -274,7 +274,7 @@
                 <!-- /.float-right -->
               </div>
               <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-sm"  style="text-align: center;">
+                <table class="table table-hover table-sm"  style="text-align: center;" id="example">
                   <thead class="" >
                     <tr>
                       <b>
@@ -445,6 +445,11 @@
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="plugins/select2/js/select2.full.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
 <script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
@@ -462,6 +467,23 @@
     });
   });
   </script>
+  <script>
+  $(function () {
+    $("#example").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <script type="text/javascript">
 		<!--
 		function showTime() {

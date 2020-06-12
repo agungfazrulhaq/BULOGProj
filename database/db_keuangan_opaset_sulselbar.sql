@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2020 at 03:03 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Generation Time: Jun 12, 2020 at 03:07 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -83,8 +83,7 @@ INSERT INTO `tb_kategori` (`id_kategori`, `nama_kategori`) VALUES
 
 CREATE TABLE `tb_transaksi` (
   `tahun` int(11) NOT NULL,
-  `tanggal` int(11) NOT NULL,
-  `bulan` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
   `id_transaksi` int(11) NOT NULL,
   `uraian` text NOT NULL,
   `ref` varchar(5) NOT NULL,
@@ -97,10 +96,10 @@ CREATE TABLE `tb_transaksi` (
 -- Dumping data for table `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `bulan`, `id_transaksi`, `uraian`, `ref`, `saldo`, `id_aset`, `id_kategori`) VALUES
-(2020, 11, 1, 1, 'Pembayaran listrik kosan', 'D01', 20000, 1, 2),
-(2020, 12, 1, 2, 'Pembayaran listrik kontrakan', 'D02', 22000, 2, 3),
-(2020, 14, 1, 3, 'beli pangan', 'K01', 15000, 3, 1);
+INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`, `saldo`, `id_aset`, `id_kategori`) VALUES
+(2020, '2020-06-11', 1, 'Pembayaran listrik kosan', 'D01', 20000, 1, 2),
+(2020, '2020-06-01', 2, 'Pembayaran listrik kontrakan', 'D02', 22000, 2, 3),
+(2020, '2020-06-05', 3, 'beli pangan', 'K01', 15000, 3, 1);
 
 --
 -- Indexes for dumped tables
