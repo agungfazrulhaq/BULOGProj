@@ -134,14 +134,15 @@
                       <label for="customRadio2" class="custom-control-label">Kredit</label>
                     </div>
                   </div>
-
+                  
+                  <input type="number" id="realsaldo" name="saldo">
                   <div class="md-form mb-3">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="">Rp.</i></span>
                       </div>
-                      <input type="text" id="rupiah" class="form-control" name="saldo">
+                      <input type="text" id="rupiah" class="form-control">
 
                     </div>
                   </div>
@@ -416,22 +417,22 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url();?>plugins/select2/js/select2.full.min.js"></script>
 <!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="<?php echo base_url();?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="<?php echo base_url();?>plugins/moment/moment.min.js"></script>
+<script src="<?php echo base_url();?>plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <script>
   $(document).ready(function(){
     $("#myInput").on("keyup", function() {
@@ -555,11 +556,14 @@
   })
 
   var rupiah = document.getElementById("rupiah");
+  document.getElementById("realsaldo").value = this.value;
 rupiah.addEventListener("keyup", function(e) {
   // tambahkan 'Rp.' pada saat form di ketik
   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
   rupiah.value = formatRupiah(this.value, " ");
 });
+//input saldo ke php
+
 
 /* Fungsi formatRupiah */
 function formatRupiah(angka, prefix) {
