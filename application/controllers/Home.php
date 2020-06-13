@@ -12,6 +12,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
         $data["transaksi"] = $this->M_data->getTransaksi();
@@ -39,5 +40,19 @@ class Home extends CI_Controller {
         $data__->delcheck();
 
         return redirect(base_url());
+    }
+
+    public function showaset(){
+        $id_aset = $this->uri->segment(3);
+        $monthdate = $this->uri->segment(4);
+
+        $data["curr_aset"] = $id_aset;
+        $data["curr_month"] = $monthdate;
+
+        $data["aset"] = $this->M_data->getAset();
+        $data["kategori"] = $this->M_data->getKategori();
+        $data["transaksi"] = $this->M_data->getAset_Transaksi($id_aset,$monthdate);
+        
+		$this->load->view('index.php',$data);
     }
 }

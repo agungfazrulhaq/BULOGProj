@@ -22,7 +22,11 @@ class M_data extends CI_Model
     }
 
     public function getTransaksi(){
-        $query = $this->db->query("SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset FROM tb_transaksi INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset INNER JOIN tb_kategori on tb_transaksi.id_kategori=tb_kategori.id_kategori;");
+        $query = $this->db->query("SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                                    FROM tb_transaksi 
+                                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori;");
         return $query->result();
     }
 
@@ -79,5 +83,35 @@ class M_data extends CI_Model
         $sql.= "('".implode("','",array_values($post['checkdel']))."')";
 
         return $this->db->query($sql);
+    }
+
+    public function getAset_Transaksi($id_aset,$monthdate){
+        if ($monthdate>0 and $monthdate<13 and $id_aset>0){
+            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                    FROM tb_transaksi 
+                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    WHERE tb_transaksi.id_aset=".$id_aset." AND MONTH(tb_transaksi.tanggal)=".$monthdate;
+        }
+        else if($monthdate>0 and $monthdate<13){
+            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                    FROM tb_transaksi 
+                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate;
+        }
+        else{
+            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                    FROM tb_transaksi 
+                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    WHERE tb_transaksi.id_aset=".$id_aset;
+        }
+        
+        $sql_ = $this->db->query($sql);
+        return $sql_->result();
     }
 }

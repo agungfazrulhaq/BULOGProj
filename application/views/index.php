@@ -34,7 +34,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-2">
-              <img class="img-thumbnail" src="dist/img/BULOG.jpg"  alt="Logo Bulog">
+              <img class="img-thumbnail" src="<?php echo base_url("dist/img/BULOG.jpg"); ?>"  alt="Logo Bulog">
           </div>
           <div class="col-7">
               <h1><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
@@ -77,15 +77,6 @@
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
                     <select class="form-control select2" style="width: 100%;" name="aset">
                       <option selected="selected" value="null">Pilih Unit</option>
-                      <!-- <option>BARUGA LAPPO ASE</option>
-                      <option>WISMA LAPPO ASE</option>
-                      <option>GEDUNG OLAH RAGA (GOR)</option>
-                      <option>MESS MALINO</option>
-                      <option>RUKO DAN LAHAN</option>
-                      <option>SUB DIVRE PARE</option>
-                      <option>SUB DIVRE PLP</option>
-                      <option>SUB DIVRE MKSR</option>
-                      <option>DIVRE SULSEL</option> -->
                       <?php foreach ($aset as $row_a){ ?>
                       <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
                       <?php }?>
@@ -96,26 +87,6 @@
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
                     <select class="form-control select2" style="width: 100%;" name="kategori">
                       <option selected="selected" value="null">Pilih Kategori</option>
-                      <!-- <option>Sewa Assets</option>
-                      <option>Sewa Assets dari PYD/Hotel</option>
-                      <option>Biaya Operasional</option>
-                      <option>Harga Pokok Penjualan</option>
-                      <option>Biaya Pegawai</option>
-                      <option>Biaya Kantor, ATK</option>
-                      <option>Biaya Listrik/Telp/Air</option>
-                      <option>Biaya Perjalanan Dinas</option>
-                      <option>Biaya Perbaikan/Pemeliharaan</option>
-                      <option>Biaya PPN</option>
-                      <option>Biaya Pajak PPh Pasal 4(2)</option>
-                      <option>Biaya Pajak PPh Pasal 21</option>
-                      <option>Biaya Pajak Restoran & Hotel</option>
-                      <option>PBB</option>
-                      <option>Biaya Lain-lain</option>
-                      <option>Pendapatan Bunga Bank</option>
-                      <option>Pendapatan Lain-Lain</option>
-                      <option>Biaya Bank</option>
-                      <option>Biaya Admin</option>
-                      <option>Biaya Penyusutan</option> -->
                       <?php foreach($kategori as $row_k){?>
                       <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
                       <?php } ?>
@@ -162,10 +133,11 @@
               </div>
             </div>
           </div>
+                      </form>
           <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">
+              <h3 class="card-title ">
               Optimalisasi Assets
               <br>  
               </h3>
@@ -179,7 +151,7 @@
               <ul class="nav nav-pills flex-column">
               <?php foreach($aset as $row_a){?>  
                 <li class="nav-item">
-                  <a href="" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
               <?php } ?>
                 <li class="nav-item active">
@@ -235,23 +207,98 @@
               <h3 class="card-title">Dashboard<b> Bulan:
                 <div class="btn-group dropdown">
                   <button type="button" class="ml-1 btn btn-block btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Juni
+                    <?php 
+                      if(isset($curr_month)){
+                        if($curr_month==0){
+                          echo "BULAN";
+                        }
+                        else if($curr_month==1){
+                          echo "Januari";
+                        }
+                        else if($curr_month==2){
+                          echo "Februari";
+                        }
+                        else if($curr_month==3){
+                          echo "Maret";
+                        }
+                        else if($curr_month==4){
+                          echo "April";
+                        }
+                        else if($curr_month==5){
+                          echo "Mei";
+                        }
+                        else if($curr_month==6){
+                          echo "Juni";
+                        }
+                        else if($curr_month==7){
+                          echo "Juli";
+                        }
+                        else if($curr_month==8){
+                          echo "Agustus";
+                        }
+                        else if($curr_month==9){
+                          echo "September";
+                        }
+                        else if($curr_month==10){
+                          echo "Oktober";
+                        }
+                        else if($curr_month==11){
+                          echo "November";
+                        }
+                        else if($curr_month==12){
+                          echo "Desember";
+                        }
+                      }
+                      else {
+                        echo "BULAN";
+                      }
+                    ?>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Januari</a>
-                    <a class="dropdown-item" href="#">Februari</a>
-                    <a class="dropdown-item" href="#">Maret</a>
-                    <a class="dropdown-item" href="#">April</a>
-                    <a class="dropdown-item" href="#">Mei</a>
-                    <a class="dropdown-item" href="#">Juni</a>
-                    <a class="dropdown-item active" href="#">Juli</a>
-                    <a class="dropdown-item" href="#">Agustus</a>
-                    <a class="dropdown-item" href="#">September</a>
-                    <a class="dropdown-item" href="#">Oktober</a>
-                    <a class="dropdown-item" href="#">November</a>
-                    <a class="dropdown-item" href="#">Desember</a>
-
+                  <?php if (isset($curr_aset)){?>
+                    <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1");?>">Januari</a>
+                    <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2");?>">Februari</a>
+                    <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3");?>">Maret</a>
+                    <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4");?>">April</a>
+                    <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5");?>">Mei</a>
+                    <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6");?>">Juni</a>
+                    <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7");?>">Juli</a>
+                    <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8");?>">Agustus</a>
+                    <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9");?>">September</a>
+                    <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10");?>">Oktober</a>
+                    <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11");?>">November</a>
+                    <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12");?>">Desember</a>
+                  <?php } 
+                  
+                  else{
+                  ?>                    
+                  <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/0/1");?>">Januari</a>
+                  <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/0/2");?>">Februari</a>
+                  <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/0/3");?>">Maret</a>
+                  <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/0/4");?>">April</a>
+                  <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/0/5");?>">Mei</a>
+                  <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/0/6");?>">Juni</a>
+                  <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/0/7");?>">Juli</a>
+                  <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/0/8");?>">Agustus</a>
+                  <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/0/9");?>">September</a>
+                  <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/0/10");?>">Oktober</a>
+                  <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/0/11");?>">November</a>
+                  <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/0/12");?>">Desember</a>
+                  
+                  <?php
+                  }
+                  ?>
                   </div>
+                  <script>
+                    <?php 
+                      if(isset($curr_month)){
+                    ?>
+                      var bulanaktif = document.getElementById("month<?php echo $curr_month;?>"); 
+                      bulanaktif.className += " active";
+                    <?php
+                      }
+                    ?>
+                  </script>
                 </div>  
               </b></h3>
               <div class="card-tools">
@@ -283,6 +330,7 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Waktu Sekarang</a>
                     </div>
+                    <a href="<?php echo base_url();?>"><button class="btn btn-primary btn-sm" >Tampilkan Semua</button></a> 
                     <div class="float-right">
                       <div class="btn-group">
                         <button type="button" class="btn btn-dark btn-sm disabled">Impor Ke:</i></button>
@@ -299,6 +347,7 @@
                         <td class="col-0"></td>
                         <td><b>TANGGAL</b></td>
                         <td class="col-2"><b>REF</b></td>
+                        <td class="col-2"><b>ASET</b></td>
                         <td><b>URAIAN</b></td>
                         <td></td>  
                         <td class="col-2"><b>SALDO</b></td>
@@ -326,7 +375,8 @@
                       }
                     ?>
                     <td class="<?php echo $align; ?>">[ <?php echo $row_t->ref; ?> ]</td>
-                    <td class="text-left"><?php $out = strlen($row_t->uraian) > 75 ? substr($row_t->uraian,0,75)."..." : $row_t->uraian; echo $out;  ?>
+                    <td class=""><?php echo $row_t->nama_aset ?></td>
+                    <td class="text-left"><?php $out = strlen($row_t->uraian) > 50 ? substr($row_t->uraian,0,50)."..." : $row_t->uraian; echo $out;  ?>
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
@@ -489,6 +539,14 @@
   });
   </script>
   <script>
+  <?php 
+                    if(isset($curr_aset)){
+                    ?>
+                      var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset;?>"); 
+                      bulanaktif.className += " btn- active";
+                    <?php
+                      }
+                    ?>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
@@ -531,7 +589,7 @@
 		    curr_hour = checkTime(curr_hour);
 		    curr_minute = checkTime(curr_minute);
 		    curr_second = checkTime(curr_second);
-		 document.getElementById('clock').innerHTML=curr_hour + ":" + curr_minute + " " + a_p;
+		 document.getElementById('clock').innerHTML=curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
 		    }
  
 		function checkTime(i) {
