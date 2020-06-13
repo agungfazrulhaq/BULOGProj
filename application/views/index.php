@@ -46,7 +46,7 @@
               
             </ol>
             <ul>
-            <li class="btn btn-danger btn-sm breadcrumb-item">Powered By Telkom University</li>
+            <li class="btn btn-danger btn-sm breadcrumb-item">Powered By Pejantan Tangguh</li>
             </ul>
           </div>
         </div>
@@ -204,9 +204,10 @@
         <div class="col-md-10">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title">Dashboard<b> Bulan:
+              <h3 class="card-title">
                 <div class="btn-group dropdown">
-                  <button type="button" class="ml-1 btn btn-block btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-dark btn-sm disabled">Dashboard</button>
+                  <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php 
                       if(isset($curr_month)){
                         if($curr_month==0){
