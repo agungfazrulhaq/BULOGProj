@@ -62,18 +62,18 @@
               <div class="modal-content">
               <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data" >
                 <div class="modal-header text-center">
-                  <h4 class="modal-title w-100 font-weight-bold">Masukkan Data</h4>
+                  <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body mx-3">
-                  <div class="md-form mb-3">
+                <div class="modal-body mx-2">
+                  <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
                     <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal">
                   </div>
 
-                  <div class="md-form mb-3">
+                  <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
                     <select class="form-control select2" style="width: 100%;" name="aset">
                       <option selected="selected" value="null">Pilih Unit</option>
@@ -92,7 +92,7 @@
                     </select>
                   </div>
 
-                  <div class="md-form mb-3">
+                  <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
                     <select class="form-control select2" style="width: 100%;" name="kategori">
                       <option selected="selected" value="null">Pilih Kategori</option>
@@ -122,17 +122,17 @@
                     </select>
                   </div>
 
-                  <div class="md-form mb-3">
+                  <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
                     <textarea type="textarea" class="form-control validate" name="uraian"></textarea>
                   </div>
 
-                  <div class="md-form mb-3">
-                    <button class="btn btn-default">Unggah</button>
+                  <div class="md-form mb-2">
+                    <button class="btn btn-default btn-sm">Unggah</button>
                   </div>
                   
 
-                  <div class="md-form mb-3">
+                  <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
                     <div class="custom-control custom-check">
                       <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D">
@@ -144,7 +144,7 @@
                     </div>
                   </div>
                   
-                  <div class="md-form mb-3">
+                  <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -232,9 +232,9 @@
         <div class="col-md-10">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title">Dashboard<b>
+              <h3 class="card-title">Dashboard<b> Bulan:
                 <div class="btn-group dropdown">
-                  <button type="button" class="ml-1 btn btn-block btn-outline-primary btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button type="button" class="ml-1 btn btn-block btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Juni
                   </button>
                   <div class="dropdown-menu">
@@ -255,7 +255,7 @@
                 </div>  
               </b></h3>
               <div class="card-tools">
-                <div class="input-group input-group-sm mt-1">
+                <div class="input-group input-group-sm mt-0">
                   <input type="text" class="form-control" id="myInput" placeholder="Search">
                   <div class="input-group-append">
                     <div class="btn btn-primary">
@@ -270,9 +270,8 @@
             <div class="card-body p-0">
               <div class="table-responsive">
               <div class="card-body">
-                <table class="table table-hover table-bordered table-sm"  style="text-align: center;" id="example1">
+                
                  <div class="col-sm-12">
-                    <!-- Check all button -->
                     <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i></button>
                     <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
                     <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
@@ -293,18 +292,17 @@
                       </div>
                     </div>
                  </div>
-                   
+                 <table class="table table-hover table-sm"  style="text-align: center;" id="example1">
                   <thead class="" >
                     <tr>
-                      <b>
-                        <td></td>
-                        <td>DETAIL</td>
-                        <td>TANGGAL</td>
-                        <td>REF</td>
-                        <td>URAIAN</td>
+                        <td class="col-0"></td>
+                        <td class="col-0"></td>
+                        <td><b>TANGGAL</b></td>
+                        <td class="col-2"><b>REF</b></td>
+                        <td><b>URAIAN</b></td>
                         <td></td>  
-                        <td>SALDO</td>
-                      </b>
+                        <td class="col-2"><b>SALDO</b></td>
+                      
                     </tr>
                   </thead>
                   <?php foreach ($transaksi as $row_t){?>
@@ -317,12 +315,21 @@
                       </div>
                     </td>
                     <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</a></td>
-                    <td class="mailbox-star"><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
-                    <td class="mailbox-star"><?php echo $row_t->ref; ?></a></td>
-                    <td class="mailbox-subject"><?php $out = strlen($row_t->uraian) > 75 ? substr($row_t->uraian,0,75)."..." : $row_t->uraian; echo $out;  ?>
+                    <td class=""><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
+                    <?php
+                      $align="";
+                      if(strpos($row_t->ref,"D") !== false){
+                        $align="text-left pl-5";
+                      }
+                      else {
+                        $align="text-right pr-5";
+                      }
+                    ?>
+                    <td class="<?php echo $align; ?>">[ <?php echo $row_t->ref; ?> ]</td>
+                    <td class="text-left"><?php $out = strlen($row_t->uraian) > 75 ? substr($row_t->uraian,0,75)."..." : $row_t->uraian; echo $out;  ?>
                     </td>
                     <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
+                    <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
                   </tr>
                   <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
