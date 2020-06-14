@@ -164,10 +164,12 @@
                 </li>
              <?php } ?>
                 <li class="nav-item active">
+                <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
                 <span class="input-group-text" style="border-radius:0px 0px 5px 5px;">
-                  <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
+                  <input class="form-control form-control-sm" type="text" placeholder="Tambah Aset" name="nama_aset" required>
                   <button type="button" class="btn btn-info btn-sm ml-1" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                 </span>
+                </form>
               </li>
               </ul>
             </div>
