@@ -75,6 +75,13 @@ class M_data extends CI_Model
                                     .$saldo."','".$year_."')");
     }
 
+    public function addAset(){
+        $post=$this->input->post();
+        $nama_aset = $post['nama_aset'];
+
+        return $this->db->query("INSERT INTO tb_aset(nama_aset) VALUES('".$nama_aset."');");
+    }
+
     public function delete($id){
         return $this->db->delete($this->_tabletransaksi,array("id_transaksi"=>$id));
     }

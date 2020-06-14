@@ -58,4 +58,11 @@ class Home extends CI_Controller {
         
 		$this->load->view('index.php',$data);
     }
+
+    public function addaset(){
+        $data_ = $this->M_data;
+        $data_->addAset();
+        
+        return redirect(base_url());
+    }
 }
