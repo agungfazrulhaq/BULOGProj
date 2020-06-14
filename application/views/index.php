@@ -34,7 +34,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-2">
-              <img class="img-thumbnail" src="<?php echo base_url("dist/img/BULOG.jpg"); ?>"  alt="Logo Bulog">
+              <img class="img-fluid" src="<?php echo base_url("dist/img/BULOG.png"); ?>"  alt="Logo Bulog">
           </div>
           <div class="col-7">
             <div class="text-center">
@@ -162,9 +162,9 @@
                 }
                 ?>
                 <li class="nav-item">
-                  <a href="<?php echo site_url($link_showaset);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link text-dark"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url($link_showaset);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
-              <?php } ?>
+             <?php } ?>
                 <li class="nav-item active">
                 <span class="input-group-text">
                   <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
