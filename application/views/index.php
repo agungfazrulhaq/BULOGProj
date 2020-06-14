@@ -70,13 +70,13 @@
                 <div class="modal-body mx-2">
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                    <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal">
+                    <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" required>
                   </div>
 
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                    <select class="form-control select2" style="width: 100%;" name="aset">
-                      <option selected="selected" value="null">Pilih Unit</option>
+                    <select class="form-control select2" style="width: 100%;" name="aset" required>
+                      <option selected="selected" value="">Pilih Unit</option>
                       <?php foreach ($aset as $row_a){ ?>
                       <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
                       <?php }?>
@@ -85,8 +85,8 @@
 
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                    <select class="form-control select2" style="width: 100%;" name="kategori">
-                      <option selected="selected" value="null">Pilih Kategori</option>
+                    <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                      <option selected="selected" value="">Pilih Kategori</option>
                       <?php foreach($kategori as $row_k){?>
                       <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
                       <?php } ?>
@@ -95,22 +95,22 @@
 
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                    <textarea type="textarea" class="form-control validate" name="uraian"></textarea>
+                    <textarea type="textarea" class="form-control validate" name="uraian" required></textarea>
                   </div>
 
                   <div class="md-form mb-2">
-                    <button class="btn btn-default btn-sm">Unggah</button>
+                    <input type="file" class="btn btn-default btn-sm" value="Unggah">
                   </div>
                   
 
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
                     <div class="custom-control custom-check">
-                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D">
+                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required>
                       <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
                     </div>
                     <div class="custom-control custom-check">
-                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K">
+                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required>
                       <label for="customRadio2" class="custom-control-label">Kredit</label>
                     </div>
                   </div>
