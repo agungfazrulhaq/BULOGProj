@@ -189,7 +189,7 @@
               <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="far fa-circle"></i>
+                    
                     2019
                   </a>
                 </li>
@@ -344,11 +344,11 @@
                  <table class="table table-hover table-sm"  style="text-align: center;" id="example1">
                   <thead class="" >
                     <tr>
-                        <td></td>
+                        <td><b>AKSI</b></td>
                         <td><b>TANGGAL</b></td>
                         <td><b>REF</b></td>
                         <td><b>ASET</b></td>
-                        <td class="col-md-4"><b>URAIAN</b></td>
+                        <td><b>URAIAN</b></td>
                         <td></td>  
                         <td><b>SALDO</b></td>
                       
