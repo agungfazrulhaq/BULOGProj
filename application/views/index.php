@@ -149,22 +149,21 @@
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
               <?php foreach($aset as $row_a){?>
-                <?php if(isset($curr_month) and isset($curr_year)){ ?>
+                <?php 
+                $link_showaset = "Home/showaset/";
+                if(isset($curr_month) and isset($curr_year)){
+                  $link_showaset .=$row_a->id_aset."/".$curr_month."/".$curr_year;
+                }
+                else if(isset($curr_month)){ 
+                  $link_showaset .=$row_a->id_aset."/".$curr_month."/0";
+                } 
+                else{ 
+                  $link_showaset .=$row_a->id_aset."/0/0";
+                }
+                ?>
                 <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/".$curr_year);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link text-dark"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url($link_showaset);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link text-dark"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
-                <?php }
-                
-                else if(isset($curr_month)){ ?>
-                <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
-                </li>
-                <?php } 
-                else{ ?>
-                <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
-                </li>
-                <?php }?>
               <?php } ?>
                 <li class="nav-item active">
                 <span class="input-group-text">
@@ -187,23 +186,13 @@
             </div>
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
+                <?php foreach($datatahun as $year_row){?>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    
-                    2019
+                    <?php echo $year_row->years;?>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle"></i> 2020
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle"></i>
-                    2021
-                  </a>
-                </li>
+                <?php }?>
               </ul>
             </div>
             <!-- /.card-body -->
