@@ -130,13 +130,13 @@
 
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                  <button class="btn btn-default">Simpan</button>
+                  <button class="btn btn-info">Simpan</button>
                 </div>
               </div>
             </div>
           </div>
         </form>
-          <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
+          <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title ">
@@ -150,13 +150,13 @@
               <ul class="nav nav-pills flex-column">
               <?php foreach($aset as $row_a){?>  
                 <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link text-dark"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
               <?php } ?>
                 <li class="nav-item active">
                 <span class="input-group-text">
                   <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
-                  <button type="button" class="btn btn-success btn-sm ml-1"><i class="fas fa-plus"></i></button>
+                  <button type="button" class="btn btn-info btn-sm ml-1"><i class="fas fa-plus"></i></button>
                 </span>
               </li>
               </ul>
@@ -203,7 +203,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <div class="btn-group dropdown">
-                <button type="button" class="btn btn-dark btn-sm disabled">Dashboard</button>
+                <button type="button" class="btn btn-dark btn-sm">Dashboard</button>
                   <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php 
                       if(isset($curr_month)){
@@ -299,10 +299,10 @@
                   </script>
                 </div>  
               </b></h3>
-              <a href="<?php echo base_url();?>"><button class="btn btn-info btn-sm ml-2" >Tampilkan Semua</button></a>
+              <a href="<?php echo base_url();?>" ><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
               <div class="card-tools">
                 <div class="input-group input-group-sm mt-0"> 
-                <span class="btn btn-secondary btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
+                <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
                 <span class="btn btn-danger btn-sm">Log Out</span>
                 </div>
               </div>
@@ -353,7 +353,7 @@
                   <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                           <div class="modal-content">
-                            <div class="card card-primary card-outline">
+                            <div class="card card-info card-outline">
                               <div class="card-header">
                                 <h3 class="card-title"><b>| <?php echo $row_t->ref;?> | </b><?php echo date('d F Y', strtotime($row_t->tanggal)); ?></h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -493,7 +493,7 @@
                     if(isset($curr_aset)){
                     ?>
                       var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset;?>"); 
-                      bulanaktif.className += " btn-  active";
+                      bulanaktif.className += " btn-info  active";
                     <?php
                       }
                     ?>
