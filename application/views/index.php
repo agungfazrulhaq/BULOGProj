@@ -34,7 +34,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-2">
-              <img class="img-thumbnail" src="<?php echo base_url("dist/img/BULOG.jpg"); ?>"  alt="Logo Bulog">
+              <img class="img-fluid" src="<?php echo base_url("dist/img/BULOG.png"); ?>"  alt="Logo Bulog">
           </div>
           <div class="col-7">
             <div class="text-center">
@@ -151,18 +151,17 @@
               <?php foreach($aset as $row_a){?>
                 <?php if(isset($curr_month) and isset($curr_year)){ ?>
                 <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/".$curr_year);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link text-dark"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/".$curr_year);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
                 <?php }
-                
                 else if(isset($curr_month)){ ?>
                 <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
                 <?php } 
                 else{ ?>
                 <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
                 <?php }?>
               <?php } ?>
