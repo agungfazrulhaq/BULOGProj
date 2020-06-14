@@ -17,6 +17,12 @@ class M_data extends CI_Model
         return $this->db->get($this->_tableaset)->result();
     }
 
+    public function getYears(){
+        $sql = "SELECT DISTINCT YEAR(tanggal) FROM tb_transaksi";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
     public function getKategori(){
         return $this->db->get($this->_tablekategori)->result();
     }
@@ -85,14 +91,38 @@ class M_data extends CI_Model
         return $this->db->query($sql);
     }
 
-    public function getAset_Transaksi($id_aset,$monthdate){
-        if ($monthdate>0 and $monthdate<13 and $id_aset>0){
+    public function getAset_Transaksi($id_aset,$monthdate,$yeardate){
+        if ($monthdate>0 and $monthdate<13 and $id_aset>0 and $yeardate>0){
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
                     INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
                     INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
-                    WHERE tb_transaksi.id_aset=".$id_aset." AND MONTH(tb_transaksi.tanggal)=".$monthdate;
+                    WHERE tb_transaksi.id_aset=".$id_aset." AND MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
+        }
+        else if($monthdate>0 and $monthdate<13 and $id_aset>0){
+            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                    FROM tb_transaksi 
+                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND tb_transaksi.id_aset=".$id_aset;
+        }
+        else if($monthdate>0 and $monthdate<13 and $yeardate>0){
+            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                    FROM tb_transaksi 
+                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
+        }
+        else if($yeardate>0 and $id_aset>0){
+            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                    FROM tb_transaksi 
+                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    WHERE YEAR(tb_transaksi.tanggal)=".$yeardate." AND tb_transaksi.id_aset=".$id_aset;
         }
         else if($monthdate>0 and $monthdate<13){
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
@@ -101,6 +131,14 @@ class M_data extends CI_Model
                     INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
                     INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
                     WHERE MONTH(tb_transaksi.tanggal)=".$monthdate;
+        }
+        else if($yeardate>0){
+            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                    FROM tb_transaksi 
+                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    WHERE YEAR(tb_transaksi.tanggal)=".$yeardate;
         }
         else{
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
