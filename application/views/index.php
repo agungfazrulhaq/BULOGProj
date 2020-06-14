@@ -299,7 +299,7 @@
                   </script>
                 </div>  
               </b></h3>
-              <a href="<?php echo base_url();?>"><button class="btn btn-primary btn-sm ml-2" >Tampilkan Semua</button></a>
+              <a href="<?php echo base_url();?>"><button class="btn btn-info btn-sm ml-2" >Tampilkan Semua</button></a>
               <div class="card-tools">
                 <div class="input-group input-group-sm mt-0"> 
                 <span class="btn btn-secondary btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
@@ -315,13 +315,13 @@
                  <table class="table table-hover table-sm"  style="text-align: center;" id="example1">
                   <thead class="" >
                     <tr>
-                        <td class="col-1"></td>
+                        <td></td>
                         <td><b>TANGGAL</b></td>
-                        <td class="col-1"><b>REF</b></td>
-                        <td class="col-2"><b>ASET</b></td>
+                        <td><b>REF</b></td>
+                        <td><b>ASET</b></td>
                         <td><b>URAIAN</b></td>
                         <td></td>  
-                        <td class="col-2"><b>SALDO</b></td>
+                        <td><b>SALDO</b></td>
                       
                     </tr>
                   </thead>
