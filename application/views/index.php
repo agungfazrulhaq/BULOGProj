@@ -133,15 +133,12 @@
               </div>
             </div>
           </div>
-                      </form>
+        </form>
           <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title ">
-              Optimalisasi Assets
-              <br>  
-              </h3>
-              
+              Optimalisasi Assets<br></h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                 </button>
@@ -151,7 +148,7 @@
               <ul class="nav nav-pills flex-column">
               <?php foreach($aset as $row_a){?>  
                 <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
               <?php } ?>
                 <li class="nav-item active">
@@ -159,7 +156,6 @@
                 <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
                 <button type="button" class="btn btn-success btn-sm ml-1"><i class="fas fa-plus"></i></button>
                 </span>
-                
               </li>
               </ul>
             </div>
@@ -302,9 +298,9 @@
                   </script>
                 </div>  
               </b></h3>
+              <a href="<?php echo base_url();?>"><button class="btn btn-primary btn-sm ml-2" >Tampilkan Semua</button></a>
               <div class="card-tools">
-                <div class="input-group input-group-sm mt-0">
-                <a href="<?php echo base_url();?>"><button class="btn btn-primary btn-sm mr-1" >Tampilkan Semua</button></a> 
+                <div class="input-group input-group-sm mt-0"> 
                   <input type="text" class="form-control" id="myInput" placeholder="Search">
                   <div class="input-group-append">
                     <div class="btn btn-primary">
@@ -319,8 +315,6 @@
             <div class="card-body p-0">
               <div class="table-responsive">
               <div class="card-body">
-                
-                 
                  <table class="table table-hover table-sm"  style="text-align: center;" id="example1">
                   <thead class="" >
                     <tr>
@@ -340,7 +334,7 @@
                     <td>
                     <div class="btn-group">
                       <button class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</button>
-                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Hapus</button>
+                      <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm">Hapus</a>
                     </div>
                     </td>
                     <td class=""><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
@@ -355,8 +349,8 @@
                     ?>
                     <td class="<?php echo $align; ?>">[ <?php echo $row_t->ref; ?> ]</td>
                     <td class=""><?php echo $row_t->nama_aset ?></td>
-                    <td class="text-left"><?php $out = strlen($row_t->uraian) > 50 ? substr($row_t->uraian,0,50)."..." : $row_t->uraian; echo $out;  ?>
-                    </td>
+                    <td class="text-left"><b># <?php $out = strlen($row_t->uraian) > 50 ? substr($row_t->uraian,0,50)."..." : $row_t->uraian; echo $out;  ?>
+                    </b></td>
                     <td class="mailbox-attachment"></td>
                     <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
                   </tr>
@@ -507,7 +501,7 @@
                     if(isset($curr_aset)){
                     ?>
                       var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset;?>"); 
-                      bulanaktif.className += " btn- active";
+                      bulanaktif.className += " btn-  active";
                     <?php
                       }
                     ?>
