@@ -138,7 +138,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title ">
-              Optimalisasi Assets<br></h3>
+              Optimalisasi Aset<br></h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                 </button>
@@ -162,18 +162,18 @@
                 <li class="nav-item">
                   <a href="<?php echo site_url($link_showaset);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
+                <li class="nav-item"></li>
              <?php } ?>
-                <li class="nav-item active">
-                <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
-                <span class="input-group-text" style="border-radius:0px 0px 5px 5px;">
-                  <input class="form-control form-control-sm" type="text" placeholder="Tambah Aset" name="nama_aset" required>
-                  <button type="button" class="btn btn-info btn-sm ml-1" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
-                </span>
-                </form>
-              </li>
               </ul>
-            </div>
-            <!-- /.card-body -->
+              </div>
+              <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
+              <div class="input-group pt-1 pb-1 pl-1 pr-1">
+                  <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
+                  <span class="input-group-append">
+                  <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+                  </span>
+              </div>
+              </form>
           </div>
           <!-- /.card -->
           <div class="card">
