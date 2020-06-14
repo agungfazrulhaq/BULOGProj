@@ -72,7 +72,6 @@
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
                     <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" required>
                   </div>
-
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
                     <select class="form-control select2" style="width: 100%;" name="aset" required>
@@ -82,7 +81,6 @@
                       <?php }?>
                     </select>
                   </div>
-
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
                     <select class="form-control select2" style="width: 100%;" name="kategori" required>
@@ -92,17 +90,13 @@
                       <?php } ?>
                     </select>
                   </div>
-
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
                     <textarea type="textarea" class="form-control validate" name="uraian" required></textarea>
                   </div>
-
                   <div class="md-form mb-2">
                     <input type="file" class="btn btn-default btn-sm" value="Unggah">
                   </div>
-                  
-
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
                     <div class="custom-control custom-check">
@@ -122,10 +116,8 @@
                         <span class="input-group-text"><i class="">Rp.</i></span>
                       </div>
                       <input type="text" id="rupiah" class="form-control" name="saldo">
-
                     </div>
                   </div>
-
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button class="btn btn-info">Simpan</button>
@@ -173,7 +165,6 @@
                   </span>
               </div>
           </div>
-          <!-- /.card -->
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Rekap Tahun</h3>
@@ -193,11 +184,8 @@
                 <?php }?>
               </ul>
             </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
         <div class="col-md-10">
           <div class="card card-primary card-outline">
             <div class="card-header">
