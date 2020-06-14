@@ -304,6 +304,7 @@
               </b></h3>
               <div class="card-tools">
                 <div class="input-group input-group-sm mt-0">
+                <a href="<?php echo base_url();?>"><button class="btn btn-primary btn-sm mr-1" >Tampilkan Semua</button></a> 
                   <input type="text" class="form-control" id="myInput" placeholder="Search">
                   <div class="input-group-append">
                     <div class="btn btn-primary">
@@ -319,35 +320,13 @@
               <div class="table-responsive">
               <div class="card-body">
                 
-                 <div class="col-sm-12">
-                    <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                    <button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()"><i class="fas fa-sync-alt"></i></button>
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Urutkan : </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Nama</a>
-                      <a class="dropdown-item" href="#">Waktu</a>
-                      <a class="dropdown-item" href="#">Saldo Terendah</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Waktu Sekarang</a>
-                    </div>
-                    <a href="<?php echo base_url();?>"><button class="btn btn-primary btn-sm" >Tampilkan Semua</button></a> 
-                    <div class="float-right">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-dark btn-sm disabled">Impor Ke:</i></button>
-                        <button type="button" class="btn btn-default btn-sm">PDF</i></button>
-                        <button type="button" class="btn btn-default btn-sm">EXCEL</i></button>
-                        <button type="button" class="btn btn-default btn-sm">SVG</i></button>
-                      </div>
-                    </div>
-                 </div>
+                 
                  <table class="table table-hover table-sm"  style="text-align: center;" id="example1">
                   <thead class="" >
                     <tr>
-                        <td class="col-0"></td>
-                        <td class="col-0"></td>
+                        <td class="col-1"></td>
                         <td><b>TANGGAL</b></td>
-                        <td class="col-2"><b>REF</b></td>
+                        <td class="col-1"><b>REF</b></td>
                         <td class="col-2"><b>ASET</b></td>
                         <td><b>URAIAN</b></td>
                         <td></td>  
@@ -359,12 +338,11 @@
                   <tbody id="myTable">
                   <tr>
                     <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="<?php echo $row_t->id_transaksi; ?>" id="check<?php echo $row_t->id_transaksi; ?>">
-                        <label for="check<?php echo $row_t->id_transaksi; ?>"></label>
-                      </div>
+                    <div class="btn-group">
+                      <button class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</button>
+                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Hapus</button>
+                    </div>
                     </td>
-                    <td><a class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</a></td>
                     <td class=""><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
                     <?php
                       $align="";
@@ -477,21 +455,6 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer p-0">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                <div class="float-right">
-                  
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.float-right -->
-              </div>
             </div>
           </div>
           <!-- /.card -->
