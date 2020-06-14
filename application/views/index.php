@@ -346,8 +346,19 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <?php 
+                        $total_saldo = 0;
+                        foreach($transaksi as $t_row){
+                          if(strpos($t_row->ref,"D")!== false){
+                            $total_saldo = $total_saldo + $t_row->saldo;
+                          }
+                          else {
+                            $total_saldo = $total_saldo - $t_row->saldo;
+                          }
+                        }  
+                        ?>
                         <td><b>Total Saldo = </b></td>  
-                        <td class="text-left"><b>Rp. Hitung Sendiri</b></td>
+                        <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, ",", "."); ?></b></td>
                     </tr>
                   </thead>
                   <?php foreach ($transaksi as $row_t){?>
