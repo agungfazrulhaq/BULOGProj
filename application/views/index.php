@@ -148,10 +148,23 @@
             </div>
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
-              <?php foreach($aset as $row_a){?>  
+              <?php foreach($aset as $row_a){?>
+                <?php if(isset($curr_month) and isset($curr_year)){ ?>
                 <li class="nav-item">
-                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link text-dark"> <?php echo $row_a->nama_aset; ?></a>
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/".$curr_year);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link text-dark"> <?php echo $row_a->nama_aset; ?></a>
                 </li>
+                <?php }
+                
+                else if(isset($curr_month)){ ?>
+                <li class="nav-item">
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/".$curr_month."/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
+                </li>
+                <?php } 
+                else{ ?>
+                <li class="nav-item">
+                  <a href="<?php echo site_url("Home/showaset/".$row_a->id_aset."/0/0");?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link black-text"> <?php echo $row_a->nama_aset; ?></a>
+                </li>
+                <?php }?>
               <?php } ?>
                 <li class="nav-item active">
                 <span class="input-group-text">
@@ -253,35 +266,51 @@
                     ?>
                   </button>
                   <div class="dropdown-menu">
-                  <?php if (isset($curr_aset)){?>
-                    <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1");?>">Januari</a>
-                    <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2");?>">Februari</a>
-                    <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3");?>">Maret</a>
-                    <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4");?>">April</a>
-                    <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5");?>">Mei</a>
-                    <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6");?>">Juni</a>
-                    <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7");?>">Juli</a>
-                    <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8");?>">Agustus</a>
-                    <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9");?>">September</a>
-                    <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10");?>">Oktober</a>
-                    <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11");?>">November</a>
-                    <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12");?>">Desember</a>
+                  <?php if (isset($curr_aset) and isset($curr_year)){?>
+                    <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1/".$curr_year);?>">Januari</a>
+                    <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2/".$curr_year);?>">Februari</a>
+                    <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3/".$curr_year);?>">Maret</a>
+                    <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4/".$curr_year);?>">April</a>
+                    <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5/".$curr_year);?>">Mei</a>
+                    <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6/".$curr_year);?>">Juni</a>
+                    <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7/".$curr_year);?>">Juli</a>
+                    <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8/".$curr_year);?>">Agustus</a>
+                    <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9/".$curr_year);?>">September</a>
+                    <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10/".$curr_year);?>">Oktober</a>
+                    <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11/".$curr_year);?>">November</a>
+                    <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12/".$curr_year);?>">Desember</a>
                   <?php } 
                   
+                  else if(isset($curr_aset)){
+                  ?>                    
+                    <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1/0");?>">Januari</a>
+                    <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2/0");?>">Februari</a>
+                    <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3/0");?>">Maret</a>
+                    <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4/0");?>">April</a>
+                    <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5/0");?>">Mei</a>
+                    <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6/0");?>">Juni</a>
+                    <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7/0");?>">Juli</a>
+                    <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8/0");?>">Agustus</a>
+                    <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9/0");?>">September</a>
+                    <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10/0");?>">Oktober</a>
+                    <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11/0");?>">November</a>
+                    <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12/0");?>">Desember</a>                  
+                  <?php
+                  }
                   else{
                   ?>                    
-                  <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/0/1");?>">Januari</a>
-                  <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/0/2");?>">Februari</a>
-                  <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/0/3");?>">Maret</a>
-                  <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/0/4");?>">April</a>
-                  <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/0/5");?>">Mei</a>
-                  <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/0/6");?>">Juni</a>
-                  <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/0/7");?>">Juli</a>
-                  <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/0/8");?>">Agustus</a>
-                  <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/0/9");?>">September</a>
-                  <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/0/10");?>">Oktober</a>
-                  <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/0/11");?>">November</a>
-                  <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/0/12");?>">Desember</a>
+                  <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/0/1/0");?>">Januari</a>
+                  <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/0/2/0");?>">Februari</a>
+                  <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/0/3/0");?>">Maret</a>
+                  <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/0/4/0");?>">April</a>
+                  <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/0/5/0");?>">Mei</a>
+                  <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/0/6/0");?>">Juni</a>
+                  <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/0/7/0");?>">Juli</a>
+                  <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/0/8/0");?>">Agustus</a>
+                  <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/0/9/0");?>">September</a>
+                  <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/0/10/0");?>">Oktober</a>
+                  <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/0/11/0");?>">November</a>
+                  <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/0/12/0");?>">Desember</a>
                   
                   <?php
                   }
