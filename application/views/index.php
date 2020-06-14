@@ -129,8 +129,8 @@
           <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title ">
-              Optimalisasi Aset<br></h3>
+              <h3 class="card-title "><b>
+              Optimalisasi Aset</b><br></h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                 </button>
@@ -335,7 +335,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
+                        <td class="text-right"><b>Total Saldo = </b></td>
                         <?php 
                         $total_saldo = 0;
                         foreach($transaksi as $t_row){
@@ -347,7 +347,7 @@
                           }
                         }  
                         ?>
-                        <td><b>Total Saldo = </b></td>  
+                        <td></td>  
                         <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, ",", "."); ?></b></td>
                     </tr>
                   </thead>
