@@ -330,7 +330,7 @@
                   <tr>
                     <td>
                     <div class="btn-group">
-                      <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</button>
                       <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fas fa-trash"></i></a>
                     </div>
                     </td>
