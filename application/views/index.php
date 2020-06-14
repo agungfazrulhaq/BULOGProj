@@ -319,7 +319,7 @@
                         <td><b>TANGGAL</b></td>
                         <td><b>REF</b></td>
                         <td><b>ASET</b></td>
-                        <td><b>URAIAN</b></td>
+                        <td class="col-md-4"><b>URAIAN</b></td>
                         <td></td>  
                         <td><b>SALDO</b></td>
                       
@@ -338,10 +338,10 @@
                     <?php
                       $align="";
                       if(strpos($row_t->ref,"D") !== false){
-                        $align="text-left pl-5";
+                        $align="text-left pl-2";
                       }
                       else {
-                        $align="text-right pr-5";
+                        $align="text-right pr-2";
                       }
                     ?>
                     <td class="<?php echo $align; ?>">[ <?php echo $row_t->ref; ?> ]</td>
