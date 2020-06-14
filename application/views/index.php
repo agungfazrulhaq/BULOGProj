@@ -158,12 +158,14 @@
              <?php } ?>
               </ul>
               </div>
+              <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
               <div class="input-group pt-1 pb-1 pl-1 pr-1">
-                  <input type="text" class="form-control" type="text" placeholder="Tambah Aset">
+                  <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
                   <span class="input-group-append">
                   <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                   </span>
               </div>
+              </form>
           </div>
           <div class="card">
             <div class="card-header">
