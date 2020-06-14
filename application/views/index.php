@@ -37,17 +37,19 @@
               <img class="img-thumbnail" src="<?php echo base_url("dist/img/BULOG.jpg"); ?>"  alt="Logo Bulog">
           </div>
           <div class="col-7">
+            <div class="text-center">
               <h1><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
+            </div>
           </div>
-          
-          <div class="col-sm-3">
-            <ol class="breadcrumb float-sm-right">
-              <li class="btn btn-secondary btn-sm breadcrumb-item"><div id="clock"></div></li>
-              
-            </ol>
-            <ul>
-            <li class="btn btn-danger btn-sm breadcrumb-item">Powered By Pejantan Tangguh</li>
-            </ul>
+          <div class="col-3">
+          <div class="info-box mb-0">
+              <div class="info-box-content">
+                <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
+                <span class="info-box-number">
+                  NIP : 1103174125
+                </span>
+              </div>
+              <span class="info-box-icon bg-default"><img src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo" class="img-fluid"></span>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -153,8 +155,8 @@
               <?php } ?>
                 <li class="nav-item active">
                 <span class="input-group-text">
-                <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
-                <button type="button" class="btn btn-success btn-sm ml-1"><i class="fas fa-plus"></i></button>
+                  <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
+                  <button type="button" class="btn btn-success btn-sm ml-1"><i class="fas fa-plus"></i></button>
                 </span>
               </li>
               </ul>
@@ -164,8 +166,7 @@
           <!-- /.card -->
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Tahun</h3>
-
+              <h3 class="card-title">Rekap Tahun</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 </button>
@@ -301,12 +302,8 @@
               <a href="<?php echo base_url();?>"><button class="btn btn-primary btn-sm ml-2" >Tampilkan Semua</button></a>
               <div class="card-tools">
                 <div class="input-group input-group-sm mt-0"> 
-                  <input type="text" class="form-control" id="myInput" placeholder="Search">
-                  <div class="input-group-append">
-                    <div class="btn btn-primary">
-                      <i class="fas fa-search"></i>
-                    </div>
-                  </div>
+                <span class="btn btn-secondary btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
+                <span class="btn btn-danger btn-sm">Log Out</span>
                 </div>
               </div>
               <!-- /.card-tools -->
@@ -333,8 +330,8 @@
                   <tr>
                     <td>
                     <div class="btn-group">
-                      <button class="btn btn-primary btn-sm" style="color:white;" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</button>
-                      <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm">Hapus</a>
+                      <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>"><i class="fas fa-eye"></i></button>
+                      <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fas fa-trash"></i></a>
                     </div>
                     </td>
                     <td class=""><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
@@ -349,8 +346,7 @@
                     ?>
                     <td class="<?php echo $align; ?>">[ <?php echo $row_t->ref; ?> ]</td>
                     <td class=""><?php echo $row_t->nama_aset ?></td>
-                    <td class="text-left"><b># <?php $out = strlen($row_t->uraian) > 50 ? substr($row_t->uraian,0,50)."..." : $row_t->uraian; echo $out;  ?>
-                    </b></td>
+                    <td class="text-left">  <?php $out = strlen($row_t->uraian) > 50 ? substr($row_t->uraian,0,50)."..." : $row_t->uraian; echo $out;  ?></td>
                     <td class="mailbox-attachment"></td>
                     <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
                   </tr>
@@ -488,15 +484,11 @@
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <script>
   $(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
+    $('[data-toggle="tooltip"]').tooltip();
   });
-  </script>
-  <script>
+</script>
+<script>
+  
   <?php 
                     if(isset($curr_aset)){
                     ?>
@@ -509,22 +501,14 @@
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": true,
-      "searching": false,
-      "paging": false,
-      "info": false,
-      "ordering": false,
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
       "searching": true,
-      "ordering": true,
+      "paging": true,
       "info": true,
-      "autoWidth": false,
-      "responsive": true,
+      "ordering": true,
     });
   });
 </script>
+
 <script type="text/javascript">
 		<!--
 		function showTime() {
@@ -572,7 +556,8 @@
 			var year = (yy < 1000) ? yy + 1900 : yy;
 			document.getElementById('hari').innerHTML=months[month] + ' ' + year;
 			//-->
-		</script>
+</script>
+    
 <script>
   $(function () {
 
@@ -614,6 +599,7 @@
     })
   })
 </script>
+
 <script>
   $(function () {
     // Summernote
@@ -649,6 +635,6 @@ function formatRupiah(angka, prefix) {
 
 </script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="<?php echo base_url();?>dist/js/demo.js"></script>
 </body>
 </html>
