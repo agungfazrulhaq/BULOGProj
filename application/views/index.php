@@ -45,11 +45,9 @@
           <div class="info-box mb-0">
               <div class="info-box-content">
                 <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
-                <span class="info-box-number">
-                  NIP : 1103174125
-                </span>
+                <span class="info-box-number">NIP : 1103174125</span>
               </div>
-              <span class="info-box-icon bg-default"><img src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo" class="img-fluid"></span>
+              <span class="info-box-icon bg-default"><img class="" src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo"></span>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -166,9 +164,9 @@
                 </li>
              <?php } ?>
                 <li class="nav-item active">
-                <span class="input-group-text">
+                <span class="input-group-text" style="border-radius:0px 0px 5px 5px;">
                   <input class="form-control form-control-sm" type="text" placeholder="Tambah Assets">
-                  <button type="button" class="btn btn-info btn-sm ml-1"><i class="fas fa-plus"></i></button>
+                  <button type="button" class="btn btn-info btn-sm ml-1" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                 </span>
               </li>
               </ul>
@@ -321,7 +319,7 @@
               <div class="card-tools">
                 <div class="input-group input-group-sm mt-0"> 
                 <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
-                <span class="btn btn-danger btn-sm">Log Out</span>
+                <span class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
                 </div>
               </div>
               <!-- /.card-tools -->
@@ -340,11 +338,20 @@
                         <td><b>URAIAN</b></td>
                         <td></td>  
                         <td><b>SALDO</b></td>
-                      
+                    </tr>
+                    <tfoot class="" >
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Total Saldo = </b></td>  
+                        <td class="text-left"><b>Rp. Hitung Sendiri</b></td>
                     </tr>
                   </thead>
                   <?php foreach ($transaksi as $row_t){?>
-                  <tbody id="myTable">
+                  <tbody>
                   <tr>
                     <td>
                     <div class="btn-group">
@@ -371,9 +378,9 @@
                   <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
                           <div class="modal-content">
-                            <div class="card card-info card-outline">
+                            <div class="card card-primary card-outline">
                               <div class="card-header">
-                                <h3 class="card-title"><b>| <?php echo $row_t->ref;?> | </b><?php echo date('d F Y', strtotime($row_t->tanggal)); ?></h3>
+                                <span class="btn btn-default"><b>| <?php echo $row_t->ref;?> | </b><?php echo date('d F Y', strtotime($row_t->tanggal)); ?></span>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">Kembali</span>
                                 </button>
@@ -381,12 +388,15 @@
                               <!-- /.card-header -->
                               <div class="card-body p-0">
                                 <div class="mailbox-read-info">
+                                <h3>DEBIT <b><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></b>
+                                    <span class="mailbox-read-time float-right text-right text-info">
+                                    User : Muhammad Fachrizal Ramdani <br>  
+                                    15 Feb. 2015 <br>
+                                    11:03 PM</span></h3>
                                   <h4><?php echo $row_t->nama_aset; ?></h4>
-                                  <h3>DEBIT <b><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></b>
-                                    <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span></h3>
                                 </div>
                                 <div class="mailbox-read-message">
-                                  <p><br><?php echo $row_t->uraian;  ?></p>
+                                  <p>&emsp;&emsp;<?php echo $row_t->uraian;  ?></p>
                                 </div>
                                 <!-- /.mailbox-read-message -->
                               </div>
@@ -447,7 +457,6 @@
                                 <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>"><button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> HAPUS</button></a>
                                 <button type="button" class="btn btn-default"><i class="fas fa-print"></i> CETAK</button>
                               </div>
-                              <!-- /.card-footer -->
                             </div>
                           </div>
                         </div>
@@ -506,7 +515,6 @@
   });
 </script>
 <script>
-  
   <?php 
                     if(isset($curr_aset)){
                     ?>
