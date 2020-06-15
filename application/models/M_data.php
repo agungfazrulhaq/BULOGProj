@@ -18,7 +18,7 @@ class M_data extends CI_Model
     }
 
     public function getYears(){
-        $sql = "SELECT DISTINCT YEAR(tanggal) as years FROM tb_transaksi";
+        $sql = "SELECT DISTINCT YEAR(tanggal) as years FROM tb_transaksi ORDER BY YEAR(tanggal)";
         $query = $this->db->query($sql);
         return $query->result();
     }
