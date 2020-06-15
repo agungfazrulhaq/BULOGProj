@@ -401,7 +401,7 @@
                       </button>
                     </div>
                     </td>
-                    <td class=""><?php echo date('d-F-Y', strtotime($row_t->tanggal)); ?></td>
+                    <td class="text-center"><?php echo date('d - F - Y', strtotime($row_t->tanggal)); ?></td>
                     <?php
                       $align="";
                       if(strpos($row_t->ref,"D") !== false){
