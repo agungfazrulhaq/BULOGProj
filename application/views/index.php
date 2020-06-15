@@ -374,9 +374,31 @@
                   <tbody>
                   <tr>
                     <td>
+                    <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Konfimasi Hapus Data Transaksi</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>One fine body&hellip;</p>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm">
+                          Hapus Transaksi</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                     <div class="btn-group">
                       <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</button>
-                      <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fas fa-trash"></i></a>
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
+                        <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
+                      </button>
                     </div>
                     </td>
                     <td class=""><?php echo date('d-F-Y', strtotime($row_t->tanggal)); ?></td>
@@ -532,17 +554,13 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <script>
-  $('.toastrDefaultInfo').click(function() {
-      toastr.success('Data Berhasil Di Tambahkan <button class="btn btn-default btn-xs ml-1" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat Data</button>')
-    });
-  
   $('.toastrDefaultError').click(function() {
       toastr.error('Data Gagal Di Tambahkan ')
     });
 
   $(document).ready(function(){
     <?php if ($this->session->flashdata('success')): ?>
-      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
+      toastr.success('Data Berhasil Di Tambahkan <button class="btn btn-default btn-xs ml-1" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat Data</button>');
 		<?php endif; ?>
     $('[data-toggle="tooltip"]').tooltip();
   });
