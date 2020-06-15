@@ -348,7 +348,7 @@
                         }  
                         ?>
                         <td></td>  
-                        <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, ",", "."); ?></b></td>
+                        <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, "." , ","); ?></b></td>
                     </tr>
                   </thead>
                   <?php foreach ($transaksi as $row_t){?>
@@ -374,7 +374,7 @@
                     <td class=""><?php echo $row_t->nama_aset ?></td>
                     <td class="text-left">  <?php $out = strlen($row_t->uraian) > 50 ? substr($row_t->uraian,0,50)."..." : $row_t->uraian; echo $out;  ?></td>
                     <td class="mailbox-attachment"></td>
-                    <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></td>
+                    <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ".", ","); ?></td>
                   </tr>
                   <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
@@ -390,10 +390,10 @@
                               <div class="card-body p-0">
                                 <div class="mailbox-read-info">
                                 <h3>DEBIT <b><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></b>
-                                    <span class="mailbox-read-time float-right text-right text-info"><code>
+                                    <span class="mailbox-read-time float-right text-right text-info">
                                     User : Muhammad Fachrizal Ramdani <br>  
                                     15 Feb. 2015 <br>
-                                    11:03 PM</span></code></h3>
+                                    11:03 PM</span></h3>
                                   <h4><?php echo $row_t->nama_aset; ?></h4>
                                 </div>
                                 <div class="mailbox-read-message">
@@ -635,14 +635,8 @@
 
   var rupiah = document.getElementById("rupiah");
 rupiah.addEventListener("keyup", function(e) {
-  // tambahkan 'Rp.' pada saat form di ketik
-  // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
   rupiah.value = formatRupiah(this.value, " ");
 });
-//input saldo ke php
-
-
-/* Fungsi formatRupiah */
 function formatRupiah(angka, prefix) {
   var number_string = angka.replace(/[^,\d]/g, "").toString(),
     split = number_string.split(","),
@@ -661,7 +655,6 @@ function formatRupiah(angka, prefix) {
 }
 
 </script>
-<!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>dist/js/demo.js"></script>
 </body>
 </html>
