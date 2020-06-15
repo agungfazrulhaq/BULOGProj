@@ -377,16 +377,48 @@
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h4 class="modal-title">Konfimasi Hapus Data Transaksi</h4>
+                            <h3 class="modal-title"><b>Konfimasi Hapus Data Transaksi</b></h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
-                            <p>One fine body&hellip;</p>
+                          <div class="modal-body text-left">
+                            <code>dataID = (<?php echo $row_t->id_transaksi;?>)</code>
+                            <table class="table table-hover table-sm ">
+                              <thead>
+                                <tr>
+                                  <td>NOMOR REF</td>
+                                  <td>:</td>
+                                  <td><?php echo $row_t->ref; ?></td>
+                                </tr>
+                                <tr>
+                                  <td>TANGGAL</td>
+                                  <td>:</td>
+                                  <td><?php echo date('d - F - Y', strtotime($row_t->tanggal)); ?></td>
+                                </tr>
+                                <tr>
+                                  <td>ASET</td>
+                                  <td>:</td>
+                                  <td><?php echo $row_t->nama_aset ?></td>
+                                </tr>
+                                <tr>
+                                  <td>SALDO</td>
+                                  <td>:</td>
+                                  <td><?php echo "Rp. " . number_format($row_t->saldo, 2, ".", ","); ?></td>
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                            </table>
+
                           </div>
                           <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
                             <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm">
                             Hapus Transaksi</a>
                           </div>
