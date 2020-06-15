@@ -435,7 +435,7 @@
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="">Rp.</i></span>
                                       </div>
-                                      <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="<?php echo $row_t->saldo; ?>">
+                                      <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="<?php echo $row_t->saldo; ?>" step="0.0001">
                                     </div>
                                   </div>
                                   <div class="md-form mb-2">
