@@ -199,7 +199,7 @@
                   ?>
                   <?php foreach($datatahun as $year_row){?>
                   <li class="nav-item">
-                    <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link" id="ftahun">
+                    <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link" id="ftahun<?php echo $year_row->years;?>">
                       <?php echo $year_row->years;?>
                     </a>
                   </li>
