@@ -333,6 +333,11 @@
               <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
+            <?php if ($this->session->flashdata('success')): ?>
+				    <div class="alert alert-success" role="alert">
+					    <?php echo $this->session->flashdata('success'); ?>
+				    </div>
+				    <?php endif; ?>
             <div class="card-body p-0">
               <div class="table-responsive">
               <div class="card-body">

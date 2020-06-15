@@ -86,8 +86,34 @@ class M_data extends CI_Model
         return $this->db->delete($this->_tabletransaksi,array("id_transaksi"=>$id));
     }
 
-    public function rules(){
-
+    public function rulesadd(){
+        return [
+            [
+                'field' => 'tanggal',
+                'label' => 'Tanggal',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'aset',
+                'label' => 'Aset',
+                'rules' => 'required'    
+            ],
+            [
+                'field' => 'kategori',
+                'label' => 'Kategori',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'uraian',
+                'label' => 'Uraian',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'saldo',
+                'label' => 'Saldo',
+                'rules' => 'required'
+            ]
+        ];
     }
 
     public function delcheck(){

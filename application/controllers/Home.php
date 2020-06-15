@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
+    public $flash_tambah = 0;
+
     public function __construct()
     {
         parent::__construct();
@@ -22,7 +24,13 @@ class Home extends CI_Controller {
     
     public function add(){
         $data_ = $this->M_data;
-        $data_->addTransaksi();
+        $validation = $this->form_validation;
+        $validation->set_rules($data_->rulesadd());
+
+        if($validation->run()){
+            $data_->addTransaksi();
+            $this->session->set_flashdata('success', 'Berhasil Disimpan');
+        }
         
         return redirect(base_url());
     }
