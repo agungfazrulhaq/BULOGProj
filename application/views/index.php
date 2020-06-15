@@ -373,7 +373,7 @@
                     <tbody>
                     <tr>
                       <td class="text-center">
-                      <div class="modal fade" id="modal-default">
+                      <div class="modal fade" id="modaldel<?php echo $row_t->id_transaksi;?>">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -428,7 +428,7 @@
                       <div class="btn-group">
                         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">
                         <i class="fas fa-eye" data-toggle="tooltip" data-placement="left" title="Lihat"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel<?php echo $row_t->id_transaksi;?>">
                           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
                         </button>
                       </div>
