@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="<?php echo base_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css')?>">
    <!-- Tempusdominus Bootstrap 4 -->
    <link rel="stylesheet" href="<?php echo base_url('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')?>">
+   <!-- Toastr -->
+  <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.cs')?>">
    <!-- Select2 -->
    <link rel="stylesheet" href="<?php echo base_url('plugins/select2/css/select2.min.css')?>">
    <link rel="stylesheet" href="<?php echo base_url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')?>">
@@ -517,6 +519,8 @@
 <script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
 <script src="<?php echo base_url();?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- Toastr -->
+<script src="<?php echo base_url();?>plugins/toastr/toastr.min.js"></script>
 <!-- InputMask -->
 <script src="<?php echo base_url();?>plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url();?>plugins/inputmask/jquery.inputmask.min.js"></script>
@@ -526,6 +530,11 @@
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
   });
+
+
+  $('.toastrDefaultSuccess').click(function() {
+      toastr.success('asdfasdfasdfas.')
+  });  
 </script>
 <script>
   <?php 
