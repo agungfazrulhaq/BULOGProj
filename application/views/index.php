@@ -216,7 +216,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <div class="btn-group dropdown">
-                <button type="button" class="btn btn-dark btn-sm toastrDefaultInfo">Dashboard</button>
+                <button type="button" class="btn btn-dark btn-sm">Dashboard</button>
                   <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php 
                       if(isset($curr_month)){
@@ -537,7 +537,7 @@
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <script>
   $('.toastrDefaultInfo').click(function() {
-      toastr.success('Data Berhasil Di Tambahkan <a href="#">Lihat Data</a>')
+      toastr.success('Data Berhasil Di Tambahkan <button class="btn btn-default btn-xs ml-1" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat Data</button>')
     });
   
   $('.toastrDefaultError').click(function() {
