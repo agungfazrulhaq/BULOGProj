@@ -9,8 +9,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css')?>">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="<?php echo base_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css')?>">
    <!-- Tempusdominus Bootstrap 4 -->
    <link rel="stylesheet" href="<?php echo base_url('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')?>">
    <!-- Toastr -->
@@ -97,9 +95,6 @@
                     <textarea type="textarea" class="form-control validate" name="uraian" required></textarea>
                   </div>
                   <div class="md-form mb-2">
-                    <input type="file" class="btn btn-default btn-sm" value="Unggah">
-                  </div>
-                  <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
                     <div class="custom-control custom-check">
                       <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required>
@@ -118,6 +113,15 @@
                         <span class="input-group-text"><i class="">Rp.</i></span>
                       </div>
                       <input type="text" id="rupiah" class="form-control" name="saldo">
+                    </div>
+                  </div>
+                  <div class="md-form mb-2">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
+                        <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -374,7 +378,7 @@
                       <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>" style="color:white;" type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Hapus"><i class="fas fa-trash"></i></a>
                     </div>
                     </td>
-                    <td class=""><?php echo date('d', strtotime($row_t->tanggal)); ?></td>
+                    <td class=""><?php echo date('d-F-Y', strtotime($row_t->tanggal)); ?></td>
                     <?php
                       $align="";
                       if(strpos($row_t->ref,"D") !== false){
