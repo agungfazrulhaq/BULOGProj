@@ -27,7 +27,8 @@
    <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css')?>">
 </head>
 <body class="layout-top-nav" style="height: auto;">
-
+<script>
+</script>
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -54,6 +55,10 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="toast-message"><?php echo $this->session->flashdata('success'); ?></div>
+		<?php endif; ?>
 
     <!-- Main content -->
     <section class="content">
@@ -207,7 +212,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <div class="btn-group dropdown">
-                <button type="button" class="btn btn-dark btn-sm">Dashboard</button>
+                <button type="button" class="btn btn-dark btn-sm toastrDefaultInfo">Dashboard</button>
                   <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php 
                       if(isset($curr_month)){
@@ -329,11 +334,6 @@
               <!-- /.card-tools -->
             </div>
             <!-- /.card-header -->
-            <?php if ($this->session->flashdata('success')): ?>
-				    <div class="alert alert-success" role="alert">
-					    <?php echo $this->session->flashdata('success'); ?>
-				    </div>
-				    <?php endif; ?>
             <div class="card-body p-0">
               <div class="table-responsive">
               <div class="card-body">
@@ -532,14 +532,12 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <script>
+  $('.toastrDefaultInfo').click(function() {
+      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
   });
-
-
-  $('.toastrDefaultSuccess').click(function() {
-      toastr.success('asdfasdfasdfas.')
-  });  
 </script>
 <script>
   <?php 
@@ -687,7 +685,6 @@ function formatRupiah(angka, prefix) {
   rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
   return prefix == undefined ? rupiah : rupiah ? " " + rupiah : "";
 }
-
 </script>
 <script src="<?php echo base_url();?>dist/js/demo.js"></script>
 </body>
