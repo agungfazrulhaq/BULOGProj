@@ -18,6 +18,7 @@ class Home extends CI_Controller {
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
         $data["transaksi"] = $this->M_data->getTransaksi();
+        $data["mostrecent"] = $this->M_data->getRecent();
         
 		$this->load->view('index.php',$data);
     }
@@ -34,14 +35,17 @@ class Home extends CI_Controller {
         else{
             $this->session->set_flashdata('failed', 'Input Data Gagal');
         }
-        
         return redirect(base_url());
     }
 
     public function del($id=null){
-        if (!isset($id)) show_404();
+        if (!isset($id)){
+            $this->session->set_flashdata('faileddel', 'Gagal hapus data');
+            redirect(site_url());
+        }
         
         if ($this->M_data->delete($id)) {
+            $this->session->set_flashdata('successdel', 'Berhasil menghapus data');
             redirect(site_url());
         }
     }

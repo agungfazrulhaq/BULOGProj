@@ -374,7 +374,7 @@
                   <tbody>
                   <tr>
                     <td>
-                    <div class="modal fade" id="modal-default">
+                    <div class="modal fade" id="modaldel<?php echo $row_t->id_transaksi;?>">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -396,7 +396,7 @@
                   </div>
                     <div class="btn-group">
                       <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat</button>
-                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel<?php echo $row_t->id_transaksi;?>">
                         <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
                       </button>
                     </div>
@@ -559,9 +559,14 @@
     });
 
   $(document).ready(function(){
-    <?php if ($this->session->flashdata('success')): ?>
-      toastr.success('Data Berhasil Di Tambahkan <button class="btn btn-default btn-xs ml-1" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">Lihat Data</button>');
-		<?php endif; ?>
+    <?php if ($this->session->flashdata('success')){?>
+      toastr.success('Data Berhasil Di Tambahkan');
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('successdel')){ ?>
+      toastr.success('Berhasil Menghapus Data');
+    <?php } ?>
+    
     $('[data-toggle="tooltip"]').tooltip();
   });
 </script>

@@ -185,4 +185,9 @@ class M_data extends CI_Model
         $sql_ = $this->db->query($sql);
         return $sql_->result();
     }
+
+    public function getRecent(){
+        $sql_ = $this->db->query("SELECT id_transaksi FROM tb_transaksi WHERE waktu=(SELECT MAX(waktu) FROM tb_transaksi)");
+        return $sql_->result();
+    }
 }
