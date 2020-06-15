@@ -191,7 +191,7 @@
                 ?>
                 <?php foreach($datatahun as $year_row){?>
                 <li class="nav-item">
-                  <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link">
+                  <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link" id="ftahun">
                     <?php echo $year_row->years;?>
                   </a>
                 </li>
@@ -536,6 +536,15 @@
                     <?php
                       }
                     ?>
+<?php 
+                    if(isset($curr_year)){
+                    ?>
+                      var tahunaktif = document.getElementById("ftahun<?php echo $curr_year;?>"); 
+                      tahunaktif.className += " btn-info  active";
+                    <?php
+                      }
+                    ?>
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
@@ -549,7 +558,6 @@
 </script>
 
 <script type="text/javascript">
-		<!--
 		function showTime() {
 		    var a_p = "";
 		    var today = new Date();
