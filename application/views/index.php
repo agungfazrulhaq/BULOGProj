@@ -402,10 +402,10 @@
                               <div class="card-body p-0">
                                 <div class="mailbox-read-info">
                                 <h3>DEBIT <b><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></b>
-                                    <span class="mailbox-read-time float-right text-right text-info">
+                                    <span class="mailbox-read-time float-right text-right text-info"><code>
                                     User : Muhammad Fachrizal Ramdani <br>  
                                     15 Feb. 2015 <br>
-                                    11:03 PM</span></h3>
+                                    11:03 PM</span></code></h3>
                                   <h4><?php echo $row_t->nama_aset; ?></h4>
                                 </div>
                                 <div class="mailbox-read-message">
