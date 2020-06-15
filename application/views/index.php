@@ -704,14 +704,6 @@
                     <?php
                       }
                     ?>
-<?php 
-                    if(isset($curr_year)){
-                    ?>
-                      var tahunaktif = document.getElementById("ftahun<?php echo $curr_year;?>"); 
-                      tahunaktif.className += " btn-info  active";
-                    <?php
-                      }
-                    ?>
 
   $(function () {
     $("#example1").DataTable({
@@ -726,6 +718,15 @@
 </script>
 
 <script type="text/javascript">
+
+                    <?php
+                    if(isset($curr_year)){
+                    ?>
+                      var tahunaktif = document.getElementById("ftahun<?php echo $curr_year;?>"); 
+                      tahunaktif.className += " btn-info  active";
+                    <?php
+                      }
+                    ?>
 		function showTime() {
 		    var a_p = "";
 		    var today = new Date();
