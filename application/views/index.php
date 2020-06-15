@@ -377,7 +377,7 @@
                           <div class="modal fade" id="modalUpdate<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
-                              <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data" >
+                              <form action="<?php echo site_url('Home/update/'.$row_t->id_transaksi);?>" method="post" enctype="multipart/form-data" >
                                 <div class="modal-header text-center">
                                   <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -413,15 +413,20 @@
                                     <textarea type="textarea" class="form-control validate" name="uraian" value="<?php echo $row_t->uraian;?>" required><?php echo $row_t->uraian;?></textarea>
                                   </div>
                                   <div class="md-form mb-2">
-                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
+                                    <select class="form-control select2" style="width: 100%;" name="customRadio" required>
+                                      <option value="D" <?php if(strpos($row_t->ref,"D")!==false) echo 'selected'; ?>>Debit</option>
+                                      <option value="K" <?php if(strpos($row_t->ref,"D")===false) echo 'selected';?>>Kredit</option>
+                                    </select>
+                                    <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
                                     <div class="custom-control custom-check">
-                                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required <?php if(strpos($row_t->ref,"D")!==false) echo 'checked';?>>
+                                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" <?php if(strpos($row_t->ref,"D")!==false) echo 'checked';?>>
                                       <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
                                     </div>
                                     <div class="custom-control custom-check">
-                                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required <?php if(strpos($row_t->ref,"D")===false) echo 'checked';?>>
+                                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" <?php if(strpos($row_t->ref,"D")===false) echo 'checked';?>>
                                       <label for="customRadio2" class="custom-control-label">Kredit</label>
-                                    </div>
+                                    </div> -->
                                   </div>
                                   
                                   <div class="md-form mb-2">
@@ -430,7 +435,7 @@
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="">Rp.</i></span>
                                       </div>
-                                      <input type="text" id="rupiah" class="form-control" name="saldo" value="<?php echo $row_t->saldo; ?>">
+                                      <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="<?php echo $row_t->saldo; ?>">
                                     </div>
                                   </div>
                                   <div class="md-form mb-2">
@@ -683,6 +688,10 @@
       toastr.success('Berhasil Menghapus Data');
     <?php } ?>
     
+    <?php if ($this->session->flashdata('successupdate')){ ?>
+      toastr.success('Berhasil Menyimpan Data');
+    <?php } ?>
+
     $('[data-toggle="tooltip"]').tooltip();
   });
 </script>
@@ -812,7 +821,7 @@
   })
 
   var rupiah = document.getElementById("rupiah");
-rupiah.addEventListener("keyup", function(e) {
+  rupiah.addEventListener("keyup", function(e) {
   rupiah.value = formatRupiah(this.value, " ");
 });
 function formatRupiah(angka, prefix) {

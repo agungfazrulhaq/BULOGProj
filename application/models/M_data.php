@@ -40,10 +40,11 @@ class M_data extends CI_Model
         $post=$this->input->post();
 
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
+        $month_ = $date_y->format('m');
 
         if($post['customRadio'] == "D"){
             $ref_ = "D";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' ");
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=".$month_);
             $refcount = $query_ref->num_rows();
             if($refcount < 9){
                 $ref_ .= '0';
@@ -55,7 +56,7 @@ class M_data extends CI_Model
         }
         else {
             $ref_ = "K";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' ");
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=".$month_);
             $refcount = $query_ref->num_rows();
             if($refcount < 9){
                 $ref_ .= '0';
@@ -184,6 +185,44 @@ class M_data extends CI_Model
         
         $sql_ = $this->db->query($sql);
         return $sql_->result();
+    }
+    public function updateTransaksi($id_transaksi){
+        $post=$this->input->post();
+
+        $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
+        $month_ = $date_y->format('m');
+
+        if($post['customRadio'] == "D"){
+            $ref_ = "D";
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=".$month_);
+            $refcount = $query_ref->num_rows();
+            if($refcount < 9){
+                $ref_ .= '0';
+                $ref_ .= $refcount+1;
+            }
+            else {
+                $ref_ .= $refcount+1;
+            }
+        }
+        else {
+            $ref_ = "K";
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=".$month_);
+            $refcount = $query_ref->num_rows();
+            if($refcount < 9){
+                $ref_ .= '0';
+                $ref_ .= $refcount+1;
+            }
+            else {
+                $ref_ .= $refcount+1;
+            }
+        }
+        $saldo = $post['saldo'];
+        $year_ = $date_y->format('Y');
+        $sql___ = "UPDATE tb_transaksi 
+                    SET ref ='".$ref_."' , tanggal = '".$post['tanggal']."' , id_aset = '".$post['aset']."',
+                    id_kategori = '".$post['kategori']."',uraian = '".$post['uraian']."',saldo = ".$saldo.", tahun = '".$year_."'
+                    WHERE id_transaksi=".$id_transaksi;
+        return $this->db->query($sql___);
     }
 
 }
