@@ -542,7 +542,7 @@
 
   $(document).ready(function(){
     <?php if ($this->session->flashdata('success')): ?>
-      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
+      toastr.success('Data Berhasil Di Tambahkan <a href="#">Lihat Data</a>');
 		<?php endif; ?>
     $('[data-toggle="tooltip"]').tooltip();
   });

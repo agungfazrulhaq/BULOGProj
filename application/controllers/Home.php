@@ -31,6 +31,9 @@ class Home extends CI_Controller {
             $data_->addTransaksi();
             $this->session->set_flashdata('success', 'Berhasil Disimpan');
         }
+        else{
+            $this->session->set_flashdata('failed', 'Input Data Gagal');
+        }
         
         return redirect(base_url());
     }
