@@ -24,7 +24,14 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css')?>">
 </head>
-
+<style>
+.page-item.active .page-link {
+    background-color: #17a2b8 !important;
+    border: 1px solid #17a2b8;
+}
+.page-link {
+    color: black !important;
+}</style>
 <body class="layout-top-nav" style="height: auto;">
   <div class="wrapper">
     <!-- Content Wrapper. Contains page content -->
@@ -134,7 +141,7 @@
               </div>
             </div>
             
-            <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
+            <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title "><b>
@@ -199,7 +206,7 @@
                   ?>
                   <?php foreach($datatahun as $year_row){?>
                   <li class="nav-item">
-                    <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link" id="ftahun<?php echo $year_row->years;?>">
+                    <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link" style="border-radius:0px;" id="ftahun<?php echo $year_row->years;?>">
                       <?php echo $year_row->years;?>
                     </a>
                   </li>
@@ -209,7 +216,7 @@
             </div>
           </div>
           <div class="col-md-10">
-            <div class="card card-primary card-outline">
+            <div class="card card-info card-outline">
               <div class="card-header">
                 <h3 class="card-title">
                   <div class="btn-group dropdown">
@@ -543,7 +550,7 @@
                     <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-xl" role="document">
                             <div class="modal-content">
-                              <div class="card card-primary card-outline">
+                              <div class="card card-info card-outline">
                                 <div class="card-header">
                                   <span class="btn btn-default"><b>| <?php echo $row_t->ref;?> | </b><?php echo date('d F Y', strtotime($row_t->tanggal)); ?></span>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -723,7 +730,7 @@
                     if(isset($curr_year)){
                     ?>
                       var tahunaktif = document.getElementById("ftahun<?php echo $curr_year;?>"); 
-                      tahunaktif.className += " btn-info  active";
+                      tahunaktif.className += " btn-secondary active";
                     <?php
                       }
                     ?>
