@@ -53,10 +53,6 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    
-    <?php if ($this->session->flashdata('success')): ?>
-        <div class="toast-message"><?php echo $this->session->flashdata('success'); ?></div>
-		<?php endif; ?>
 
     <!-- Main content -->
     <section class="content">
@@ -545,6 +541,9 @@
     });
 
   $(document).ready(function(){
+    <?php if ($this->session->flashdata('success')): ?>
+      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
+		<?php endif; ?>
     $('[data-toggle="tooltip"]').tooltip();
   });
 </script>
