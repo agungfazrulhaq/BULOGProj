@@ -332,7 +332,7 @@
               <div class="card-tools">
                 <div class="input-group input-group-sm mt-0"> 
                 <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
-                <span class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
+                <span class="btn btn-danger btn-sm toastrDefaultError" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
                 </div>
               </div>
               <!-- /.card-tools -->
@@ -537,8 +537,13 @@
 <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
 <script>
   $('.toastrDefaultInfo').click(function() {
-      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+      toastr.success('Data Berhasil Di Tambahkan <a href="#">Lihat Data</a>')
     });
+  
+  $('.toastrDefaultError').click(function() {
+      toastr.error('Data Gagal Di Tambahkan ')
+    });
+
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
   });
