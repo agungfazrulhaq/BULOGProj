@@ -17,8 +17,33 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style type="text/css">
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #fff;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+</style>
 </head>
 <body class="hold-transition login-page">
+<div class="preloader">
+  <div class="loading">
+  <img id="splash" src="dist/img/Final.gif"  alt="Logo Bulog">
+    <p>Harap Tunggu</p>
+  </div>
+</div>
+
 <div class="login-box">
   <div class="login-logo">
   <img class="img-fluid" src="dist/img/BULOG.png"  alt="Logo Bulog">
@@ -71,6 +96,11 @@
     $('[data-toggle="tooltip"]').tooltip();
   });
 
+</script>
+<script>
+$(document).ready(function(){
+$(".preloader").fadeOut();
+})
 </script>
 </body>
 </html>
