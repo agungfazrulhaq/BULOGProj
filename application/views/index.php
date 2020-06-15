@@ -450,7 +450,7 @@
                           </div>
                     <tbody>
                     <tr>
-                      <td class="text-center">
+                      <td class="text-left">
                       <div class="modal fade" id="modaldel<?php echo $row_t->id_transaksi;?>">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -506,11 +506,16 @@
                       <div class="btn-group">
                         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">
                         <i class="fas fa-eye" data-toggle="tooltip" data-placement="left" title="Lihat"></i></button>
+
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modaldel<?php echo $row_t->id_transaksi;?>">
+                          <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
+                        </button>
+                        
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel<?php echo $row_t->id_transaksi;?>">
                           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
                         </button>
                       </div>
-                      </td>
+                  </td>
                       <td class="text-center"><?php echo date('d - F - Y', strtotime($row_t->tanggal)); ?></td>
                       <?php
                         $align="";
@@ -767,7 +772,6 @@
         theme: 'bootstrap4'
       })
     
-    //Enable check and uncheck all functionality
     $('.checkbox-toggle').click(function () {
       var clicks = $(this).data('clicks')
       if (clicks) {
