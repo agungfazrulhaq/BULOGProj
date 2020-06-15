@@ -389,11 +389,13 @@
                                     <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
                                     <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" value="<?php echo $row_t->tanggal; ?>" required>
                                   </div>
+                                    <?php $nama_aset = $row_t->nama_aset;?>
+                                    <?php $nama_kat = $row_t->nama_kategori;?>
                                   <div class="md-form mb-2">
                                     <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
                                     <select class="form-control select2" style="width: 100%;" name="aset" required>
                                       <?php foreach ($aset as $row_a){ ?>
-                                      <option value="<?php echo $row_a->id_aset; ?>" <?php if($row_a->id_aset==$row_t->id_aset) echo 'selected';?>><?php echo $row_a->nama_aset; ?></option>
+                                      <option value="<?php echo $row_a->id_aset; ?>" <?php if($row_a->nama_aset==$nama_aset)echo "selected";?>><?php echo $row_a->nama_aset; ?></option>
                                       <?php }?>
                                     </select>
                                   </div>
@@ -401,13 +403,14 @@
                                     <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
                                     <select class="form-control select2" style="width: 100%;" name="kategori" required>
                                       <?php foreach($kategori as $row_k){?>
-                                      <option value="<?php echo $row_k->id_kategori; ?>" <?php if($row_a->id_aset==$row_t->id_aset) echo 'selected';?>> <?php echo $row_k->nama_kategori; ?></option>
+                                      <?php ?>
+                                      <option value="<?php echo $row_k->id_kategori; ?>" <?php if($row_k->nama_kategori==$nama_kat) echo 'selected';?>> <?php echo $row_k->nama_kategori; ?></option>
                                       <?php } ?>
                                     </select>
                                   </div>
                                   <div class="md-form mb-2">
                                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                                    <textarea type="textarea" class="form-control validate" name="uraian" value="<?php echo $row_t->uraian;?>" required></textarea>
+                                    <textarea type="textarea" class="form-control validate" name="uraian" value="<?php echo $row_t->uraian;?>" required><?php echo $row_t->uraian;?></textarea>
                                   </div>
                                   <div class="md-form mb-2">
                                     <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
@@ -507,7 +510,7 @@
                         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">
                         <i class="fas fa-eye" data-toggle="tooltip" data-placement="left" title="Lihat"></i></button>
 
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modaldel<?php echo $row_t->id_transaksi;?>">
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalUpdate<?php echo $row_t->id_transaksi;?>">
                           <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
                         </button>
                         
