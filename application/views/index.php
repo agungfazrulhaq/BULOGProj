@@ -175,7 +175,7 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Rekap Tahun</h3>
+                <h3 class="card-title"><b>Rekap Tahun</b></h3>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   </button>
@@ -427,7 +427,7 @@
                     </div>
                       <div class="btn-group">
                         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm<?php echo $row_t->id_transaksi;?>">
-                        <i class="fas fa-eye" data-toggle="tooltip" data-placement="left" title="Lihat"></i></button>
+                        <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modaldel<?php echo $row_t->id_transaksi;?>">
                           <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
@@ -610,7 +610,7 @@
                     if(isset($curr_aset)){
                     ?>
                       var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset;?>"); 
-                      bulanaktif.className += " btn-info  active";
+                      bulanaktif.className += " btn-secondary  active";
                     <?php
                       }
                     ?>
