@@ -177,9 +177,21 @@
             </div>
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
+                <?php
+                  $year_filt = "Home/showaset/"; 
+                  if(isset($curr_aset) and isset($curr_month)){
+                    $year_filt.=$curr_aset."/".$curr_month."/";
+                  }
+                  else if(isset($curr_month)){
+                    $year_filt.="0/".$curr_month."/";
+                  }
+                  else{
+                    $year_filt.="0/0/";
+                  }
+                ?>
                 <?php foreach($datatahun as $year_row){?>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link">
                     <?php echo $year_row->years;?>
                   </a>
                 </li>
