@@ -17,56 +17,33 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <style>
-    #splash {
-      width: 100%;
-      height: auto;
+  <style type="text/css">
+    .preloader {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 1;
-      animation: moment-on 0s linear 5s;
-      animation-fill-mode: forwards;
-    }
-
-    #wrapper {
-      opacity: 0;
-      animation: moment-off 4s linear 8s;
-      animation-fill-mode: forwards;
-      text-align: center;
-      color: #555;
-      border: 1px solid #aaa;
-      border-radius: 10px;
-      margin: 20px 20px;
-      height: 450px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
       background-color: #fff;
     }
-
-    h1 {
-      text-shadow: 0 1.5px 0 rgba(0, 0, 0, 0.3);
-    }
-
-    .one-edge-shadow {
-      -webkit-box-shadow: 0 8px 6px -6px black;
-        -moz-box-shadow: 0 8px 6px -6px black;
-              box-shadow: 0 8px 6px -6px black;
-    }
-
-
-    @keyframes moment-on {
-      from {opacity: 1;} 
-      0% {opacity: 0.1;}
-      to {opacity: 0;}
-    }
-
-    @keyframes moment-off {
-      from {opacity: 0;} 
-      to {opacity: 1;}
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
     }
 </style>
 </head>
 <body class="hold-transition login-page">
-<img id="splash" src="dist/img/Final.gif"  alt="Logo Bulog">
+<div class="preloader">
+  <div class="loading">
+  <img id="splash" src="dist/img/Final.gif"  alt="Logo Bulog">
+    <p>Harap Tunggu</p>
+  </div>
+</div>
+
 <div class="login-box">
   <div class="login-logo">
   <img class="img-fluid" src="dist/img/BULOG.png"  alt="Logo Bulog">
@@ -119,6 +96,11 @@
     $('[data-toggle="tooltip"]').tooltip();
   });
 
+</script>
+<script>
+$(document).ready(function(){
+$(".preloader").fadeOut();
+})
 </script>
 </body>
 </html>
