@@ -128,10 +128,12 @@
                   <div class="modal-footer d-flex justify-content-center">
                     <button class="btn btn-info">Simpan</button>
                   </div>
+                
+                </form>
                 </div>
               </div>
             </div>
-          </form>
+            
             <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
             <div class="card">
               <div class="card-header">
@@ -370,6 +372,82 @@
                       </tr>
                     </thead>
                     <?php foreach ($transaksi as $row_t){?>
+                      <div class="row">
+                        <div class="col-md-2">
+                          <div class="modal fade" id="modalUpdate<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                              <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data" >
+                                <div class="modal-header text-center">
+                                  <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body mx-2">
+                                  <div class="md-form mb-2">
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
+                                    <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" value="<?php echo $row_t->tanggal; ?>" required>
+                                  </div>
+                                  <div class="md-form mb-2">
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
+                                    <select class="form-control select2" style="width: 100%;" name="aset" required>
+                                      <?php foreach ($aset as $row_a){ ?>
+                                      <option value="<?php echo $row_a->id_aset; ?>" <?php if($row_a->id_aset==$row_t->id_aset) echo 'selected';?>><?php echo $row_a->nama_aset; ?></option>
+                                      <?php }?>
+                                    </select>
+                                  </div>
+                                  <div class="md-form mb-2">
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
+                                    <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                                      <?php foreach($kategori as $row_k){?>
+                                      <option value="<?php echo $row_k->id_kategori; ?>" <?php if($row_a->id_aset==$row_t->id_aset) echo 'selected';?>> <?php echo $row_k->nama_kategori; ?></option>
+                                      <?php } ?>
+                                    </select>
+                                  </div>
+                                  <div class="md-form mb-2">
+                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
+                                    <textarea type="textarea" class="form-control validate" name="uraian" value="<?php echo $row_t->uraian;?>" required></textarea>
+                                  </div>
+                                  <div class="md-form mb-2">
+                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
+                                    <div class="custom-control custom-check">
+                                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required <?php if(strpos($row_t->ref,"D")!==false) echo 'checked';?>>
+                                      <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
+                                    </div>
+                                    <div class="custom-control custom-check">
+                                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required <?php if(strpos($row_t->ref,"D")===false) echo 'checked';?>>
+                                      <label for="customRadio2" class="custom-control-label">Kredit</label>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="md-form mb-2">
+                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
+                                    <div class="input-group">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="">Rp.</i></span>
+                                      </div>
+                                      <input type="text" id="rupiah" class="form-control" name="saldo" value="<?php echo $row_t->saldo; ?>">
+                                    </div>
+                                  </div>
+                                  <div class="md-form mb-2">
+                                    <label for="exampleInputFile">File input</label>
+                                    <div class="input-group">
+                                      <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
+                                        <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                  <button class="btn btn-info">Simpan</button>
+                                </div>
+                              
+                              </form>
+                              </div>
+                            </div>
+                          </div>
                     <tbody>
                     <tr>
                       <td class="text-center">
@@ -526,7 +604,7 @@
                                 <!-- /.card-footer -->
                                 <div class="card-footer">
                                   <div class="float-right">
-                                    <button type="button" class="btn  bg-gradient-warning "><i class="fas fa-share"></i> UBAH</button>
+                                    <button type="button" class="btn  bg-gradient-warning " data-toggle="modal" data-target="#modalUpdate<?php echo $row_t->id_transaksi;?>"><i class="fas fa-share"></i> UBAH</button>
                                   </div>
                                   <a href="<?php echo site_url('Home/del/'.$row_t->id_transaksi); ?>"><button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> HAPUS</button></a>
                                   <button type="button" class="btn btn-default"><i class="fas fa-print"></i> CETAK</button>
