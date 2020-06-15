@@ -20,13 +20,14 @@
 </head>
 <body class="hold-transition login-page" style="background-image:url('dist/img/Final.gif'); background-size: cover;">
 <div class="login-box">
-  <div class="login-logo">
-  <img class="img-fluid" src="dist/img/BULOG.png"  alt="Logo Bulog">
-    <a href="../../index2.html"><b>BULOG <br></b>KANWIL SULSELBAR</a>
-  </div>
+  
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
+  <div class="card-body login-card-body">
+  <div class="login-logo">
+  <img class="img-fluid" width="120" height="120" src="dist/img/Logo.png"  alt="Logo Bulog">
+  <h2 class="text-dark"><b>BULOG <br>KANWIL SULSELBAR</b></h2>
+  </div>
       <p class="login-box-msg">Masukkan Akun Anda</p>
 
       <form action="../../index3.html" method="post">
