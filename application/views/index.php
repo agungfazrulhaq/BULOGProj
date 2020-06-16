@@ -346,7 +346,7 @@
               <div class="card-body p-0">
                 <div class="table-responsive">
                 <div class="card-body">
-                  <table class="table table-hover table-sm"  style="text-align: center;" id="example1">
+                  <table class="table table-hover table-sm"  style="text-align: center;" id="tbmaster">
                     <thead class="" >
                       <tr>
                           <td><b>AKSI</b></td>
@@ -357,7 +357,8 @@
                           <td></td>  
                           <td><b>SALDO</b></td>
                       </tr>
-                      <tfoot class="" >
+                    </thead>
+                    <tfoot class="" >
                       <tr>
                           <td></td>
                           <td></td>
@@ -378,7 +379,7 @@
                           <td></td>  
                           <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, "." , ","); ?></b></td>
                       </tr>
-                    </thead>
+                    </tfoot>
                     <?php foreach ($transaksi as $row_t){?>
                       <div class="row">
                         <div class="col-md-2">
@@ -426,15 +427,6 @@
                                       <option value="D" <?php if(strpos($row_t->ref,"D")!==false) echo 'selected'; ?>>Debit</option>
                                       <option value="K" <?php if(strpos($row_t->ref,"D")===false) echo 'selected';?>>Kredit</option>
                                     </select>
-                                    <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
-                                    <div class="custom-control custom-check">
-                                      <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" <?php if(strpos($row_t->ref,"D")!==false) echo 'checked';?>>
-                                      <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
-                                    </div>
-                                    <div class="custom-control custom-check">
-                                      <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" <?php if(strpos($row_t->ref,"D")===false) echo 'checked';?>>
-                                      <label for="customRadio2" class="custom-control-label">Kredit</label>
-                                    </div> -->
                                   </div>
                                   
                                   <div class="md-form mb-2">
@@ -465,7 +457,7 @@
                             </div>
                           </div>
                     <tbody>
-                    <tr>
+                    <!-- <tr>
                       <td class="text-left">
                       <div class="modal fade" id="modaldel<?php echo $row_t->id_transaksi;?>">
                       <div class="modal-dialog">
@@ -546,8 +538,8 @@
                       <td class=""><?php echo $row_t->nama_aset ?></td>
                       <td class="text-left">  <?php $out = strlen($row_t->uraian) > 50 ? substr($row_t->uraian,0,50)."..." : $row_t->uraian; echo $out;  ?></td>
                       <td class="mailbox-attachment"></td>
-                      <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ".", ","); ?></td>
-                    </tr>
+                      <td class="text-left"><?php echo "Rp. " . number_format($row_t->saldo, 2, ".", ","); ?></td> -->
+                    <!-- </tr>
                     <div class="modal fade" id="modalForm<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-xl" role="document">
                             <div class="modal-content">
@@ -557,9 +549,9 @@
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">Kembali</span>
                                   </button>
-                                </div>
+                                </div> -->
                                 <!-- /.card-header -->
-                                <div class="card-body p-0">
+                                <!-- <div class="card-body p-0">
                                   <div class="mailbox-read-info">
                                   <h3>DEBIT <b><?php echo "Rp. " . number_format($row_t->saldo, 2, ",", "."); ?></b>
                                       <span class="mailbox-read-time float-right text-right text-info">
@@ -570,11 +562,11 @@
                                   </div>
                                   <div class="mailbox-read-message">
                                     <p>&emsp;&emsp;<?php echo $row_t->uraian;  ?></p>
-                                  </div>
+                                  </div> -->
                                   <!-- /.mailbox-read-message -->
-                                </div>
+                                <!-- </div> -->
                                 <!-- /.card-body -->
-                                <div class="card-footer bg-white">
+                                <!-- <div class="card-footer bg-white">
                                   <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                                     <li>
                                       <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
@@ -623,7 +615,7 @@
                                   </ul>
                                 </div>
                                 <!-- /.card-footer -->
-                                <div class="card-footer">
+                                <!-- <div class="card-footer">
                                   <div class="float-right">
                                     <button type="button" class="btn  bg-gradient-warning " data-toggle="modal" data-target="#modalUpdate<?php echo $row_t->id_transaksi;?>"><i class="fas fa-share"></i> UBAH</button>
                                   </div>
@@ -635,7 +627,7 @@
                           </div>
                         </div>
                       </div>
-                    <?php } ?>
+                    <?php } ?> -->
                     </tbody>
                   </table>
                 </div>
@@ -723,16 +715,6 @@
                       }
                     ?>
 
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": true,
-      "searching": true,
-      "paging": true,
-      "info": true,
-      "ordering": true,
-    });
-  });
 </script>
 
 
@@ -854,8 +836,7 @@ function formatRupiah(angka, prefix) {
 </script>
 <script>
     $(document).ready(function(){
-        // Setup datatables
-        $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+      $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
       {
           return {
               "iStart": oSettings._iDisplayStart,
@@ -867,62 +848,46 @@ function formatRupiah(angka, prefix) {
               "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
           };
       };
- 
-      var table = $("#mytable").dataTable({
-          initComplete: function() {
+      $('#tbmaster').DataTable({
+        "responsive": true,
+        "autoWidth": true,
+        "searching": true,
+        "paging": true,
+        "info": true,
+        "ordering": true,
+        "processing": true,
+        "serverSide": true,
+        initComplete: function() {
               var api = this.api();
-              $('#mytable_filter input')
+              $('#tbmaster_filter input')
                   .off('.DT')
                   .on('input.DT', function() {
                       api.search(this.value).draw();
               });
-          },
-              oLanguage: {
-              sProcessing: "loading..."
-          },
-              processing: true,
-              serverSide: true,
-              ajax: {"url": "<?php echo base_url().'index.php/crud/get_produk_json'?>", "type": "POST"},
-                    columns: [
-                                                {"data": "barang_kode"},
-                                                {"data": "barang_nama"},
-                                                //render harga dengan format angka
-                        {"data": "barang_harga", render: $.fn.dataTable.render.number(',', '.', '')},
-                        {"data": "kategori_nama"},
-                        {"data": "view"}
-                  ],
-                order: [[1, 'asc']],
-          rowCallback: function(row, data, iDisplayIndex) {
-              var info = this.fnPagingInfo();
-              var page = info.iPage;
-              var length = info.iLength;
-              $('td:eq(0)', row).html();
-          }
- 
+        },
+            oLanguage: {
+            sProcessing: "loading..."
+        },
+        //       ajax: {"url": "<?php echo base_url().'index.php/Home/getJsonTransaksi'?>", "type": "POST"},
+        //             columns: [
+        //                                         {"data": "id_transaksi"},
+        //                                         {"data": "tanggal"},
+        //                                         {"data": "ref"},
+        //                                         //render harga dengan format angka
+        //                 {"data": "saldo", render: $.fn.dataTable.render.number(',', '.', '')},
+        //                 {"data": "nama_kategori"},
+        //                 {"data": "nama_aset"}
+        //           ],
+        //         order: [[1, 'asc']],
+        //   rowCallback: function(row, data, iDisplayIndex) {
+        //       var info = this.fnPagingInfo();
+        //       var page = info.iPage;
+        //       var length = info.iLength;
+        //       $('td:eq(0)', row).html();
+        //   }
       });
-            // end setup datatables
-            // get Edit Records
-            $('#mytable').on('click','.edit_record',function(){
-            var kode=$(this).data('kode');
-                        var nama=$(this).data('nama');
-                        var harga=$(this).data('harga');
-                        var kategori=$(this).data('kategori');
-            $('#ModalUpdate').modal('show');
-            $('[name="kode_barang"]').val(kode);
-                        $('[name="nama_barang"]').val(nama);
-                        $('[name="harga"]').val(harga);
-                        $('[name="kategori"]').val(kategori);
-      });
-            // End Edit Records
-            // get Hapus Records
-            $('#mytable').on('click','.hapus_record',function(){
-            var kode=$(this).data('kode');
-            $('#ModalHapus').modal('show');
-            $('[name="kode_barang"]').val(kode);
-      });
-            // End Hapus Records
- 
     });
+            // end setup datatables
 </script>
 <script src="<?php echo base_url();?>dist/js/demo.js"></script>
 </body>

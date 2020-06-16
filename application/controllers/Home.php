@@ -95,4 +95,10 @@ class Home extends CI_Controller {
 
         return redirect(base_url());
     }
+
+    public function getTransaksiJson(){
+        header('Content-Type: application/json');
+        echo $this->M_data->getall_Transaksi();
+    }
+
 }
