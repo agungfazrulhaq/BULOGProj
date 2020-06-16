@@ -23,15 +23,16 @@
   <link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css')?>">
-</head>
-<style>
-.page-item.active .page-link {
-    background-color: #17a2b8 !important;
-    border: 1px solid #17a2b8;
-}
-.page-link {
-    color: black !important;
-}</style>
+  </head>
+  <style>
+      .page-item.active .page-link {
+          background-color: #17a2b8 !important;
+          border: 1px solid #17a2b8;
+      }
+      .page-link {
+          color: black !important;
+      }
+  </style>
 <body class="layout-top-nav" style="height: auto;">
   <div class="wrapper">
     <!-- Content Wrapper. Contains page content -->
@@ -54,7 +55,7 @@
                   <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
                   <span class="info-box-number">NIP : 1103174125</span>
                 </div>
-                <span class="info-box-icon bg-default"><img class="" src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo"></span>
+                <img class="img-fluid rounded" width="90" height="90" src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo">
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -701,6 +702,16 @@
 
     $('[data-toggle="tooltip"]').tooltip();
   });
+  
+  <?php
+                    if(isset($curr_year)){
+                    ?>
+                      var tahunaktif = document.getElementById("ftahun<?php echo $curr_year;?>"); 
+                      tahunaktif.className += " btn-secondary active";
+                    <?php
+                      }
+                    ?>
+                    
 </script>
 <script>
   <?php 
@@ -724,16 +735,8 @@
   });
 </script>
 
-<script type="text/javascript">
 
-                    <?php
-                    if(isset($curr_year)){
-                    ?>
-                      var tahunaktif = document.getElementById("ftahun<?php echo $curr_year;?>"); 
-                      tahunaktif.className += " btn-secondary active";
-                    <?php
-                      }
-                    ?>
+<script type="text/javascript">
 		function showTime() {
 		    var a_p = "";
 		    var today = new Date();
