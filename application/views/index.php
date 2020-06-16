@@ -874,9 +874,9 @@ function formatRupiah(angka, prefix) {
                                                 {"data": "tanggal"},
                                                 {"data": "ref"},
                                                 //render harga dengan format angka
-                        {"data": "id_kategori"},
-                        {"data": "id_aset"},
+                        {"data": "nama_aset"},
                         {"data": "uraian"},
+                        {"data": "nama_kategori"},
                         {"data": "saldo", render: $.fn.dataTable.render.number(',', '.', '')}
                   ],
                 order: [[1, 'asc']],

@@ -31,8 +31,8 @@ class M_data extends CI_Model
         $query = $this->db->query("SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                                     FROM tb_transaksi 
-                                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori;");
+                                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori;");
         return $query->result();
     }
 
@@ -130,57 +130,57 @@ class M_data extends CI_Model
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
-                    WHERE tb_transaksi.id_aset=".$id_aset." AND MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
+                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+                    WHERE tb_transaksi.transaksi_id_aset=".$id_aset." AND MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
         }
         else if($monthdate>0 and $monthdate<13 and $id_aset>0){
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
-                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND tb_transaksi.id_aset=".$id_aset;
+                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND tb_transaksi.transaksi_id_aset=".$id_aset;
         }
         else if($monthdate>0 and $monthdate<13 and $yeardate>0){
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
                     WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
         }
         else if($yeardate>0 and $id_aset>0){
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
-                    WHERE YEAR(tb_transaksi.tanggal)=".$yeardate." AND tb_transaksi.id_aset=".$id_aset;
+                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+                    WHERE YEAR(tb_transaksi.tanggal)=".$yeardate." AND tb_transaksi.transaksi_id_aset=".$id_aset;
         }
         else if($monthdate>0 and $monthdate<13){
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
                     WHERE MONTH(tb_transaksi.tanggal)=".$monthdate;
         }
         else if($yeardate>0){
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
+                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
                     WHERE YEAR(tb_transaksi.tanggal)=".$yeardate;
         }
         else{
             $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                     FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori
-                    WHERE tb_transaksi.id_aset=".$id_aset;
+                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+                    WHERE tb_transaksi.transaksi_id_aset=".$id_aset;
         }
         
         $sql_ = $this->db->query($sql);
@@ -191,11 +191,13 @@ class M_data extends CI_Model
         // $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
         // tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
         // FROM tb_transaksi 
-        // INNER JOIN tb_aset ON tb_transaksi.id_aset=tb_aset.id_aset 
-        // INNER JOIN tb_kategori ON tb_transaksi.id_kategori=tb_kategori.id_kategori;";
+        // INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+        // INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori;";
 
-        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,id_kategori,id_aset');
+        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset');
         $this->datatables->from('tb_transaksi');
+        $this->datatables->join('tb_kategori',"transaksi_id_kategori = id_kategori");
+        $this->datatables->join('tb_aset',"transaksi_id_aset = id_aset");
         // $this->datatables->add_column('view', '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>','barang_kode,barang_nama,barang_harga,kategori_id,kategori_nama');
         
         // $sql_ = $this->db->query($sql);
