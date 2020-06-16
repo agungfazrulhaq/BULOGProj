@@ -25,13 +25,6 @@
   <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css')?>">
   </head>
   <style>
-      .page-item.active .page-link {
-          background-color: #17a2b8 !important;
-          border: 1px solid #17a2b8;
-      }
-      .page-link {
-          color: black !important;
-      }
   </style>
   <body class="layout-top-nav" style="height: auto;">
     <div class="wrapper">
@@ -383,16 +376,21 @@
 
   <script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url();?>plugins/select2/js/select2.full.min.js"></script>
+  
+
   <script src="<?php echo base_url();?>plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="<?php echo base_url();?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?php echo base_url();?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
   <script src="<?php echo base_url();?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
   <script src="<?php echo base_url();?>plugins/toastr/toastr.min.js"></script>
   <script src="<?php echo base_url();?>plugins/moment/moment.min.js"></script>
   <script src="<?php echo base_url();?>plugins/inputmask/jquery.inputmask.min.js"></script>
+                          
   <script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
+  <script src="<?php echo base_url();?>dist/js/demo.js"></script>
+
   <script>
     $('.toastrDefaultError').click(function() {
         toastr.error('Data Gagal Di Tambahkan ')
@@ -435,7 +433,7 @@
                       ?>
 
   </script>
-  <script type="text/javascript">
+  <script>
       function showTime() {
           var a_p = "";
           var today = new Date();
@@ -564,6 +562,8 @@
             };
         };
         $('#tbmaster').DataTable({
+          
+          
           "responsive": true,
           "autoWidth": true,
           "searching": true,
@@ -571,7 +571,9 @@
           "info": true,
           "ordering": true,
           "processing": true,
-          "serverSide": true,
+          "lengthMenu": [[25, 50, -1], [25, 50, "Semua"]],
+          
+
           initComplete: function() {
                 var api = this.api();
                 $('#tbmaster_filter input')
@@ -604,7 +606,7 @@
       });
               // end setup datatables
   </script>
-  <script src="<?php echo base_url();?>dist/js/demo.js"></script>
+  
 </body>
 
 </html>
