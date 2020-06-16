@@ -41,11 +41,11 @@
       <section class="content-header">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <img class="img-fluid" src="<?php echo base_url("dist/img/BULOG.png"); ?>"  alt="Logo Bulog">
             </div>
-            <div class="col-7">
-              <div class="text-center">
+            <div class="col-6">
+              <div class="pt-3 text-center">
                 <h1><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
               </div>
             </div>
@@ -58,7 +58,7 @@
                 <img class="img-fluid rounded" width="90" height="90" src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo">
             </div>
           </div>
-        </div><!-- /.container-fluid -->
+        </div>
       </section>
 
       <!-- Main content -->
@@ -866,7 +866,7 @@ function formatRupiah(angka, prefix) {
               });
         },
             oLanguage: {
-            sProcessing: "loading..."
+            sProcessing: "tunggu..."
         },
               ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                     columns: [
