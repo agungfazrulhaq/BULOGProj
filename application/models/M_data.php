@@ -70,7 +70,7 @@ class M_data extends CI_Model
         $saldo_ = str_replace(",",".",$saldo_1);
         $saldo = floatval($saldo_);
         $year_ = $date_y->format('Y');
-        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,id_aset,id_kategori,uraian,saldo,tahun) 
+        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun) 
                                     VALUES('".$ref_."','".$post['tanggal']."','".$post['aset']."','"
                                     .$post['kategori']."','".$post['uraian']."','"
                                     .$saldo."','".$year_."')");
