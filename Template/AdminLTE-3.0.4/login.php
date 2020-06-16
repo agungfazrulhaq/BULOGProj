@@ -18,11 +18,90 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    body {
+  margin: 0;
+  background: #000; 
+}
+video { 
+    position: fixed;
+    top: 40%;
+    left: 38%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+ background: url('dist/img/FinalOutput.webm') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+.stopfade { 
+   opacity: .5;
+}
+
+#polina { 
+  font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+  font-weight:100; 
+  background: rgba(0,0,0,0.3);
+  color: white;
+  padding: 2rem;
+  width: 33%;
+  margin:2rem;
+  float: right;
+  font-size: 1.2rem;
+}
+h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-top: 0;
+  letter-spacing: .3rem;
+}
+#polina button { 
+  display: block;
+  width: 80%;
+  padding: .4rem;
+  border: none; 
+  margin: 1rem auto; 
+  font-size: 1.3rem;
+  background: rgba(255,255,255,0.23);
+  color: #fff;
+  border-radius: 3px; 
+  cursor: pointer;
+  transition: .3s background;
+}
+#polina button:hover { 
+   background: rgba(0,0,0,0.5);
+}
+
+a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  background:rgba(0,0,0,0.5);
+  padding: .5rem;
+  transition: .6s background; 
+}
+a:hover{
+  background:rgba(0,0,0,0.9);
+}
+@media screen and (max-width: 400px) { 
+  div{width:70%;} 
+}
+@media screen and (max-device-width: 700px) {
+  html { background: url(dist/img/FinalOutput.webm) #000 no-repeat center center fixed; }
+  #bgvid { display: none; }
+}
+  </style>
 </head>
-<body class="hold-transition login-page" style="background-image:url('dist/img/Final.gif'); background-size: cover;">
+<body class="hold-transition login-page">
+  <video poster="dist/img/FinalOutput.webm" id="bgvid" playsinline autoplay muted loop>
+  <source src="dist/img/FinalOutput.webm" type="video/webm">
+
+</video>
+
 <div class="login-box">
-  
-  <!-- /.login-logo -->
   <div class="card">
   <div class="card-body login-card-body">
   <div class="login-logo">
@@ -72,6 +151,30 @@
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
   });
+
+</script>
+<script>
+  var vid = document.getElementById("bgvid");
+var pauseButton = document.querySelector("#polina button");
+
+if (window.matchMedia('(prefers-reduced-motion)').matches) {
+    vid.removeAttribute("autoplay");
+    
+}
+
+function vidFade() {
+  vid.classList.add("stopfade");
+}
+
+vid.addEventListener('ended', function()
+{
+// only functional if "loop" is removed 
+vid.pause();
+// to capture IE10
+vidFade();
+}); 
+
+
 
 </script>
 </body>
