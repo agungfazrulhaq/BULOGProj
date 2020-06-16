@@ -346,7 +346,7 @@
               <div class="card-body p-0">
                 <div class="table-responsive">
                 <div class="card-body">
-                  <table class="table table-hover table-sm"  style="text-align: center;" id="example1">
+                  <table class="table table-hover table-sm" style="text-align: center;" id="tbmaster">
                     <thead class="" >
                       <tr>
                           <td><b>AKSI</b></td>
@@ -724,7 +724,7 @@
                     ?>
 
   $(function () {
-    $("#example1").DataTable({
+    $("#tbmaster").DataTable({
       "responsive": true,
       "autoWidth": true,
       "searching": true,
