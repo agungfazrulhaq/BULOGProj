@@ -10,6 +10,7 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->model("M_data");
         $this->load->library('form_validation');
+        $this->load->library('datatables');
     }
 
 	public function index()

@@ -456,7 +456,7 @@
                               </div>
                             </div>
                           </div>
-                    <tbody>
+                    <!-- <tbody> -->
                     <!-- <tr>
                       <td class="text-left">
                       <div class="modal fade" id="modaldel<?php echo $row_t->id_transaksi;?>">
@@ -628,7 +628,7 @@
                         </div>
                       </div>
                     <?php } ?> -->
-                    </tbody>
+                    <!-- </tbody> -->
                   </table>
                 </div>
                   <!-- /.table -->
@@ -868,23 +868,24 @@ function formatRupiah(angka, prefix) {
             oLanguage: {
             sProcessing: "loading..."
         },
-        //       ajax: {"url": "<?php echo base_url().'index.php/Home/getJsonTransaksi'?>", "type": "POST"},
-        //             columns: [
-        //                                         {"data": "id_transaksi"},
-        //                                         {"data": "tanggal"},
-        //                                         {"data": "ref"},
-        //                                         //render harga dengan format angka
-        //                 {"data": "saldo", render: $.fn.dataTable.render.number(',', '.', '')},
-        //                 {"data": "nama_kategori"},
-        //                 {"data": "nama_aset"}
-        //           ],
-        //         order: [[1, 'asc']],
-        //   rowCallback: function(row, data, iDisplayIndex) {
-        //       var info = this.fnPagingInfo();
-        //       var page = info.iPage;
-        //       var length = info.iLength;
-        //       $('td:eq(0)', row).html();
-        //   }
+              ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
+                    columns: [
+                                                {"data": "id_transaksi"},
+                                                {"data": "tanggal"},
+                                                {"data": "ref"},
+                                                //render harga dengan format angka
+                        {"data": "id_kategori"},
+                        {"data": "id_aset"},
+                        {"data": "uraian"},
+                        {"data": "saldo", render: $.fn.dataTable.render.number(',', '.', '')}
+                  ],
+                order: [[1, 'asc']],
+          rowCallback: function(row, data, iDisplayIndex) {
+              var info = this.fnPagingInfo();
+              var page = info.iPage;
+              var length = info.iLength;
+              $('td:eq(0)', row).html();
+          }
       });
     });
             // end setup datatables
