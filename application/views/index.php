@@ -699,7 +699,7 @@ function formatRupiah(angka, prefix) {
         },
               ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                     columns: [
-                                                {"data": "id_transaksi"},
+                                                {"data": "view"},
                                                 {"data": "tanggal"},
                                                 {"data": "ref"},
                                                 //render harga dengan format angka
