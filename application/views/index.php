@@ -34,436 +34,436 @@
       }
   </style>
   <body class="layout-top-nav" style="height: auto;">
-    <div class="wrapper">
-      <div class="content-wrapper">
+      <div class="wrapper">
+        <div class="content-wrapper">
 
-        <section class="content-header">
-          <div class="container-fluid">
+          <section class="content-header">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-3">
+                    <img class="img-fluid" src="<?php echo base_url("dist/img/BULOG.png"); ?>"  alt="Logo Bulog">
+                </div>
+                <div class="col-6">
+                  <div class="pt-3 text-center">
+                    <h1><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
+                  </div>
+                </div>
+                <div class="col-3">
+                <div class="info-box mb-0">
+                    <div class="info-box-content">
+                      <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
+                      <span class="info-box-number">NIP : 1103174125</span>
+                    </div>
+                    <img class="img-fluid rounded" width="90" height="90" src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo">
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="content">
             <div class="row">
-              <div class="col-3">
-                  <img class="img-fluid" src="<?php echo base_url("dist/img/BULOG.png"); ?>"  alt="Logo Bulog">
-              </div>
-              <div class="col-6">
-                <div class="pt-3 text-center">
-                  <h1><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
-                </div>
-              </div>
-              <div class="col-3">
-              <div class="info-box mb-0">
-                  <div class="info-box-content">
-                    <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
-                    <span class="info-box-number">NIP : 1103174125</span>
-                  </div>
-                  <img class="img-fluid rounded" width="90" height="90" src="<?php echo base_url();?>/dist/img/pict.jpg" alt="photo">
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="content">
-          <div class="row">
-            <div class="col-md-2">
-              <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                  <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data" >
-                    <div class="modal-header text-center">
-                      <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body mx-2">
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                        <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" required>
+              <div class="col-md-2">
+                <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data" >
+                      <div class="modal-header text-center">
+                        <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                       </div>
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                        <select class="form-control select2" style="width: 100%;" name="aset" required>
-                          <option selected="selected" value="">Pilih Unit</option>
-                          <?php foreach ($aset as $row_a){ ?>
-                          <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
-                          <?php }?>
-                        </select>
-                      </div>
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                        <select class="form-control select2" style="width: 100%;" name="kategori" required>
-                          <option selected="selected" value="">Pilih Kategori</option>
-                          <?php foreach($kategori as $row_k){?>
-                          <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                        <textarea type="textarea" class="form-control validate" name="uraian" required></textarea>
-                      </div>
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
-                        <div class="custom-control custom-check">
-                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required>
-                          <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
+                      <div class="modal-body mx-2">
+                        <div class="md-form mb-2">
+                          <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
+                          <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" required>
                         </div>
-                        <div class="custom-control custom-check">
-                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required>
-                          <label for="customRadio2" class="custom-control-label">Kredit</label>
+                        <div class="md-form mb-2">
+                          <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
+                          <select class="form-control select2" style="width: 100%;" name="aset" required>
+                            <option selected="selected" value="">Pilih Unit</option>
+                            <?php foreach ($aset as $row_a){ ?>
+                            <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
+                            <?php }?>
+                          </select>
                         </div>
-                      </div>
-                      
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="">Rp.</i></span>
+                        <div class="md-form mb-2">
+                          <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
+                          <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                            <option selected="selected" value="">Pilih Kategori</option>
+                            <?php foreach($kategori as $row_k){?>
+                            <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                        <div class="md-form mb-2">
+                          <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
+                          <textarea type="textarea" class="form-control validate" name="uraian" required></textarea>
+                        </div>
+                        <div class="md-form mb-2">
+                          <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
+                          <div class="custom-control custom-check">
+                            <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required>
+                            <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
                           </div>
-                          <input type="text" id="rupiah" class="form-control" name="saldo">
+                          <div class="custom-control custom-check">
+                            <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required>
+                            <label for="customRadio2" class="custom-control-label">Kredit</label>
+                          </div>
                         </div>
-                      </div>
-                      <div class="md-form mb-2">
-                        <label for="exampleInputFile">File input</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
-                            <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                        
+                        <div class="md-form mb-2">
+                          <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="">Rp.</i></span>
+                            </div>
+                            <input type="text" id="rupiah" class="form-control" name="saldo">
+                          </div>
+                        </div>
+                        <div class="md-form mb-2">
+                          <label for="exampleInputFile">File input</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
+                              <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                            </div>
                           </div>
                         </div>
                       </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-info">Simpan</button>
+                      </div>
+                    
+                    </form>
                     </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                      <button class="btn btn-info">Simpan</button>
-                    </div>
-                  
-                  </form>
                   </div>
                 </div>
-              </div>
-              
-              <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title "><b>
-                  Optimalisasi Aset</b><br></h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body p-0">
-                  <ul class="nav nav-pills flex-column">
-                  <?php foreach($aset as $row_a){?>
-                    <?php 
-                    $link_showaset = "Home/showaset/";
-                    if(isset($curr_month) and isset($curr_year)){
-                      $link_showaset .=$row_a->id_aset."/".$curr_month."/".$curr_year;
-                    }
-                    else if(isset($curr_month)){ 
-                      $link_showaset .=$row_a->id_aset."/".$curr_month."/0";
-                    } 
-                    else{ 
-                      $link_showaset .=$row_a->id_aset."/0/0";
-                    }
-                    ?>
-                    <li class="nav-item">
-                      <a href="<?php echo site_url($link_showaset);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
-                    </li>
-                    <li class="nav-item"></li>
-                <?php } ?>
-                  </ul>
-                  </div>
-                  <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
-                  <div class="input-group pt-1 pb-1 pl-1 pr-1">
-                      <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
-                      <span class="input-group-append">
-                      <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
-                      </span>
-                  </div>
-                  </form>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title"><b>Rekap Tahun</b></h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body p-0">
-                  <ul class="nav nav-pills flex-column">
-                    <?php
-                      $year_filt = "Home/showaset/"; 
-                      if(isset($curr_aset) and isset($curr_month)){
-                        $year_filt.=$curr_aset."/".$curr_month."/";
-                      }
-                      else if(isset($curr_month)){
-                        $year_filt.="0/".$curr_month."/";
-                      }
-                      else{
-                        $year_filt.="0/0/";
-                      }
-                    ?>
-                    <?php foreach($datatahun as $year_row){?>
-                    <li class="nav-item">
-                      <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link" style="border-radius:0px;" id="ftahun<?php echo $year_row->years;?>">
-                        <?php echo $year_row->years;?>
-                      </a>
-                    </li>
-                    <?php }?>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-10">
-              <div class="card card-info card-outline">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-dark btn-sm">Dashboard</button>
-                      <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?php 
-                          if(isset($curr_month)){
-                            if($curr_month==0){
-                              echo "BULAN";
-                            }
-                            else if($curr_month==1){
-                              echo "Januari";
-                            }
-                            else if($curr_month==2){
-                              echo "Februari";
-                            }
-                            else if($curr_month==3){
-                              echo "Maret";
-                            }
-                            else if($curr_month==4){
-                              echo "April";
-                            }
-                            else if($curr_month==5){
-                              echo "Mei";
-                            }
-                            else if($curr_month==6){
-                              echo "Juni";
-                            }
-                            else if($curr_month==7){
-                              echo "Juli";
-                            }
-                            else if($curr_month==8){
-                              echo "Agustus";
-                            }
-                            else if($curr_month==9){
-                              echo "September";
-                            }
-                            else if($curr_month==10){
-                              echo "Oktober";
-                            }
-                            else if($curr_month==11){
-                              echo "November";
-                            }
-                            else if($curr_month==12){
-                              echo "Desember";
-                            }
-                          }
-                          else {
-                            echo "BULAN";
-                          }
-                        ?>
+                
+                <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title "><b>
+                    Optimalisasi Aset</b><br></h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                       </button>
-                      <div class="dropdown-menu">
-                      <?php if (isset($curr_aset) and isset($curr_year)){?>
-                        <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1/".$curr_year);?>">Januari</a>
-                        <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2/".$curr_year);?>">Februari</a>
-                        <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3/".$curr_year);?>">Maret</a>
-                        <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4/".$curr_year);?>">April</a>
-                        <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5/".$curr_year);?>">Mei</a>
-                        <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6/".$curr_year);?>">Juni</a>
-                        <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7/".$curr_year);?>">Juli</a>
-                        <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8/".$curr_year);?>">Agustus</a>
-                        <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9/".$curr_year);?>">September</a>
-                        <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10/".$curr_year);?>">Oktober</a>
-                        <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11/".$curr_year);?>">November</a>
-                        <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12/".$curr_year);?>">Desember</a>
-                      <?php } 
-                      
-                      else if(isset($curr_aset)){
-                      ?>                    
-                        <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1/0");?>">Januari</a>
-                        <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2/0");?>">Februari</a>
-                        <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3/0");?>">Maret</a>
-                        <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4/0");?>">April</a>
-                        <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5/0");?>">Mei</a>
-                        <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6/0");?>">Juni</a>
-                        <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7/0");?>">Juli</a>
-                        <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8/0");?>">Agustus</a>
-                        <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9/0");?>">September</a>
-                        <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10/0");?>">Oktober</a>
-                        <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11/0");?>">November</a>
-                        <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12/0");?>">Desember</a>                  
-                      <?php
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <ul class="nav nav-pills flex-column">
+                    <?php foreach($aset as $row_a){?>
+                      <?php 
+                      $link_showaset = "Home/showaset/";
+                      if(isset($curr_month) and isset($curr_year)){
+                        $link_showaset .=$row_a->id_aset."/".$curr_month."/".$curr_year;
                       }
-                      else{
-                      ?>                    
-                        <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/0/1/0");?>">Januari</a>
-                        <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/0/2/0");?>">Februari</a>
-                        <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/0/3/0");?>">Maret</a>
-                        <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/0/4/0");?>">April</a>
-                        <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/0/5/0");?>">Mei</a>
-                        <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/0/6/0");?>">Juni</a>
-                        <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/0/7/0");?>">Juli</a>
-                        <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/0/8/0");?>">Agustus</a>
-                        <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/0/9/0");?>">September</a>
-                        <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/0/10/0");?>">Oktober</a>
-                        <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/0/11/0");?>">November</a>
-                        <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/0/12/0");?>">Desember</a>
-                      
-                      <?php
+                      else if(isset($curr_month)){ 
+                        $link_showaset .=$row_a->id_aset."/".$curr_month."/0";
+                      } 
+                      else{ 
+                        $link_showaset .=$row_a->id_aset."/0/0";
                       }
                       ?>
-                      </div>
-                      <script>
-                        <?php 
-                          if(isset($curr_month)){
-                        ?>
-                          var bulanaktif = document.getElementById("month<?php echo $curr_month;?>"); 
-                          bulanaktif.className += " active";
-                        <?php
-                          }
-                        ?>
-                      </script>
-                    </div>  
-                  </b></h3>
-                  <a href="<?php echo base_url();?>" ><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm mt-0"> 
-                    <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
-                    <span class="btn btn-danger btn-sm toastrDefaultError" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
+                      <li class="nav-item">
+                        <a href="<?php echo site_url($link_showaset);?>" id="namaaset<?php echo $row_a->id_aset;?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
+                      </li>
+                      <li class="nav-item"></li>
+                  <?php } ?>
+                    </ul>
+                    </div>
+                    <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
+                    <div class="input-group pt-1 pb-1 pl-1 pr-1">
+                        <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
+                        <span class="input-group-append">
+                        <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+                        </span>
+                    </div>
+                    </form>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title"><b>Rekap Tahun</b></h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      </button>
                     </div>
                   </div>
+                  <div class="card-body p-0">
+                    <ul class="nav nav-pills flex-column">
+                      <?php
+                        $year_filt = "Home/showaset/"; 
+                        if(isset($curr_aset) and isset($curr_month)){
+                          $year_filt.=$curr_aset."/".$curr_month."/";
+                        }
+                        else if(isset($curr_month)){
+                          $year_filt.="0/".$curr_month."/";
+                        }
+                        else{
+                          $year_filt.="0/0/";
+                        }
+                      ?>
+                      <?php foreach($datatahun as $year_row){?>
+                      <li class="nav-item">
+                        <a href="<?php echo site_url($year_filt.$year_row->years);?>" class="nav-link" style="border-radius:0px;" id="ftahun<?php echo $year_row->years;?>">
+                          <?php echo $year_row->years;?>
+                        </a>
+                      </li>
+                      <?php }?>
+                    </ul>
+                  </div>
                 </div>
-                <div class="card-body p-0">
-                  <div class="table-responsive">
-                  <div class="card-body">
-                    <table class="table table-hover table-sm"  style="text-align: center;" id="tbmaster">
-                      <thead class="" >
-                        <tr>
-                            <td><b>AKSI</b></td>
-                            <td><b>TANGGAL</b></td>
-                            <td><b>REF</b></td>
-                            <td><b>ASET</b></td>
-                            <td><b>URAIAN</b></td>
-                            <td></td>  
-                            <td><b>SALDO</b></td>
-                        </tr>
-                      </thead>
-                      <tfoot class="" >
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right"><b>Total Saldo = </b></td>
-                            <?php 
-                            $total_saldo = 0;
-                            foreach($transaksi as $t_row){
-                              if(strpos($t_row->ref,"D")!== false){
-                                $total_saldo = $total_saldo + $t_row->saldo;
+              </div>
+              <div class="col-md-10">
+                <div class="card card-info card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <div class="btn-group dropdown">
+                      <button type="button" class="btn btn-dark btn-sm">Dashboard</button>
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <?php 
+                            if(isset($curr_month)){
+                              if($curr_month==0){
+                                echo "BULAN";
                               }
-                              else {
-                                $total_saldo = $total_saldo - $t_row->saldo;
+                              else if($curr_month==1){
+                                echo "Januari";
                               }
-                            }  
-                            ?>
-                            <td></td>  
-                            <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, "." , ","); ?></b></td>
-                        </tr>
-                      </tfoot>
-                      <?php foreach ($transaksi as $row_t){?>
-                        <div class="row">
-                          <div class="col-md-2">
-                            <div class="modal fade" id="modalUpdate<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                <form action="<?php echo site_url('Home/update/'.$row_t->id_transaksi);?>" method="post" enctype="multipart/form-data" >
-                                  <div class="modal-header text-center">
-                                    <h4 class="modal-title font-weight-bold">Ubah Data [Transaksi]</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body mx-2">
-                                    <div class="md-form mb-2">
-                                      <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                                      <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" value="<?php echo $row_t->tanggal; ?>" required>
+                              else if($curr_month==2){
+                                echo "Februari";
+                              }
+                              else if($curr_month==3){
+                                echo "Maret";
+                              }
+                              else if($curr_month==4){
+                                echo "April";
+                              }
+                              else if($curr_month==5){
+                                echo "Mei";
+                              }
+                              else if($curr_month==6){
+                                echo "Juni";
+                              }
+                              else if($curr_month==7){
+                                echo "Juli";
+                              }
+                              else if($curr_month==8){
+                                echo "Agustus";
+                              }
+                              else if($curr_month==9){
+                                echo "September";
+                              }
+                              else if($curr_month==10){
+                                echo "Oktober";
+                              }
+                              else if($curr_month==11){
+                                echo "November";
+                              }
+                              else if($curr_month==12){
+                                echo "Desember";
+                              }
+                            }
+                            else {
+                              echo "BULAN";
+                            }
+                          ?>
+                        </button>
+                        <div class="dropdown-menu">
+                        <?php if (isset($curr_aset) and isset($curr_year)){?>
+                          <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1/".$curr_year);?>">Januari</a>
+                          <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2/".$curr_year);?>">Februari</a>
+                          <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3/".$curr_year);?>">Maret</a>
+                          <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4/".$curr_year);?>">April</a>
+                          <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5/".$curr_year);?>">Mei</a>
+                          <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6/".$curr_year);?>">Juni</a>
+                          <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7/".$curr_year);?>">Juli</a>
+                          <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8/".$curr_year);?>">Agustus</a>
+                          <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9/".$curr_year);?>">September</a>
+                          <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10/".$curr_year);?>">Oktober</a>
+                          <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11/".$curr_year);?>">November</a>
+                          <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12/".$curr_year);?>">Desember</a>
+                        <?php } 
+                        
+                        else if(isset($curr_aset)){
+                        ?>                    
+                          <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/".$curr_aset."/1/0");?>">Januari</a>
+                          <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/".$curr_aset."/2/0");?>">Februari</a>
+                          <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/".$curr_aset."/3/0");?>">Maret</a>
+                          <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/".$curr_aset."/4/0");?>">April</a>
+                          <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/".$curr_aset."/5/0");?>">Mei</a>
+                          <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/".$curr_aset."/6/0");?>">Juni</a>
+                          <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/".$curr_aset."/7/0");?>">Juli</a>
+                          <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/".$curr_aset."/8/0");?>">Agustus</a>
+                          <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/".$curr_aset."/9/0");?>">September</a>
+                          <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/".$curr_aset."/10/0");?>">Oktober</a>
+                          <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/".$curr_aset."/11/0");?>">November</a>
+                          <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/".$curr_aset."/12/0");?>">Desember</a>                  
+                        <?php
+                        }
+                        else{
+                        ?>                    
+                          <a class="dropdown-item" id="month1" href="<?php echo site_url("Home/showaset/0/1/0");?>">Januari</a>
+                          <a class="dropdown-item" id="month2" href="<?php echo site_url("Home/showaset/0/2/0");?>">Februari</a>
+                          <a class="dropdown-item" id="month3" href="<?php echo site_url("Home/showaset/0/3/0");?>">Maret</a>
+                          <a class="dropdown-item" id="month4" href="<?php echo site_url("Home/showaset/0/4/0");?>">April</a>
+                          <a class="dropdown-item" id="month5" href="<?php echo site_url("Home/showaset/0/5/0");?>">Mei</a>
+                          <a class="dropdown-item" id="month6" href="<?php echo site_url("Home/showaset/0/6/0");?>">Juni</a>
+                          <a class="dropdown-item" id="month7" href="<?php echo site_url("Home/showaset/0/7/0");?>">Juli</a>
+                          <a class="dropdown-item" id="month8" href="<?php echo site_url("Home/showaset/0/8/0");?>">Agustus</a>
+                          <a class="dropdown-item" id="month9" href="<?php echo site_url("Home/showaset/0/9/0");?>">September</a>
+                          <a class="dropdown-item" id="month10" href="<?php echo site_url("Home/showaset/0/10/0");?>">Oktober</a>
+                          <a class="dropdown-item" id="month11" href="<?php echo site_url("Home/showaset/0/11/0");?>">November</a>
+                          <a class="dropdown-item" id="month12" href="<?php echo site_url("Home/showaset/0/12/0");?>">Desember</a>
+                        
+                        <?php
+                        }
+                        ?>
+                        </div>
+                        <script>
+                          <?php 
+                            if(isset($curr_month)){
+                          ?>
+                            var bulanaktif = document.getElementById("month<?php echo $curr_month;?>"); 
+                            bulanaktif.className += " active";
+                          <?php
+                            }
+                          ?>
+                        </script>
+                      </div>  
+                    </b></h3>
+                    <a href="<?php echo base_url();?>" ><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
+                    <div class="card-tools">
+                      <div class="input-group input-group-sm mt-0"> 
+                      <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
+                      <span class="btn btn-danger btn-sm toastrDefaultError" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                    <div class="card-body">
+                      <table class="table table-hover table-sm"  style="text-align: center;" id="tbmaster">
+                        <thead class="" >
+                          <tr>
+                              <td><b>AKSI</b></td>
+                              <td><b>TANGGAL</b></td>
+                              <td><b>REF</b></td>
+                              <td><b>ASET</b></td>
+                              <td><b>URAIAN</b></td>
+                              <td></td>  
+                              <td><b>SALDO</b></td>
+                          </tr>
+                        </thead>
+                        <tfoot class="" >
+                          <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td class="text-right"><b>Total Saldo = </b></td>
+                              <?php 
+                              $total_saldo = 0;
+                              foreach($transaksi as $t_row){
+                                if(strpos($t_row->ref,"D")!== false){
+                                  $total_saldo = $total_saldo + $t_row->saldo;
+                                }
+                                else {
+                                  $total_saldo = $total_saldo - $t_row->saldo;
+                                }
+                              }  
+                              ?>
+                              <td></td>  
+                              <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, "." , ","); ?></b></td>
+                          </tr>
+                        </tfoot>
+                        <?php foreach ($transaksi as $row_t){?>
+                          <div class="row">
+                            <div class="col-md-2">
+                              <div class="modal fade" id="modalUpdate<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                  <form action="<?php echo site_url('Home/update/'.$row_t->id_transaksi);?>" method="post" enctype="multipart/form-data" >
+                                    <div class="modal-header text-center">
+                                      <h4 class="modal-title font-weight-bold">Ubah Data [Transaksi]</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
                                     </div>
-                                      <?php $nama_aset = $row_t->nama_aset;?>
-                                      <?php $nama_kat = $row_t->nama_kategori;?>
-                                    <div class="md-form mb-2">
-                                      <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                                      <select class="form-control select2" style="width: 100%;" name="aset" required>
-                                        <?php foreach ($aset as $row_a){ ?>
-                                        <option value="<?php echo $row_a->id_aset; ?>" <?php if($row_a->nama_aset==$nama_aset)echo "selected";?>><?php echo $row_a->nama_aset; ?></option>
-                                        <?php }?>
-                                      </select>
-                                    </div>
-                                    <div class="md-form mb-2">
-                                      <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                                      <select class="form-control select2" style="width: 100%;" name="kategori" required>
-                                        <?php foreach($kategori as $row_k){?>
-                                        <?php ?>
-                                        <option value="<?php echo $row_k->id_kategori; ?>" <?php if($row_k->nama_kategori==$nama_kat) echo 'selected';?>> <?php echo $row_k->nama_kategori; ?></option>
-                                        <?php } ?>
-                                      </select>
-                                    </div>
-                                    <div class="md-form mb-2">
-                                      <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                                      <textarea type="textarea" class="form-control validate" name="uraian" value="<?php echo $row_t->uraian;?>" required><?php echo $row_t->uraian;?></textarea>
-                                    </div>
-                                    <div class="md-form mb-2">
-                                      <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
-                                      <select class="form-control select2" style="width: 100%;" name="customRadio" required>
-                                        <option value="D" <?php if(strpos($row_t->ref,"D")!==false) echo 'selected'; ?>>Debit</option>
-                                        <option value="K" <?php if(strpos($row_t->ref,"D")===false) echo 'selected';?>>Kredit</option>
-                                      </select>
-                                    </div>
-                                    
-                                    <div class="md-form mb-2">
-                                      <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
-                                      <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text"><i class="">Rp.</i></span>
+                                    <div class="modal-body mx-2">
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
+                                        <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" value="<?php echo $row_t->tanggal; ?>" required>
+                                      </div>
+                                        <?php $nama_aset = $row_t->nama_aset;?>
+                                        <?php $nama_kat = $row_t->nama_kategori;?>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
+                                        <select class="form-control select2" style="width: 100%;" name="aset" required>
+                                          <?php foreach ($aset as $row_a){ ?>
+                                          <option value="<?php echo $row_a->id_aset; ?>" <?php if($row_a->nama_aset==$nama_aset)echo "selected";?>><?php echo $row_a->nama_aset; ?></option>
+                                          <?php }?>
+                                        </select>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
+                                        <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                                          <?php foreach($kategori as $row_k){?>
+                                          <?php ?>
+                                          <option value="<?php echo $row_k->id_kategori; ?>" <?php if($row_k->nama_kategori==$nama_kat) echo 'selected';?>> <?php echo $row_k->nama_kategori; ?></option>
+                                          <?php } ?>
+                                        </select>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
+                                        <textarea type="textarea" class="form-control validate" name="uraian" value="<?php echo $row_t->uraian;?>" required><?php echo $row_t->uraian;?></textarea>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
+                                        <select class="form-control select2" style="width: 100%;" name="customRadio" required>
+                                          <option value="D" <?php if(strpos($row_t->ref,"D")!==false) echo 'selected'; ?>>Debit</option>
+                                          <option value="K" <?php if(strpos($row_t->ref,"D")===false) echo 'selected';?>>Kredit</option>
+                                        </select>
+                                      </div>
+                                      
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="">Rp.</i></span>
+                                          </div>
+                                          <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="<?php echo $row_t->saldo; ?>" step="0.0001">
                                         </div>
-                                        <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="<?php echo $row_t->saldo; ?>" step="0.0001">
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label for="exampleInputFile">File input</label>
+                                        <div class="input-group">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
+                                            <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
-                                    <div class="md-form mb-2">
-                                      <label for="exampleInputFile">File input</label>
-                                      <div class="input-group">
-                                        <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
-                                          <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
-                                        </div>
-                                      </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                      <button class="btn btn-info">Simpan</button>
                                     </div>
+                                  </form>
                                   </div>
-                                  <div class="modal-footer d-flex justify-content-center">
-                                    <button class="btn btn-info">Simpan</button>
-                                  </div>
-                                </form>
                                 </div>
                               </div>
-                            </div>
-                      <?php } ?>
-                    </table>
+                        <?php } ?>
+                      </table>
+                    </div>
+                    </div>
                   </div>
+                  <div class="card-footer p-0">
                   </div>
-                </div>
-                <div class="card-footer p-0">
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
-    </div>
 
     <!-- jQuery -->
     <script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
@@ -530,7 +530,7 @@
     </script>
 
 
-    <script type="text/javascript">
+    <script>
         function showTime() {
             var a_p = "";
             var today = new Date();
@@ -575,50 +575,8 @@
           var yy = date.getYear();
           var year = (yy < 1000) ? yy + 1900 : yy;
           document.getElementById('hari').innerHTML=months[month] + ' ' + year;
-          //-->
     </script>
         
-    <script>
-      $(function () {
-
-          //Initialize Select2 Elements
-          $('.select2').select2()
-
-          //Initialize Select2 Elements
-          $('.select2bs4').select2({
-            theme: 'bootstrap4'
-          })
-        
-        $('.checkbox-toggle').click(function () {
-          var clicks = $(this).data('clicks')
-          if (clicks) {
-            //Uncheck all checkboxes
-            $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
-            $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
-          } else {
-            //Check all checkboxes
-            $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
-            $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
-          }
-          $(this).data('clicks', !clicks)
-        })
-
-        //Handle starring for font awesome
-        $('.mailbox-star').click(function (e) {
-          e.preventDefault()
-          //detect type
-          var $this = $(this).find('a > i')
-          var fa    = $this.hasClass('fa')
-
-          //Switch states
-          if (fa) {
-            $this.toggleClass('fa-star')
-            $this.toggleClass('fa-star-o')
-          }
-        })
-      })
-    </script>
-
     <script>
       $(function () {
         // Summernote
@@ -646,6 +604,7 @@
       return prefix == undefined ? rupiah : rupiah ? " " + rupiah : "";
     }
     </script>
+
     <script>
         $(document).ready(function(){
           $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
@@ -682,10 +641,9 @@
             },
                   ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                         columns: [
-                                                    {"data": "id_transaksi"},
-                                                    {"data": "tanggal"},
-                                                    {"data": "ref"},
-                                                    //render harga dengan format angka
+                            {"data": "view"},
+                            {"data": "tanggal"},
+                            {"data": "ref"},
                             {"data": "nama_aset"},
                             {"data": "uraian"},
                             {"data": "nama_kategori"},
@@ -700,9 +658,7 @@
               }
           });
         });
-                // end setup datatables
     </script>
     
 </body>
-
 </html>
