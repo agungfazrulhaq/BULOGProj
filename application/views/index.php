@@ -34,9 +34,119 @@
       }
   </style>
   <body class="layout-top-nav" style="height: auto;">
+      
+  <!-- ALL Modal Control -->
+              <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl" role="document">
+                      <div class="modal-content">
+                        <div class="card card-info card-outline">
+                          <div class="card-header">
+                            <span class="btn btn-default"><b>| | </b></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Kembali</span></button>
+                          </div>
+                                
+                          <div class="card-body p-0">
+                            <div class="mailbox-read-info">
+                              <h3>DEBIT<b></b>
+                                <span class="mailbox-read-time float-right text-right text-info">
+                                  User : Muhammad Fachrizal Ramdani <br>  
+                                  15 Feb. 2015 <br>
+                                  11:03 PM
+                                </span>
+                              </h3>
+                              <h4></h4>
+                            </div>
+                                  
+                            <div class="mailbox-read-message">
+                              <p>&emsp;&emsp;</p>
+                            </div> 
+                                  
+                            <div class="card-footer bg-white">
+                              <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+                                <li>
+                                  <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+                                    <div class="mailbox-attachment-info">
+                                      <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> Sep2014-report.pdf</a>
+                                      <span class="mailbox-attachment-size clearfix mt-1">
+                                        <span>1,245 KB</span>
+                                        <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                                      </span>
+                                    </div>
+                                </li>
+                              </ul>
+                            </div> 
+                              
+                              <div class="card-footer">
+                                <div class="float-right">
+                                  <button type="button" class="btn  bg-gradient-warning " data-toggle="modal" data-target="#modalUpdate"><i class="fas fa-share"></i> UBAH</button>
+                                </div>
+                                <a href=""><button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> HAPUS</button></a>
+                                <button type="button" class="btn btn-default"><i class="fas fa-print"></i> CETAK</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+      
+                  
+        
+                  <div class="modal fade" id="modaldel">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                             <div class="modal-header">
+                                <h3 class="modal-title"><b>Konfimasi Hapus Data Transaksi</b></h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                          <div class="modal-body text-left">
+                                <code>dataID = ()</code>
+                                <table class="table table-hover table-sm ">
+                                    <thead>
+                                        <tr>
+                                        <td>NOMOR REF</td>
+                                        <td>:</td>
+                                        <td></td>
+                                        </tr>
+                                        <tr>
+                                        <td>TANGGAL</td>
+                                        <td>:</td>
+                                        <td></td>
+                                        </tr>
+                                        <tr>
+                                        <td>ASET</td>
+                                        <td>:</td>
+                                        <td></td>
+                                        </tr>
+                                        <tr>
+                                        <td>SALDO</td>
+                                        <td>:</td>
+                                        <td></td>
+                                        </tr>
+                                        <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                            <div class="modal-footer justify-content-between">
+                                 <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+                                <a href="" style="color:white;" type="button" class="btn btn-danger btn-sm">Hapus Transaksi</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+<!-- end ALL Modal Control -->
+
+
       <div class="wrapper">
         <div class="content-wrapper">
-
           <section class="content-header">
             <div class="container-fluid">
               <div class="row">
@@ -335,7 +445,19 @@
                     <div class="card-tools">
                       <div class="input-group input-group-sm mt-0"> 
                       <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
-                      <span class="btn btn-danger btn-sm toastrDefaultError" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
+                      <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
+                      <div class="btn-group">
+                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
+                        <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
+
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalUpdate">
+                          <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
+                        </button>
+                        
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel">
+                          <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
+                        </button>
+                      </div>
                       </div>
                     </div>
                   </div>
