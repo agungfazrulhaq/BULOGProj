@@ -70,7 +70,7 @@ class M_data extends CI_Model
         $saldo_ = str_replace(",",".",$saldo_1);
         $saldo = floatval($saldo_);
         $year_ = $date_y->format('Y');
-        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,id_aset,id_kategori,uraian,saldo,tahun) 
+        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun) 
                                     VALUES('".$ref_."','".$post['tanggal']."','".$post['aset']."','"
                                     .$post['kategori']."','".$post['uraian']."','"
                                     .$saldo."','".$year_."')");
@@ -198,8 +198,9 @@ class M_data extends CI_Model
         $this->datatables->from('tb_transaksi');
         $this->datatables->join('tb_kategori',"transaksi_id_kategori = id_kategori");
         $this->datatables->join('tb_aset',"transaksi_id_aset = id_aset");
-        // $this->datatables->add_column('view', '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>','barang_kode,barang_nama,barang_harga,kategori_id,kategori_nama');
-        
+
+        $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>';
+        $this->datatables->add_column('view', $buttons, 'barang_kode,barang_nama,barang_harga,kategori_id,kategori_nama');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
