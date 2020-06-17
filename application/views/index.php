@@ -465,13 +465,13 @@
                       <table class="table table-hover table-sm"  style="text-align: center;" id="tbmaster">
                         <thead class="" >
                           <tr>
-                              <td><b>AKSI</b></td>
-                              <td><b>TANGGAL</b></td>
-                              <td><b>REF</b></td>
-                              <td><b>ASET</b></td>
-                              <td><b>URAIAN</b></td>
-                              <td></td>  
-                              <td><b>SALDO</b></td>
+                              <th><b>AKSI</b></td>
+                              <th><b>TANGGAL</b></td>
+                              <th><b>REF</b></td>
+                              <th><b>ASET</b></td>
+                              <th><b>URAIAN</b></td>
+                              <th></td>  
+                              <th><b>SALDO</b></td>
                           </tr>
                         </thead>
                         <tfoot class="" >
