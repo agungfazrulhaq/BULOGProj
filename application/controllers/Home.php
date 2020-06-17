@@ -68,7 +68,7 @@ class Home extends CI_Controller {
         $data["datatahun"] = $this->M_data->getYears();
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
-        $data["transaksi"] = $this->M_data->getAset_Transaksi($id_aset,$monthdate,$yeardate);
+        $data["json_url"] = "getTransaksiJsonFiltered/".$id_aset."/".$monthdate."/".$yeardate."/";
         
 		$this->load->view('index.php',$data);
     }
@@ -99,6 +99,11 @@ class Home extends CI_Controller {
     public function getTransaksiJson(){
         header('Content-Type: application/json');
         echo $this->M_data->getall_Transaksi();
+    }
+
+    public function getTransaksiJsonFiltered($id_aset,$monthdate,$yeardate){
+        header('Content-Type: application/json');
+        echo $this->M_data->getAset_Transaksi($id_aset,$monthdate,$yeardate);
     }
 
 }

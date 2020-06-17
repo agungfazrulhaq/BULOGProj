@@ -474,19 +474,9 @@
                               <td></td>
                               <td></td>
                               <td class="text-right"><b>Total Saldo = </b></td>
-                              <?php 
-                              $total_saldo = 0;
-                              foreach($transaksi as $t_row){
-                                if(strpos($t_row->ref,"D")!== false){
-                                  $total_saldo = $total_saldo + $t_row->saldo;
-                                }
-                                else {
-                                  $total_saldo = $total_saldo - $t_row->saldo;
-                                }
-                              }  
-                              ?>
+                              
                               <td></td>  
-                              <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, "." , ","); ?></b></td>
+                              <td class="text-left"><b></b></td>
                           </tr>
                         </tfoot>
                           <div class="row">
@@ -780,7 +770,18 @@
                           api.search(this.value).draw();
                   });
             },
-                  ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
+                oLanguage: {
+                sProcessing: "tunggu..."
+            },
+            <?php 
+              if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
+                $string_url_json = 'index.php/Home/'.$json_url;
+              }
+              else{
+                $string_url_json = 'index.php/Home/getTransaksiJson';
+              }
+            ?>
+                  ajax: {"url": "<?php echo base_url().$string_url_json;?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
                             {"data": "tanggal" , className: "text-left", render: $.fn.dataTable.render.moment( 'DD MMM YYYY' )},
@@ -798,6 +799,10 @@
                         extend: 'pdfHtml5',
                         title: 'MUTASI KAS UB OPASET DIVRE SULSELBAR',
                         message: '',
+                        pageSize: 'LETTER',
+                        extension : '.pdf',
+                        header : true,
+                        footer : false,
                         orientation: 'potrait',
                         exportOptions: {
                         columns: ':visible'
@@ -808,8 +813,7 @@
                             doc.styles.tableHeader.fontSize = 8;
                             doc.styles.title.fontSize = 12;
                             doc.styles.title.bold= true;
-
-                            
+                                    
                             // Remove spaces around page title
                             doc.content[0].text = doc.content[0].text.trim();
                             // Create a footer
