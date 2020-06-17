@@ -496,13 +496,12 @@
                               <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2, "." , ","); ?></b></td>
                           </tr>
                         </tfoot>
-                        <?php foreach ($transaksi as $row_t){?>
                           <div class="row">
                             <div class="col-md-2">
-                              <div class="modal fade" id="modalUpdate<?php echo $row_t->id_transaksi;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
-                                  <form action="<?php echo site_url('Home/update/'.$row_t->id_transaksi);?>" method="post" enctype="multipart/form-data" >
+                                  <form action="<?php echo site_url('Home/update/')?>" method="post" enctype="multipart/form-data" >
                                     <div class="modal-header text-center">
                                       <h4 class="modal-title font-weight-bold">Ubah Data [Transaksi]</h4>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -512,15 +511,13 @@
                                     <div class="modal-body mx-2">
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                                        <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" value="<?php echo $row_t->tanggal; ?>" required>
+                                        <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" value="" required>
                                       </div>
-                                        <?php $nama_aset = $row_t->nama_aset;?>
-                                        <?php $nama_kat = $row_t->nama_kategori;?>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
                                         <select class="form-control select2" style="width: 100%;" name="aset" required>
                                           <?php foreach ($aset as $row_a){ ?>
-                                          <option value="<?php echo $row_a->id_aset; ?>" <?php if($row_a->nama_aset==$nama_aset)echo "selected";?>><?php echo $row_a->nama_aset; ?></option>
+                                          <option value="<?php echo $row_a->id_aset; ?>" ><?php echo $row_a->nama_aset; ?></option>
                                           <?php }?>
                                         </select>
                                       </div>
@@ -529,19 +526,19 @@
                                         <select class="form-control select2" style="width: 100%;" name="kategori" required>
                                           <?php foreach($kategori as $row_k){?>
                                           <?php ?>
-                                          <option value="<?php echo $row_k->id_kategori; ?>" <?php if($row_k->nama_kategori==$nama_kat) echo 'selected';?>> <?php echo $row_k->nama_kategori; ?></option>
+                                          <option value="<?php echo $row_k->id_kategori; ?>" > <?php echo $row_k->nama_kategori; ?></option>
                                           <?php } ?>
                                         </select>
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                                        <textarea type="textarea" class="form-control validate" name="uraian" value="<?php echo $row_t->uraian;?>" required><?php echo $row_t->uraian;?></textarea>
+                                        <textarea type="textarea" class="form-control validate" name="uraian" value="" required></textarea>
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
                                         <select class="form-control select2" style="width: 100%;" name="customRadio" required>
-                                          <option value="D" <?php if(strpos($row_t->ref,"D")!==false) echo 'selected'; ?>>Debit</option>
-                                          <option value="K" <?php if(strpos($row_t->ref,"D")===false) echo 'selected';?>>Kredit</option>
+                                          <option value="D" >Debit</option>
+                                          <option value="K" >Kredit</option>
                                         </select>
                                       </div>
                                       
@@ -551,7 +548,7 @@
                                           <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="">Rp.</i></span>
                                           </div>
-                                          <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="<?php echo $row_t->saldo; ?>" step="0.0001">
+                                          <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="" step="0.0001">
                                         </div>
                                       </div>
                                       <div class="md-form mb-2">
@@ -565,13 +562,12 @@
                                       </div>
                                     </div>
                                     <div class="modal-footer d-flex justify-content-center">
-                                      <button class="btn btn-info">Simpan</button>
+                                      <input type="submit" class="btn btn-info" value="simpan">
                                     </div>
                                   </form>
                                   </div>
                                 </div>
                               </div>
-                        <?php } ?>
                       </table>
                     </div>
                     </div>
