@@ -444,18 +444,7 @@
                       <div class="input-group input-group-sm mt-0"> 
                       <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
                       <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
-                      <div class="btn-group">
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
-                        <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
-
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalUpdate">
-                          <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
-                        </button>
-                        
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel">
-                          <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
-                        </button>
-                      </div>
+                      
                       </div>
                     </div>
                   </div>
@@ -744,6 +733,9 @@
             "ordering": true,
             "processing": true,
             "serverSide": true,
+            "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
+             responsive: true,
+
             initComplete: function() {
                   var api = this.api();
                   $('#tbmaster_filter input')
