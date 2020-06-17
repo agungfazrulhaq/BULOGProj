@@ -47,11 +47,30 @@ class M_data extends CI_Model
             $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=".$month_);
             $refcount = $query_ref->num_rows();
             if($refcount < 9){
-                $ref_ .= '0';
-                $ref_ .= $refcount+1;
+                for ($x=1;$x<=$refcount+1;$x++){
+                    $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."D0".$x."'");
+                    $count_ex__ = $query_existance->num_rows();
+                    if($count_ex__ == 0 ){
+                        $ref_ .= "0";
+                        $ref_ .= $refcount+1;
+                        break;
+                    }
+                }
             }
             else {
-                $ref_ .= $refcount+1;
+                for ($x=1;$x<=$refcount+1;$x++){
+                    if($x<10){
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref="."D0".$refcount+1);
+                    }
+                    else{
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref="."D".$refcount+1);
+                    }
+                    $count_ex__ = $query_existance->num_rows();
+                    if($count_ex__ = 0 ){
+                        $ref_ .= $refcount+1;
+                        break;
+                    }
+                }
             }
         }
         else {
@@ -59,11 +78,30 @@ class M_data extends CI_Model
             $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=".$month_);
             $refcount = $query_ref->num_rows();
             if($refcount < 9){
-                $ref_ .= '0';
-                $ref_ .= $refcount+1;
+                for ($x=1;$x<=$refcount+1;$x++){
+                    $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."K0".$x."'");
+                    $count_ex__ = $query_existance->num_rows();
+                    if($count_ex__ == 0 ){
+                        $ref_ .= "0";
+                        $ref_ .= $refcount+1;
+                        break;
+                    }
+                }
             }
             else {
-                $ref_ .= $refcount+1;
+                for ($x=1;$x<=$refcount+1;$x++){
+                    if($x<10){
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."K0".$x."'");
+                    }
+                    else{
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."K".$x."'");
+                    }
+                    $count_ex__ = $query_existance->num_rows();
+                    if($count_ex__ == 0 ){
+                        $ref_ .= $refcount+1;
+                        break;
+                    }
+                }
             }
         }
         $saldo_1 = str_replace(".","",$post['saldo']);
