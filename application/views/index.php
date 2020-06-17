@@ -745,7 +745,8 @@
             "processing": true,
             "serverSide": true,
             "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
-             responsive: true,
+             "fixedColumns":   true,
+             "scrollCollapse": true,
 
             initComplete: function() {
                   var api = this.api();
@@ -760,13 +761,13 @@
             },
                   ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                         columns: [
-                            {"data": "view", "bSortable": false, "bSearchable": false},
-                            {"data": "tanggal"},
-                            {"data": "ref"},
-                            {"data": "nama_aset"},
-                            {"data": "uraian"},
+                            {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
+                            {"data": "tanggal" , className: "text-left"},
+                            {"data": "ref" , className: "text-left"},
+                            {"data": "nama_aset" , className: "text-left"},
+                            {"data": "uraian", className: "text-left"},
                             {"data": "nama_kategori"},
-                            {"data": "saldo", render: $.fn.dataTable.render.number(',', '.', '')}
+                            {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', '')}
                       ],
                     order: [[1, 'asc']],
               rowCallback: function(row, data, iDisplayIndex) {
