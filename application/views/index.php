@@ -764,8 +764,8 @@
                   ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
-                            {"data": "tanggal" , className: "text-left"},
-                            {"data": "ref" , className: "text-left", render: $.fn.dataTable.render.moment( 'DD MMM YYYY' )},
+                            {"data": "tanggal" , className: "text-left", render: $.fn.dataTable.render.moment( 'DD MMM YYYY' )},
+                            {"data": "ref" , className: "text-left"},
                             {"data": "nama_aset" , className: "text-left"},
                             {"data": "uraian", className: "text-left"},
                             {"data": "nama_kategori"},
