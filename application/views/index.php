@@ -780,9 +780,6 @@
                           api.search(this.value).draw();
                   });
             },
-                oLanguage: {
-                sProcessing: "tunggu..."
-            },
                   ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
@@ -797,7 +794,7 @@
                       dom: 'Bfrtip',
                       buttons: [
                         {
-                        text: 'Cetak Kanjeng',
+                        text: 'PDF',
                         extend: 'pdfHtml5',
                         title: 'MUTASI KAS UB OPASET DIVRE SULSELBAR',
                         message: '',
@@ -806,26 +803,16 @@
                         columns: ':visible'
                         },
                         customize: function (doc) {
-                            doc.pageMargins = [10,10,10,10];
-                            doc.defaultStyle.fontSize = 7;
-                            doc.styles.tableHeader.fontSize = 7;
-                            doc.styles.title.fontSize = 9;
+                            doc.pageMargins = [60,35,60,35];
+                            doc.defaultStyle.fontSize = 8;
+                            doc.styles.tableHeader.fontSize = 8;
+                            doc.styles.title.fontSize = 12;
+                            doc.styles.title.bold= true;
+
+                            
                             // Remove spaces around page title
                             doc.content[0].text = doc.content[0].text.trim();
                             // Create a footer
-                            doc['header']=(function(page, pages) {
-                                return {
-                                    columns: [
-                                        'MUTASI KAS UB OPASET DIVRE SULSELBAR',
-                                        {
-                                            // This is the right column
-                                            alignment: 'middle',
-                                            text: ['page ', { text: page.toString() },  ' of ', { text: pages.toString() }]
-                                        }
-                                    ],
-                                    margin: [10, 10]
-                                }
-                            });
                             // Styling the table: create style object
                             var objLayout = {};
                             // Horizontal line thickness
@@ -845,6 +832,10 @@
                         }
                         }
                     ],
+                    
+                oLanguage: {
+                sProcessing: "tunggu..."
+            },
 
                   order: [[1, 'asc']],
                   rowCallback: function(row, data, iDisplayIndex) {
