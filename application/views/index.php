@@ -749,7 +749,7 @@
             },
                   ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                         columns: [
-                            {"data": "view"},
+                            {"data": "view", "bSortable": false, "bSearchable": false},
                             {"data": "tanggal"},
                             {"data": "ref"},
                             {"data": "nama_aset"},
@@ -767,6 +767,5 @@
           });
         });
     </script>
-    
 </body>
 </html>
