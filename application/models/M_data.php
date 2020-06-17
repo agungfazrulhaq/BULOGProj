@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_data extends CI_Model
 {
@@ -13,21 +13,25 @@ class M_data extends CI_Model
     public $uraian;
     public $ref;
 
-    public function getAset(){
+    public function getAset()
+    {
         return $this->db->get($this->_tableaset)->result();
     }
 
-    public function getYears(){
+    public function getYears()
+    {
         $sql = "SELECT DISTINCT YEAR(tanggal) as years FROM tb_transaksi ORDER BY YEAR(tanggal)";
         $query = $this->db->query($sql);
         return $query->result();
     }
 
-    public function getKategori(){
+    public function getKategori()
+    {
         return $this->db->get($this->_tablekategori)->result();
     }
 
-    public function getTransaksi(){
+    public function getTransaksi()
+    {
         $query = $this->db->query("SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
                                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                                     FROM tb_transaksi 
@@ -36,98 +40,97 @@ class M_data extends CI_Model
         return $query->result();
     }
 
-    public function addTransaksi(){
-        $post=$this->input->post();
+    public function addTransaksi()
+    {
+        $post = $this->input->post();
 
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
         $month_ = $date_y->format('m');
 
-        if($post['customRadio'] == "D"){
+        if ($post['customRadio'] == "D") {
             $ref_ = "D";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=".$month_);
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=" . $month_);
             $refcount = $query_ref->num_rows();
-            if($refcount < 9){
-                for ($x=1;$x<=$refcount+1;$x++){
-                    $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."D0".$x."'");
+            if ($refcount < 9) {
+                for ($x = 1; $x <= $refcount + 1; $x++) {
+                    $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='" . "D0" . $x . "'");
                     $count_ex__ = $query_existance->num_rows();
-                    if($count_ex__ == 0 ){
+                    if ($count_ex__ == 0) {
                         $ref_ .= "0";
-                        $ref_ .= $refcount+1;
+                        $ref_ .= $refcount + 1;
                         break;
                     }
                 }
-            }
-            else {
-                for ($x=1;$x<=$refcount+1;$x++){
-                    if($x<10){
-                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref="."D0".$refcount+1);
-                    }
-                    else{
-                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref="."D".$refcount+1);
+            } else {
+                for ($x = 1; $x <= $refcount + 1; $x++) {
+                    if ($x < 10) {
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref=" . "D0" . $refcount + 1);
+                    } else {
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref=" . "D" . $refcount + 1);
                     }
                     $count_ex__ = $query_existance->num_rows();
-                    if($count_ex__ = 0 ){
-                        $ref_ .= $refcount+1;
+                    if ($count_ex__ = 0) {
+                        $ref_ .= $refcount + 1;
                         break;
                     }
                 }
             }
-        }
-        else {
+        } else {
             $ref_ = "K";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=".$month_);
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=" . $month_);
             $refcount = $query_ref->num_rows();
-            if($refcount < 9){
-                for ($x=1;$x<=$refcount+1;$x++){
-                    $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."K0".$x."'");
+            if ($refcount < 9) {
+                for ($x = 1; $x <= $refcount + 1; $x++) {
+                    $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='" . "K0" . $x . "'");
                     $count_ex__ = $query_existance->num_rows();
-                    if($count_ex__ == 0 ){
+                    if ($count_ex__ == 0) {
                         $ref_ .= "0";
-                        $ref_ .= $refcount+1;
+                        $ref_ .= $refcount + 1;
                         break;
                     }
                 }
-            }
-            else {
-                for ($x=1;$x<=$refcount+1;$x++){
-                    if($x<10){
-                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."K0".$x."'");
-                    }
-                    else{
-                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='"."K".$x."'");
+            } else {
+                for ($x = 1; $x <= $refcount + 1; $x++) {
+                    if ($x < 10) {
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='" . "K0" . $x . "'");
+                    } else {
+                        $query_existance = $this->db->query("SELECT * FROM tb_transaksi where ref='" . "K" . $x . "'");
                     }
                     $count_ex__ = $query_existance->num_rows();
-                    if($count_ex__ == 0 ){
-                        $ref_ .= $refcount+1;
+                    if ($count_ex__ == 0) {
+                        $ref_ .= $refcount + 1;
                         break;
                     }
                 }
             }
         }
-        $saldo_1 = str_replace(".","",$post['saldo']);
-        $saldo_ = str_replace(",",".",$saldo_1);
+        $saldo_1 = str_replace(".", "", $post['saldo']);
+        $saldo_ = str_replace(",", ".", $saldo_1);
         $saldo = floatval($saldo_);
         $year_ = $date_y->format('Y');
         return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun) 
-                                    VALUES('".$ref_."','".$post['tanggal']."','".$post['aset']."','"
-                                    .$post['kategori']."','".$post['uraian']."','"
-                                    .$saldo."','".$year_."')");
+                                    VALUES('" . $ref_ . "','" . $post['tanggal'] . "','" . $post['aset'] . "','"
+            . $post['kategori'] . "','" . $post['uraian'] . "','"
+            . $saldo . "','" . $year_ . "')");
     }
 
-    public function addAset(){
-        $post=$this->input->post();
+    public function addAset()
+    {
+        $post = $this->input->post();
         $nama_aset = $post['nama_aset'];
 
-        return $this->db->query("INSERT INTO tb_aset(nama_aset) VALUES('".$nama_aset."');");
+        return $this->db->query("INSERT INTO tb_aset(nama_aset) VALUES('" . $nama_aset . "');");
     }
 
-    public function delete(){
-        $post=$this->input->post();
+    public function delete()
+    {
+        $post = $this->input->post();
         $id = $post['id_transaksi'];
-        return $this->db->delete($this->_tabletransaksi,array("id_transaksi"=>$id));
+        return $this->db->delete($this->_tabletransaksi, array("id_transaksi" => $id));
     }
 
-    public function rulesadd(){
+    public function rulesadd()
+    {
         return [
             [
                 'field' => 'tanggal',
@@ -137,7 +140,7 @@ class M_data extends CI_Model
             [
                 'field' => 'aset',
                 'label' => 'Aset',
-                'rules' => 'required'    
+                'rules' => 'required'
             ],
             [
                 'field' => 'kategori',
@@ -157,10 +160,11 @@ class M_data extends CI_Model
         ];
     }
 
-    public function delcheck(){
+    public function delcheck()
+    {
         $delid = $post['checkdel'];
         $sql = "DELETE FROM tb_transaksi WHERE id_transaksi in ";
-        $sql.= "('".implode("','",array_values($post['checkdel']))."')";
+        $sql .= "('" . implode("','", array_values($post['checkdel'])) . "')";
 
         return $this->db->query($sql);
     }
@@ -222,12 +226,13 @@ class M_data extends CI_Model
     //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
     //                 WHERE tb_transaksi.transaksi_id_aset=".$id_aset;
     //     }
-        
+
     //     $sql_ = $this->db->query($sql);
     //     return $sql_->result();
     // }
 
-    public function getall_Transaksi(){
+    public function getall_Transaksi()
+    {
         // $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
         // tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
         // FROM tb_transaksi 
@@ -236,12 +241,12 @@ class M_data extends CI_Model
 
         $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori');
         $this->datatables->from('tb_transaksi');
-        $this->datatables->join('tb_kategori',"transaksi_id_kategori = id_kategori");
-        $this->datatables->join('tb_aset',"transaksi_id_aset = id_aset");
+        $this->datatables->join('tb_kategori', "transaksi_id_kategori = id_kategori");
+        $this->datatables->join('tb_aset', "transaksi_id_aset = id_aset");
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
         $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
+        <button class="btn btn-info btn-sm viewdata" data-toggle="modal" data-target="#modalForm"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
         <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
@@ -256,11 +261,12 @@ class M_data extends CI_Model
         return $this->datatables->generate();
     }
 
-    public function getAset_Transaksi($id_aset,$monthdate,$yeardate){
+    public function getAset_Transaksi($id_aset, $monthdate, $yeardate)
+    {
         $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori');
         $this->datatables->from('tb_transaksi');
-        $this->datatables->join('tb_kategori',"transaksi_id_kategori = id_kategori");
-        $this->datatables->join('tb_aset',"transaksi_id_aset = id_aset");
+        $this->datatables->join('tb_kategori', "transaksi_id_kategori = id_kategori");
+        $this->datatables->join('tb_aset', "transaksi_id_aset = id_aset");
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
         $this->datatables->add_column('view', '<div class="btn-group">
@@ -276,32 +282,26 @@ class M_data extends CI_Model
         </button>
         </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,nama_kategori');
         // $sql_ = $this->db->query($sql);
-        if ($monthdate>0 and $monthdate<13 and $id_aset>0 and $yeardate>0){
-            $key_cond_where = ['MONTH(tanggal)'=>$monthdate, 'transaksi_id_aset'=>$id_aset, 'YEAR(tanggal)'=>$yeardate];
+        if ($monthdate > 0 and $monthdate < 13 and $id_aset > 0 and $yeardate > 0) {
+            $key_cond_where = ['MONTH(tanggal)' => $monthdate, 'transaksi_id_aset' => $id_aset, 'YEAR(tanggal)' => $yeardate];
             $this->datatables->where($key_cond_where);
-        }
-        else if($monthdate>0 and $monthdate<13 and $id_aset>0){
-            $key_cond_where = ['MONTH(tanggal)'=>$monthdate, 'transaksi_id_aset'=>$id_aset];
+        } else if ($monthdate > 0 and $monthdate < 13 and $id_aset > 0) {
+            $key_cond_where = ['MONTH(tanggal)' => $monthdate, 'transaksi_id_aset' => $id_aset];
             $this->datatables->where($key_cond_where);
-        }
-        else if($monthdate>0 and $monthdate<13 and $yeardate>0){
-            $key_cond_where = ['MONTH(tanggal)'=>$monthdate, 'YEAR(tanggal)'=>$yeardate];
+        } else if ($monthdate > 0 and $monthdate < 13 and $yeardate > 0) {
+            $key_cond_where = ['MONTH(tanggal)' => $monthdate, 'YEAR(tanggal)' => $yeardate];
             $this->datatables->where($key_cond_where);
-        }
-        else if($yeardate>0 and $id_aset>0){
-            $key_cond_where = ['transaksi_id_aset'=>$id_aset, 'YEAR(tanggal)'=>$yeardate];
+        } else if ($yeardate > 0 and $id_aset > 0) {
+            $key_cond_where = ['transaksi_id_aset' => $id_aset, 'YEAR(tanggal)' => $yeardate];
             $this->datatables->where($key_cond_where);
-        }
-        else if($monthdate>0 and $monthdate<13){
-            $key_cond_where = ['MONTH(tanggal)'=>$monthdate];
+        } else if ($monthdate > 0 and $monthdate < 13) {
+            $key_cond_where = ['MONTH(tanggal)' => $monthdate];
             $this->datatables->where($key_cond_where);
-        }
-        else if($yeardate>0){
-            $key_cond_where = ['YEAR(tanggal)'=>$yeardate];
+        } else if ($yeardate > 0) {
+            $key_cond_where = ['YEAR(tanggal)' => $yeardate];
             $this->datatables->where($key_cond_where);
-        }
-        else{
-            $key_cond_where = ['transaksi_id_aset'=>$id_aset];
+        } else {
+            $key_cond_where = ['transaksi_id_aset' => $id_aset];
             $this->datatables->where($key_cond_where);
         }
 
@@ -321,43 +321,41 @@ class M_data extends CI_Model
         return $this->datatables->generate();
     }
 
-    public function updateTransaksi(){
-        $post=$this->input->post();
+    public function updateTransaksi()
+    {
+        $post = $this->input->post();
 
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
         $month_ = $date_y->format('m');
         $id_transaksi = $post['id_transaksi'];
 
-        if($post['customRadio'] == "D"){
+        if ($post['customRadio'] == "D") {
             $ref_ = "D";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=".$month_);
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=" . $month_);
             $refcount = $query_ref->num_rows();
-            if($refcount < 9){
+            if ($refcount < 9) {
                 $ref_ .= '0';
-                $ref_ .= $refcount+1;
+                $ref_ .= $refcount + 1;
+            } else {
+                $ref_ .= $refcount + 1;
             }
-            else {
-                $ref_ .= $refcount+1;
-            }
-        }
-        else {
+        } else {
             $ref_ = "K";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=".$month_);
+            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=" . $month_);
             $refcount = $query_ref->num_rows();
-            if($refcount < 9){
+            if ($refcount < 9) {
                 $ref_ .= '0';
-                $ref_ .= $refcount+1;
-            }
-            else {
-                $ref_ .= $refcount+1;
+                $ref_ .= $refcount + 1;
+            } else {
+                $ref_ .= $refcount + 1;
             }
         }
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');
         $sql___ = "UPDATE tb_transaksi 
-                    SET ref ='".$ref_."' , tanggal = '".$post['tanggal']."' , transaksi_id_aset = '".$post['aset']."',
-                    transaksi_id_kategori = '".$post['kategori']."',uraian = '".$post['uraian']."',saldo = ".$saldo.", tahun = '".$year_."'
-                    WHERE id_transaksi=".$id_transaksi;
+                    SET ref ='" . $ref_ . "' , tanggal = '" . $post['tanggal'] . "' , transaksi_id_aset = '" . $post['aset'] . "',
+                    transaksi_id_kategori = '" . $post['kategori'] . "',uraian = '" . $post['uraian'] . "',saldo = " . $saldo . ", tahun = '" . $year_ . "'
+                    WHERE id_transaksi=" . $id_transaksi;
         return $this->db->query($sql___);
     }
 }
