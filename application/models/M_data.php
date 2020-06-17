@@ -165,67 +165,67 @@ class M_data extends CI_Model
         return $this->db->query($sql);
     }
 
-    public function getAset_Transaksi($id_aset,$monthdate,$yeardate){
-        if ($monthdate>0 and $monthdate<13 and $id_aset>0 and $yeardate>0){
-            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
-                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
-                    FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
-                    WHERE tb_transaksi.transaksi_id_aset=".$id_aset." AND MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
-        }
-        else if($monthdate>0 and $monthdate<13 and $id_aset>0){
-            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
-                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
-                    FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
-                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND tb_transaksi.transaksi_id_aset=".$id_aset;
-        }
-        else if($monthdate>0 and $monthdate<13 and $yeardate>0){
-            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
-                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
-                    FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
-                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
-        }
-        else if($yeardate>0 and $id_aset>0){
-            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
-                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
-                    FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
-                    WHERE YEAR(tb_transaksi.tanggal)=".$yeardate." AND tb_transaksi.transaksi_id_aset=".$id_aset;
-        }
-        else if($monthdate>0 and $monthdate<13){
-            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
-                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
-                    FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
-                    WHERE MONTH(tb_transaksi.tanggal)=".$monthdate;
-        }
-        else if($yeardate>0){
-            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
-                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
-                    FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
-                    WHERE YEAR(tb_transaksi.tanggal)=".$yeardate;
-        }
-        else{
-            $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
-                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
-                    FROM tb_transaksi 
-                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
-                    WHERE tb_transaksi.transaksi_id_aset=".$id_aset;
-        }
+    // public function getAset_Transaksi($id_aset,$monthdate,$yeardate){
+    //     if ($monthdate>0 and $monthdate<13 and $id_aset>0 and $yeardate>0){
+    //         $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+    //                 tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+    //                 FROM tb_transaksi 
+    //                 INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+    //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+    //                 WHERE tb_transaksi.transaksi_id_aset=".$id_aset." AND MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
+    //     }
+    //     else if($monthdate>0 and $monthdate<13 and $id_aset>0){
+    //         $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+    //                 tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+    //                 FROM tb_transaksi 
+    //                 INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+    //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+    //                 WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND tb_transaksi.transaksi_id_aset=".$id_aset;
+    //     }
+    //     else if($monthdate>0 and $monthdate<13 and $yeardate>0){
+    //         $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+    //                 tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+    //                 FROM tb_transaksi 
+    //                 INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+    //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+    //                 WHERE MONTH(tb_transaksi.tanggal)=".$monthdate." AND YEAR(tb_transaksi.tanggal)=".$yeardate;
+    //     }
+    //     else if($yeardate>0 and $id_aset>0){
+    //         $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+    //                 tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+    //                 FROM tb_transaksi 
+    //                 INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+    //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+    //                 WHERE YEAR(tb_transaksi.tanggal)=".$yeardate." AND tb_transaksi.transaksi_id_aset=".$id_aset;
+    //     }
+    //     else if($monthdate>0 and $monthdate<13){
+    //         $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+    //                 tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+    //                 FROM tb_transaksi 
+    //                 INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+    //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+    //                 WHERE MONTH(tb_transaksi.tanggal)=".$monthdate;
+    //     }
+    //     else if($yeardate>0){
+    //         $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+    //                 tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+    //                 FROM tb_transaksi 
+    //                 INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+    //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+    //                 WHERE YEAR(tb_transaksi.tanggal)=".$yeardate;
+    //     }
+    //     else{
+    //         $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+    //                 tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+    //                 FROM tb_transaksi 
+    //                 INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+    //                 INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+    //                 WHERE tb_transaksi.transaksi_id_aset=".$id_aset;
+    //     }
         
-        $sql_ = $this->db->query($sql);
-        return $sql_->result();
-    }
+    //     $sql_ = $this->db->query($sql);
+    //     return $sql_->result();
+    // }
 
     public function getall_Transaksi(){
         // $sql = "SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
@@ -240,6 +240,71 @@ class M_data extends CI_Model
         $this->datatables->join('tb_aset',"transaksi_id_aset = id_aset");
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
+        $this->datatables->add_column('view', '<div class="btn-group">
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
+        <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
+
+        <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
+          <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
+        </button>
+        
+        <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
+          <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
+        </button>
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,nama_kategori');
+        // $sql_ = $this->db->query($sql);
+        return $this->datatables->generate();
+    }
+
+    public function getAset_Transaksi($id_aset,$monthdate,$yeardate){
+        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori');
+        $this->datatables->from('tb_transaksi');
+        $this->datatables->join('tb_kategori',"transaksi_id_kategori = id_kategori");
+        $this->datatables->join('tb_aset',"transaksi_id_aset = id_aset");
+
+        // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
+        $this->datatables->add_column('view', '<div class="btn-group">
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
+        <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
+
+        <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
+          <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
+        </button>
+        
+        <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
+          <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
+        </button>
+        </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,nama_kategori');
+        // $sql_ = $this->db->query($sql);
+        if ($monthdate>0 and $monthdate<13 and $id_aset>0 and $yeardate>0){
+            $key_cond_where = ['MONTH(tanggal)'=>$monthdate, 'transaksi_id_aset'=>$id_aset, 'YEAR(tanggal)'=>$yeardate];
+            $this->datatables->where($key_cond_where);
+        }
+        else if($monthdate>0 and $monthdate<13 and $id_aset>0){
+            $key_cond_where = ['MONTH(tanggal)'=>$monthdate, 'transaksi_id_aset'=>$id_aset];
+            $this->datatables->where($key_cond_where);
+        }
+        else if($monthdate>0 and $monthdate<13 and $yeardate>0){
+            $key_cond_where = ['MONTH(tanggal)'=>$monthdate, 'YEAR(tanggal)'=>$yeardate];
+            $this->datatables->where($key_cond_where);
+        }
+        else if($yeardate>0 and $id_aset>0){
+            $key_cond_where = ['transaksi_id_aset'=>$id_aset, 'YEAR(tanggal)'=>$yeardate];
+            $this->datatables->where($key_cond_where);
+        }
+        else if($monthdate>0 and $monthdate<13){
+            $key_cond_where = ['MONTH(tanggal)'=>$monthdate];
+            $this->datatables->where($key_cond_where);
+        }
+        else if($yeardate>0){
+            $key_cond_where = ['YEAR(tanggal)'=>$yeardate];
+            $this->datatables->where($key_cond_where);
+        }
+        else{
+            $key_cond_where = ['transaksi_id_aset'=>$id_aset];
+            $this->datatables->where($key_cond_where);
+        }
+
         $this->datatables->add_column('view', '<div class="btn-group">
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
