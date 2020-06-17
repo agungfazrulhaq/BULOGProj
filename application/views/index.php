@@ -582,6 +582,11 @@
     <script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->
     <script src="<?php echo base_url();?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- Select2 -->
+    <script src="<?php echo base_url();?>plugins/select2/js/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="<?php echo base_url();?>plugins/moment/moment.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
     <!-- Toastr -->
     <script src="<?php echo base_url();?>plugins/toastr/toastr.min.js"></script>
     <!-- InputMask -->
@@ -592,6 +597,12 @@
     <script src="<?php echo base_url();?>dist/js/demo.js"></script>
 
     <script>
+      $('.select2').select2()
+      
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+
       $('.toastrDefaultError').click(function() {
           toastr.error('Data Gagal Di Tambahkan ')
         });
