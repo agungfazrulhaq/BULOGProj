@@ -526,7 +526,7 @@
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
-                                        <select class="form-control select2" style="width: 100%;" name="customRadio" required>
+                                        <select class="form-control" style="width: 100%;" id="selectJenis" name="customRadio" required>
                                           <option value="D" >Debit</option>
                                           <option value="K" >Kredit</option>
                                         </select>
@@ -801,6 +801,13 @@
                             $('#selectkategori').find('option').each(function(i,e){
                                 if($(e).val() == localStorage.getItem("Select2")){
                                   $('#selectkategori').prop('selectedIndex',i);
+                                }
+                            });
+                        
+                        localStorage.setItem("Select3", ref.charAt(0));
+                            $('#selectJenis').find('option').each(function(i,e){
+                                if($(e).val() == localStorage.getItem("Select3")){
+                                  $('#selectJenis').prop('selectedIndex',i);
                                 }
                             });
           });
