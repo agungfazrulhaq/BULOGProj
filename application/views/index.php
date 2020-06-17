@@ -101,27 +101,27 @@
                             </div>
 
                           <div class="modal-body text-left">
-                                <code>dataID = ()</code>
+                                <code id="data_id">dataID = ()</code>
                                 <table class="table table-hover table-sm ">
                                     <thead>
                                         <tr>
                                         <td>NOMOR REF</td>
-                                        <td>:&nbsp;&nbsp;<span id=""> LALALALU</span></td>
+                                        <td>:&nbsp;&nbsp;<span id="refdel"> </span></td>
                                         <td></td>
                                         </tr>
                                         <tr>
                                         <td>TANGGAL</td>
-                                        <td>:</td>
+                                        <td>:&nbsp;&nbsp;<span id="tanggaldel"> </span></td>
                                         <td></td>
                                         </tr>
                                         <tr>
                                         <td>ASET</td>
-                                        <td>:</td>
+                                        <td>:&nbsp;&nbsp;<span id="asetdel"></span></td>
                                         <td></td>
                                         </tr>
                                         <tr>
                                         <td>SALDO</td>
-                                        <td>:</td>
+                                        <td>:&nbsp;&nbsp;<span id="saldodel"> </span></td>
                                         <td></td>
                                         </tr>
                                         <tr>
@@ -135,7 +135,10 @@
 
                             <div class="modal-footer justify-content-between">
                                  <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-                                <a href="" style="color:white;" type="button" class="btn btn-danger btn-sm">Hapus Transaksi</a>
+                                 <form action="<?php echo site_url("Home/del")?>" method="post">
+                                 <input type="hidden" id="id_transaksi" name="id_transaksi">
+                                 <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Data">
+                                </form>
                             </div>
                             </div>
                         </div>
@@ -788,6 +791,7 @@
                         var uraian=$(this).data('uraian');
                         var ref=$(this).data('ref');
                         var saldo=$(this).data('saldo');
+
             $('#modalUpdate').modal('show');
             $('[name="id_transaksi"]').val(id_transaksi);
                         $('[name="uraian"]').val(uraian);
@@ -812,6 +816,22 @@
                                   $('#selectJenis').prop('selectedIndex',i);
                                 }
                             });
+          });
+          $('#tbmaster').on('click','.deletedata',function(){
+              var id_transaksi=$(this).data('id');
+                        var tanggal=$(this).data('tanggal');
+                        var aset=$(this).data('aset');
+                        var kategori=$(this).data('kategori');
+                        var uraian=$(this).data('uraian');
+                        var ref=$(this).data('ref');
+                        var saldo=$(this).data('saldo');
+              $('[name="id_transaksi"]').val(id_transaksi);
+              $('#modaldel').modal('show');
+              document.getElementById("data_id").innerHTML = "record_id("+id_transaksi+")";
+              document.getElementById("refdel").innerHTML = ref;
+              document.getElementById("tanggaldel").innerHTML = tanggal;
+              document.getElementById("asetdel").innerHTML = aset;
+              document.getElementById("saldodel").innerHTML = saldo;
           });
         });
     </script>

@@ -38,14 +38,13 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
-    public function del($id=null){
-        if (!isset($id)){
-            $this->session->set_flashdata('faileddel', 'Gagal hapus data');
+    public function del(){
+        if ($this->M_data->delete()) {
+            $this->session->set_flashdata('successdel', 'Berhasil menghapus data');
             redirect(site_url());
         }
-        
-        if ($this->M_data->delete($id)) {
-            $this->session->set_flashdata('successdel', 'Berhasil menghapus data');
+        else{
+            $this->session->set_flashdata('faildel', 'Berhasil menghapus data');
             redirect(site_url());
         }
     }

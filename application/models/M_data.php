@@ -83,7 +83,9 @@ class M_data extends CI_Model
         return $this->db->query("INSERT INTO tb_aset(nama_aset) VALUES('".$nama_aset."');");
     }
 
-    public function delete($id){
+    public function delete(){
+        $post=$this->input->post();
+        $id = $post['id_transaksi'];
         return $this->db->delete($this->_tabletransaksi,array("id_transaksi"=>$id));
     }
 
@@ -208,10 +210,10 @@ class M_data extends CI_Model
           <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
         </button>
         
-        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel" data-id="$1">
+        <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo');
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,nama_kategori');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
