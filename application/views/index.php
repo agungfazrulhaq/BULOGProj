@@ -444,18 +444,7 @@
                       <div class="input-group input-group-sm mt-0"> 
                       <span class="btn btn-dark btn-sm breadcrumb-item mr-1"><div id="clock"></div></span>
                       <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
-                      <div class="btn-group">
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
-                        <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
-
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalUpdate">
-                          <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
-                        </button>
-                        
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel">
-                          <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
-                        </button>
-                      </div>
+                      
                       </div>
                     </div>
                   </div>
@@ -465,13 +454,13 @@
                       <table class="table table-hover table-sm"  style="text-align: center;" id="tbmaster">
                         <thead class="" >
                           <tr>
-                              <td><b>AKSI</b></td>
-                              <td><b>TANGGAL</b></td>
-                              <td><b>REF</b></td>
-                              <td><b>ASET</b></td>
-                              <td><b>URAIAN</b></td>
-                              <td></td>  
-                              <td><b>SALDO</b></td>
+                              <th><b>AKSI</b></td>
+                              <th><b>TANGGAL</b></td>
+                              <th><b>REF</b></td>
+                              <th><b>ASET</b></td>
+                              <th><b>URAIAN</b></td>
+                              <th></td>  
+                              <th><b>SALDO</b></td>
                           </tr>
                         </thead>
                         <tfoot class="" >
@@ -594,6 +583,11 @@
     <script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->
     <script src="<?php echo base_url();?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- Select2 -->
+    <script src="<?php echo base_url();?>plugins/select2/js/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="<?php echo base_url();?>plugins/moment/moment.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
     <!-- Toastr -->
     <script src="<?php echo base_url();?>plugins/toastr/toastr.min.js"></script>
     <!-- InputMask -->
@@ -604,6 +598,12 @@
     <script src="<?php echo base_url();?>dist/js/demo.js"></script>
 
     <script>
+      $('.select2').select2()
+      
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+
       $('.toastrDefaultError').click(function() {
           toastr.error('Data Gagal Di Tambahkan ')
         });
@@ -745,6 +745,9 @@
             "ordering": true,
             "processing": true,
             "serverSide": true,
+            "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
+             responsive: true,
+
             initComplete: function() {
                   var api = this.api();
                   $('#tbmaster_filter input')
@@ -758,7 +761,7 @@
             },
                   ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                         columns: [
-                            {"data": "view"},
+                            {"data": "view", "bSortable": false, "bSearchable": false},
                             {"data": "tanggal"},
                             {"data": "ref"},
                             {"data": "nama_aset"},
@@ -802,8 +805,6 @@
                             });
           });
         });
-    </script>
-    <script>
     </script>
 </body>
 </html>
