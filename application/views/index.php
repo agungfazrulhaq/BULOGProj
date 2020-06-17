@@ -248,7 +248,7 @@
                   </div>
                 </div>
                 
-                <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
+                <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Masukkan Data Transaksi</button>
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title "><b>
@@ -526,7 +526,7 @@
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
-                                        <select class="form-control" style="width: 100%;" id="selectJenis" name="customRadio" required>
+                                        <select class="custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
                                           <option value="D" >Debit</option>
                                           <option value="K" >Kredit</option>
                                         </select>
