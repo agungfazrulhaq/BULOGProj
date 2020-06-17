@@ -194,34 +194,34 @@ class M_data extends CI_Model
         // INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
         // INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori;";
 
-        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset');
+        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori');
         $this->datatables->from('tb_transaksi');
         $this->datatables->join('tb_kategori',"transaksi_id_kategori = id_kategori");
         $this->datatables->join('tb_aset',"transaksi_id_aset = id_aset");
 
-        // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>';
-        $buttons ='<div class="btn-group">
+        // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
+        $this->datatables->add_column('view', '<div class="btn-group">
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
-        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalUpdate">
+        <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
           <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
         </button>
         
-        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel">
+        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modaldel" data-id="$1">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-      </div>';
-        $this->datatables->add_column('view', $buttons, 'barang_kode,barang_nama,barang_harga,kategori_id,kategori_nama');
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
 
-    public function updateTransaksi($id_transaksi){
+    public function updateTransaksi(){
         $post=$this->input->post();
 
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
         $month_ = $date_y->format('m');
+        $id_transaksi = $post['id_transaksi'];
 
         if($post['customRadio'] == "D"){
             $ref_ = "D";

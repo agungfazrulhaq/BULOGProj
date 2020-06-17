@@ -81,7 +81,7 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
-    public function update($id_transaksi){
+    public function update(){
         $data_ = $this->M_data;
         $validation = $this->form_validation;
         $validation->set_rules($data_->rulesadd());

@@ -184,7 +184,7 @@
                       <div class="modal-body mx-2">
                         <div class="md-form mb-2">
                           <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                          <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" required>
+                          <input type="date" id="formaddTanggal" class="form-control validate" name="tanggal" required>
                         </div>
                         <div class="md-form mb-2">
                           <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
@@ -498,10 +498,10 @@
                         </tfoot>
                           <div class="row">
                             <div class="col-md-2">
+                            <form action="<?php echo site_url('Home/update/')?>" method="post" enctype="multipart/form-data" >
                               <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
-                                  <form action="<?php echo site_url('Home/update/')?>" method="post" enctype="multipart/form-data" >
                                     <div class="modal-header text-center">
                                       <h4 class="modal-title font-weight-bold">Ubah Data [Transaksi]</h4>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -510,12 +510,13 @@
                                     </div>
                                     <div class="modal-body mx-2">
                                       <div class="md-form mb-2">
+                                        <input type="hidden" id="id_transaksi" class="form-control validate" name="id_transaksi">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                                        <input type="date" id="defaultForm-email" class="form-control validate" name="tanggal" value="" required>
+                                        <input type="date" id="formupdatetanggal" class="form-control validate" name="tanggal" value="" required>
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                                        <select class="form-control select2" style="width: 100%;" name="aset" required>
+                                        <select class="form-control select2" style="width: 100%;" id="selectaset" name="aset" required>
                                           <?php foreach ($aset as $row_a){ ?>
                                           <option value="<?php echo $row_a->id_aset; ?>" ><?php echo $row_a->nama_aset; ?></option>
                                           <?php }?>
@@ -523,7 +524,7 @@
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                                        <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                                        <select class="form-control select2" style="width: 100%;" id="selectkategori" name="kategori" required>
                                           <?php foreach($kategori as $row_k){?>
                                           <?php ?>
                                           <option value="<?php echo $row_k->id_kategori; ?>" > <?php echo $row_k->nama_kategori; ?></option>
@@ -564,10 +565,10 @@
                                     <div class="modal-footer d-flex justify-content-center">
                                       <input type="submit" class="btn btn-info" value="simpan">
                                     </div>
-                                  </form>
                                   </div>
                                 </div>
                               </div>
+                            </form>
                       </table>
                     </div>
                     </div>
@@ -773,8 +774,36 @@
                   $('td:eq(0)', row).html();
               }
           });
+          // get Edit Records
+          $('#tbmaster').on('click','.data_update',function(){
+            var id_transaksi=$(this).data('id');
+                        var tanggal=$(this).data('tanggal');
+                        var aset=$(this).data('aset');
+                        var kategori=$(this).data('kategori');
+                        var uraian=$(this).data('uraian');
+                        var ref=$(this).data('ref');
+                        var saldo=$(this).data('saldo');
+            $('#modalUpdate').modal('show');
+            $('[name="id_transaksi"]').val(id_transaksi);
+                        $('[name="uraian"]').val(uraian);
+                        $('[name="saldo"]').val(saldo);
+                        $('[name="tanggal"]').val(tanggal);
+                        localStorage.setItem("Select1", aset);
+                            $('#selectaset').find('option').each(function(i,e){
+                                if($(e).val() == localStorage.getItem("Select1")){
+                                  $('#selectaset').prop('selectedIndex',i);
+                                }
+                            });
+                        localStorage.setItem("Select2", kategori);
+                            $('#selectkategori').find('option').each(function(i,e){
+                                if($(e).val() == localStorage.getItem("Select2")){
+                                  $('#selectkategori').prop('selectedIndex',i);
+                                }
+                            });
+          });
         });
     </script>
-    
+    <script>
+    </script>
 </body>
 </html>
