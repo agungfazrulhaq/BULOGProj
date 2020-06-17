@@ -525,7 +525,7 @@
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
-                                        <select class="form-control select2" style="width: 100%;" name="customRadio" required>
+                                        <select class="custom-select" style="width: 100%;" name="customRadio" required>
                                           <option value="D" >Debit</option>
                                           <option value="K" >Kredit</option>
                                         </select>
