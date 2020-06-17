@@ -248,7 +248,7 @@
                   </div>
                 </div>
                 
-                <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Tambah</button>
+                <button type="button" class="btn btn-info btn-block mb-3" data-toggle="modal" data-target="#modalLoginForm">Masukkan Data Transaksi</button>
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title "><b>
