@@ -106,7 +106,7 @@
                                     <thead>
                                         <tr>
                                         <td>NOMOR REF</td>
-                                        <td>:</td>
+                                        <td>:&nbsp;&nbsp;<span id=""> LALALALU</span></td>
                                         <td></td>
                                         </tr>
                                         <tr>
@@ -505,7 +505,7 @@
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                                        <select class="form-control select2" style="width: 100%;" id="selectaset" name="aset" required>
+                                        <select class="form-control custom-select" style="width: 100%;" id="selectaset" name="aset" required>
                                           <?php foreach ($aset as $row_a){ ?>
                                           <option value="<?php echo $row_a->id_aset; ?>" ><?php echo $row_a->nama_aset; ?></option>
                                           <?php }?>
@@ -513,7 +513,7 @@
                                       </div>
                                       <div class="md-form mb-2">
                                         <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                                        <select class="form-control select2" style="width: 100%;" id="selectkategori" name="kategori" required>
+                                        <select class="form-control custom-select" style="width: 100%;" id="selectkategori" name="kategori" required>
                                           <?php foreach($kategori as $row_k){?>
                                           <?php ?>
                                           <option value="<?php echo $row_k->id_kategori; ?>" > <?php echo $row_k->nama_kategori; ?></option>
@@ -578,6 +578,7 @@
     <script src="<?php echo base_url();?>plugins/select2/js/select2.full.min.js"></script>
     <!-- DataTables -->
     <script src="<?php echo base_url();?>plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url();?>plugins/datatables/datetime.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
@@ -762,7 +763,7 @@
                   ajax: {"url": "<?php echo base_url().'index.php/Home/getTransaksiJson'?>", "type": "POST"},
                         columns: [
                             {"data": "view", "bSortable": false, "bSearchable": false},
-                            {"data": "tanggal"},
+                            {"data": "tanggal", render: $.fn.dataTable.render.moment( 'DD MMM YYYY' )},
                             {"data": "ref"},
                             {"data": "nama_aset"},
                             {"data": "uraian"},

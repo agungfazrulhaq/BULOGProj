@@ -250,8 +250,8 @@ class M_data extends CI_Model
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');
         $sql___ = "UPDATE tb_transaksi 
-                    SET ref ='".$ref_."' , tanggal = '".$post['tanggal']."' , id_aset = '".$post['aset']."',
-                    id_kategori = '".$post['kategori']."',uraian = '".$post['uraian']."',saldo = ".$saldo.", tahun = '".$year_."'
+                    SET ref ='".$ref_."' , tanggal = '".$post['tanggal']."' , transaksi_id_aset = '".$post['aset']."',
+                    transaksi_id_kategori = '".$post['kategori']."',uraian = '".$post['uraian']."',saldo = ".$saldo.", tahun = '".$year_."'
                     WHERE id_transaksi=".$id_transaksi;
         return $this->db->query($sql___);
     }

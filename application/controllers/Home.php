@@ -87,7 +87,7 @@ class Home extends CI_Controller {
         $validation->set_rules($data_->rulesadd());
 
         if($validation->run()){
-            $data_->updateTransaksi($id_transaksi);
+            $data_->updateTransaksi();
             $this->session->set_flashdata('successupdate', 'Berhasil Disimpan');
         }
         else{
