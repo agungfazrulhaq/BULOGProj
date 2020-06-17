@@ -19,6 +19,7 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')?>">
   <link rel="stylesheet" href="<?php echo base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')?>">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')?>">
   <!-- Theme style -->
@@ -585,6 +586,11 @@
     <script src="<?php echo base_url();?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo base_url();?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js "></script>
     <!-- Bootstrap4 Duallistbox -->
     <script src="<?php echo base_url();?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
     <!-- Select2 -->
@@ -728,6 +734,19 @@
 
     <script>
         $(document).ready(function(){
+          var buttonCommon = {
+        exportOptions: {
+            format: {
+                body: function ( data, row, column, node ) {
+                    // Strip $ from salary column to make it numeric
+                    return column === 5 ?
+                        data.replace( /[$,]/g, '' ) :
+                        data;
+                }
+            }
+        }
+    };
+
           $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
           {
               return {
@@ -772,10 +791,63 @@
                             {"data": "nama_aset" , className: "text-left"},
                             {"data": "uraian", className: "text-left"},
                             {"data": "nama_kategori"},
-                            {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', '')}
+                            {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', '' , 'Rp.')}
                       ],
-                    order: [[1, 'asc']],
-              rowCallback: function(row, data, iDisplayIndex) {
+                      
+                      dom: 'Bfrtip',
+                      buttons: [
+                        {
+                        text: 'Cetak Kanjeng',
+                        extend: 'pdfHtml5',
+                        title: 'MUTASI KAS UB OPASET DIVRE SULSELBAR',
+                        message: '',
+                        orientation: 'potrait',
+                        exportOptions: {
+                        columns: ':visible'
+                        },
+                        customize: function (doc) {
+                            doc.pageMargins = [10,10,10,10];
+                            doc.defaultStyle.fontSize = 7;
+                            doc.styles.tableHeader.fontSize = 7;
+                            doc.styles.title.fontSize = 9;
+                            // Remove spaces around page title
+                            doc.content[0].text = doc.content[0].text.trim();
+                            // Create a footer
+                            doc['header']=(function(page, pages) {
+                                return {
+                                    columns: [
+                                        'MUTASI KAS UB OPASET DIVRE SULSELBAR',
+                                        {
+                                            // This is the right column
+                                            alignment: 'middle',
+                                            text: ['page ', { text: page.toString() },  ' of ', { text: pages.toString() }]
+                                        }
+                                    ],
+                                    margin: [10, 10]
+                                }
+                            });
+                            // Styling the table: create style object
+                            var objLayout = {};
+                            // Horizontal line thickness
+                            objLayout['hLineWidth'] = function(i) { return .1; };
+                            // Vertikal line thickness
+                            objLayout['vLineWidth'] = function(i) { return .1; };
+                            // Horizontal line color
+                            objLayout['hLineColor'] = function(i) { return '#000'; };
+                            // Vertical line color
+                            objLayout['vLineColor'] = function(i) { return '#000'; };
+                            // Left padding of the cell
+                            objLayout['paddingLeft'] = function(i) { return 2; };
+                            // Right padding of the cell
+                            objLayout['paddingRight'] = function(i) { return 2; };
+                            // Inject the object in the document
+                            doc.content[1].layout = objLayout;
+                        }
+                        }
+                    ],
+
+                  order: [[1, 'asc']],
+                  rowCallback: function(row, data, iDisplayIndex) {
                   var info = this.fnPagingInfo();
                   var page = info.iPage;
                   var length = info.iLength;
