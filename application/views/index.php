@@ -42,24 +42,25 @@
                       <div class="modal-content">
                         <div class="card card-info card-outline">
                           <div class="card-header">
-                            <span class="btn btn-default"><b>| | </b></span>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Kembali</span></button>
+                            <span class="btn btn-default"><b>| REF | </b> Tanggal</span>
                           </div>
                                 
                           <div class="card-body p-0">
                             <div class="mailbox-read-info">
-                              <h3>DEBIT<b></b>
+                              <h3>DEBIT <b>Saldo</b>
                                 <span class="mailbox-read-time float-right text-right text-info">
-                                  User : Muhammad Fachrizal Ramdani <br>  
-                                  15 Feb. 2015 <br>
-                                  11:03 PM
+                                  Dibuat oleh => User : Muhammad Fachrizal Ramdani <br>  
+                                  Tanggal => 15 Feb. 2015 <br>
+                                  Jam  => 11:03 PM
+                                  Ket => Tanggal Pembuatan Laporan (Timestamp)
                                 </span>
                               </h3>
-                              <h4></h4>
+                              <h4>ASETNYA APA</h4>
                             </div>
                                   
                             <div class="mailbox-read-message">
-                              <p>&emsp;&emsp;</p>
+                              <p>&emsp;&emsp;URAIANNYA APA</p>
+                              <br>
                             </div> 
                                   
                             <div class="card-footer bg-white">
@@ -67,7 +68,7 @@
                                 <li>
                                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                                     <div class="mailbox-attachment-info">
-                                      <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> Sep2014-report.pdf</a>
+                                      <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> File yang di sertakan.pdf</a>
                                       <span class="mailbox-attachment-size clearfix mt-1">
                                         <span>1,245 KB</span>
                                         <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
@@ -79,10 +80,8 @@
                               
                               <div class="card-footer">
                                 <div class="float-right">
-                                  <button type="button" class="btn  bg-gradient-warning " data-toggle="modal" data-target="#modalUpdate"><i class="fas fa-share"></i> UBAH</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
                                 </div>
-                                <a href=""><button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> HAPUS</button></a>
-                                <button type="button" class="btn btn-default"><i class="fas fa-print"></i> CETAK</button>
                               </div>
 
                             </div>
@@ -90,6 +89,83 @@
                         </div>
                       </div>
                   </div>
+
+                  <div class="row">
+                            <div class="col-md-2">
+                              <form action="<?php echo site_url('Home/update/')?>" method="post" enctype="multipart/form-data" >
+                              <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                      <h4 class="modal-title font-weight-bold">Ubah Data [Transaksi]</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body mx-2">
+                                      <div class="md-form mb-2">
+                                        <input type="hidden" id="id_transaksi" class="form-control validate" name="id_transaksi">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
+                                        <input type="date" id="formupdatetanggal" class="form-control validate" name="tanggal" value="" required>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
+                                        <select class="form-control custom-select" style="width: 100%;" id="selectaset" name="aset" required>
+                                          <?php foreach ($aset as $row_a){ ?>
+                                          <option value="<?php echo $row_a->id_aset; ?>" ><?php echo $row_a->nama_aset; ?></option>
+                                          <?php }?>
+                                        </select>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
+                                        <select class="form-control custom-select" style="width: 100%;" id="selectkategori" name="kategori" required>
+                                          <?php foreach($kategori as $row_k){?>
+                                          <?php ?>
+                                          <option value="<?php echo $row_k->id_kategori; ?>" > <?php echo $row_k->nama_kategori; ?></option>
+                                          <?php } ?>
+                                        </select>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
+                                        <textarea type="textarea" class="form-control validate" name="uraian" value="" required></textarea>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
+                                        <select class="custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
+                                          <option value="D" >Debit</option>
+                                          <option value="K" >Kredit</option>
+                                        </select>
+                                      </div>
+                                      
+                                      <div class="md-form mb-2">
+                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="">Rp.</i></span>
+                                          </div>
+                                          <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="" step="0.0001">
+                                        </div>
+                                      </div>
+                                      <div class="md-form mb-2">
+                                        <label for="exampleInputFile">File input</label>
+                                        <div class="input-group">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
+                                            <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                      <input type="submit" class="btn btn-info" value="simpan">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              </form>
+                          </div>
+                       </div>
+                    </div>
                   
                   <div class="modal fade" id="modaldel">
                         <div class="modal-dialog">
@@ -479,83 +555,7 @@
                               <td class="text-left"><b></b></td>
                           </tr>
                         </tfoot>
-                          <div class="row">
-                            <div class="col-md-2">
-                            <form action="<?php echo site_url('Home/update/')?>" method="post" enctype="multipart/form-data" >
-                              <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                      <h4 class="modal-title font-weight-bold">Ubah Data [Transaksi]</h4>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body mx-2">
-                                      <div class="md-form mb-2">
-                                        <input type="hidden" id="id_transaksi" class="form-control validate" name="id_transaksi">
-                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                                        <input type="date" id="formupdatetanggal" class="form-control validate" name="tanggal" value="" required>
-                                      </div>
-                                      <div class="md-form mb-2">
-                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                                        <select class="form-control custom-select" style="width: 100%;" id="selectaset" name="aset" required>
-                                          <?php foreach ($aset as $row_a){ ?>
-                                          <option value="<?php echo $row_a->id_aset; ?>" ><?php echo $row_a->nama_aset; ?></option>
-                                          <?php }?>
-                                        </select>
-                                      </div>
-                                      <div class="md-form mb-2">
-                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                                        <select class="form-control custom-select" style="width: 100%;" id="selectkategori" name="kategori" required>
-                                          <?php foreach($kategori as $row_k){?>
-                                          <?php ?>
-                                          <option value="<?php echo $row_k->id_kategori; ?>" > <?php echo $row_k->nama_kategori; ?></option>
-                                          <?php } ?>
-                                        </select>
-                                      </div>
-                                      <div class="md-form mb-2">
-                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                                        <textarea type="textarea" class="form-control validate" name="uraian" value="" required></textarea>
-                                      </div>
-                                      <div class="md-form mb-2">
-                                        <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
-                                        <select class="custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
-                                          <option value="D" >Debit</option>
-                                          <option value="K" >Kredit</option>
-                                        </select>
-                                      </div>
-                                      
-                                      <div class="md-form mb-2">
-                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
-                                        <div class="input-group">
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="">Rp.</i></span>
-                                          </div>
-                                          <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="" step="0.0001">
-                                        </div>
-                                      </div>
-                                      <div class="md-form mb-2">
-                                        <label for="exampleInputFile">File input</label>
-                                        <div class="input-group">
-                                          <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
-                                            <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="modal-footer d-flex justify-content-center">
-                                      <input type="submit" class="btn btn-info" value="simpan">
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </form>
-                      </table>
-                    </div>
-                    </div>
-                  </div>
+                  </table>
                   <div class="card-footer p-0">
                   </div>
                 </div>
