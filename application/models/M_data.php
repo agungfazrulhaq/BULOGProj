@@ -48,10 +48,10 @@ class M_data extends CI_Model
         $month_ = $date_y->format('m');
 
         if ($post['customRadio'] == "D") {
-            $ref_ = "Debit";
+            $ref_ = "DEBIT";
         } 
         else {
-            $ref_ = "Kredit";
+            $ref_ = "KREDIT";
             
         }
         $saldo_1 = str_replace(".", "", $post['saldo']);
@@ -268,25 +268,11 @@ class M_data extends CI_Model
         $id_transaksi = $post['id_transaksi'];
 
         if ($post['customRadio'] == "D") {
-            $ref_ = "D";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'D%' AND MONTH(tanggal)=" . $month_);
-            $refcount = $query_ref->num_rows();
-            if ($refcount < 9) {
-                $ref_ .= '0';
-                $ref_ .= $refcount + 1;
-            } else {
-                $ref_ .= $refcount + 1;
-            }
+            $ref_ = "DEBIT";
+            
         } else {
-            $ref_ = "K";
-            $query_ref = $this->db->query("SELECT * FROM tb_transaksi where ref LIKE 'K%' AND MONTH(tanggal)=" . $month_);
-            $refcount = $query_ref->num_rows();
-            if ($refcount < 9) {
-                $ref_ .= '0';
-                $ref_ .= $refcount + 1;
-            } else {
-                $ref_ .= $refcount + 1;
-            }
+            $ref_ = "KREDIT";
+            
         }
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');

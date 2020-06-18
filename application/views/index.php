@@ -1007,14 +1007,24 @@
               $('[name="id_transaksi"]').val(id_transaksi);
               $('#modalView').modal('show');
               var jenistransaksi = "";
-              if(ref.includes("D")){
-                jenistransaksi="Debit";
+              if(ref.includes("K")){
+                jenistransaksi="KREDIT";
               }
               else{
-                jenistransaksi="Kredit";
+                jenistransaksi="DEBIT";
               }
+              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+              var nd = new Date(tanggal);
+              var weekday = new Array(7);
+              weekday[0] = "Minggu";
+              weekday[1] = "Senin";
+              weekday[2] = "Selasa";
+              weekday[3] = "Rabu";
+              weekday[4] = "Kamis";
+              weekday[5] = "Jum'at";
+              weekday[6] = "Sabtu";
               document.getElementById("refview").innerHTML = ref;
-              document.getElementById("tanggalview").innerHTML = tanggal;
+              document.getElementById("tanggalview").innerHTML =  weekday[nd.getDay()]+", " + nd.getDate() + "-" + (nd.getMonth()+1) + "-" + nd.getFullYear();
               document.getElementById("asetview").innerHTML = aset;
               document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
               document.getElementById("uraianview").innerHTML = uraian;
