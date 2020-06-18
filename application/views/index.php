@@ -413,7 +413,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="">Rp.</i></span>
                           </div>
-                          <input type="text" id="rupiah" class="form-control" name="saldo">
+                          <input type="text" class="form-control uang" name="saldo">
                         </div>
                       </div>
                       <div class="md-form mb-2">
@@ -611,8 +611,8 @@
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
                 
-              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak">
-                Cetak Laporan Keuangan
+              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
+                Cetak </span>
               </button>
               
                 <div class="card-tools">
@@ -665,6 +665,7 @@
 
   <!-- jQuery -->
   <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>plugins/jquery-mask/jquery.mask.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
@@ -691,6 +692,15 @@
   <!-- AdminLTE App -->
   <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
+
+  <script type="text/javascript">
+            $(document).ready(function(){
+
+                // Format mata uang.
+                $( '.uang' ).mask('000,000,000,000,000,000,000,000.00', {reverse: true});
+
+            })
+        </script>
 
   <script>
     
@@ -815,34 +825,6 @@
           document.getElementById('hari').innerHTML=months[month] + ' ' + year;
     </script>
         
-    <script>
-      $(function () {
-        // Summernote
-        $('.textarea').summernote()
-      })
-
-      var rupiah = document.getElementById("rupiah");
-      rupiah.addEventListener("keyup", function(e) {
-      rupiah.value = formatRupiah(this.value, " ");
-    });
-    function formatRupiah(angka, prefix) {
-      var number_string = angka.replace(/[^,\d]/g, "").toString(),
-        split = number_string.split(","),
-        sisa = split[0].length % 3,
-        rupiah = split[0].substr(0, sisa),
-        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-      // tambahkan titik jika yang di input sudah menjadi angka ribuan
-      if (ribuan) {
-        separator = sisa ? "." : "";
-        rupiah += separator + ribuan.join(".");
-      }
-
-      rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
-      return prefix == undefined ? rupiah : rupiah ? " " + rupiah : "";
-    }
-    </script>
-
     <script>
         $(document).ready(function(){
           var buttonCommon = {
