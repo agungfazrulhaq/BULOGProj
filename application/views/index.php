@@ -36,6 +36,8 @@
   .page-link {
     color: black !important;
   }
+
+  
 </style>
 
 <body class="layout-top-nav" style="height: auto;">
@@ -185,22 +187,30 @@
               </div>
               <div class="modal-body mx-2">
                 <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Laporan</label>
-                  <select class="form-control custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
-                    <option value="" >Pilih Jenis Laporan</option>
-                    <option value="" onclick="myFunction()">Laporan Mutasi Kas Aset</option>
-                    <option value="">Jurnal Laporan Mutasi Kas Aset</option>
-                    <option value="">Laporan Laba Rugi</option>
-                    <option value="">Laporan Neraca</option>
+                  <label data-error="wrong" data-success="right" for="jenislaporan">Jenis Laporan</label>
+                  <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio" required>
+                    <option value="null" selected>Pilih Jenis Laporan</option>
+                    <option value="mutasi" >Laporan Mutasi Kas Aset</option>
+                    <option value="mutasi">Jurnal Laporan Mutasi Kas Aset</option>
+                    <option value="laba">Laporan Laba Rugi</option>
+                    <option value="neraca">Laporan Neraca</option>
                   </select>
                 </div>
-                <div class="md-form mb-2" id="demo">
-                  
+              <div id="UB">
+                <div class="md-form mb-2">
+                <label data-error="wrong" data-success="right" for="aset">Unit Bisnis</label>
+                  <select class="form-control custom-select" id="aset" style="width: 100%;" name="aset" required>
+                  <option selected="selected" value="">Pilih Unit</option>
+                  <?php foreach ($aset as $row_a) { ?>
+                           <option value='<?php echo $row_a->id_aset; ?>'><?php echo $row_a->nama_aset; ?></option>
+                          <?php } ?>
+                  </select>
                 </div>
                 <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="defaultForm-email">Bulan</label>
-                  <select class="form-control select2" style="width: 100%;" id="selectJenis" name="customRadio" required>
+                  <label data-error="wrong" data-success="right" for="bulan">Bulan</label>
+                  <select class="form-control select2" style="width: 100%;" id="bulan" name="customRadio" required>
                     <option value="">Pilih Bulan</option>
+                    <option value="">1 Tahun</option>
                     <option value="">Januari</option>
                     <option value="">Februari</option>
                     <option value="">Maret</option>
@@ -215,8 +225,31 @@
                     <option value="">Desember</option>
                   </select>
                 </div>
-                
+                </div>
+            <div id="BL">
+              <div class="md-form mb-2">
+                  <label data-error="wrong" data-success="right" for="bulanL">Bulan</label>
+                  <select class="form-control select2" style="width: 100%;" id="bulanL" name="customRadio" required>
+                    <option value="">Pilih Bulan</option>
+                    <option value="">1 Tahun</option>
+                    <option value="">Akumulasi</option>
+                    <option value="">Januari</option>
+                    <option value="">Februari</option>
+                    <option value="">Maret</option>
+                    <option value="">April</option>
+                    <option value="">Mei</option>
+                    <option value="">Juni</option>
+                    <option value="">Juli</option>
+                    <option value="">Agustus</option>
+                    <option value="">September</option>
+                    <option value="">Oktober</option>
+                    <option value="">Nopember</option>
+                    <option value="">Desember</option>
+                  </select>
+                </div>
+            </div>
               </div>
+            
               <div class="modal-footer d-flex justify-content-center">
               <div class="btn-group">
               <span class="btn btn-default disabled">Export Ke : </span>
@@ -655,19 +688,34 @@
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
   <script>
-  function myFunction() {
-  var htmlelm = " <label data-error='wrong' data-success='right'  for='defaultForm-email'>Unit Bisnis</label>
-                  <select class='form-control select2' style='width: 100%;' name='aset' required>
-                  <option selected='selected' value=''>Pilih Unit</option>
-                  <?php foreach ($aset as $row_a) { ?>
-                           <option value='<?php echo $row_a->id_aset; ?>'><?php echo $row_a->nama_aset; ?></option>
-                          <?php } ?>
-                  </select>";";
-  document.getElementById("next").innerHTML = "
- 
-  }
-
     
+        $('#UB').hide();
+        $("#jenislaporan").change(function() {
+        if ($(this).val() == "mutasi") {
+          $('#UB').show();
+          $('#aset', '#bulan').attr('required', '');
+          $('#aset', '#bulan').attr('data-error', 'This field is required.');
+        } else {
+          $('#UB').hide();
+          $('#aset', '#bulan').removeAttr('required');
+          $('#aset', '#bulan').removeAttr('data-error');
+        }
+        });
+
+        $('#BL').hide();
+        $("#jenislaporan").change(function() {
+        if ($(this).val() == "laba") {
+          $('#BL').show();
+          $('#bulanL').attr('required', '');
+          $('#bulanL').attr('data-error', 'This field is required.');
+        } else {
+          $('#BL').hide();
+          $('#bulanL').removeAttr('required');
+          $('#bulanL').removeAttr('data-error');
+        }
+      });
+
+
     $('.select2').select2()
 
     $('.select2bs4').select2({
