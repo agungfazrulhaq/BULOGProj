@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css') ?>">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="<?php echo base_url('plugins/daterangepicker/daterangepicker.css') ?>">
   <!-- Toastr -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css') ?>">
   <!-- Select2 -->
@@ -160,6 +162,77 @@
               </div>
               <div class="modal-footer d-flex justify-content-center">
                 <input type="submit" class="btn btn-info" value="simpan">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <form action="" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="modalCetak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title font-weight-bold">Cetak Laporan Keuangan</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-2">
+                <div class="md-form mb-2">
+                  <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Laporan</label>
+                  <select class="form-control custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
+                    <option value="">Pilih Jenis Laporan</option>
+                    <option value="">Laporan Mutasi Kas Aset</option>
+                    <option value="">Jurnal Laporan Mutasi Kas Aset</option>
+                    <option value="">Laporan Laba Rugi</option>
+                    <option value="">Laporan Neraca</option>
+                  </select>
+                </div>
+                <div class="md-form mb-2">
+                  <label data-error="wrong" data-success="right" for="defaultForm-email">Nama Unit Bisnis</label>
+                  <select class="form-control select2" style="width: 100%;" name="aset" required>
+                          <option selected="selected" value="">Pilih Unit</option>
+                          <?php foreach ($aset as $row_a) { ?>
+                            <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
+                          <?php } ?>
+                  </select>
+                </div>
+                <div class="md-form mb-2">
+                  <label data-error="wrong" data-success="right" for="defaultForm-email">Bulan</label>
+                  <select class="form-control select2" style="width: 100%;" id="selectJenis" name="customRadio" required>
+                    <option value="">Pilih Bulan</option>
+                    <option value="">Januari</option>
+                    <option value="">Februari</option>
+                    <option value="">Maret</option>
+                    <option value="">April</option>
+                    <option value="">Mei</option>
+                    <option value="">Juni</option>
+                    <option value="">Juli</option>
+                    <option value="">Agustus</option>
+                    <option value="">September</option>
+                    <option value="">Oktober</option>
+                    <option value="">Nopember</option>
+                    <option value="">Desember</option>
+                  </select>
+                </div>
+                
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+              <div class="btn-group">
+              <span class="btn btn-default disabled">Export Ke : </span>
+                <button type="button" class="btn btn-sm btn-warning" >
+                  <span class="p-2">PDF</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-success" >
+                  <span class="p-1">EXCEL</span>
+                </button>
+              </div>
               </div>
             </div>
           </div>
@@ -503,6 +576,11 @@
                   </b>
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
+                
+              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak">
+                Cetak Laporan Keuangan
+              </button>
+              
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
@@ -562,13 +640,10 @@
   <script src="<?php echo base_url(); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js "></script>
   <!-- Bootstrap4 Duallistbox -->
   <script src="<?php echo base_url(); ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker.js"></script>
   <!-- Select2 -->
   <script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
   <!-- InputMask -->
@@ -775,50 +850,6 @@
                             {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', 2 , 'Rp.')}
                       ],
                       
-                      dom: 'Bfrtip',
-                      buttons: [
-                        {
-                        text: 'PDF',
-                        extend: 'pdfHtml5',
-                        title: 'MUTASI KAS UB OPASET DIVRE SULSELBAR',
-                        message: '',
-                        pageSize: 'LETTER',
-                        extension : '.pdf',
-                        header : true,
-                        footer : false,
-                        orientation: 'potrait',
-                        exportOptions: {
-                        columns: ':visible'
-                        },
-                        customize: function (doc) {
-                            doc.pageMargins = [60,35,60,35];
-                            doc.defaultStyle.fontSize = 8;
-                            doc.styles.tableHeader.fontSize = 8;
-                            doc.styles.title.fontSize = 12;
-                            doc.styles.title.bold= true;
-                                    
-                            // Remove spaces around page title
-                            doc.content[0].text = doc.content[0].text.trim();
-                            // Create a footer
-                            // Styling the table: create style object
-                            var objLayout = {};
-                            // Horizontal line thickness
-                            objLayout['hLineWidth'] = function(i) { return .1; };
-                            // Vertikal line thickness
-                            objLayout['vLineWidth'] = function(i) { return .1; };
-                            // Horizontal line color
-                            objLayout['hLineColor'] = function(i) { return '#000'; };
-                            // Vertical line color
-                            objLayout['vLineColor'] = function(i) { return '#000'; };
-                            // Left padding of the cell
-                            objLayout['paddingLeft'] = function(i) { return 2; };
-                            // Right padding of the cell
-                            objLayout['paddingRight'] = function(i) { return 2; };
-                            // Inject the object in the document
-                            doc.content[1].layout = objLayout;
-                        }
-                        }
-                    ],
                     
                 oLanguage: {
                 sProcessing: "tunggu..."
