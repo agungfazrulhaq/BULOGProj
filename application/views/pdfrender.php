@@ -1,11 +1,11 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'].'/OpasetBulog/plugins/dompdf/autoload.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/plugins/dompdf/autoload.inc.php';
 
-    use Dompdf\Dompdf;
+use Dompdf\Dompdf;
 
-    $document = new Dompdf();
+$document = new Dompdf();
 
-    $html = '
+$html = '
  <style>
 table {
     font-family: arial, sans-serif;
@@ -131,9 +131,8 @@ $document->render();
 
 //Get output of generated pdf in Browser
 
-$document->stream("Webslesson", array("Attachment"=>0));
+$document->stream("Webslesson", array("Attachment" => false));
 //1  = Download
 //0 = Preview
 
-
-?>
+exit(0);
