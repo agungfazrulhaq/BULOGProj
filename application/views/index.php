@@ -703,15 +703,6 @@
   <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
-  <script type="text/javascript">
-            // $(document).ready(function(){
-
-            //     // Format mata uang.
-            //     $( '.uang' ).mask('000,000,000,000,000,000,000,000.00', {reverse: true});
-
-            // })
-        </script>
-
 <script type="text/javascript">
 		
 		var rupiah = document.getElementById('rupiah');
