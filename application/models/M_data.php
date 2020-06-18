@@ -196,7 +196,7 @@ class M_data extends CI_Model
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
         $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm viewdata" data-toggle="modal" data-target="#modalForm"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7">
+        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
         <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
@@ -219,18 +219,6 @@ class M_data extends CI_Model
         $this->datatables->join('tb_aset', "transaksi_id_aset = id_aset");
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
-        $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
-        <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
-
-        <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
-          <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
-        </button>
-        
-        <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
-          <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
-        </button>
-        </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,nama_kategori');
         // $sql_ = $this->db->query($sql);
         if ($monthdate > 0 and $monthdate < 13 and $id_aset > 0 and $yeardate > 0) {
             $key_cond_where = ['MONTH(tanggal)' => $monthdate, 'transaksi_id_aset' => $id_aset, 'YEAR(tanggal)' => $yeardate];
@@ -256,7 +244,7 @@ class M_data extends CI_Model
         }
 
         $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalForm">
+        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
         <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
