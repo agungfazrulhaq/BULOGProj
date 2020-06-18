@@ -106,4 +106,11 @@ class Home extends CI_Controller {
         echo $this->M_data->getAset_Transaksi($id_aset,$monthdate,$yeardate);
     }
 
+    public function pdfrender(){
+        $this->load->view('pdfrender.php');
+
+        
+        return redirect(base_url());
+    }
+
 }
