@@ -915,7 +915,7 @@
                   ajax: {"url": "<?php echo base_url() . $string_url_json; ?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
-                            {"data": "tanggal" , className: "text-left", render: $.fn.dataTable.render.moment( 'DD MMM YYYY' )},
+                            {"data": "tanggal" , className: "text-left", render: $.fn.dataTable.render.moment('DD MMM YYYY' )},
                             {"data": "ref" , className: "text-left"},
                             {"data": "nama_aset" , className: "text-left"},
                             {"data": "uraian", className: "text-left"},
