@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +44,7 @@
       <div class="modal-content">
         <div class="card card-info card-outline">
           <div class="card-header">
-            <span class="btn btn-default"><span id="refview"><b> REF </b></span> | <span id="tanggalview">Tanggal</span></span>
+            <span id="refview"><b> REF </b></span> | <span id="tanggalview">Tanggal</span>
           </div>
 
           <div class="card-body p-0">
