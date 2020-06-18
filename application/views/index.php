@@ -149,7 +149,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="">Rp.</i></span>
                     </div>
-                    <input type="number" id="rupiah" class="form-control rupiah" name="saldo" value="" step="0.0001">
+                    <input type="number" id="rupiahupdate" class="form-control rupiah" name="saldo" value="" step="0.0001">
                   </div>
                 </div>
                 <div class="md-form mb-2">
@@ -413,7 +413,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="">Rp.</i></span>
                           </div>
-                          <input type="text" class="form-control uang" name="saldo">
+                          <input type="text" id="rupiah" class="form-control uang" name="saldo">
                         </div>
                       </div>
                       <div class="md-form mb-2">
@@ -633,7 +633,7 @@
                         <tr>
                           <th><b>AKSI</b></td>
                           <th><b>TANGGAL</b></td>
-                          <th><b>REF</b></td>
+                          <th><b>TRANSAKSI</b></td>
                           <th><b>ASET</b></td>
                           <th><b>URAIAN</b></td>
                           <th>
@@ -694,12 +694,12 @@
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
   <script type="text/javascript">
-            $(document).ready(function(){
+            // $(document).ready(function(){
 
-                // Format mata uang.
-                $( '.uang' ).mask('000,000,000,000,000,000,000,000.00', {reverse: true});
+            //     // Format mata uang.
+            //     $( '.uang' ).mask('000,000,000,000,000,000,000,000.00', {reverse: true});
 
-            })
+            // })
         </script>
 
 <script type="text/javascript">
@@ -726,7 +726,7 @@
 			}
  
 			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+			return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
 		}
 	</script>
 
