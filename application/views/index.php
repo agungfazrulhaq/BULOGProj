@@ -251,8 +251,13 @@
               </div>
             
               <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-sm btn-default" >
+                  <span class="p-2">LIHAT</span>
+                </button>
               <div class="btn-group">
-              <span class="btn btn-default disabled">Export Ke : </span>
+              
+              <span class="btn btn-dark disabled">Export Ke : </span>
+              
                 <button type="button" class="btn btn-sm btn-warning" >
                   <span class="p-2">PDF</span>
                 </button>
