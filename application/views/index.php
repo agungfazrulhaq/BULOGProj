@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,8 +37,6 @@
   .page-link {
     color: black !important;
   }
-
-  
 </style>
 
 <body class="layout-top-nav" style="height: auto;">
@@ -56,10 +55,10 @@
               <h3><b>NOMINAL TRANSAKSI : &nbsp;Rp. <span id="saldoview">Saldo</span></b>
                 <span class="mailbox-read-time float-right text-right bg-light p-1">
                   <code>
-                  Dibuat oleh => User : Muhammad Fachrizal Ramdani <br>
-                  Tanggal => 15 Feb. 2015 <br>
-                  Jam => 11:03 PM
-                  Ket => Tanggal Pembuatan Laporan (Timestamp)</code>
+                    Dibuat oleh => User : Muhammad Fachrizal Ramdani <br>
+                    Tanggal => 15 Feb. 2015 <br>
+                    Jam => 11:03 PM
+                    Ket => Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
               <h4 class="font-italic" id="asetview"></h4>
@@ -68,8 +67,8 @@
             <div class="mailbox-read-message">
               <div class="text-justify font-weight-light p-3 bg-light rounded">
                 <h6 class="font-weight-bold">Uraian :</h6>
-                  <p id="uraianview" class="pl-3">URAIANNYA APA</p>
-                  <br>
+                <p id="uraianview" class="pl-3">URAIANNYA APA</p>
+                <br>
               </div>
             </div>
 
@@ -194,81 +193,81 @@
                   <label data-error="wrong" data-success="right" for="jenislaporan">Jenis Laporan</label>
                   <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio" required>
                     <option value="null" selected>Pilih Jenis Laporan</option>
-                    <option value="mutasi" >Laporan Mutasi Kas Aset</option>
+                    <option value="mutasi">Laporan Mutasi Kas Aset</option>
                     <option value="mutasi">Jurnal Laporan Mutasi Kas Aset</option>
                     <option value="laba">Laporan Laba Rugi</option>
                     <option value="neraca">Laporan Neraca</option>
                   </select>
                 </div>
-              <div id="UB">
-                <div class="md-form mb-2">
-                <label data-error="wrong" data-success="right" for="aset">Unit Bisnis</label>
-                  <select class="form-control custom-select" id="aset" style="width: 100%;" name="aset" required>
-                  <option selected="selected" value="">Pilih Unit</option>
-                  <?php foreach ($aset as $row_a) { ?>
-                           <option value='<?php echo $row_a->id_aset; ?>'><?php echo $row_a->nama_aset; ?></option>
-                          <?php } ?>
-                  </select>
+                <div id="UB">
+                  <div class="md-form mb-2">
+                    <label data-error="wrong" data-success="right" for="aset">Unit Bisnis</label>
+                    <select class="form-control custom-select" id="aset" style="width: 100%;" name="aset" required>
+                      <option selected="selected" value="">Pilih Unit</option>
+                      <?php foreach ($aset as $row_a) { ?>
+                        <option value='<?php echo $row_a->id_aset; ?>'><?php echo $row_a->nama_aset; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="md-form mb-2">
+                    <label data-error="wrong" data-success="right" for="bulan">Bulan</label>
+                    <select class="form-control select2" style="width: 100%;" id="bulan" name="customRadio" required>
+                      <option value="">Pilih Bulan</option>
+                      <option value="">1 Tahun</option>
+                      <option value="">Januari</option>
+                      <option value="">Februari</option>
+                      <option value="">Maret</option>
+                      <option value="">April</option>
+                      <option value="">Mei</option>
+                      <option value="">Juni</option>
+                      <option value="">Juli</option>
+                      <option value="">Agustus</option>
+                      <option value="">September</option>
+                      <option value="">Oktober</option>
+                      <option value="">Nopember</option>
+                      <option value="">Desember</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="bulan">Bulan</label>
-                  <select class="form-control select2" style="width: 100%;" id="bulan" name="customRadio" required>
-                    <option value="">Pilih Bulan</option>
-                    <option value="">1 Tahun</option>
-                    <option value="">Januari</option>
-                    <option value="">Februari</option>
-                    <option value="">Maret</option>
-                    <option value="">April</option>
-                    <option value="">Mei</option>
-                    <option value="">Juni</option>
-                    <option value="">Juli</option>
-                    <option value="">Agustus</option>
-                    <option value="">September</option>
-                    <option value="">Oktober</option>
-                    <option value="">Nopember</option>
-                    <option value="">Desember</option>
-                  </select>
+                <div id="BL">
+                  <div class="md-form mb-2">
+                    <label data-error="wrong" data-success="right" for="bulanL">Bulan</label>
+                    <select class="form-control select2" style="width: 100%;" id="bulanL" name="customRadio" required>
+                      <option value="">Pilih Bulan</option>
+                      <option value="">1 Tahun</option>
+                      <option value="">Akumulasi</option>
+                      <option value="">Januari</option>
+                      <option value="">Februari</option>
+                      <option value="">Maret</option>
+                      <option value="">April</option>
+                      <option value="">Mei</option>
+                      <option value="">Juni</option>
+                      <option value="">Juli</option>
+                      <option value="">Agustus</option>
+                      <option value="">September</option>
+                      <option value="">Oktober</option>
+                      <option value="">Nopember</option>
+                      <option value="">Desember</option>
+                    </select>
+                  </div>
                 </div>
-                </div>
-            <div id="BL">
-              <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="bulanL">Bulan</label>
-                  <select class="form-control select2" style="width: 100%;" id="bulanL" name="customRadio" required>
-                    <option value="">Pilih Bulan</option>
-                    <option value="">1 Tahun</option>
-                    <option value="">Akumulasi</option>
-                    <option value="">Januari</option>
-                    <option value="">Februari</option>
-                    <option value="">Maret</option>
-                    <option value="">April</option>
-                    <option value="">Mei</option>
-                    <option value="">Juni</option>
-                    <option value="">Juli</option>
-                    <option value="">Agustus</option>
-                    <option value="">September</option>
-                    <option value="">Oktober</option>
-                    <option value="">Nopember</option>
-                    <option value="">Desember</option>
-                  </select>
-                </div>
-            </div>
               </div>
-            
+
               <div class="modal-footer d-flex justify-content-center">
-              <button type="button" class="btn btn-sm btn-default" >
+                <button type="button" class="btn btn-sm btn-default">
                   <span class="p-2">LIHAT</span>
                 </button>
-              <div class="btn-group">
-              
-              <span class="btn btn-dark disabled">Export Ke : </span>
-              
-                <button type="button" class="btn btn-sm btn-warning" >
-                  <span class="p-2">PDF</span>
-                </button>
-                <button type="button" class="btn btn-sm btn-success" >
-                  <span class="p-1">EXCEL</span>
-                </button>
-              </div>
+                <div class="btn-group">
+
+                  <span class="btn btn-dark disabled">Export Ke : </span>
+
+                  <button type="button" class="btn btn-sm btn-warning">
+                    <span class="p-2">PDF</span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-success">
+                    <span class="p-1">EXCEL</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -349,7 +348,7 @@
             </div>
             <div class="col-3">
               <div class="info-box mb-0 bg-light">
-                <div class="info-box-content font-weight-light">
+                <div class="info-box-content font-weight-light  mr-2">
                   <code>Jam Login : 10:20 PM</code>
                   <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
                   <span class="info-box-number">NIP : 1103174125</span>
@@ -468,18 +467,18 @@
                     </li>
                   <?php } ?>
                   <li class="nav-item">
-                  <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
-                <div class="input-group p-1">
-                  <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
-                  <span class="input-group-append">
-                    <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
-                  </span>
-                </div>
-                </li>
-              </form>
-            </ul>
-          </div>
-              
+                    <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
+                      <div class="input-group p-1">
+                        <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
+                        <span class="input-group-append">
+                          <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+                        </span>
+                      </div>
+                  </li>
+                  </form>
+                </ul>
+              </div>
+
             </div>
             <div class="card">
               <div class="card-header">
@@ -615,11 +614,11 @@
                   </b>
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
-                
-              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
-                Cetak </span>
-              </button>
-              
+
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
+                    Cetak </span>
+                </button>
+
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
@@ -647,12 +646,11 @@
                       </thead>
                       <tfoot class="">
                         <?php
-                        $total_saldo = 0; 
-                        foreach($transaksi as $t_row){
-                          if($t_row->ref == "Debit"){
+                        $total_saldo = 0;
+                        foreach ($transaksi as $t_row) {
+                          if ($t_row->ref == "Debit") {
                             $total_saldo += $t_row->saldo;
-                          }
-                          else{
+                          } else {
                             $total_saldo -= $t_row->saldo;
                           }
                         }
@@ -662,10 +660,9 @@
                           <td></td>
                           <td></td>
                           <td></td>
-                          <td class=""></td>
-
-                          <td><b>Total Saldo = </b></td>
-                          <td class="text-left"><b><?php echo "Rp. ".number_format($total_saldo, 2);?></b></td>
+                          <td class="text-right font-weight-light">Total Saldo = </td>
+                          <td></td>
+                          <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
                         </tr>
                       </tfoot>
                     </table>
@@ -708,61 +705,59 @@
   <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
-<script type="text/javascript">
-		
-		var rupiah = document.getElementById('rupiah');
-		rupiah.addEventListener('keyup', function(e){
-			// tambahkan 'Rp.' pada saat form di ketik
-			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-			rupiah.value = formatRupiah(this.value, 'Rp. ');
-		});
- 
-		/* Fungsi formatRupiah */
-		function formatRupiah(angka, prefix){
-			var number_string = angka.replace(/[^,\d]/g, '').toString(),
-			split   		= number_string.split(','),
-			sisa     		= split[0].length % 3,
-			rupiah     		= split[0].substr(0, sisa),
-			ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
- 
-			// tambahkan titik jika yang di input sudah menjadi angka ribuan
-			if(ribuan){
-				separator = sisa ? '.' : '';
-				rupiah += separator + ribuan.join('.');
-			}
- 
-			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-			return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
-		}
-	</script>
+  <script type="text/javascript">
+    var rupiah = document.getElementById('rupiah');
+    rupiah.addEventListener('keyup', function(e) {
+      // tambahkan 'Rp.' pada saat form di ketik
+      // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+      rupiah.value = formatRupiah(this.value, 'Rp. ');
+    });
+
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka, prefix) {
+      var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+      // tambahkan titik jika yang di input sudah menjadi angka ribuan
+      if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+
+      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+      return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
+    }
+  </script>
 
   <script>
-    
+    $('#UB').hide();
+    $("#jenislaporan").change(function() {
+      if ($(this).val() == "mutasi") {
+        $('#UB').show();
+        $('#aset', '#bulan').attr('required', '');
+        $('#aset', '#bulan').attr('data-error', 'This field is required.');
+      } else {
         $('#UB').hide();
-        $("#jenislaporan").change(function() {
-        if ($(this).val() == "mutasi") {
-          $('#UB').show();
-          $('#aset', '#bulan').attr('required', '');
-          $('#aset', '#bulan').attr('data-error', 'This field is required.');
-        } else {
-          $('#UB').hide();
-          $('#aset', '#bulan').removeAttr('required');
-          $('#aset', '#bulan').removeAttr('data-error');
-        }
-        });
+        $('#aset', '#bulan').removeAttr('required');
+        $('#aset', '#bulan').removeAttr('data-error');
+      }
+    });
 
+    $('#BL').hide();
+    $("#jenislaporan").change(function() {
+      if ($(this).val() == "laba") {
+        $('#BL').show();
+        $('#bulanL').attr('required', '');
+        $('#bulanL').attr('data-error', 'This field is required.');
+      } else {
         $('#BL').hide();
-        $("#jenislaporan").change(function() {
-        if ($(this).val() == "laba") {
-          $('#BL').show();
-          $('#bulanL').attr('required', '');
-          $('#bulanL').attr('data-error', 'This field is required.');
-        } else {
-          $('#BL').hide();
-          $('#bulanL').removeAttr('required');
-          $('#bulanL').removeAttr('data-error');
-        }
-      });
+        $('#bulanL').removeAttr('required');
+        $('#bulanL').removeAttr('data-error');
+      }
+    });
 
 
     $('.select2').select2()
@@ -898,6 +893,14 @@
             "lengthMenu": [[-1, 50, 25], ["All", 50, 25]],
              "fixedColumns":   true,
              "scrollCollapse": true,
+             "columnDefs": [
+            {
+                "targets": [ 5 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+            
 
             initComplete: function() {
                   var api = this.api();
