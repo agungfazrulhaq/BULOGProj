@@ -348,8 +348,9 @@
               </div>
             </div>
             <div class="col-3">
-              <div class="info-box mb-0">
-                <div class="info-box-content">
+              <div class="info-box mb-0 bg-light">
+                <div class="info-box-content font-weight-light">
+                  <code>Jam Login : 10:20 PM</code>
                   <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
                   <span class="info-box-number">NIP : 1103174125</span>
                 </div>
