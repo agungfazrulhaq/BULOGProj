@@ -187,21 +187,15 @@
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Laporan</label>
                   <select class="form-control custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
-                    <option value="">Pilih Jenis Laporan</option>
-                    <option value="">Laporan Mutasi Kas Aset</option>
+                    <option value="" >Pilih Jenis Laporan</option>
+                    <option value="" onclick="myFunction()">Laporan Mutasi Kas Aset</option>
                     <option value="">Jurnal Laporan Mutasi Kas Aset</option>
                     <option value="">Laporan Laba Rugi</option>
                     <option value="">Laporan Neraca</option>
                   </select>
                 </div>
-                <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="defaultForm-email">Nama Unit Bisnis</label>
-                  <select class="form-control select2" style="width: 100%;" name="aset" required>
-                          <option selected="selected" value="">Pilih Unit</option>
-                          <?php foreach ($aset as $row_a) { ?>
-                            <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
-                          <?php } ?>
-                  </select>
+                <div class="md-form mb-2" id="demo">
+                  
                 </div>
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Bulan</label>
@@ -429,18 +423,20 @@
                     <li class="nav-item">
                       <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
                     </li>
-                    <li class="nav-item"></li>
                   <?php } ?>
-                </ul>
-              </div>
-              <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
-                <div class="input-group pt-1 pb-1 pl-1 pr-1">
+                  <li class="nav-item">
+                  <form action="<?php echo site_url("Home/addaset"); ?>" method="post" enctype="multipart/form-data">
+                <div class="input-group p-1">
                   <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
                   <span class="input-group-append">
                     <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                   </span>
                 </div>
+                </li>
               </form>
+            </ul>
+          </div>
+              
             </div>
             <div class="card">
               <div class="card-header">
@@ -659,6 +655,19 @@
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
   <script>
+  function myFunction() {
+  var htmlelm = " <label data-error='wrong' data-success='right'  for='defaultForm-email'>Unit Bisnis</label>
+                  <select class='form-control select2' style='width: 100%;' name='aset' required>
+                  <option selected='selected' value=''>Pilih Unit</option>
+                  <?php foreach ($aset as $row_a) { ?>
+                           <option value='<?php echo $row_a->id_aset; ?>'><?php echo $row_a->nama_aset; ?></option>
+                          <?php } ?>
+                  </select>";";
+  document.getElementById("next").innerHTML = "
+ 
+  }
+
+    
     $('.select2').select2()
 
     $('.select2bs4').select2({
@@ -817,7 +826,7 @@
             "ordering": true,
             "processing": true,
             "serverSide": true,
-            "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
+            "lengthMenu": [[-1, 50, 25], ["All", 50, 25]],
              "fixedColumns":   true,
              "scrollCollapse": true,
 
