@@ -47,26 +47,30 @@
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="card card-info card-outline">
-          <div class="card-header">
-            <span id="refview"><b> REF </b></span> | <span id="tanggalview">Tanggal</span>
+          <div class="card-header font-weight-bold">
+            <span id="refview"></span> [codeREF] <span id="tanggalview">Tanggal</span>
           </div>
 
           <div class="card-body p-0">
             <div class="mailbox-read-info">
-              <h3><span id="jenistransaksiview">DEBIT</span> <b>&nbsp;Rp. <span id="saldoview">Saldo</span></b>
-                <span class="mailbox-read-time float-right text-right text-info">
+              <h3><b>NOMINAL TRANSAKSI : &nbsp;Rp. <span id="saldoview">Saldo</span></b>
+                <span class="mailbox-read-time float-right text-right bg-light p-1">
+                  <code>
                   Dibuat oleh => User : Muhammad Fachrizal Ramdani <br>
                   Tanggal => 15 Feb. 2015 <br>
                   Jam => 11:03 PM
-                  Ket => Tanggal Pembuatan Laporan (Timestamp)
+                  Ket => Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
-              <h4 id="asetview">ASETNYA APA</h4>
+              <h4 class="font-italic" id="asetview"></h4>
             </div>
 
             <div class="mailbox-read-message">
-              <p id="uraianview">&emsp;&emsp;URAIANNYA APA</p>
-              <br>
+              <div class="text-justify font-weight-light p-3 bg-light rounded">
+                <h6 class="font-weight-bold">Uraian :</h6>
+                  <p id="uraianview" class="pl-3">URAIANNYA APA</p>
+                  <br>
+              </div>
             </div>
 
             <div class="card-footer bg-white">
@@ -344,8 +348,9 @@
               </div>
             </div>
             <div class="col-3">
-              <div class="info-box mb-0">
-                <div class="info-box-content">
+              <div class="info-box mb-0 bg-light">
+                <div class="info-box-content font-weight-light">
+                  <code>Jam Login : 10:20 PM</code>
                   <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
                   <span class="info-box-number">NIP : 1103174125</span>
                 </div>
@@ -702,15 +707,6 @@
   <!-- AdminLTE App -->
   <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
-
-  <script type="text/javascript">
-            // $(document).ready(function(){
-
-            //     // Format mata uang.
-            //     $( '.uang' ).mask('000,000,000,000,000,000,000,000.00', {reverse: true});
-
-            // })
-        </script>
 
 <script type="text/javascript">
 		
