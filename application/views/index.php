@@ -631,26 +631,36 @@
                     <table class="table table-hover table-sm" style="text-align: center;" id="tbmaster">
                       <thead class="">
                         <tr>
-                          <th><b>AKSI</b></td>
-                          <th><b>TANGGAL</b></td>
-                          <th><b>TRANSAKSI</b></td>
-                          <th><b>ASET</b></td>
-                          <th><b>URAIAN</b></td>
-                          <th>
-                            </td>
-                          <th><b>SALDO</b></td>
+                          <th><b>AKSI</b></th>
+                          <th><b>TANGGAL</b></th>
+                          <th><b>TRANSAKSI</b></th>
+                          <th><b>ASET</b></th>
+                          <th><b>URAIAN</b></th>
+                          <th></th>
+                          <th><b>SALDO</b></th>
                         </tr>
                       </thead>
                       <tfoot class="">
+                        <?php
+                        $total_saldo = 0; 
+                        foreach($transaksi as $t_row){
+                          if($t_row->ref == "Debit"){
+                            $total_saldo += $t_row->saldo;
+                          }
+                          else{
+                            $total_saldo -= $t_row->saldo;
+                          }
+                        }
+                        ?>
                         <tr>
                           <td></td>
                           <td></td>
                           <td></td>
                           <td></td>
-                          <td class="text-right"><b>Total Saldo = </b></td>
+                          <td class=""></td>
 
-                          <td></td>
-                          <td class="text-left"><b></b></td>
+                          <td><b>Total Saldo = </b></td>
+                          <td class="text-left"><b><?php echo "Rp. ".number_format($total_saldo, 2);?></b></td>
                         </tr>
                       </tfoot>
                     </table>
