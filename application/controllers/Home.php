@@ -112,5 +112,12 @@ class Home extends CI_Controller {
 
         return redirect(base_url());
     }
-    
+
+    public function upload(){
+        $data_ = $this->M_data;
+        $data_->uploadFile();
+
+        return redirect(base_url());
+    }
+
 }
