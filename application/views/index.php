@@ -39,6 +39,7 @@
   .page-link {
     color: black !important;
   }
+  
 </style>
 
 <body class="layout-top-nav" style="height: auto;">
@@ -684,54 +685,50 @@
                     </span>
                     <button type="button" class="btn btn-secondary btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
                     <i class="fas fa-print mr-1"></i> CETAK </span>
-                </button>
+                    </button>
                     <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
-
                   </div>
                 </div>
               </div>
                   <div class="card-body">
-                    <table class="table table-hover table-sm" id="tbmaster">
-                      <thead class="">
-                        <tr>
-                          <th>AKSI</th>
-                          <th>TANGGAL</th>
-                          <th>TRANSAKSI</th>
-                          <th>ASET</th>
-                          <th>URAIAN</th>
-                          <th></th>
-                          <th>SALDO</th>
-                        </tr>
-                      </thead>
-                      <tfoot class="">
-                        <?php
-                        $total_saldo = 0;
-                        foreach ($transaksi as $t_row) {
-                          if ($t_row->ref == "DEBIT") {
-                            $total_saldo += $t_row->saldo;
-                          } else {
-                            $total_saldo -= $t_row->saldo;
+                      <table class="table table-hover table-sm" style="width:100%" id="tbmaster">
+                        <thead class="">
+                          <tr>
+                            <th>AKSI</th>
+                            <th>TANGGAL</th>
+                            <th>TRANSAKSI</th>
+                            <th>ASET</th>
+                            <th>URAIAN</th>
+                            <th></th>
+                            <th>SALDO</th>
+                          </tr>
+                        </thead>
+                        <tfoot class="">
+                          <?php
+                          $total_saldo = 0;
+                          foreach ($transaksi as $t_row) {
+                            if ($t_row->ref == "DEBIT") {
+                              $total_saldo += $t_row->saldo;
+                            } else {
+                              $total_saldo -= $t_row->saldo;
+                            }
                           }
-                        }
-                        ?>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td class="text-right font-weight-light">Total Saldo = </td>
-                          <td></td>
-                          <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                    <div class="card-footer p-0">
+                          ?>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right font-weight-light">Total Saldo = </td>
+                            <td></td>
+                            <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
+                          </tr>
+                        </tfoot>
+                      </table>
                     </div>
-                  </div>
-      </section>
     </div>
   </div>
-
+  </section>
   <!-- jQuery -->
   <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/jquery-mask/jquery.mask.min.js"></script>
