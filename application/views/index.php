@@ -47,7 +47,7 @@
       <div class="modal-content">
         <div class="card card-info card-outline">
           <div class="card-header font-weight-bold">
-            <span id="refview"></span> [codeREF] <span id="tanggalview">Tanggal</span>
+            <span id="refview"></span> | <span id="tanggalview">Tanggal</span>
           </div>
 
           <div class="card-body p-0">
@@ -920,6 +920,7 @@
               $string_url_json = 'index.php/Home/getTransaksiJson';
             }
             ?>
+            
                   ajax: {"url": "<?php echo base_url() . $string_url_json; ?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
@@ -931,13 +932,14 @@
                             {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', 2 , 'Rp.')}
                       ],
                       
-                    
+                
                 oLanguage: {
                 sProcessing: "tunggu..."
             },
 
                   order: [[1, 'asc']],
                   rowCallback: function(row, data, iDisplayIndex) {
+                  var index = iDisplayIndex+1;
                   var info = this.fnPagingInfo();
                   var page = info.iPage;
                   var length = info.iLength;
