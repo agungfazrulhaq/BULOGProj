@@ -110,8 +110,7 @@ class Home extends CI_Controller {
     public function pdfrender(){
         $this->load->view('pdfrender.php');
 
-        
         return redirect(base_url());
     }
-
+    
 }
