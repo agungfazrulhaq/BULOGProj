@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2020 at 03:07 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Generation Time: Jun 18, 2020 at 02:53 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -86,20 +86,18 @@ CREATE TABLE `tb_transaksi` (
   `tanggal` date NOT NULL,
   `id_transaksi` int(11) NOT NULL,
   `uraian` text NOT NULL,
-  `ref` varchar(5) NOT NULL,
+  `ref` varchar(10) NOT NULL,
   `saldo` double NOT NULL,
-  `id_aset` int(11) DEFAULT NULL,
-  `id_kategori` int(11) DEFAULT NULL
+  `transaksi_id_aset` int(11) DEFAULT NULL,
+  `transaksi_id_kategori` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`, `saldo`, `id_aset`, `id_kategori`) VALUES
-(2020, '2020-06-11', 1, 'Pembayaran listrik kosan', 'D01', 20000, 1, 2),
-(2020, '2020-06-01', 2, 'Pembayaran listrik kontrakan', 'D02', 22000, 2, 3),
-(2020, '2020-06-05', 3, 'beli pangan', 'K01', 15000, 3, 1);
+INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`, `saldo`, `transaksi_id_aset`, `transaksi_id_kategori`) VALUES
+(2020, '2020-03-30', 15, 'asdasdasd', 'KREDIT', 55444, 1, 2);
 
 --
 -- Indexes for dumped tables
@@ -129,8 +127,8 @@ ALTER TABLE `tb_kategori`
 --
 ALTER TABLE `tb_transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id_kategori` (`id_kategori`),
-  ADD KEY `id_aset` (`id_aset`);
+  ADD KEY `id_kategori` (`transaksi_id_kategori`),
+  ADD KEY `id_aset` (`transaksi_id_aset`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -158,7 +156,7 @@ ALTER TABLE `tb_kategori`
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -174,8 +172,8 @@ ALTER TABLE `files`
 -- Constraints for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori` (`id_kategori`),
-  ADD CONSTRAINT `tb_transaksi_ibfk_2` FOREIGN KEY (`id_aset`) REFERENCES `tb_aset` (`id_aset`);
+  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`transaksi_id_kategori`) REFERENCES `tb_kategori` (`id_kategori`),
+  ADD CONSTRAINT `tb_transaksi_ibfk_2` FOREIGN KEY (`transaksi_id_aset`) REFERENCES `tb_aset` (`id_aset`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

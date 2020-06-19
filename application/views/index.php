@@ -977,6 +977,7 @@
               $string_url_json = 'index.php/Home/getTransaksiJson';
             }
             ?>
+            
                   ajax: {"url": "<?php echo base_url() . $string_url_json; ?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
@@ -988,13 +989,14 @@
                             {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', 2 , 'Rp.')}
                       ],
                       
-                    
+                
                 oLanguage: {
                 sProcessing: "tunggu..."
             },
 
                   order: [[1, 'asc']],
                   rowCallback: function(row, data, iDisplayIndex) {
+                  var index = iDisplayIndex+1;
                   var info = this.fnPagingInfo();
                   var page = info.iPage;
                   var length = info.iLength;
