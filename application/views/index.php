@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css') ?>">
 </head>
 <style>
-    .page-item.active .page-link {
+  .page-item.active .page-link {
     background-color: #17a2b8 !important;
     border: 1px solid #17a2b8;
   }
@@ -39,82 +39,80 @@
   .page-link {
     color: black !important;
   }
-  
 </style>
 
 <body class="layout-top-nav" style="height: auto;">
 
   <!-- ALL Modal Control -->
-      <div class="modal fade bd-example-modal-lg" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-header text-center">
-                      <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body mx-2">
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
-                        <input type="date" id="formaddTanggal" class="form-control validate" name="tanggal" required>
-                      </div>
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                        <select class="form-control select2" style="width: 100%;" name="aset" required>
-                          <option selected="selected" value="">Pilih Unit</option>
-                          <?php foreach ($aset as $row_a) { ?>
-                            <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                        <select class="form-control select2" style="width: 100%;" name="kategori" required>
-                          <option selected="selected" value="">Pilih Kategori</option>
-                          <?php foreach ($kategori as $row_k) { ?>
-                            <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                        <textarea type="textarea" class="form-control textarea validate" name="uraian" required
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                      </div>
+  <div class="modal fade bd-example-modal-lg" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data">
+          <div class="modal-header text-center">
+            <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-2">
+            <div class="md-form mb-2">
+              <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
+              <input type="date" id="formaddTanggal" class="form-control validate" name="tanggal" required>
+            </div>
+            <div class="md-form mb-2">
+              <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
+              <select class="form-control select2" style="width: 100%;" name="aset" required>
+                <option selected="selected" value="">Pilih Unit</option>
+                <?php foreach ($aset as $row_a) { ?>
+                  <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="md-form mb-2">
+              <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
+              <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                <option selected="selected" value="">Pilih Kategori</option>
+                <?php foreach ($kategori as $row_k) { ?>
+                  <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="md-form mb-2">
+              <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
+              <textarea type="textarea" class="form-control textarea validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            </div>
 
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
-                        <div class="custom-control custom-check">
-                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required>
-                          <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
-                        </div>
-                        <div class="custom-control custom-check">
-                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required>
-                          <label for="customRadio2" class="custom-control-label">Kredit</label>
-                        </div>
-                      </div>
-
-                      <div class="md-form mb-2">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="">Rp.</i></span>
-                          </div>
-                          <input type="text" id="rupiah" class="form-control uang" name="saldo">
-                        </div>
-                      </div>
-                      
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                      <button class="btn btn-info">Simpan</button>
-                    </div>
-
-                  </form>
-                </div>
+            <div class="md-form mb-2">
+              <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
+              <div class="custom-control custom-check">
+                <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required>
+                <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
+              </div>
+              <div class="custom-control custom-check">
+                <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required>
+                <label for="customRadio2" class="custom-control-label">Kredit</label>
               </div>
             </div>
+
+            <div class="md-form mb-2">
+              <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="">Rp.</i></span>
+                </div>
+                <input type="text" id="rupiah" class="form-control uang" name="saldo">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-info">Simpan</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade" id="modalView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -152,10 +150,10 @@
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
                     <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</spin>
-                    <span class="mailbox-attachment-size clearfix mt-1">
-                      <span>1,245 KB</span>
-                      <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                    </span>
+                      <span class="mailbox-attachment-size clearfix mt-1">
+                        <span>1,245 KB</span>
+                        <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                      </span>
                   </div>
                 </li>
                 <!-- <li>
@@ -170,21 +168,21 @@
                 </li> -->
               </ul>
             </div>
-            
+
             <div class="card-footer">
-            <label for="exampleInputFile">File input</label>
+              <label for="exampleInputFile">File input</label>
               <div class="row">
-              <div class="col-5 mb-0">
-              <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id_transaksi" id="id_transaksi_file">
-                <input name="file_transaksi" type="file"  id="exampleInputFile">
-                <button class="btn btn-dark">Simpan</button>
-                </form>
+                <div class="col-5 mb-0">
+                  <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_transaksi" id="id_transaksi_file">
+                    <input name="file_transaksi" type="file" id="exampleInputFile">
+                    <button class="btn btn-dark">Simpan</button>
+                  </form>
+                </div>
+                <div class="col-8 text-left">
+
+                </div>
               </div>
-              <div class="col-8 text-left">
-              
-              </div>
-            </div>
             </div>
           </div>
         </div>
@@ -249,7 +247,7 @@
                   </div>
                 </div>
                 <div class="md-form mb-2">
-                  
+
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
@@ -417,7 +415,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-2">
       <form action="" method="post" enctype="multipart/form-data">
@@ -430,19 +428,19 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-            
+
               <div class="modal-body mx-2">
                 <div class="md-form mb-3">
                   <label data-error="wrong" data-success="right" for="jenislaporan">Kategori Uraian</label>
                   <input type="text" class="form-control" type="text" placeholder="..." name="" required>
                 </div>
-                
-                  <div class="md-form mb-3">
-                    <label data-error="wrong" data-success="right" for="aset">Sub Kategori Uraian</label>
-                    <input type="text" class="form-control" type="text" placeholder="..." name="" required>  
-                  </div>
 
-                  <div class="md-form mb-2">
+                <div class="md-form mb-3">
+                  <label data-error="wrong" data-success="right" for="aset">Sub Kategori Uraian</label>
+                  <input type="text" class="form-control" type="text" placeholder="..." name="" required>
+                </div>
+
+                <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
                   <select class="custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
                     <option value="">Pilih Jenis Transaksi</option>
@@ -450,17 +448,17 @@
                     <option value="K">Kredit</option>
                   </select>
                 </div>
-                
-                  
-              
 
-                  
+
+
+
+
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-info">Simpan</button>
+              </div>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-                      <button class="btn btn-info">Simpan</button>
-                    </div>
           </div>
-        </div>
       </form>
     </div>
   </div>
@@ -471,7 +469,7 @@
   <div class="wrapper">
 
 
-  
+
     <div class="content-wrapper">
       <section class="content-header">
         <div class="container-fluid">
@@ -501,7 +499,7 @@
           <div class="col-2">
             <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
             <div class="card">
-              
+
               <div class="card-header">
                 <h3 class="card-title"><b>
                     Optimalisasi Aset</b><br></h3>
@@ -525,7 +523,7 @@
                     ?>
                     <li class="nav-item">
                       <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?>
-                       <span class="float-right btn btn-xs "><i class="fas fa-times text-secondary"></i></span></a>
+                        <span class="float-right btn btn-xs "><i class="fas fa-times text-secondary"></i></span></a>
                     </li>
                   <?php } ?>
                   <li class="nav-item">
@@ -769,12 +767,12 @@
   <!-- AdminLTE App -->
   <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
-  
+
   <script>
-  $(function () {
-    // Summernote
-    $('.textarea').summernote()
-  })
+    $(function() {
+      // Summernote
+      $('.textarea').summernote()
+    })
   </script>
   <script type="text/javascript">
     var rupiah = document.getElementById('rupiah');
@@ -961,7 +959,7 @@
             "ordering": true,
             "processing": true,
             "serverSide": true,
-            "lengthMenu": [[-1, 50, 25], ["All", 50, 25]],
+            "lengthMenu": [[-1, 25, 10], ["All", 25, 10]],
              "fixedColumns":   true,
              "scrollCollapse": true,
              "columnDefs": [
