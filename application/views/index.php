@@ -674,17 +674,17 @@
                   </b>
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
-                  
-                <i class="far fa-file-alt mr-1"></i> View All</button></a>
-                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>      
+
+                    <i class="far fa-file-alt mr-1"></i> View All</button></a>
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
                       <div id="clock"></div>
                     </span>
                     <button type="button" class="btn btn-secondary btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
-                    <i class="fas fa-print mr-1"></i> CETAK </span>
-                </button>
+                        <i class="fas fa-print mr-1"></i> CETAK </span>
+                    </button>
                     <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
 
                   </div>
@@ -732,6 +732,7 @@
                   </div>
                 </div>
               </div>
+            </div>
       </section>
     </div>
   </div>
