@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2020 at 02:53 PM
+-- Generation Time: Jun 19, 2020 at 05:22 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -31,9 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `files` (
   `id_files` int(11) NOT NULL,
   `nama_file` varchar(255) NOT NULL,
-  `lokasi` int(11) NOT NULL,
-  `id_transaksi` int(11) DEFAULT NULL
+  `id_transaksi` int(11) DEFAULT NULL,
+  `ukuran_file` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`id_files`, `nama_file`, `id_transaksi`, `ukuran_file`) VALUES
+(2, '1301171750_Laporan.pdf', 15, 423525),
+(3, '1301171750_Laporan.pdf', 15, 423525);
 
 -- --------------------------------------------------------
 
@@ -138,7 +146,7 @@ ALTER TABLE `tb_transaksi`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id_files` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_files` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_aset`

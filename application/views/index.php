@@ -154,7 +154,17 @@
 
             <div class="card-footer bg-white">
               <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
-                <li>
+                <li id="elemfile1">
+                  <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+                  <div class="mailbox-attachment-info">
+                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> <span id="nama_file">No_file</span></a>
+                    <span class="mailbox-attachment-size clearfix mt-1">
+                      <span>1,245 KB</span>
+                      <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                    </span>
+                  </div>
+                </li>
+                <!-- <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> File yang di sertakan.pdf</a>
@@ -163,7 +173,7 @@
                       <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
                     </span>
                   </div>
-                </li>
+                </li> -->
               </ul>
             </div>
 
@@ -711,7 +721,7 @@
                         <?php
                         $total_saldo = 0;
                         foreach ($transaksi as $t_row) {
-                          if ($t_row->ref == "Debit") {
+                          if ($t_row->ref == "DEBIT") {
                             $total_saldo += $t_row->saldo;
                           } else {
                             $total_saldo -= $t_row->saldo;
