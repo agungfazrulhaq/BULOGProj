@@ -276,21 +276,25 @@ class M_data extends CI_Model
         }
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');
-        if(!empty($_FILES['file_transaksi']['name'])){
-            $uploaddir = $_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/';
-            $uploadfile = $uploaddir.basename($_FILES['file_transaksi']['name']);
-            $allowedExts = array(".pdf",".jpg",".png","jpeg");
-            $namafile = $_FILES['file_transaksi']['name'];
-            if(move_uploaded_file($_FILES['file_transaksi']['tmp_name'],$uploadfile)){
-                $queryUpload = "INSERT INTO files(id_transaksi,lokasi,nama_file,ukuran_file)
-                                VALUES(".$id_transaksi.",'".$uploadfile."','".$_FILES['file_transaksi']['name']."','".$_FILES['file_transaksi']['size']."')";
-                $this->db->query($queryUpload);
-            }
-        }
         $sql___ = "UPDATE tb_transaksi 
                     SET ref ='" . $ref_ . "' , tanggal = '" . $post['tanggal'] . "' , transaksi_id_aset = '" . $post['aset'] . "',
                     transaksi_id_kategori = '" . $post['kategori'] . "',uraian = '" . $post['uraian'] . "',saldo = " . $saldo . ", tahun = '" . $year_ . "'
                     WHERE id_transaksi=" . $id_transaksi;
         return $this->db->query($sql___);
+    }
+
+    public function uploadFile(){
+        $post = $this->input->post();
+        if(!empty($_FILES['file_transaksi']['name'])){
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/OpasetBulog/upload/';
+            $uploadfile = $uploaddir.basename($_FILES['file_transaksi']['name']);
+            $allowedExts = array(".pdf",".jpg",".png","jpeg");
+            $namafile = $_FILES['file_transaksi']['name'];
+            if(move_uploaded_file($_FILES['file_transaksi']['tmp_name'],$uploadfile)){
+                $queryUpload = "INSERT INTO files(id_transaksi,nama_file,ukuran_file)
+                                VALUES(".$post['id_transaksi'].",'".$_FILES['file_transaksi']['name']."','".$_FILES['file_transaksi']['size']."')";
+                $this->db->query($queryUpload);
+            }
+        }
     }
 }

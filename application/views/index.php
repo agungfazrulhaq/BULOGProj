@@ -171,9 +171,13 @@
               <div class="col-4 mb-0">
                 <label for="exampleInputFile">File input</label>
                   <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
+                    <div class="custom-file">  
+                    <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="id_transaksi" id="id_transaksi_file">
+                      <input name="file_transaksi" type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
                       <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                      <input type="submit" class="btn">
+                    </form>
                     </div>
                   </div>
               </div>
@@ -1087,6 +1091,7 @@
               document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
               document.getElementById("uraianview").innerHTML = uraian;
               document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
+              document.getElementById("id_transaksi_file").value = id_transaksi;
           });
         });
     </script>
