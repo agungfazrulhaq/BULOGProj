@@ -29,6 +29,15 @@
   <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css') ?>">
 </head>
 <style>
+    .page-item.active .page-link {
+    background-color: #17a2b8 !important;
+    border: 1px solid #17a2b8;
+  }
+
+  .page-link {
+    color: black !important;
+  }
+  
 </style>
 
 <body class="layout-top-nav" style="height: auto;">
@@ -98,7 +107,7 @@
                         <div class="input-group">
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
-                            <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
+                            <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>  
                           </div>
                         </div>
                       </div>
@@ -170,20 +179,22 @@
 
             <div class="card-footer">
               <div class="row">
-              <div class="col-4 mb-0">
-                <label for="exampleInputFile">File input</label>
+              <div class="col-5 mb-0">
+              <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
+                <label for="exampleInputFile">File input</label><button class="btn btn-dark btn-xs ml-4 mt-0">Simpan</button>
                   <div class="input-group">
                     <div class="custom-file">  
-                    <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
+                    
                       <input type="hidden" name="id_transaksi" id="id_transaksi_file">
                       <input name="file_transaksi" type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
-                      <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>
-                      <input type="submit" class="btn">
+                      <label class="custom-file-label" for="exampleInputFile">location</label>
+                      
                     </form>
                     </div>
                   </div>
+                 
               </div>
-              <div class="col-8 text-right">
+              <div class="col-8 text-left">
               
               </div>
             </div>
@@ -503,11 +514,11 @@
           <div class="col-2">
             <div class="card bg-white mb-2">
           <div class="btn-group">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i></button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i></button>
               </div>
             </div>
-            <div class="card card-dark">
+            <div class="card">
               
               <div class="card-header">
                 <h3 class="card-title"><b>
@@ -540,7 +551,7 @@
                       <div class="input-group p-1">
                         <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
                         <span class="input-group-append">
-                          <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+                          <button type="submit" class="btn btn-secondary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                         </span>
                       </div>
                   </li>
@@ -549,7 +560,7 @@
               </div>
 
             </div>
-            <div class="card card-dark">
+            <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>Rekap Tahun</b></h3>
                 <div class="card-tools">
@@ -581,7 +592,7 @@
             </div>
           </div>
           <div class="col-md-10">
-            <div class="card card-primary card-outline">
+            <div class="card card-info card-outline">
               <div class="card-header">
                 <h3 class="card-title">
                   <div class="btn-group dropdown">
@@ -684,15 +695,14 @@
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
 
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
-                    Cetak </span>
-                </button>
-
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
                       <div id="clock"></div>
                     </span>
+                    <button type="button" class="btn btn-default btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
+                    CETAK </span>
+                </button>
                     <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
 
                   </div>
@@ -859,7 +869,7 @@
     if (isset($curr_year)) {
     ?>
       var tahunaktif = document.getElementById("ftahun<?php echo $curr_year; ?>");
-      tahunaktif.className += " btn-secondary active";
+      tahunaktif.className += " bg-secondary active";
     <?php
     }
     ?>
@@ -869,7 +879,7 @@
     if (isset($curr_aset)) {
     ?>
       var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset; ?>");
-      bulanaktif.className += " btn-secondary  active";
+      bulanaktif.className += " bg-secondary  active";
     <?php
     }
     ?>
