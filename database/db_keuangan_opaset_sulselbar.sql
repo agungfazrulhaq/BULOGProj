@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2020 at 05:22 AM
+-- Generation Time: Jun 19, 2020 at 09:42 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -40,7 +40,6 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`id_files`, `nama_file`, `id_transaksi`, `ukuran_file`) VALUES
-(2, '1301171750_Laporan.pdf', 15, 423525),
 (3, '1301171750_Laporan.pdf', 15, 423525);
 
 -- --------------------------------------------------------
@@ -97,15 +96,18 @@ CREATE TABLE `tb_transaksi` (
   `ref` varchar(10) NOT NULL,
   `saldo` double NOT NULL,
   `transaksi_id_aset` int(11) DEFAULT NULL,
-  `transaksi_id_kategori` int(11) DEFAULT NULL
+  `transaksi_id_kategori` int(11) DEFAULT NULL,
+  `waktuupdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`, `saldo`, `transaksi_id_aset`, `transaksi_id_kategori`) VALUES
-(2020, '2020-03-30', 15, 'asdasdasd', 'KREDIT', 55444, 1, 2);
+INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`, `saldo`, `transaksi_id_aset`, `transaksi_id_kategori`, `waktuupdate`) VALUES
+(2020, '2020-03-30', 15, 'asdasdasd', 'KREDIT', 55444, 1, 2, '2020-06-19 06:57:09'),
+(2020, '2020-06-15', 18, 'AAAAA <b> BB </b>', 'DEBIT', 221311, 2, 1, '2020-06-19 06:57:09'),
+(2020, '2020-06-09', 19, 'asasasdasdw', 'DEBIT', 22222, 1, 3, '2020-06-19 07:24:00');
 
 --
 -- Indexes for dumped tables
@@ -164,7 +166,7 @@ ALTER TABLE `tb_kategori`
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
