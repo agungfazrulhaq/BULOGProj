@@ -686,12 +686,11 @@
                         <i class="fas fa-print mr-1"></i> CETAK </span>
                     </button>
                     <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
-
                   </div>
                 </div>
               </div>
               <div class="card-body">
-                <table class="table table-hover table-sm" id="tbmaster">
+                <table class="table table-hover table-sm" style="width:100%" id="tbmaster">
                   <thead class="">
                     <tr>
                       <th>AKSI</th>
@@ -725,187 +724,184 @@
                     </tr>
                   </tfoot>
                 </table>
-                <div class="card-footer p-0">
-                </div>
               </div>
+            </div>
+          </div>
       </section>
-    </div>
-  </div>
+      <!-- jQuery -->
+      <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/jquery-mask/jquery.mask.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
+      <!-- DataTables -->
+      <script src="<?php echo base_url(); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/datatables/datetime.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+      <!-- Bootstrap4 Duallistbox -->
+      <script src="<?php echo base_url(); ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+      <!-- date-range-picker -->
+      <script src="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker.js"></script>
+      <!-- Select2 -->
+      <script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
+      <!-- InputMask -->
+      <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+      <!-- Toastr -->
+      <script src="<?php echo base_url(); ?>plugins/toastr/toastr.min.js"></script>
+      <!-- InputMask -->
+      <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
+      <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
+      <!-- Summernote -->
+      <script src="<?php echo base_url(); ?>plugins/summernote/summernote-bs4.min.js"></script>
+      <!-- AdminLTE App -->
+      <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
+      <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
-  <!-- jQuery -->
-  <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/jquery-mask/jquery.mask.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
-  <!-- DataTables -->
-  <script src="<?php echo base_url(); ?>plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/datatables/datetime.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <!-- Bootstrap4 Duallistbox -->
-  <script src="<?php echo base_url(); ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-  <!-- date-range-picker -->
-  <script src="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Select2 -->
-  <script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
-  <!-- InputMask -->
-  <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-  <!-- Toastr -->
-  <script src="<?php echo base_url(); ?>plugins/toastr/toastr.min.js"></script>
-  <!-- InputMask -->
-  <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
-  <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
-  <!-- Summernote -->
-  <script src="<?php echo base_url(); ?>plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
-  <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
+      <script>
+        $(function() {
+          // Summernote
+          $('.textarea').summernote()
+        })
+      </script>
+      <script type="text/javascript">
+        var rupiah = document.getElementById('rupiah');
+        rupiah.addEventListener('keyup', function(e) {
+          // tambahkan 'Rp.' pada saat form di ketik
+          // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+          rupiah.value = formatRupiah(this.value, 'Rp. ');
+        });
 
-  <script>
-    $(function() {
-      // Summernote
-      $('.textarea').summernote()
-    })
-  </script>
-  <script type="text/javascript">
-    var rupiah = document.getElementById('rupiah');
-    rupiah.addEventListener('keyup', function(e) {
-      // tambahkan 'Rp.' pada saat form di ketik
-      // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-      rupiah.value = formatRupiah(this.value, 'Rp. ');
-    });
+        /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix) {
+          var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix) {
-      var number_string = angka.replace(/[^,\d]/g, '').toString(),
-        split = number_string.split(','),
-        sisa = split[0].length % 3,
-        rupiah = split[0].substr(0, sisa),
-        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+          // tambahkan titik jika yang di input sudah menjadi angka ribuan
+          if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+          }
 
-      // tambahkan titik jika yang di input sudah menjadi angka ribuan
-      if (ribuan) {
-        separator = sisa ? '.' : '';
-        rupiah += separator + ribuan.join('.');
-      }
+          rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+          return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
+        }
+      </script>
 
-      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-      return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
-    }
-  </script>
-
-  <script>
-    $('#UB').hide();
-    $("#jenislaporan").change(function() {
-      if ($(this).val() == "mutasi") {
-        $('#UB').show();
-        $('#aset', '#bulan').attr('required', '');
-        $('#aset', '#bulan').attr('data-error', 'This field is required.');
-      } else {
+      <script>
         $('#UB').hide();
-        $('#aset', '#bulan').removeAttr('required');
-        $('#aset', '#bulan').removeAttr('data-error');
-      }
-    });
+        $("#jenislaporan").change(function() {
+          if ($(this).val() == "mutasi") {
+            $('#UB').show();
+            $('#aset', '#bulan').attr('required', '');
+            $('#aset', '#bulan').attr('data-error', 'This field is required.');
+          } else {
+            $('#UB').hide();
+            $('#aset', '#bulan').removeAttr('required');
+            $('#aset', '#bulan').removeAttr('data-error');
+          }
+        });
 
-    $('#BL').hide();
-    $("#jenislaporan").change(function() {
-      if ($(this).val() == "laba") {
-        $('#BL').show();
-        $('#bulanL').attr('required', '');
-        $('#bulanL').attr('data-error', 'This field is required.');
-      } else {
         $('#BL').hide();
-        $('#bulanL').removeAttr('required');
-        $('#bulanL').removeAttr('data-error');
-      }
-    });
+        $("#jenislaporan").change(function() {
+          if ($(this).val() == "laba") {
+            $('#BL').show();
+            $('#bulanL').attr('required', '');
+            $('#bulanL').attr('data-error', 'This field is required.');
+          } else {
+            $('#BL').hide();
+            $('#bulanL').removeAttr('required');
+            $('#bulanL').removeAttr('data-error');
+          }
+        });
 
 
-    $('.select2').select2()
+        $('.select2').select2()
 
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
+        $('.select2bs4').select2({
+          theme: 'bootstrap4'
+        })
 
-    $('.toastrDefaultError').click(function() {
-      toastr.error('Data Gagal Di Tambahkan ')
-    });
+        $('.toastrDefaultError').click(function() {
+          toastr.error('Data Gagal Di Tambahkan ')
+        });
 
-    $(document).ready(function() {
-      <?php if ($this->session->flashdata('success')) { ?>
-        toastr.success('Data Berhasil Di Tambahkan');
-      <?php } ?>
+        $(document).ready(function() {
+          <?php if ($this->session->flashdata('success')) { ?>
+            toastr.success('Data Berhasil Di Tambahkan');
+          <?php } ?>
 
-      <?php if ($this->session->flashdata('successdel')) { ?>
-        toastr.success('Berhasil Menghapus Data');
-      <?php } ?>
+          <?php if ($this->session->flashdata('successdel')) { ?>
+            toastr.success('Berhasil Menghapus Data');
+          <?php } ?>
 
-      <?php if ($this->session->flashdata('successupdate')) { ?>
-        toastr.success('Berhasil Menyimpan Data');
-      <?php } ?>
+          <?php if ($this->session->flashdata('successupdate')) { ?>
+            toastr.success('Berhasil Menyimpan Data');
+          <?php } ?>
 
-      $('[data-toggle="tooltip"]').tooltip();
-    });
+          $('[data-toggle="tooltip"]').tooltip();
+        });
 
-    <?php
-    if (isset($curr_year)) {
-    ?>
-      var tahunaktif = document.getElementById("ftahun<?php echo $curr_year; ?>");
-      tahunaktif.className += " bg-secondary active";
-    <?php
-    }
-    ?>
-  </script>
-  <script>
-    <?php
-    if (isset($curr_aset)) {
-    ?>
-      var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset; ?>");
-      bulanaktif.className += " bg-secondary  active";
-    <?php
-    }
-    ?>
-  </script>
+        <?php
+        if (isset($curr_year)) {
+        ?>
+          var tahunaktif = document.getElementById("ftahun<?php echo $curr_year; ?>");
+          tahunaktif.className += " bg-secondary active";
+        <?php
+        }
+        ?>
+      </script>
+      <script>
+        <?php
+        if (isset($curr_aset)) {
+        ?>
+          var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset; ?>");
+          bulanaktif.className += " bg-secondary  active";
+        <?php
+        }
+        ?>
+      </script>
 
 
-  <script>
-    function showTime() {
-      var a_p = "";
-      var today = new Date();
-      var curr_hour = today.getHours();
-      var curr_minute = today.getMinutes();
-      var curr_second = today.getSeconds();
-      if (curr_hour < 12) {
-        a_p = "AM";
-      } else {
-        a_p = "PM";
-      }
-      if (curr_hour == 0) {
-        curr_hour = 12;
-      }
-      if (curr_hour > 12) {
-        curr_hour = curr_hour - 12;
-      }
-      curr_hour = checkTime(curr_hour);
-      curr_minute = checkTime(curr_minute);
-      curr_second = checkTime(curr_second);
-      document.getElementById('clock').innerHTML = curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
-    }
+      <script>
+        function showTime() {
+          var a_p = "";
+          var today = new Date();
+          var curr_hour = today.getHours();
+          var curr_minute = today.getMinutes();
+          var curr_second = today.getSeconds();
+          if (curr_hour < 12) {
+            a_p = "AM";
+          } else {
+            a_p = "PM";
+          }
+          if (curr_hour == 0) {
+            curr_hour = 12;
+          }
+          if (curr_hour > 12) {
+            curr_hour = curr_hour - 12;
+          }
+          curr_hour = checkTime(curr_hour);
+          curr_minute = checkTime(curr_minute);
+          curr_second = checkTime(curr_second);
+          document.getElementById('clock').innerHTML = curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
+        }
 
-    function checkTime(i) {
-      if (i < 10) {
-        i = "0" + i;
-      }
-      return i;
-    }
-    setInterval(showTime, 500);
-    //-->
-  </script>
-  <script type='text/javascript'>
+        function checkTime(i) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          return i;
+        }
+        setInterval(showTime, 500);
+        //-->
+      </script>
+      <script type='text/javascript'>
           <!--
           var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
           var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
