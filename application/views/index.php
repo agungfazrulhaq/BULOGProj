@@ -126,10 +126,9 @@
               <h3><b>NOMINAL TRANSAKSI : &nbsp;Rp. <span id="saldoview">Saldo</span></b>
                 <span class="mailbox-read-time float-right text-right bg-light p-1 pl-2 pr-2 rounded">
                   <code>
-                    Dibuat oleh => User : Muhammad Fachrizal Ramdani <br>
-                    Tanggal => 15 Feb. 2015 <br>
-                    Jam => 11:03 PM
-                    Ket => Tanggal Pembuatan Laporan (Timestamp)</code>
+                    User : Muhammad Fachrizal Ramdani <br>
+                    <span id="tanggal_update">15 Feb. 2015</span> <br>
+                    Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
               <h4 class="font-italic" id="asetview"></h4>
@@ -148,7 +147,7 @@
                 <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> <span id="nama_file">No_file</span></a>
+                    <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</spin>
                     <span class="mailbox-attachment-size clearfix mt-1">
                       <span>1,245 KB</span>
                       <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
@@ -1074,6 +1073,7 @@
                         var uraian=$(this).data('uraian');
                         var ref=$(this).data('ref');
                         var saldo=$(this).data('saldo');
+                        var tanggalupdate=$(this).data('time');
               $('[name="id_transaksi"]').val(id_transaksi);
               $('#modalView').modal('show');
               var jenistransaksi = "";
@@ -1085,6 +1085,8 @@
               }
               var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
               var nd = new Date(tanggal);
+              var t = tanggalupdate.split(/[- :]/);
+              var newest__ = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
               var weekday = new Array(7);
               weekday[0] = "Minggu";
               weekday[1] = "Senin";
@@ -1093,15 +1095,22 @@
               weekday[4] = "Kamis";
               weekday[5] = "Jum'at";
               weekday[6] = "Sabtu";
+              document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()]+", "+tanggalupdate;
               document.getElementById("refview").innerHTML = ref;
               document.getElementById("tanggalview").innerHTML =  weekday[nd.getDay()]+", " + nd.getDate() + "-" + (nd.getMonth()+1) + "-" + nd.getFullYear();
               document.getElementById("asetview").innerHTML = aset;
               document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
               document.getElementById("uraianview").innerHTML = uraian;
+              var lelelele = "<span class='mailbox-attachment-size clearfix mt-1'><span>1,245 KB</span><a href='#' class='btn btn-default btn-sm float-right'><i class='fas fa-cloud-download-alt'></i></a></span>";
+              document.getElementById("nama_file").innerHTML = lelele;
+              
               document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
               document.getElementById("id_transaksi_file").value = id_transaksi;
+              
           });
         });
+    </script>
+    <script>
     </script>
 </body>
 </html>
