@@ -24,7 +24,6 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') ?>">
   <!-- Theme style -->
@@ -79,7 +78,9 @@
             </div>
             <div class="md-form mb-2">
               <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-              <textarea type="textarea" class="form-control textarea validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <textarea type="textarea" class="form-control textarea validate" name="uraian" required 
+              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
+              id="12uraian"></textarea>
             </div>
 
             <div class="md-form mb-2">
@@ -682,14 +683,14 @@
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
                       <div id="clock"></div>
                     </span>
-                    <button type="button" class="btn btn-secondary btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
+                    <button type="button" class="btn btn-primary btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
                         <i class="fas fa-print mr-1"></i> CETAK </span>
                     </button>
                     <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
                   </div>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body table-responsive-sm">
                 <table class="table table-hover table-sm" style="width:100%" id="tbmaster">
                   <thead class="">
                     <tr>
@@ -1104,6 +1105,19 @@
         });
     </script>
     <script>
-    </script>
+      $('#uraian').wysihtml5({
+  toolbar: {
+    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+    "emphasis": true, //Italics, bold, etc. Default true
+    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+    "html": false, //Button which allows you to edit the generated HTML. Default false
+    "link": true, //Button to insert a link. Default true
+    "image": true, //Button to insert an image. Default true,
+    "color": false, //Button to change color of font  
+    "blockquote": true, //Blockquote  
+    "size": <buttonsize> //default: none, other options are xs, sm, lg
+  }
+});
+      </script>
 </body>
 </html>
