@@ -37,13 +37,14 @@
   .page-link {
     color: black !important;
   }
+  
 </style>
 
 <body class="layout-top-nav" style="height: auto;">
 
   <!-- ALL Modal Control -->
-  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+      <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-header text-center">
@@ -121,7 +122,7 @@
             </div>
 
   <div class="modal fade" id="modalView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="card card-info card-outline">
           <div class="card-header font-weight-bold">
@@ -196,7 +197,7 @@
     <div class="col-md-2">
       <form action="<?php echo site_url('Home/update/') ?>" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header text-center">
                 <h4 class="modal-title font-weight-bold">Ubah Data [Transaksi]</h4>
@@ -267,7 +268,7 @@
     <div class="col-md-2">
       <form action="" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="modalCetak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header text-center">
                 <h4 class="modal-title font-weight-bold">Cetak Laporan Keuangan</h4>
@@ -365,7 +366,7 @@
   </div>
 
   <div class="modal fade" id="modaldel">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title"><b>Konfimasi Hapus Data Transaksi</b></h3>
@@ -499,7 +500,7 @@
           <div class="col-md-2">
               <div class="mb-2">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i></button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i></button>
               </div>
             <div class="card">
               <div class="card-header">
@@ -524,7 +525,8 @@
                     }
                     ?>
                     <li class="nav-item">
-                      <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
+                      <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?>
+                       <span class="float-right btn btn-xs "><i class="fas fa-times text-red"></i></span></a>
                     </li>
                   <?php } ?>
                   <li class="nav-item">
