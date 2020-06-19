@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="<?php echo base_url('plugins/daterangepicker/daterangepicker.css') ?>">
   <!-- Toastr -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css') ?>">
+  <!-- summernote -->
+  <link rel="stylesheet" href="<?php echo base_url('plugins/summernote/summernote-bs4.css') ?>">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/select2/css/select2.min.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') ?>">
@@ -43,8 +45,8 @@
 <body class="layout-top-nav" style="height: auto;">
 
   <!-- ALL Modal Control -->
-      <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal fade bd-example-modal-lg" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-header text-center">
@@ -78,7 +80,8 @@
                       </div>
                       <div class="md-form mb-2">
                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                        <textarea type="textarea" class="form-control validate" name="uraian" required></textarea>
+                        <textarea type="textarea" class="form-control textarea validate" name="uraian" required
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                       </div>
 
                       <div class="md-form mb-2">
@@ -102,15 +105,7 @@
                           <input type="text" id="rupiah" class="form-control uang" name="saldo">
                         </div>
                       </div>
-                      <div class="md-form mb-2">
-                        <label for="exampleInputFile">File input</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
-                            <label class="custom-file-label" for="exampleInputFile">Masukan Bukti Pembayaran</label>  
-                          </div>
-                        </div>
-                      </div>
+                      
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                       <button class="btn btn-info">Simpan</button>
@@ -780,10 +775,18 @@
   <!-- InputMask -->
   <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- Summernote -->
+  <script src="<?php echo base_url(); ?>plugins/summernote/summernote-bs4.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
   <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
-
+  
+  <script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+  </script>
   <script type="text/javascript">
     var rupiah = document.getElementById('rupiah');
     rupiah.addEventListener('keyup', function(e) {
