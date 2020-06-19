@@ -29,15 +29,6 @@
   <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css') ?>">
 </head>
 <style>
-  .page-item.active .page-link {
-    background-color: #17a2b8 !important;
-    border: 1px solid #17a2b8;
-  }
-
-  .page-link {
-    color: black !important;
-  }
-  
 </style>
 
 <body class="layout-top-nav" style="height: auto;">
@@ -466,6 +457,9 @@
 
 
   <div class="wrapper">
+
+
+  
     <div class="content-wrapper">
       <section class="content-header">
         <div class="container-fluid">
@@ -479,9 +473,8 @@
               </div>
             </div>
             <div class="col-3">
-              <div class="info-box mb-0 bg-light">
+              <div class="info-box mb-0 bg-light ">
                 <div class="info-box-content font-weight-light  mr-2">
-                  <code>Jam Login : 10:20 PM</code>
                   <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
                   <span class="info-box-number">NIP : 1103174125</span>
                 </div>
@@ -493,14 +486,17 @@
 
       <section class="content">
         <div class="row">
-          <div class="col-md-2">
-              <div class="mb-2">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i></button>
+          <div class="col-2">
+            <div class="card bg-white mb-2">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i></button>
               </div>
-            <div class="card">
+            </div>
+            <div class="card card-dark">
+              
               <div class="card-header">
-                <h3 class="card-title "><b>
+                <h3 class="card-title"><b>
                     Optimalisasi Aset</b><br></h3>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -522,7 +518,7 @@
                     ?>
                     <li class="nav-item">
                       <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?>
-                       <span class="float-right btn btn-xs "><i class="fas fa-times text-red"></i></span></a>
+                       <span class="float-right btn btn-xs "><i class="fas fa-times text-secondary"></i></span></a>
                     </li>
                   <?php } ?>
                   <li class="nav-item">
@@ -530,7 +526,7 @@
                       <div class="input-group p-1">
                         <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
                         <span class="input-group-append">
-                          <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+                          <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                         </span>
                       </div>
                   </li>
@@ -539,7 +535,7 @@
               </div>
 
             </div>
-            <div class="card">
+            <div class="card card-dark">
               <div class="card-header">
                 <h3 class="card-title"><b>Rekap Tahun</b></h3>
                 <div class="card-tools">
@@ -571,7 +567,7 @@
             </div>
           </div>
           <div class="col-md-10">
-            <div class="card card-info card-outline">
+            <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">
                   <div class="btn-group dropdown">
