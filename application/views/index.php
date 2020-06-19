@@ -690,19 +690,17 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body p-0">
-                <div class="table-responsive">
                   <div class="card-body">
-                    <table class="table table-hover table-sm" style="text-align: center;" id="tbmaster">
+                    <table class="table table-hover table-sm" id="tbmaster">
                       <thead class="">
                         <tr>
-                          <th><b>AKSI</b></th>
-                          <th><b>TANGGAL</b></th>
-                          <th><b>TRANSAKSI</b></th>
-                          <th><b>ASET</b></th>
-                          <th><b>URAIAN</b></th>
+                          <th>AKSI</th>
+                          <th>TANGGAL</th>
+                          <th>TRANSAKSI</th>
+                          <th>ASET</th>
+                          <th>URAIAN</th>
                           <th></th>
-                          <th><b>SALDO</b></th>
+                          <th>SALDO</th>
                         </tr>
                       </thead>
                       <tfoot class="">
@@ -730,8 +728,6 @@
                     <div class="card-footer p-0">
                     </div>
                   </div>
-                </div>
-              </div>
       </section>
     </div>
   </div>
