@@ -422,7 +422,7 @@
     <div class="col-md-2">
       <form action="" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="modalkategori" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header text-center">
                 <h4 class="modal-title font-weight-bold">Buat Kategori Uraian</h4>
@@ -499,12 +499,7 @@
       <section class="content">
         <div class="row">
           <div class="col-2">
-            <div class="card bg-white mb-2">
-          <div class="btn-group">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i></button>
-              </div>
-            </div>
+            <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
             <div class="card">
               
               <div class="card-header">
@@ -538,7 +533,7 @@
                       <div class="input-group p-1">
                         <input type="text" class="form-control" type="text" placeholder="Tambah Aset" name="nama_aset" required>
                         <span class="input-group-append">
-                          <button type="submit" class="btn btn-secondary" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+                          <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
                         </span>
                       </div>
                   </li>
@@ -680,15 +675,17 @@
                   </div>
                   </b>
                 </h3>
-                <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">View All</button></a>
-
+                <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
+                  
+                <i class="far fa-file-alt mr-1"></i> View All</button></a>
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>      
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
                       <div id="clock"></div>
                     </span>
-                    <button type="button" class="btn btn-default btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
-                    CETAK </span>
+                    <button type="button" class="btn btn-secondary btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
+                    <i class="fas fa-print mr-1"></i> CETAK </span>
                 </button>
                     <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
 
