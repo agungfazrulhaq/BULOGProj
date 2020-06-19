@@ -171,23 +171,16 @@
                 </li> -->
               </ul>
             </div>
-
+            
             <div class="card-footer">
+            <label for="exampleInputFile">File input</label>
               <div class="row">
               <div class="col-5 mb-0">
               <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
-                <label for="exampleInputFile">File input</label><button class="btn btn-dark btn-xs ml-4 mt-0">Simpan</button>
-                  <div class="input-group">
-                    <div class="custom-file">  
-                    
-                      <input type="hidden" name="id_transaksi" id="id_transaksi_file">
-                      <input name="file_transaksi" type="file" class="custom-file-input" id="exampleInputFile" value="Unggah">
-                      <label class="custom-file-label" for="exampleInputFile">location</label>
-                      
-                    </form>
-                    </div>
-                  </div>
-                 
+                <input type="hidden" name="id_transaksi" id="id_transaksi_file">
+                <input name="file_transaksi" type="file"  id="exampleInputFile">
+                <button class="btn btn-dark">Simpan</button>
+                </form>
               </div>
               <div class="col-8 text-left">
               
