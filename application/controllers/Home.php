@@ -123,4 +123,11 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
+    public function asetdel(){
+        $data__ = $this->M_data;
+        $data__->deleteAset();
+
+        return redirect(base_url());
+    }
+
 }
