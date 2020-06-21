@@ -144,7 +144,7 @@
               </div>
             </div>
 
-            <div class="card-footer bg-white">
+            <!-- <div class="card-footer bg-white">
               <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                 <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
@@ -167,7 +167,7 @@
                   </div>
                 </li>
               </ul>
-            </div>
+            </div> -->
 
             <div class="card-footer">
               <label for="">File input</label>
@@ -552,8 +552,10 @@
                     }
                     ?>
                     <li class="nav-item">
-                      <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?>
-                        <span class="float-right btn btn-xs "><i class="fas fa-times text-orange"></i></span></a>
+                      <div class="form-inline">
+                        <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
+                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delaset"><i class="fas fa-times text-orange"></i></button>
+                      </div>
                     </li>
                   <?php } ?>
                   <li class="nav-item">
@@ -725,7 +727,7 @@
                       <th>AKSI</th>
                       <th class="text-center">TANGGAL</th>
                       <th>REF</th>
-                      <th class="text-center"  style="width:15%">ASET</th>
+                      <th class="text-center" style="width:15%">ASET</th>
                       <th class="text-center">URAIAN</th>
                       <th></th>
                       <th>SALDO</th>
@@ -1135,20 +1137,5 @@
           });
         });
     </script>
-    <script>
-      $('#uraian').wysihtml5({
-  toolbar: {
-    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-    "emphasis": true, //Italics, bold, etc. Default true
-    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-    "html": false, //Button which allows you to edit the generated HTML. Default false
-    "link": true, //Button to insert a link. Default true
-    "image": true, //Button to insert an image. Default true,
-    "color": false, //Button to change color of font  
-    "blockquote": true, //Blockquote  
-    "size": <buttonsize> //default: none, other options are xs, sm, lg
-  }
-});
-      </script>
 </body>
 </html>
