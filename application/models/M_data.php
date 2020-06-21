@@ -329,4 +329,5 @@ class M_data extends CI_Model
         $id = $post['id_aset'];
         return $this->db->delete($this->_tableaset, array("id_aset" => $id));
     }
+
 }
