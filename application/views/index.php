@@ -147,7 +147,7 @@
             </div>
 
             <div class="card-footer bg-white">
-              <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+              <!-- <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                 <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
@@ -158,7 +158,7 @@
                       </span>
                   </div>
                 </li>
-                <!-- <li>
+                <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> File yang di sertakan.pdf</a>
@@ -167,8 +167,8 @@
                       <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
                     </span>
                   </div>
-                </li> -->
-              </ul>
+                </li>
+              </ul> -->
             </div>
 
             <div class="card-footer">
@@ -700,7 +700,7 @@
                   <thead class="">
                     <tr>
                       <th>AKSI</th>
-                      <th>TANGGAL</th>
+                      <th style="width:15%">TANGGAL</th>
                       <th>REF</th>
                       <th>ASET</th>
                       <th>URAIAN</th>
@@ -960,20 +960,13 @@
             "lengthMenu": [[-1, 25, 10], ["All", 25, 10]],
              "fixedColumns":   true,
              "scrollCollapse": true,
-             "columnDefs": [
-            {
-                "targets": [ 5 ],
-                "visible": false,
-                "searchable": false
-            }
-            ],
 
             "columnDefs": [
             {
                 "targets": [ 4 ],
                 render: function ( data, type, row ) {
-                return type === 'display' && data.length > 40 ?
-                    data.substr( 0, 40 ) +'…' :
+                return type === 'display' && data.length > 65 ?
+                    data.substr( 0, 65 ) +'…' :
                     data;
             }
             }
@@ -1002,11 +995,11 @@
                   ajax: {"url": "<?php echo base_url() . $string_url_json; ?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
-                            {"data": "tanggal" , className: "text-left", render: $.fn.dataTable.render.moment('DD MMM YYYY' )},
+                            {"data": "tanggal" , className: "text-center", render: $.fn.dataTable.render.moment('DD MMM YYYY' )},
                             {"data": "ref" , className: "text-left"},
                             {"data": "nama_aset" , className: "text-left"},
                             {"data": "uraian", className: "text-left"},
-                            {"data": "nama_kategori"},
+                            {"data": "nama_kategori", "bSortable": false, "bSearchable": false , "visible":false },
                             {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', 2 , 'Rp.')}
                       ],
                       
