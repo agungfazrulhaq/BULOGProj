@@ -31,12 +31,13 @@
 </head>
 <style>
   .page-item.active .page-link {
+    color: ;
     background-color: #17a2b8 !important;
     border: 1px solid #17a2b8;
   }
 
   .page-link {
-    color: black !important;
+    color: grey !important;
   }
 </style>
 
@@ -146,7 +147,7 @@
             </div>
 
             <div class="card-footer bg-white">
-              <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+              <!-- <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                 <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
@@ -157,7 +158,7 @@
                       </span>
                   </div>
                 </li>
-                <!-- <li>
+                <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> File yang di sertakan.pdf</a>
@@ -166,20 +167,25 @@
                       <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
                     </span>
                   </div>
-                </li> -->
-              </ul>
+                </li>
+              </ul> -->
             </div>
 
             <div class="card-footer">
-              <label for="exampleInputFile">File input</label>
+              <label for="">File input</label>
               <div class="row">
                 <div class="col-5 mb-0">
                   <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id_transaksi" id="id_transaksi_file">
-                    <input name="file_transaksi" type="file" id="exampleInputFile">
-                    <button class="btn btn-dark">Simpan</button>
+                    <div class="form-group">
+                    <div class="btn btn-default btn-file">
+                      <i class="fas fa-paperclip"></i> Tambah Bukti Pembayaran
+                      <input type="hidden" name="id_transaksi" id="id_transaksi_file">
+                      <input type="file" name="attachment">
+                    </div>
+                    <button class="btn btn-secondary">Add</button>
                   </form>
                 </div>
+              </div>
                 <div class="col-8 text-left">
 
                 </div>
@@ -505,7 +511,7 @@
                 <h3 class="card-title"><b>
                     Optimalisasi Aset</b><br></h3>
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus text-orange"></i>
                   </button>
                 </div>
               </div>
@@ -524,7 +530,7 @@
                     ?>
                     <li class="nav-item">
                       <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?>
-                        <span class="float-right btn btn-xs "><i class="fas fa-times text-secondary"></i></span></a>
+                        <span class="float-right btn btn-xs "><i class="fas fa-times text-orange"></i></span></a>
                     </li>
                   <?php } ?>
                   <li class="nav-item">
@@ -545,7 +551,7 @@
               <div class="card-header">
                 <h3 class="card-title"><b>Rekap Tahun</b></h3>
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus text-orange"></i>
                   </button>
                 </div>
               </div>
@@ -578,7 +584,7 @@
                 <h3 class="card-title">
                   <div class="btn-group dropdown">
                     <button type="button" class="btn btn-dark btn-sm">Dashboard</button>
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <?php
                       if (isset($curr_month)) {
                         if ($curr_month == 0) {
@@ -666,7 +672,7 @@
                       if (isset($curr_month)) {
                       ?>
                         var bulanaktif = document.getElementById("month<?php echo $curr_month; ?>");
-                        bulanaktif.className += " active";
+                        bulanaktif.className += " bg-orange active";
                       <?php
                       }
                       ?>
@@ -674,19 +680,18 @@
                   </div>
                   </b>
                 </h3>
-                <a href="<?php echo base_url(); ?>"><button class="btn btn-info btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
-
-                    <i class="far fa-file-alt mr-1"></i> View All</button></a>
-                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
+                <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
+                  <i class="far fa-file-alt mr-1"></i> View All</button></a>
+                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
                       <div id="clock"></div>
                     </span>
-                    <button type="button" class="btn btn-primary btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
+                    <button type="button" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
                         <i class="fas fa-print mr-1"></i> CETAK </span>
                     </button>
-                    <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out</span>
+                    <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out <i class="fas fa-sign-out-alt"></i></span>
                   </div>
                 </div>
               </div>
@@ -695,8 +700,8 @@
                   <thead class="">
                     <tr>
                       <th>AKSI</th>
-                      <th>TANGGAL</th>
-                      <th>TRANSAKSI</th>
+                      <th style="width:15%">TANGGAL</th>
+                      <th>REF</th>
                       <th>ASET</th>
                       <th>URAIAN</th>
                       <th></th>
@@ -852,7 +857,7 @@
         if (isset($curr_year)) {
         ?>
           var tahunaktif = document.getElementById("ftahun<?php echo $curr_year; ?>");
-          tahunaktif.className += " bg-secondary active";
+          tahunaktif.className += " bg-info active";
         <?php
         }
         ?>
@@ -862,7 +867,7 @@
         if (isset($curr_aset)) {
         ?>
           var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset; ?>");
-          bulanaktif.className += " bg-secondary  active";
+          bulanaktif.className += " bg-info  active";
         <?php
         }
         ?>
@@ -955,13 +960,17 @@
             "lengthMenu": [[-1, 25, 10], ["All", 25, 10]],
              "fixedColumns":   true,
              "scrollCollapse": true,
-             "columnDefs": [
+
+            "columnDefs": [
             {
-                "targets": [ 5 ],
-                "visible": false,
-                "searchable": false
+                "targets": [ 4 ],
+                render: function ( data, type, row ) {
+                return type === 'display' && data.length > 65 ?
+                    data.substr( 0, 65 ) +'…' :
+                    data;
             }
-        ],
+            }
+            ],
             
 
             initComplete: function() {
@@ -986,11 +995,11 @@
                   ajax: {"url": "<?php echo base_url() . $string_url_json; ?>", "type": "POST"},
                         columns: [
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
-                            {"data": "tanggal" , className: "text-left", render: $.fn.dataTable.render.moment('DD MMM YYYY' )},
+                            {"data": "tanggal" , className: "text-center", render: $.fn.dataTable.render.moment('DD MMM YYYY' )},
                             {"data": "ref" , className: "text-left"},
                             {"data": "nama_aset" , className: "text-left"},
                             {"data": "uraian", className: "text-left"},
-                            {"data": "nama_kategori"},
+                            {"data": "nama_kategori", "bSortable": false, "bSearchable": false , "visible":false },
                             {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', 2 , 'Rp.')}
                       ],
                       
