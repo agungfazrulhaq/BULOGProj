@@ -506,7 +506,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-3">
-              <img class="img-fluid" src="<?php echo base_url("dist/img/BULOG.png"); ?>" alt="Logo Bulog">
+              <img class="img-fluid" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             </div>
             <div class="col-6">
               <div class="pt-3 text-center">
