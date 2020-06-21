@@ -551,9 +551,9 @@
                       $link_showaset .= $row_a->id_aset . "/0/0";
                     }
                     ?>
-                    <li class="nav-item">
-                      <div class="form-inline">
-                        <a href="<?php echo site_url($link_showaset); ?>" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;" class="nav-link"> <?php echo $row_a->nama_aset; ?></a>
+                    <li class="nav-item" id="namaaset<?php echo $row_a->id_aset; ?>">
+                      <div class="nav-link">
+                        <a href="<?php echo site_url($link_showaset); ?>" id="" style="border-radius:0px;"> <?php echo $row_a->nama_aset; ?></a>
                         <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delaset"><i class="fas fa-times text-orange"></i></button>
                       </div>
                     </li>
