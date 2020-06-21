@@ -79,9 +79,7 @@
             </div>
             <div class="md-form mb-2">
               <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-              <textarea type="textarea" class="form-control textarea validate" name="uraian" required 
-              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
-              id="12uraian"></textarea>
+              <textarea type="textarea" class="form-control textarea validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="12uraian"></textarea>
             </div>
 
             <div class="md-form mb-2">
@@ -177,24 +175,24 @@
                 <div class="col-5 mb-0">
                   <form action="<?php echo site_url('Home/upload/') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                    <div class="btn btn-default btn-file">
-                      <i class="fas fa-paperclip"></i> Tambah Bukti Pembayaran
-                      <input type="hidden" name="id_transaksi" id="id_transaksi_file">
-                      <input type="file" name="attachment">
-                    </div>
-                    <button class="btn btn-secondary">Add</button>
+                      <div class="btn btn-default btn-file">
+                        <i class="fas fa-paperclip"></i> Tambah Bukti Pembayaran
+                        <input type="hidden" name="id_transaksi" id="id_transaksi_file">
+                        <input type="file" name="attachment">
+                      </div>
+                      <button class="btn btn-secondary">Add</button>
                   </form>
                 </div>
               </div>
-                <div class="col-8 text-left">
+              <div class="col-8 text-left">
 
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <div class="row">
@@ -706,7 +704,7 @@
                   </b>
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
-                  <i class="far fa-file-alt mr-1"></i> View All</button></a>
+                    <i class="far fa-file-alt mr-1"></i> View All</button></a>
                 <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
