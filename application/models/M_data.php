@@ -323,4 +323,10 @@ class M_data extends CI_Model
         }
         return $htmlcode_;
     }
+
+    public function deleteAset(){
+        $post = $this->input->post();
+        $id = $post['id_aset'];
+        return $this->db->delete($this->_tableaset, array("id_aset" => $id));
+    }
 }
