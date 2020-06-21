@@ -553,7 +553,7 @@
                     ?>
                     <li class="nav-item" id="namaaset<?php echo $row_a->id_aset; ?>">
                       <div class="nav-link">
-                        <a href="<?php echo site_url($link_showaset); ?>" id="" style="border-radius:0px;"> <?php echo $row_a->nama_aset; ?></a>
+                        <a href="<?php echo site_url($link_showaset); ?>" id="" style="border-radius:0px; color:#343a40; "> <?php echo $row_a->nama_aset; ?></a>
                         <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delaset"><i class="fas fa-times text-orange"></i></button>
                       </div>
                     </li>
@@ -728,7 +728,7 @@
                       <th class="text-center">TANGGAL</th>
                       <th>REF</th>
                       <th class="text-center" style="width:15%">ASET</th>
-                      <th class="text-center">URAIAN</th>
+                      <th class="text-center" style="width:40%">URAIAN</th>
                       <th></th>
                       <th>SALDO</th>
                     </tr>
