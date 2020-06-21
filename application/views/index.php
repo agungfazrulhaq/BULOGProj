@@ -147,7 +147,7 @@
             </div>
 
             <div class="card-footer bg-white">
-              <!-- <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+              <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                 <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
@@ -168,7 +168,7 @@
                     </span>
                   </div>
                 </li>
-              </ul> -->
+              </ul>
             </div>
 
             <div class="card-footer">
@@ -400,7 +400,7 @@
               </tr>
               <tr>
                 <td>SALDO</td>
-                <td>:&nbsp;&nbsp;<span id="saldodel"> </span></td>
+                <td>:&nbsp;&nbsp;Rp.<span id="saldodel"> </span></td>
                 <td></td>
               </tr>
               <tr>
@@ -417,6 +417,31 @@
           <form action="<?php echo site_url("Home/del") ?>" method="post">
             <input type="hidden" id="id_transaksi" name="id_transaksi">
             <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Data">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="delaset">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title"><b>Konfimasi Hapus Aset</b></h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body text-center">
+          <h3>Nama Aset</h3>
+        </div>
+
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+          <form action="" method="post">
+            <input type="hidden" id="id_transaksi" name="id_transaksi">
+            <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Aset">
           </form>
         </div>
       </div>
@@ -691,7 +716,7 @@
                     <button type="button" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
                         <i class="fas fa-print mr-1"></i> CETAK </span>
                     </button>
-                    <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="tooltip" data-placement="bottom" title="Keluar">Log Out <i class="fas fa-sign-out-alt"></i></span>
+                    <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Log Out <i class="fas fa-sign-out-alt"></i></span>
                   </div>
                 </div>
               </div>
@@ -700,10 +725,10 @@
                   <thead class="">
                     <tr>
                       <th>AKSI</th>
-                      <th style="width:15%">TANGGAL</th>
+                      <th class="text-center">TANGGAL</th>
                       <th>REF</th>
-                      <th>ASET</th>
-                      <th>URAIAN</th>
+                      <th class="text-center"  style="width:15%">ASET</th>
+                      <th class="text-center">URAIAN</th>
                       <th></th>
                       <th>SALDO</th>
                     </tr>
@@ -960,7 +985,6 @@
             "lengthMenu": [[-1, 25, 10], ["All", 25, 10]],
              "fixedColumns":   true,
              "scrollCollapse": true,
-
             "columnDefs": [
             {
                 "targets": [ 4 ],
@@ -997,7 +1021,7 @@
                             {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
                             {"data": "tanggal" , className: "text-center", render: $.fn.dataTable.render.moment('DD MMM YYYY' )},
                             {"data": "ref" , className: "text-left"},
-                            {"data": "nama_aset" , className: "text-left"},
+                            {"data": "nama_aset" , className: "text-center"},
                             {"data": "uraian", className: "text-left"},
                             {"data": "nama_kategori", "bSortable": false, "bSearchable": false , "visible":false },
                             {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', 2 , 'Rp.')}
