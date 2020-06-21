@@ -100,7 +100,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="">Rp.</i></span>
                 </div>
-                <input type="text" id="rupiah" class="form-control uang" name="saldo">
+                <input type="text" id="rupiah" class="form-control uang" name="saldo" required>
               </div>
             </div>
 
@@ -421,31 +421,32 @@
     </div>
   </div>
 
-  <div class="modal fade" id="delaset">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title"><b>Konfimasi Hapus Aset</b></h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+  <?php foreach ($aset as $delaset) { ?>
+    <div class="modal fade" id="delaset<?php echo $delaset->id_aset; ?>">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title"><b>Konfimasi Hapus Aset</b></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
 
-        <div class="modal-body text-center">
-          <h3>Nama Aset</h3>
-        </div>
+          <div class="modal-body text-center">
+            <h3><?php echo $delaset->nama_aset; ?></h3>
+          </div>
 
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-          <form action="" method="post">
-            <input type="hidden" id="id_transaksi" name="id_transaksi">
-            <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Aset">
-          </form>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+            <form action="<?php echo site_url("Home/asetdel/"); ?>" method="post">
+              <input type="hidden" id="id_aset" name="id_aset" value="<?php echo $delaset->id_aset; ?>">
+              <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Aset">
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  <?php } ?>
   <div class="row">
     <div class="col-md-2">
       <form action="" method="post" enctype="multipart/form-data">
@@ -554,7 +555,7 @@
                     <li class="nav-item" id="namaaset<?php echo $row_a->id_aset; ?>">
                       <div class="nav-link">
                         <a href="<?php echo site_url($link_showaset); ?>" id="" style="border-radius:0px; color:#343a40; "> <?php echo $row_a->nama_aset; ?></a>
-                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delaset"><i class="fas fa-times text-orange"></i></button>
+                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delaset<?php echo $row_a->id_aset; ?>"><i class="fas fa-times text-orange"></i></button>
                       </div>
                     </li>
                   <?php } ?>
