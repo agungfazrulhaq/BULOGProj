@@ -47,12 +47,48 @@ class M_data extends CI_Model
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
         $month_ = $date_y->format('m');
 
-        if ($post['customRadio'] == "D") {
-            $ref_ = "DEBIT";
-        } 
-        else {
-            $ref_ = "KREDIT";
-            
+        $looking_for_ref__query = $this->db->query("SELECT id_kategori,jenis_transaksi FROM tb_kategori INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi WHERE id_kategori=".$post['kategori']);
+        $row_lfr = $looking_for_ref__query->row();
+        if(isset($row_lfr)){
+            if ($row_lfr->jenis_transaksi =="DEBIT") {
+                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                WHERE jenis_transaksi='DEBIT';");
+                $refangka = $query_ref__->num_rows()+1;
+                for($i = 1;$i<=$refangka;$i++){
+                    $currref = "D".$i;
+                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE ref='".$currref."';");
+                    $result_query_refgen = $query_refgen->num_rows();
+                    if($result_query_refgen == 0){
+                        $ref_ = $currref;
+                        break;
+                    }
+                }
+            } 
+            else {
+                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                WHERE jenis_transaksi='KREDIT';");
+                $refangka = $query_ref__->num_rows()+1;
+                for($i = 1;$i<=$refangka;$i++){
+                    $currref = "K".$i;
+                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE ref='".$currref."';");
+                    $result_query_refgen = $query_refgen->num_rows();
+                    if($result_query_refgen == 0){
+                        $ref_ = $currref;
+                        break;
+                    }
+                }
+                
+            }
         }
         $saldo_1 = str_replace(".", "", $post['saldo']);
         $saldo_ = str_replace(",", ".", $saldo_1);
@@ -267,13 +303,50 @@ class M_data extends CI_Model
         $month_ = $date_y->format('m');
         $id_transaksi = $post['id_transaksi'];
 
-        if ($post['customRadio'] == "D") {
-            $ref_ = "DEBIT";
-            
-        } else {
-            $ref_ = "KREDIT";
-            
+        $looking_for_ref__query = $this->db->query("SELECT id_kategori,jenis_transaksi FROM tb_kategori INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi WHERE id_kategori=".$post['kategori']);
+        $row_lfr = $looking_for_ref__query->row();
+        if(isset($row_lfr)){
+            if ($row_lfr->jenis_transaksi =="DEBIT") {
+                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                WHERE jenis_transaksi='DEBIT';");
+                $refangka = $query_ref__->num_rows()+1;
+                for($i = 1;$i<=$refangka;$i++){
+                    $currref = "D".$i;
+                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE ref='".$currref."';");
+                    $result_query_refgen = $query_refgen->num_rows();
+                    if($result_query_refgen == 0){
+                        $ref_ = $currref;
+                        break;
+                    }
+                }
+            } 
+            else {
+                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                WHERE jenis_transaksi='KREDIT';");
+                $refangka = $query_ref__->num_rows()+1;
+                for($i = 1;$i<=$refangka;$i++){
+                    $currref = "K".$i;
+                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE ref='".$currref."';");
+                    $result_query_refgen = $query_refgen->num_rows();
+                    if($result_query_refgen == 0){
+                        $ref_ = $currref;
+                        break;
+                    }
+                }
+                
+            }
         }
+
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');
         $sql___ = "UPDATE tb_transaksi 
