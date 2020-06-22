@@ -72,20 +72,20 @@
               <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
               <select class="form-control select2" style="width: 100%;" name="kategori" required>
                 <option selected="selected" value="">Pilih Kategori</option>
-                <?php foreach($allcategory as $K_row__){?>
-                <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr);?>">
-                <?php foreach ($kategori as $row_k) { ?>
-                  <?php
-                  $id_kat__1 = $row_k->id_kat_lr_kat;
-                  $id_kat__2 = $K_row__->id_kat_laba_rugi;
-                  ?>
-                  <?php if($id_kat__1 == $id_kat__2){?>
-                  <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
-                
-                  <?php } ?>
+                <?php foreach ($allcategory as $K_row__) { ?>
+                  <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
+                    <?php foreach ($kategori as $row_k) { ?>
+                      <?php
+                      $id_kat__1 = $row_k->id_kat_lr_kat;
+                      $id_kat__2 = $K_row__->id_kat_laba_rugi;
+                      ?>
+                      <?php if ($id_kat__1 == $id_kat__2) { ?>
+                        <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+
+                      <?php } ?>
+                    <?php } ?>
+                  </optgroup>
                 <?php } ?>
-                </optgroup>
-                <?php }?>
               </select>
             </div>
             <div class="md-form mb-2">
@@ -427,22 +427,22 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title"><b>Konfirmasi Hapus Aset</b></h3>
+            <h3 class="modal-title"><b>Konfirmasi Hapus Asset</b></h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Aset ini.</h6>
+          <h6 class="text-muted ml-3 mt-2">Semua data akan terhapus pada asset :</h6>
           <div class="modal-body text-center">
             <h3><b><?php echo $delaset->nama_aset; ?></b></h3>
-            
+
           </div>
-          
+
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
             <form action="<?php echo site_url("Home/asetdel/"); ?>" method="post">
               <input type="hidden" id="id_aset" name="id_aset" value="<?php echo $delaset->id_aset; ?>">
-              <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Aset">
+              <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus">
             </form>
           </div>
         </div>
@@ -450,8 +450,8 @@
     </div>
   <?php } ?>
 
-  <?php foreach($allcategory as $row_kat){ ?>
-  <div class="modal fade" id="delkate<?php echo $row_kat->id_kat_laba_rugi;?>">
+  <?php foreach ($allcategory as $row_kat) { ?>
+    <div class="modal fade" id="delkate<?php echo $row_kat->id_kat_laba_rugi; ?>">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -462,12 +462,12 @@
           </div>
           <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Kategori ini.</h6>
           <div class="modal-body text-center">
-            <h3><?php echo strtoupper($row_kat->nama_kat_lr);?></h3>
+            <h3><?php echo strtoupper($row_kat->nama_kat_lr); ?></h3>
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-            <form action="<?php echo site_url("Home/delcat_lr");?>" method="post">
-              <input type="hidden" id="id_aset" name="id_kategori_lr" value="<?php echo $row_kat->id_kat_laba_rugi;?>">
+            <form action="<?php echo site_url("Home/delcat_lr"); ?>" method="post">
+              <input type="hidden" id="id_aset" name="id_kategori_lr" value="<?php echo $row_kat->id_kat_laba_rugi; ?>">
               <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Kategori">
             </form>
           </div>
@@ -476,8 +476,8 @@
     </div>
   <?php } ?>
 
-  <?php foreach($kategori as $row_kat){ ?>
-  <div class="modal fade" id="delkat<?php echo $row_kat->id_kategori;?>">
+  <?php foreach ($kategori as $row_kat) { ?>
+    <div class="modal fade" id="delkat<?php echo $row_kat->id_kategori; ?>">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -488,12 +488,12 @@
           </div>
           <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Kategori ini.</h6>
           <div class="modal-body text-center">
-            <h3><?php echo strtoupper($row_kat->nama_kategori);?></h3>
+            <h3><?php echo strtoupper($row_kat->nama_kategori); ?></h3>
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-            <form action="<?php echo site_url("Home/delcat");?>" method="post">
-              <input type="hidden" id="id_aset" name="id_kategori" value="<?php echo $row_kat->id_kategori;?>">
+            <form action="<?php echo site_url("Home/delcat"); ?>" method="post">
+              <input type="hidden" id="id_aset" name="id_kategori" value="<?php echo $row_kat->id_kategori; ?>">
               <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Kategori">
             </form>
           </div>
@@ -504,7 +504,7 @@
 
   <div class="row">
     <div class="col-md-2">
-      <form action="<?php echo site_url("Home/katadd/");?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo site_url("Home/katadd/"); ?>" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="modalkategori" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -560,13 +560,13 @@
             </div>
             <div class="col-6">
               <div class="pt-2 text-center">
-                <h1 style="font-size:2vw;"><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
+                <h1 style="font-size:2vw;"><b>LAPORAN KEUANGAN UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
               </div>
             </div>
             <div class="col-3">
               <div class="info-box mb-0 bg-light">
                 <div class="info-box-content font-weight-light  mr-2" style="font-size:1vw;">
-                  <span class="info-box-text" >Muhammad Fachrizal Ramdani</span>
+                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
                   <span class="info-box-number">NIP : 1103174125</span>
                 </div>
                 <img class="img-fluid rounded" width="20%" height="20%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
@@ -664,33 +664,33 @@
               <div class="card-body p-0">
                 <ul class="nav nav-pills flex-column">
                   <li class="nav-item">
-                  <div class="input-group p-1">
-                  <button type="button" class="btn btn-block btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
-                  </div>
-                </li>
-                <?php foreach($allcategory as $row_cat){ ?>
-                <li class="nav-item">
-                  <div class="nav-link pt-0 pb-0">
-                  <b class="text-dark "><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
-                  <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi;?>"><i class="fas fa-backspace text-orange"></i></button>
-                  </div>
-                </li>
-                  <?php foreach($kategori as $row_kt){?>
-                    <?php
+                    <div class="input-group p-1">
+                      <button type="button" class="btn btn-block btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
+                    </div>
+                  </li>
+                  <?php foreach ($allcategory as $row_cat) { ?>
+                    <li class="nav-item">
+                      <div class="nav-link pt-0 pb-0">
+                        <b class="text-dark "><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
+                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi; ?>"><i class="fas fa-backspace text-orange"></i></button>
+                      </div>
+                    </li>
+                    <?php foreach ($kategori as $row_kt) { ?>
+                      <?php
                       $id_kat_lr = $row_cat->id_kat_laba_rugi;
                       $id_kat = $row_kt->id_kat_lr_kat;
-                    
-                      if($id_kat_lr == $id_kat){
-                    ?>
-                <li class="nav-item " id="namaaset">
-                      <div class="nav-link">
-                        <span id="" style="border-radius:0px; color:#343a40; "><?php echo $row_kt->nama_kategori; ?></span>
-                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat<?php echo $row_kt->id_kategori;?>"><i class="fas fa-times text-orange"></i></button>
-                      </div>
-                </li>
+
+                      if ($id_kat_lr == $id_kat) {
+                      ?>
+                        <li class="nav-item " id="namaaset">
+                          <div class="nav-link">
+                            <span id="" style="border-radius:0px; color:#343a40; "><?php echo $row_kt->nama_kategori; ?></span>
+                            <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat<?php echo $row_kt->id_kategori; ?>"><i class="fas fa-times text-orange"></i></button>
+                          </div>
+                        </li>
+                      <?php } ?>
+                    <?php } ?>
                   <?php } ?>
-                <?php } ?>
-                <?php } ?>
                 </ul>
               </div>
             </div>
@@ -705,7 +705,7 @@
                       <?php
                       if (isset($curr_month)) {
                         if ($curr_month == 0) {
-                          echo "BULAN";
+                          echo "Bulan";
                         } else if ($curr_month == 1) {
                           echo "Januari";
                         } else if ($curr_month == 2) {
@@ -732,7 +732,7 @@
                           echo "Desember";
                         }
                       } else {
-                        echo "BULAN";
+                        echo "Bulan";
                       }
                       ?>
                     </button>
@@ -798,14 +798,14 @@
                   </b>
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
-                    <i class="far fa-file-alt mr-1"></i> View All</button></a>
+                    <i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
                       <div id="clock"></div>
                     </span>
                     <button type="button" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
-                        <i class="fas fa-print mr-1"></i> CETAK </span>
+                        <i class="fas fa-print mr-1"></i> Cetak </span>
                     </button>
                     <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Log Out <i class="fas fa-sign-out-alt"></i></span>
                   </div>
@@ -827,7 +827,7 @@
                   <tfoot class="">
                     <?php
                     $total_saldo = 0;
-                    foreach ($transaksi as $t_row ) {
+                    foreach ($transaksi as $t_row) {
                       if (strpos($t_row->ref, 'D') !== false) {
                         $total_saldo += $t_row->saldo;
                       } else {
@@ -1033,44 +1033,43 @@
         //-->
       </script>
       <script type='text/javascript'>
-          var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-          var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-          var date = new Date();
-          var day = date.getDate();
-          var month = date.getMonth();
-          var thisDay = date.getDay(),
-              thisDay = myDays[thisDay];
-          var yy = date.getYear();
-          var year = (yy < 1000) ? yy + 1900 : yy;
-          document.getElementById('hari').innerHTML=months[month] + ' ' + year;
-    </script>
-        
-    <script>
-        $(document).ready(function(){
-          var buttonCommon = {
-        exportOptions: {
-            format: {
-                body: function ( data, row, column, node ) {
-                    // Strip $ from salary column to make it numeric
-                    return column === 5 ?
-                        data.replace( /[$,]/g, '' ) :
-                        data;
-                }
-            }
-        }
-    };
+        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var thisDay = date.getDay(),
+          thisDay = myDays[thisDay];
+        var yy = date.getYear();
+        var year = (yy < 1000) ? yy + 1900 : yy;
+        document.getElementById('hari').innerHTML = months[month] + ' ' + year;
+      </script>
 
-          $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
-          {
-              return {
-                  "iStart": oSettings._iDisplayStart,
-                  "iEnd": oSettings.fnDisplayEnd(),
-                  "iLength": oSettings._iDisplayLength,
-                  "iTotal": oSettings.fnRecordsTotal(),
-                  "iFilteredTotal": oSettings.fnRecordsDisplay(),
-                  "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
-                  "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
-              };
+      <script>
+        $(document).ready(function() {
+          var buttonCommon = {
+            exportOptions: {
+              format: {
+                body: function(data, row, column, node) {
+                  // Strip $ from salary column to make it numeric
+                  return column === 5 ?
+                    data.replace(/[$,]/g, '') :
+                    data;
+                }
+              }
+            }
+          };
+
+          $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
+            return {
+              "iStart": oSettings._iDisplayStart,
+              "iEnd": oSettings.fnDisplayEnd(),
+              "iLength": oSettings._iDisplayLength,
+              "iTotal": oSettings.fnRecordsTotal(),
+              "iFilteredTotal": oSettings.fnRecordsDisplay(),
+              "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+              "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+            };
           };
           $('#tbmaster').DataTable({
             "responsive": true,
@@ -1081,31 +1080,32 @@
             "ordering": true,
             "processing": true,
             "serverSide": true,
-            "lengthMenu": [[-1, 25, 10], ["All", 25, 10]],
-             "fixedColumns":   true,
-             "scrollCollapse": true,
-            "columnDefs": [
-            {
-                "targets": [ 4 ],
-                render: function ( data, type, row ) {
-                return type === 'display' && data.length > 62 ?
-                    data.substr( 0, 62 ) +'…' :
-                    data;
-            }
-            }
+            "lengthMenu": [
+              [-1, 25, 10],
+              ["All", 25, 10]
             ],
-            
+            "fixedColumns": true,
+            "scrollCollapse": true,
+            "columnDefs": [{
+              "targets": [4],
+              render: function(data, type, row) {
+                return type === 'display' && data.length > 62 ?
+                  data.substr(0, 62) + '…' :
+                  data;
+              }
+            }],
+
 
             initComplete: function() {
-                  var api = this.api();
-                  $('#tbmaster_filter input')
-                      .off('.DT')
-                      .on('input.DT', function() {
-                          api.search(this.value).draw();
-                  });
+              var api = this.api();
+              $('#tbmaster_filter input')
+                .off('.DT')
+                .on('input.DT', function() {
+                  api.search(this.value).draw();
+                });
             },
-                oLanguage: {
-                sProcessing: "tunggu..."
+            oLanguage: {
+              sProcessing: "tunggu..."
             },
             <?php
             if (isset($curr_aset) and isset($curr_month) and isset($curr_year)) {
@@ -1114,135 +1114,170 @@
               $string_url_json = 'index.php/Home/getTransaksiJson';
             }
             ?>
-            
-                  ajax: {"url": "<?php echo base_url() . $string_url_json; ?>", "type": "POST"},
-                        columns: [
-                            {"data": "view",  className: "text-center", "bSortable": false, "bSearchable": false},
-                            {"data": "tanggal" , className: "text-center", render: $.fn.dataTable.render.moment('DD MMM YYYY' )},
-                            {"data": "ref" , className: "text-left"},
-                            {"data": "nama_aset" , className: "text-center"},
-                            {"data": "uraian", className: "text-left"},
-                            {"data": "nama_kategori", "bSortable": false, "bSearchable": false , "visible":false },
-                            {"data": "saldo", className: "text-left", render: $.fn.dataTable.render.number(',', '.', 2 , 'Rp.')}
-                      ],
-                      
-                
-                oLanguage: {
-                sProcessing: "tunggu..."
+
+            ajax: {
+              "url": "<?php echo base_url() . $string_url_json; ?>",
+              "type": "POST"
+            },
+            columns: [{
+                "data": "view",
+                className: "text-center",
+                "bSortable": false,
+                "bSearchable": false
+              },
+              {
+                "data": "tanggal",
+                className: "text-center",
+                render: $.fn.dataTable.render.moment('DD MMM YYYY')
+              },
+              {
+                "data": "ref",
+                className: "text-left"
+              },
+              {
+                "data": "nama_aset",
+                className: "text-center"
+              },
+              {
+                "data": "uraian",
+                className: "text-left"
+              },
+              {
+                "data": "nama_kategori",
+                "bSortable": false,
+                "bSearchable": false,
+                "visible": false
+              },
+              {
+                "data": "saldo",
+                className: "text-left",
+                render: $.fn.dataTable.render.number(',', '.', 2, 'Rp.')
+              }
+            ],
+
+
+            oLanguage: {
+              sProcessing: "tunggu..."
             },
 
-                  order: [[1, 'asc']],
-                  rowCallback: function(row, data, iDisplayIndex) {
-                  var index = iDisplayIndex+1;
-                  var info = this.fnPagingInfo();
-                  var page = info.iPage;
-                  var length = info.iLength;
-                  $('td:eq(0)', row).html();
-              }
+            order: [
+              [1, 'asc']
+            ],
+            rowCallback: function(row, data, iDisplayIndex) {
+              var index = iDisplayIndex + 1;
+              var info = this.fnPagingInfo();
+              var page = info.iPage;
+              var length = info.iLength;
+              $('td:eq(0)', row).html();
+            }
           });
           // get Edit Records
-          $('#tbmaster').on('click','.data_update',function(){
-            var id_transaksi=$(this).data('id');
-                        var tanggal=$(this).data('tanggal');
-                        var aset=$(this).data('aset');
-                        var kategori=$(this).data('kategori');
-                        var uraian=$(this).data('uraian');
-                        var ref=$(this).data('ref');
-                        var saldo=$(this).data('saldo');
+          $('#tbmaster').on('click', '.data_update', function() {
+            var id_transaksi = $(this).data('id');
+            var tanggal = $(this).data('tanggal');
+            var aset = $(this).data('aset');
+            var kategori = $(this).data('kategori');
+            var uraian = $(this).data('uraian');
+            var ref = $(this).data('ref');
+            var saldo = $(this).data('saldo');
 
             $('#modalUpdate').modal('show');
             $('[name="id_transaksi"]').val(id_transaksi);
-                        $('[name="uraian"]').val(uraian);
-                        $('[name="saldo"]').val(saldo);
-                        $('[name="tanggal"]').val(tanggal);
-                        localStorage.setItem("Select1", aset);
-                            $('#selectaset').find('option').each(function(i,e){
-                                if($(e).val() == localStorage.getItem("Select1")){
-                                  $('#selectaset').prop('selectedIndex',i);
-                                }
-                            });
-                        localStorage.setItem("Select2", kategori);
-                            $('#selectkategori').find('option').each(function(i,e){
-                                if($(e).val() == localStorage.getItem("Select2")){
-                                  $('#selectkategori').prop('selectedIndex',i);
-                                }
-                            });
-                        
-                        localStorage.setItem("Select3", ref.charAt(0));
-                            $('#selectJenis').find('option').each(function(i,e){
-                                if($(e).val() == localStorage.getItem("Select3")){
-                                  $('#selectJenis').prop('selectedIndex',i);
-                                }
-                            });
+            $('[name="uraian"]').val(uraian);
+            $('[name="saldo"]').val(saldo);
+            $('[name="tanggal"]').val(tanggal);
+            localStorage.setItem("Select1", aset);
+            $('#selectaset').find('option').each(function(i, e) {
+              if ($(e).val() == localStorage.getItem("Select1")) {
+                $('#selectaset').prop('selectedIndex', i);
+              }
+            });
+            localStorage.setItem("Select2", kategori);
+            $('#selectkategori').find('option').each(function(i, e) {
+              if ($(e).val() == localStorage.getItem("Select2")) {
+                $('#selectkategori').prop('selectedIndex', i);
+              }
+            });
+
+            localStorage.setItem("Select3", ref.charAt(0));
+            $('#selectJenis').find('option').each(function(i, e) {
+              if ($(e).val() == localStorage.getItem("Select3")) {
+                $('#selectJenis').prop('selectedIndex', i);
+              }
+            });
           });
-          $('#tbmaster').on('click','.deletedata',function(){
-              var id_transaksi=$(this).data('id');
-                        var tanggal=$(this).data('tanggal');
-                        var aset=$(this).data('aset');
-                        var kategori=$(this).data('kategori');
-                        var uraian=$(this).data('uraian');
-                        var ref=$(this).data('ref');
-                        var saldo=$(this).data('saldo');
-              $('[name="id_transaksi"]').val(id_transaksi);
-              $('#modaldel').modal('show');
-              document.getElementById("data_id").innerHTML = "record_id("+id_transaksi+")";
-              document.getElementById("refdel").innerHTML = ref;
-              document.getElementById("tanggaldel").innerHTML = tanggal;
-              document.getElementById("asetdel").innerHTML = aset;
-              document.getElementById("saldodel").innerHTML = saldo;
+          $('#tbmaster').on('click', '.deletedata', function() {
+            var id_transaksi = $(this).data('id');
+            var tanggal = $(this).data('tanggal');
+            var aset = $(this).data('aset');
+            var kategori = $(this).data('kategori');
+            var uraian = $(this).data('uraian');
+            var ref = $(this).data('ref');
+            var saldo = $(this).data('saldo');
+            $('[name="id_transaksi"]').val(id_transaksi);
+            $('#modaldel').modal('show');
+            document.getElementById("data_id").innerHTML = "record_id(" + id_transaksi + ")";
+            document.getElementById("refdel").innerHTML = ref;
+            document.getElementById("tanggaldel").innerHTML = tanggal;
+            document.getElementById("asetdel").innerHTML = aset;
+            document.getElementById("saldodel").innerHTML = saldo;
           });
-          $('#tbmaster').on('click','.viewdata',function(){
-              var id_transaksi=$(this).data('id');
-                        var tanggal=$(this).data('tanggal');
-                        var aset=$(this).data('aset');
-                        var kategori=$(this).data('kategori');
-                        var uraian=$(this).data('uraian');
-                        var ref=$(this).data('ref');
-                        var saldo=$(this).data('saldo');
-                        var tanggalupdate=$(this).data('time');
-              $('[name="id_transaksi"]').val(id_transaksi);
-              $('#modalView').modal('show');
-              var jenistransaksi = "";
-              if(ref.includes("K")){
-                jenistransaksi="KREDIT";
-              }
-              else{
-                jenistransaksi="DEBIT";
-              }
-              var jenis_tranc = "";
-              if(ref.includes("D")){
-                jenis_tranc = "DEBIT";
-              }
-              else{
-                jenis_tranc = "KREDIT";
-              }
-              var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-              var nd = new Date(tanggal);
-              var t = tanggalupdate.split(/[- :]/);
-              var newest__ = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
-              var weekday = new Array(7);
-              weekday[0] = "Minggu";
-              weekday[1] = "Senin";
-              weekday[2] = "Selasa";
-              weekday[3] = "Rabu";
-              weekday[4] = "Kamis";
-              weekday[5] = "Jum'at";
-              weekday[6] = "Sabtu";
-              document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()]+", "+tanggalupdate;
-              document.getElementById("jen_tranview").innerHTML = jenis_tranc;
-              document.getElementById("refview").innerHTML = ref;
-              document.getElementById("tanggalview").innerHTML =  weekday[nd.getDay()]+", " + nd.getDate() + "-" + (nd.getMonth()+1) + "-" + nd.getFullYear();
-              document.getElementById("asetview").innerHTML = aset;
-              document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-              document.getElementById("uraianview").innerHTML = uraian;
-              var lelelele = "<span class='mailbox-attachment-size clearfix mt-1'><span>1,245 KB</span><a href='#' class='btn btn-default btn-sm float-right'><i class='fas fa-cloud-download-alt'></i></a></span>";
-              document.getElementById("nama_file").innerHTML = lelele;
-              
-              document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
-              document.getElementById("id_transaksi_file").value = id_transaksi;
-              
+          $('#tbmaster').on('click', '.viewdata', function() {
+            var id_transaksi = $(this).data('id');
+            var tanggal = $(this).data('tanggal');
+            var aset = $(this).data('aset');
+            var kategori = $(this).data('kategori');
+            var uraian = $(this).data('uraian');
+            var ref = $(this).data('ref');
+            var saldo = $(this).data('saldo');
+            var tanggalupdate = $(this).data('time');
+            $('[name="id_transaksi"]').val(id_transaksi);
+            $('#modalView').modal('show');
+            var jenistransaksi = "";
+            if (ref.includes("K")) {
+              jenistransaksi = "KREDIT";
+            } else {
+              jenistransaksi = "DEBIT";
+            }
+            var jenis_tranc = "";
+            if (ref.includes("D")) {
+              jenis_tranc = "DEBIT";
+            } else {
+              jenis_tranc = "KREDIT";
+            }
+            var dateOptions = {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            };
+            var nd = new Date(tanggal);
+            var t = tanggalupdate.split(/[- :]/);
+            var newest__ = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5]));
+            var weekday = new Array(7);
+            weekday[0] = "Minggu";
+            weekday[1] = "Senin";
+            weekday[2] = "Selasa";
+            weekday[3] = "Rabu";
+            weekday[4] = "Kamis";
+            weekday[5] = "Jum'at";
+            weekday[6] = "Sabtu";
+            document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()] + ", " + tanggalupdate;
+            document.getElementById("jen_tranview").innerHTML = jenis_tranc;
+            document.getElementById("refview").innerHTML = ref;
+            document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
+            document.getElementById("asetview").innerHTML = aset;
+            document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            document.getElementById("uraianview").innerHTML = uraian;
+            var lelelele = "<span class='mailbox-attachment-size clearfix mt-1'><span>1,245 KB</span><a href='#' class='btn btn-default btn-sm float-right'><i class='fas fa-cloud-download-alt'></i></a></span>";
+            document.getElementById("nama_file").innerHTML = lelele;
+
+            document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
+            document.getElementById("id_transaksi_file").value = id_transaksi;
+
           });
         });
-    </script>
+      </script>
 </body>
+
 </html>
