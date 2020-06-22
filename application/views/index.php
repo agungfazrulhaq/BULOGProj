@@ -49,7 +49,7 @@
       <div class="modal-content">
         <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data">
           <div class="modal-header text-center">
-            <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
+            <h4 class="modal-title">Masukkan Data [Transaksi]</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
