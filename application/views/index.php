@@ -109,7 +109,7 @@
       <div class="modal-content">
         <div class="card card-info card-outline">
           <div class="card-header font-weight-bold">
-            <span class="" id="refview"></span> [codeREF] <span id="tanggalview"></span>
+            <span class="" id="jen_tranview"></span> [<span id="refview">codeREF</span>] <span id="tanggalview"></span>
             <button type="button" class="btn btn-danger pl-3 pr-3 float-right btn-sm" data-dismiss="modal"><span aria-hidden="true">X</span></button>
           </div>
 
@@ -729,8 +729,8 @@
                   <tfoot class="">
                     <?php
                     $total_saldo = 0;
-                    foreach ($transaksi as $t_row) {
-                      if ($t_row->ref == "DEBIT") {
+                    foreach ($transaksi as $t_row ) {
+                      if (strpos($t_row->ref, 'D') !== false) {
                         $total_saldo += $t_row->saldo;
                       } else {
                         $total_saldo -= $t_row->saldo;
@@ -1111,6 +1111,13 @@
               else{
                 jenistransaksi="DEBIT";
               }
+              var jenis_tranc = "";
+              if(ref.includes("D")){
+                jenis_tranc = "DEBIT";
+              }
+              else{
+                jenis_tranc = "KREDIT";
+              }
               var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
               var nd = new Date(tanggal);
               var t = tanggalupdate.split(/[- :]/);
@@ -1124,6 +1131,7 @@
               weekday[5] = "Jum'at";
               weekday[6] = "Sabtu";
               document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()]+", "+tanggalupdate;
+              document.getElementById("jen_tranview").innerHTML = jenis_tranc;
               document.getElementById("refview").innerHTML = ref;
               document.getElementById("tanggalview").innerHTML =  weekday[nd.getDay()]+", " + nd.getDate() + "-" + (nd.getMonth()+1) + "-" + nd.getFullYear();
               document.getElementById("asetview").innerHTML = aset;
