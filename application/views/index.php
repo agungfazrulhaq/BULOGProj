@@ -120,7 +120,7 @@
           <div class="card-header font-weight-bold">
             <span class="" id="jen_tranview"></span> [<span id="refview">codeREF</span>] <span id="tanggalview"></span>
             <i class="ml-5 fas fa-bookmark text-info"></i>
-            <span class="font-weight-normal">Kategori :(<span>PENDAPATAN</span>), "Sewa Assets"</span>
+            <span class="font-weight-normal">Kategori :(<span id="name_lr">not_found</span>), "<span id="namekat">not_found</span>"</span>
             <button type="button" class="btn btn-danger pl-3 pr-3 float-right btn-sm" data-dismiss="modal"><span aria-hidden="true">X</span></button>
           </div>
 
@@ -1231,6 +1231,8 @@
             var ref = $(this).data('ref');
             var saldo = $(this).data('saldo');
             var tanggalupdate = $(this).data('time');
+            var name_lr = $(this).data('lr');
+            var name_kat = $(this).data('nkat');
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalView').modal('show');
             var jenistransaksi = "";
@@ -1265,10 +1267,12 @@
             document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()] + ", " + tanggalupdate;
             document.getElementById("jen_tranview").innerHTML = jenis_tranc;
             document.getElementById("refview").innerHTML = ref;
+            document.getElementById("namekat").innerHTML = name_kat;
             document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
             document.getElementById("asetview").innerHTML = aset;
             document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             document.getElementById("uraianview").innerHTML = uraian;
+            document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
             var lelelele = "<span class='mailbox-attachment-size clearfix mt-1'><span>1,245 KB</span><a href='#' class='btn btn-default btn-sm float-right'><i class='fas fa-cloud-download-alt'></i></a></span>";
             document.getElementById("nama_file").innerHTML = lelele;
 
