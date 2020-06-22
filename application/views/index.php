@@ -119,6 +119,8 @@
         <div class="card card-info card-outline">
           <div class="card-header font-weight-bold">
             <span class="" id="jen_tranview"></span> [<span id="refview">codeREF</span>] <span id="tanggalview"></span>
+            <i class="ml-5 fas fa-bookmark text-info"></i>
+            <span class="font-weight-normal">Kategori :(<span>PENDAPATAN</span>), "Sewa Assets"</span>
             <button type="button" class="btn btn-danger pl-3 pr-3 float-right btn-sm" data-dismiss="modal"><span aria-hidden="true">X</span></button>
           </div>
 
@@ -132,7 +134,7 @@
                     Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
-              <u><h4 id="asetview"></h4></u>
+              <h4 class="font-weight-normal pt-1" id="asetview"></h4>
             </div>
 
             <div class="mailbox-read-message">
@@ -179,7 +181,7 @@
                         <input type="hidden" name="id_transaksi" id="id_transaksi_file">
                         <input type="file" name="attachment">
                       </div>
-                      <button class="btn btn-secondary">Add</button>
+                      <button class="btn btn-info">Add</button>
                   </form>
                 </div>
               </div>
@@ -642,7 +644,10 @@
                 </li>
                 <?php foreach($allcategory as $row_cat){ ?>
                 <li class="nav-item">
-                  <b class="text-dark ml-2"><?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
+                  <div class="nav-link pt-0 pb-0">
+                  <b class="text-dark "><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
+                  <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat"><i class="fas fa-backspace text-orange"></i></button>
+                  </div>
                 </li>
                   <?php foreach($kategori as $row_kt){?>
                     <?php
