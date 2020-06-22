@@ -20,6 +20,7 @@ class Home extends CI_Controller {
         $data["kategori"] = $this->M_data->getKategori();
         $data["transaksi"] = $this->M_data->getTransaksi();
         $data["files"] = $this->M_data->getFiles();
+        $data["allcategory"] = $this->M_data->getAllCat();
         $data["dataModel"] = $this->load->model("M_data");
         
 		$this->load->view('index.php',$data);
@@ -137,6 +138,13 @@ class Home extends CI_Controller {
             redirect(base_url());
         }
 
+    }
+
+    public function delCat(){
+        $data__ = $this->M_data;
+        $data__->deleteCat();
+
+        return redirect(base_url());
     }
 
 }
