@@ -71,6 +71,7 @@ class Home extends CI_Controller {
         $data["datatahun"] = $this->M_data->getYears();
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
+        $data["allcategory"] = $this->M_data->getAllCat();
         $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($id_aset,$monthdate,$yeardate);
         $data["json_url"] = "getTransaksiJsonFiltered/".$id_aset."/".$monthdate."/".$yeardate."/";
         $data["dataModel"] = $this->load->model("M_data");
