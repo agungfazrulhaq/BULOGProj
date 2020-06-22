@@ -133,7 +133,7 @@
                     Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
-              <h4 class="font-italic" id="asetview"></h4>
+              <u><h4 id="asetview"></h4></u>
             </div>
 
             <div class="mailbox-read-message">
@@ -527,7 +527,7 @@
           </div>
       </section>
 
-      <section class="content">
+      <section class="content" style="font-family:Tahoma;">
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
             <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
@@ -723,7 +723,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body table-responsive-sm">
+              <div class="card-body table-responsive-sm" style="font-size:1vw;">
                 <table class="table table-hover table-sm" style="width:100%" id="tbmaster">
                   <thead class="">
                     <tr>
@@ -997,8 +997,8 @@
             {
                 "targets": [ 4 ],
                 render: function ( data, type, row ) {
-                return type === 'display' && data.length > 65 ?
-                    data.substr( 0, 65 ) +'…' :
+                return type === 'display' && data.length > 62 ?
+                    data.substr( 0, 62 ) +'…' :
                     data;
             }
             }
