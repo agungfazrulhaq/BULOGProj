@@ -5,6 +5,7 @@ class M_data extends CI_Model
     private $_tableaset = "tb_aset";
     private $_tablekategori = "tb_kategori";
     private $_tabletransaksi = "tb_transaksi";
+    private $_tablekategori_lr = "tb_kategori_laba_rugi";
 
     public $tanggal;
     public $id_aset;
@@ -426,6 +427,24 @@ class M_data extends CI_Model
         if(isset($id_kat___)){
             return $this->db->query("INSERT INTO tb_kategori(nama_kategori,id_kat_lr_kat) VALUES('".$nama_kat."','".$id_kat___->id_kat_laba_rugi."');");
         }
+    }
+
+    public function getAllCat(){
+        $allcat = $this->db->query("SELECT * FROM tb_kategori_laba_rugi");
+        
+        return $allcat->result();
+    }
+
+    public function deleteCat(){
+        $post = $this->input->post();
+        $id = $post['id_kategori'];
+        return $this->db->delete($this->_tablekategori, array("id_kategori" => $id));
+    }
+
+    public function deleteCat_lr(){
+        $post = $this->input->post();
+        $id = $post['id_kategori_lr'];
+        return $this->db->delete($this->_tablekategori_lr, array("id_kat_laba_rugi" => $id));
     }
 
 }

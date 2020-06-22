@@ -72,11 +72,20 @@
               <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
               <select class="form-control select2" style="width: 100%;" name="kategori" required>
                 <option selected="selected" value="">Pilih Kategori</option>
-                <optgroup label="PENDAPATAN">
-                  <?php foreach ($kategori as $row_k) { ?>
-                    <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
-                  <?php } ?>
-                </optgroup>
+                <?php foreach ($allcategory as $K_row__) { ?>
+                  <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
+                    <?php foreach ($kategori as $row_k) { ?>
+                      <?php
+                      $id_kat__1 = $row_k->id_kat_lr_kat;
+                      $id_kat__2 = $K_row__->id_kat_laba_rugi;
+                      ?>
+                      <?php if ($id_kat__1 == $id_kat__2) { ?>
+                        <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+
+                      <?php } ?>
+                    <?php } ?>
+                  </optgroup>
+                <?php } ?>
               </select>
             </div>
             <div class="md-form mb-2">
@@ -110,6 +119,8 @@
         <div class="card card-info card-outline">
           <div class="card-header font-weight-bold">
             <span class="" id="jen_tranview"></span> [<span id="refview">codeREF</span>] <span id="tanggalview"></span>
+            <i class="ml-5 fas fa-bookmark text-info"></i>
+            <span class="font-weight-normal">Kategori :(<span>PENDAPATAN</span>), "Sewa Assets"</span>
             <button type="button" class="btn btn-danger pl-3 pr-3 float-right btn-sm" data-dismiss="modal"><span aria-hidden="true">X</span></button>
           </div>
 
@@ -123,9 +134,7 @@
                     Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
-              <u>
-                <h4 id="asetview"></h4>
-              </u>
+              <h4 class="font-weight-normal pt-1" id="asetview"></h4>
             </div>
 
             <div class="mailbox-read-message">
@@ -172,7 +181,7 @@
                         <input type="hidden" name="id_transaksi" id="id_transaksi_file">
                         <input type="file" name="attachment">
                       </div>
-                      <button class="btn btn-secondary">Add</button>
+                      <button class="btn btn-info">Add</button>
                   </form>
                 </div>
               </div>
@@ -441,29 +450,57 @@
     </div>
   <?php } ?>
 
-  <div class="modal fade" id="delkat">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title"><b>Konfirmasi Hapus Kategori</b></h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <h6 class="text-muted ml-3 mt-2">Semua data akan terhapus pada kategori :</h6>
-        <div class="modal-body text-center">
-          <h3>N4M4 K4T3G0R1NY4</h3>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-          <form action="" method="post">
-            <input type="hidden" id="id_aset" name="id_aset" value="">
-            <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus">
-          </form>
+  <?php foreach ($allcategory as $row_kat) { ?>
+    <div class="modal fade" id="delkate<?php echo $row_kat->id_kat_laba_rugi; ?>">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title"><b>Konfirmasi Hapus Kategori</b></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Kategori ini.</h6>
+          <div class="modal-body text-center">
+            <h3><?php echo strtoupper($row_kat->nama_kat_lr); ?></h3>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+            <form action="<?php echo site_url("Home/delcat_lr"); ?>" method="post">
+              <input type="hidden" id="id_aset" name="id_kategori_lr" value="<?php echo $row_kat->id_kat_laba_rugi; ?>">
+              <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Kategori">
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <?php } ?>
+
+  <?php foreach ($kategori as $row_kat) { ?>
+    <div class="modal fade" id="delkat<?php echo $row_kat->id_kategori; ?>">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title"><b>Konfirmasi Hapus Kategori</b></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Kategori ini.</h6>
+          <div class="modal-body text-center">
+            <h3><?php echo strtoupper($row_kat->nama_kategori); ?></h3>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+            <form action="<?php echo site_url("Home/delcat"); ?>" method="post">
+              <input type="hidden" id="id_aset" name="id_kategori" value="<?php echo $row_kat->id_kategori; ?>">
+              <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Kategori">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
 
   <div class="row">
     <div class="col-md-2">
@@ -631,15 +668,29 @@
                       <button type="button" class="btn btn-block btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
                     </div>
                   </li>
-                  <li class="nav-item">
-                    <b class="text-dark ml-2">PENDAPATAN</b>
-                  </li>
-                  <li class="nav-item " id="namaaset<?php echo $row_a->id_aset; ?>">
-                    <div class="nav-link">
-                      <a href="" id="" style="border-radius:0px; color:#343a40; ">Biaya Sewa Assets</a>
-                      <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat"><i class="fas fa-times text-orange"></i></button>
-                    </div>
-                  </li>
+                  <?php foreach ($allcategory as $row_cat) { ?>
+                    <li class="nav-item">
+                      <div class="nav-link pt-0 pb-0">
+                        <b class="text-dark "><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
+                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi; ?>"><i class="fas fa-backspace text-orange"></i></button>
+                      </div>
+                    </li>
+                    <?php foreach ($kategori as $row_kt) { ?>
+                      <?php
+                      $id_kat_lr = $row_cat->id_kat_laba_rugi;
+                      $id_kat = $row_kt->id_kat_lr_kat;
+
+                      if ($id_kat_lr == $id_kat) {
+                      ?>
+                        <li class="nav-item " id="namaaset">
+                          <div class="nav-link">
+                            <span id="" style="border-radius:0px; color:#343a40; "><?php echo $row_kt->nama_kategori; ?></span>
+                            <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat<?php echo $row_kt->id_kategori; ?>"><i class="fas fa-times text-orange"></i></button>
+                          </div>
+                        </li>
+                      <?php } ?>
+                    <?php } ?>
+                  <?php } ?>
                 </ul>
               </div>
             </div>
