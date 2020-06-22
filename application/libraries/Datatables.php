@@ -29,6 +29,7 @@
     private $where          = array();
     private $or_where       = array();
     private $where_in       = array();
+    private $or_where_in    = array();
     private $like           = array();
     private $or_like        = array();
     private $filter         = array();
@@ -66,7 +67,6 @@
       foreach($this->explode(',', $columns) as $val)
       {
         $column = trim(preg_replace('/(.*)\s+as\s+(\w*)/i', '$2', $val));
-        $column = preg_replace('/.*\.(.*)/i', '$1', $column); // get name after `.`
         $this->columns[] =  $column;
         $this->select[$column] =  trim(preg_replace('/(.*)\s+as\s+(\w*)/i', '$1', $val));
       }
@@ -157,7 +157,7 @@
       $this->ci->db->or_where($key_condition, $val, $backtick_protect);
       return $this;
     }
-    
+
     /**
     * Generates the WHERE IN portion of the query
     *
@@ -170,6 +170,21 @@
     {
       $this->where_in[] = array($key_condition, $val);
       $this->ci->db->where_in($key_condition, $val);
+      return $this;
+    }
+
+    /**
+    * Generates the WHERE IN portion of the query
+    *
+    * @param mixed $key_condition
+    * @param string $val
+    * @param bool $backtick_protect
+    * @return mixed
+    */
+    public function or_where_in($key_condition, $val = NULL)
+    {
+      $this->or_where_in[] = array($key_condition, $val);
+      $this->ci->db->or_where_in($key_condition, $val, FALSE, 'OR ');
       return $this;
     }
 
@@ -265,14 +280,14 @@
     * @param string $charset
     * @return string
     */
-    public function generate($output = 'json', $charset = 'UTF-8')
+    public function generate($output = 'json', $charset = 'UTF-8', $debug = false)
     {
       if(strtolower($output) == 'json')
         $this->get_paging();
 
       $this->get_ordering();
       $this->get_filtering();
-      return $this->produce_output(strtolower($output), strtolower($charset));
+      return $this->produce_output(strtolower($output), strtolower($charset), $debug);
     }
 
     /**
@@ -326,7 +341,7 @@
 
       if($sSearch != '')
         for($i = 0; $i < count($mColArray); $i++)
-          if ($mColArray[$i]['searchable'] == 'true' && !array_key_exists($mColArray[$i]['data'], $this->add_columns))
+          if($mColArray[$i]['searchable'] == 'true' )
             if($this->check_cType())
               $sWhere .= $this->select[$mColArray[$i]['data']] . " LIKE '%" . $sSearch . "%' OR ";
             else
@@ -361,15 +376,35 @@
     * @param string $charset
     * @return mixed
     */
-    private function produce_output($output, $charset)
+    private function produce_output($output, $charset, $debug)
     {
       $aaData = array();
       $rResult = $this->get_display_result();
 
+      if($debug) {
+        chromephp('rResult get_display_result', 'groupcollapsed');
+        chromephp($this->ci->db->last_query());
+        chromephp('', 'groupend');
+      }
+
       if($output == 'json')
       {
         $iTotal = $this->get_total_results();
+
+        if($debug) {
+          chromephp('iTotal get_total_results', 'groupcollapsed');
+          chromephp($this->ci->db->last_query());
+          chromephp('', 'groupend');
+        }
+
         $iFilteredTotal = $this->get_total_results(TRUE);
+
+        if($debug) {
+          chromephp('iFilteredTotal get_total_results TRUE', 'groupcollapsed');
+          chromephp($this->ci->db->last_query());
+          chromephp('', 'groupend');
+        }
+
       }
 
       foreach($rResult->result_array() as $row_key => $row_val)
@@ -388,6 +423,7 @@
             $aaData[$row_key][($this->check_cType())? $modkey : array_search($modkey, $this->columns)] = $this->exec_replace($val, $aaData[$row_key]);
 
         $aaData[$row_key] = array_diff_key($aaData[$row_key], ($this->check_cType())? $this->unset_columns : array_intersect($this->columns, $this->unset_columns));
+        $aaData[$row_key] = array_diff_key($aaData[$row_key], $this->unset_columns );
 
         if(!$this->check_cType())
           $aaData[$row_key] = array_values($aaData[$row_key]);
@@ -431,9 +467,12 @@
 
       foreach($this->or_where as $val)
         $this->ci->db->or_where($val[0], $val[1], $val[2]);
-        
+
       foreach($this->where_in as $val)
         $this->ci->db->where_in($val[0], $val[1]);
+
+      foreach($this->or_where_in as $val)
+        $this->ci->db->or_where_in($val[0], $val[1], FALSE, 'OR ');
 
       foreach($this->group_by as $val)
         $this->ci->db->group_by($val);
@@ -448,13 +487,27 @@
       {
         $this->ci->db->distinct($this->distinct);
         $this->ci->db->select($this->columns);
+      } else {
+        $this->ci->db->select('1', false);
       }
-      $subquery = $this->ci->db->get_compiled_select($this->table);
-      $countingsql = "SELECT COUNT(*) FROM (" . $subquery . ") SqueryAux";
-      $query = $this->ci->db->query($countingsql);
-      $result = $query->row_array();
-      $count = $result['COUNT(*)'];
+
+      if(method_exists($this->ci->db, 'get_compiled_select')) {
+
+        $subquery = $this->ci->db->get_compiled_select($this->table);
+        $countingsql = "SELECT COUNT(*) FROM (" . $subquery . ") SqueryAux";
+        $query = $this->ci->db->query($countingsql);
+        $result = $query->row_array();
+        $count = $result['COUNT(*)'];
+
+      } else {
+
+        $query = $this->ci->db->get($this->table, NULL, NULL, FALSE);
+        $count = $query->num_rows();
+
+      }
+
       return $count;
+
     }
 
     /**
@@ -467,14 +520,12 @@
     private function exec_replace($custom_val, $row_data)
     {
       $replace_string = '';
-      
+
       // Go through our array backwards, else $1 (foo) will replace $11, $12 etc with foo1, foo2 etc
       $custom_val['replacement'] = array_reverse($custom_val['replacement'], true);
 
       if(isset($custom_val['replacement']) && is_array($custom_val['replacement']))
       {
-        //Added this line because when the replacement has over 10 elements replaced the variable "$1" first by the "$10"
-        $custom_val['replacement'] = array_reverse($custom_val['replacement'], true);
         foreach($custom_val['replacement'] as $key => $val)
         {
           $sval = preg_replace("/(?<!\w)([\'\"])(.*)\\1(?!\w)/i", '$2', trim($val));
@@ -628,15 +679,6 @@
 
         return '{' . join(',', $json) . '}';
       }
-    }
-	
-	 /**
-     * returns the sql statement of the last query run
-     * @return type
-     */
-    public function last_query()
-    {
-      return  $this->ci->db->last_query();
     }
   }
 /* End of file Datatables.php */
