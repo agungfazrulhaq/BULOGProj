@@ -330,4 +330,29 @@ class M_data extends CI_Model
         return $this->db->delete($this->_tableaset, array("id_aset" => $id));
     }
 
+    public function addCategory(){
+        $post = $this->input->post();
+        $nama_kat_lr = $post['nama_kat_lr'];
+        $nama_kat = $post['nama_kategori'];
+        $jen_tran = $post['jenis_transaksi_kat'];
+
+        if($jen_tran == "D"){
+            $jenis_transaksi__ = "DEBIT";
+        }
+        else{
+            $jenis_transaksi__ = "KREDIT";
+        }
+
+        $cari_name_lr = strtolower($nama_kat_lr);
+        $query_kat__ = $this->db->query("SELECT * FROM tb_kategori_laba_rugi WHERE nama_kat_lr='".$cari_name_lr."';");
+        if($query_kat__->num_rows()==0){
+            $this->db->query("INSERT INTO tb_kategori_laba_rugi(nama_kat_lr,jenis_transaksi) VALUES('".$cari_name_lr."','".$jenis_transaksi__."')");
+        }
+        $result_id_kat = $this->db->query("SELECT id_kat_laba_rugi FROM tb_kategori_laba_rugi WHERE nama_kat_lr='".$cari_name_lr."'");
+        $id_kat___ = $result_id_kat->row();
+        if(isset($id_kat___)){
+            return $this->db->query("INSERT INTO tb_kategori(nama_kategori,id_kat_lr_kat) VALUES('".$nama_kat."','".$id_kat___->id_kat_laba_rugi."');");
+        }
+    }
+
 }

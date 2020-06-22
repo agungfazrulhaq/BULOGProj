@@ -449,7 +449,7 @@
   <?php } ?>
   <div class="row">
     <div class="col-md-2">
-      <form action="" method="post" enctype="multipart/form-data">
+      <form action="<?php echo site_url("Home/katadd/");?>" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="modalkategori" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -463,17 +463,17 @@
               <div class="modal-body mx-2">
                 <div class="md-form mb-3">
                   <label data-error="wrong" data-success="right" for="jenislaporan">Kategori Uraian</label>
-                  <input type="text" class="form-control" type="text" placeholder="..." name="" required>
+                  <input type="text" class="form-control" type="text" placeholder="..." name="nama_kat_lr" required>
                 </div>
 
                 <div class="md-form mb-3">
                   <label data-error="wrong" data-success="right" for="aset">Sub Kategori Uraian</label>
-                  <input type="text" class="form-control" type="text" placeholder="..." name="" required>
+                  <input type="text" class="form-control" type="text" placeholder="..." name="nama_kategori" required>
                 </div>
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
-                  <select class="custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
+                  <select class="custom-select" style="width: 100%;" id="selectJenis" name="jenis_transaksi_kat" required>
                     <option value="">Pilih Jenis Transaksi</option>
                     <option value="D">Debit</option>
                     <option value="K">Kredit</option>
@@ -874,6 +874,10 @@
 
           <?php if ($this->session->flashdata('successupdate')) { ?>
             toastr.success('Berhasil Menyimpan Data');
+          <?php } ?>
+
+          <?php if ($this->session->flashdata('successaddcat')) { ?>
+            toastr.success('Berhasil Menyimpan Kategori');
           <?php } ?>
 
           $('[data-toggle="tooltip"]').tooltip();

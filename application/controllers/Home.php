@@ -130,4 +130,13 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
+    public function katadd(){
+        $data__ = $this->M_data;
+        if($data__->addCategory()){
+            $this->session->set_flashdata('successaddcat', 'Berhasil menambahkan kategori');
+            redirect(base_url());
+        }
+
+    }
+
 }
