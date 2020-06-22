@@ -140,7 +140,7 @@ class Home extends CI_Controller {
 
     }
 
-    public function delCat(){
+    public function delcat(){
         $data__ = $this->M_data;
         $data__->deleteCat();
 
