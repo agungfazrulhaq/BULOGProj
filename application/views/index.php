@@ -450,6 +450,32 @@
     </div>
   <?php } ?>
 
+  <?php foreach($allcategory as $row_kat){ ?>
+  <div class="modal fade" id="delkate<?php echo $row_kat->id_kat_laba_rugi;?>">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title"><b>Konfirmasi Hapus Kategori</b></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Kategori ini.</h6>
+          <div class="modal-body text-center">
+            <h3><?php echo strtoupper($row_kat->nama_kat_lr);?></h3>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+            <form action="<?php echo site_url("Home/delcat_lr");?>" method="post">
+              <input type="hidden" id="id_aset" name="id_kategori_lr" value="<?php echo $row_kat->id_kat_laba_rugi;?>">
+              <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Kategori">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
+
   <?php foreach($kategori as $row_kat){ ?>
   <div class="modal fade" id="delkat<?php echo $row_kat->id_kategori;?>">
       <div class="modal-dialog modal-dialog-centered">
@@ -646,7 +672,7 @@
                 <li class="nav-item">
                   <div class="nav-link pt-0 pb-0">
                   <b class="text-dark "><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
-                  <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat"><i class="fas fa-backspace text-orange"></i></button>
+                  <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi;?>"><i class="fas fa-backspace text-orange"></i></button>
                   </div>
                 </li>
                   <?php foreach($kategori as $row_kt){?>

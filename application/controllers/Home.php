@@ -147,4 +147,11 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
+    public function delcat_lr(){
+        $data__ = $this->M_data;
+        $data__->deleteCat_lr();
+
+        return redirect(base_url());
+    }
+
 }
