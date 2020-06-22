@@ -144,8 +144,8 @@
               </div>
             </div>
 
-            <!-- <div class="card-footer bg-white">
-              <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+            <div class="card-footer bg-white">
+              <ul class="mailbox-attachments d-flex align-items-stretch clearfix mb-0">
                 <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
@@ -156,7 +156,7 @@
                       </span>
                   </div>
                 </li>
-                <li>
+                <!-- <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
                     <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> File yang di sertakan.pdf</a>
@@ -165,9 +165,9 @@
                       <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
                     </span>
                   </div>
-                </li>
+                </li> -->
               </ul>
-            </div> -->
+            </div>
 
             <div class="card-footer">
               <label for="">File input</label>
@@ -371,7 +371,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title"><b>Konfimasi Hapus Data Transaksi</b></h3>
+          <h3 class="modal-title"><b>Konfirmasi Hapus Data Transaksi</b></h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -426,16 +426,17 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title"><b>Konfimasi Hapus Aset</b></h3>
+            <h3 class="modal-title"><b>Konfirmasi Hapus Aset</b></h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-
+          <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Aset ini.</h6>
           <div class="modal-body text-center">
-            <h3><?php echo $delaset->nama_aset; ?></h3>
+            <h3><u><?php echo $delaset->nama_aset; ?></u></h3>
+            
           </div>
-
+          
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
             <form action="<?php echo site_url("Home/asetdel/"); ?>" method="post">
@@ -447,6 +448,7 @@
       </div>
     </div>
   <?php } ?>
+
   <div class="row">
     <div class="col-md-2">
       <form action="" method="post" enctype="multipart/form-data">
@@ -506,20 +508,20 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-3">
-              <img class="img-fluid" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
+              <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             </div>
             <div class="col-6">
-              <div class="pt-3 text-center">
-                <h1><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
+              <div class="pt-2 text-center">
+                <h1 style="font-size:2vw;"><b>Laporan Keuangan UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
               </div>
             </div>
             <div class="col-3">
-              <div class="info-box mb-0 bg-light ">
-                <div class="info-box-content font-weight-light  mr-2">
-                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
+              <div class="info-box mb-0 bg-light">
+                <div class="info-box-content font-weight-light  mr-2" style="font-size:1vw;">
+                  <span class="info-box-text" >Muhammad Fachrizal Ramdani</span>
                   <span class="info-box-number">NIP : 1103174125</span>
                 </div>
-                <img class="img-fluid rounded" width="90" height="90" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
+                <img class="img-fluid rounded" width="20%" height="20%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
               </div>
             </div>
           </div>
@@ -527,7 +529,7 @@
 
       <section class="content">
         <div class="row">
-          <div class="col-2">
+          <div class="col-2" style="font-size:1vw;">
             <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
             <div class="card">
 
@@ -552,7 +554,7 @@
                       $link_showaset .= $row_a->id_aset . "/0/0";
                     }
                     ?>
-                    <li class="nav-item" id="namaaset<?php echo $row_a->id_aset; ?>">
+                    <li class="nav-item " id="namaaset<?php echo $row_a->id_aset; ?>">
                       <div class="nav-link">
                         <a href="<?php echo site_url($link_showaset); ?>" id="" style="border-radius:0px; color:#343a40; "> <?php echo $row_a->nama_aset; ?></a>
                         <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delaset<?php echo $row_a->id_aset; ?>"><i class="fas fa-times text-orange"></i></button>
@@ -595,7 +597,7 @@
                   ?>
                   <?php foreach ($datatahun as $year_row) { ?>
                     <li class="nav-item">
-                      <a href="<?php echo site_url($year_filt . $year_row->years); ?>" class="nav-link" style="border-radius:0px;" id="ftahun<?php echo $year_row->years; ?>">
+                      <a href="<?php echo site_url($year_filt . $year_row->years); ?>" class="nav-link" style="border-radius:0px; color:#343a40;" id="ftahun<?php echo $year_row->years; ?>">
                         <?php echo $year_row->years; ?>
                       </a>
                     </li>
@@ -795,7 +797,12 @@
       <script>
         $(function() {
           // Summernote
-          $('.textarea').summernote()
+          $('.textarea').summernote({
+            toolbar: [
+              // [groupName, [list of button]]
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+            ]
+          });
         })
       </script>
       <script type="text/javascript">
