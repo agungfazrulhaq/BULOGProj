@@ -665,14 +665,14 @@
                 <ul class="nav nav-pills flex-column">
                   <li class="nav-item">
                     <div class="input-group p-1">
-                      <button type="button" class="btn btn-block btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
+                      <button type="button" class="btn btn-block btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Tambah Kategori</button>
                     </div>
                   </li>
                   <?php foreach ($allcategory as $row_cat) { ?>
                     <li class="nav-item">
                       <div class="nav-link pt-0 pb-0">
                         <b class="text-dark "><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
-                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi; ?>"><i class="fas fa-backspace text-orange"></i></button>
+                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi; ?>"><i class="fas fa-trash text-red"></i></button>
                       </div>
                     </li>
                     <?php foreach ($kategori as $row_kt) { ?>
@@ -789,7 +789,7 @@
                       if (isset($curr_month)) {
                       ?>
                         var bulanaktif = document.getElementById("month<?php echo $curr_month; ?>");
-                        bulanaktif.className += " bg-orange active";
+                        bulanaktif.className += " bg-info active";
                       <?php
                       }
                       ?>
@@ -1081,8 +1081,8 @@
             "processing": true,
             "serverSide": true,
             "lengthMenu": [
-              [-1, 25, 10],
-              ["All", 25, 10]
+              [10, 25, -1],
+              [10, 25, "All"]
             ],
             "fixedColumns": true,
             "scrollCollapse": true,
