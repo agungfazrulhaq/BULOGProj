@@ -83,18 +83,6 @@
             </div>
 
             <div class="md-form mb-2">
-              <label data-error="wrong" data-success="right" for="defaultForm-pass">Jenis Transaksi</label>
-              <div class="custom-control custom-check">
-                <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" value="D" required>
-                <label for="customRadio1" class="custom-control-label" alignment="right">Debet</label>
-              </div>
-              <div class="custom-control custom-check">
-                <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="K" required>
-                <label for="customRadio2" class="custom-control-label">Kredit</label>
-              </div>
-            </div>
-
-            <div class="md-form mb-2">
               <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -527,7 +515,7 @@
           </div>
       </section>
 
-      <section class="content" style="font-family:Tahoma;">
+      <section class="content">
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
             <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
