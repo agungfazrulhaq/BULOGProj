@@ -226,10 +226,11 @@ class M_data extends CI_Model
         // INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
         // INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori;";
 
-        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori,waktuupdate');
+        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori,waktuupdate,nama_kat_lr');
         $this->datatables->from('tb_transaksi');
         $this->datatables->join('tb_kategori', "transaksi_id_kategori = id_kategori");
         $this->datatables->join('tb_aset', "transaksi_id_aset = id_aset");
+        $this->datatables->join('tb_kategori_laba_rugi',"id_kat_laba_rugi = id_kat_lr_kat");
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
         $this->datatables->add_column('view', '<div class="btn-group">
