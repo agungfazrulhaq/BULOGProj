@@ -72,11 +72,20 @@
               <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
               <select class="form-control select2" style="width: 100%;" name="kategori" required>
                 <option selected="selected" value="">Pilih Kategori</option>
-                <optgroup label="PENDAPATAN">
+                <?php foreach($allcategory as $K_row__){?>
+                <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr);?>">
                 <?php foreach ($kategori as $row_k) { ?>
+                  <?php
+                  $id_kat__1 = $row_k->id_kat_lr_kat;
+                  $id_kat__2 = $K_row__->id_kat_laba_rugi;
+                  ?>
+                  <?php if($id_kat__1 == $id_kat__2){?>
                   <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+                
+                  <?php } ?>
                 <?php } ?>
                 </optgroup>
+                <?php }?>
               </select>
             </div>
             <div class="md-form mb-2">

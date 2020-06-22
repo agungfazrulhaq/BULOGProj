@@ -428,4 +428,16 @@ class M_data extends CI_Model
         }
     }
 
+    public function getAllCat(){
+        $allcat = $this->db->query("SELECT * FROM tb_kategori_laba_rugi");
+        
+        return $allcat->result();
+    }
+
+    public function deleteCat(){
+        $post = $this->input->post();
+        $id = $post['id_kategori'];
+        return $this->db->delete($this->_tablekategori, array("id_kategori" => $id));
+    }
+
 }
