@@ -281,7 +281,7 @@ class M_data extends CI_Model
         }
 
         $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm viewdata" data-toggle="modal" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7">
+        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7" data-time="$9">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
         <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
@@ -291,7 +291,7 @@ class M_data extends CI_Model
         <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,nama_kategori');
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
