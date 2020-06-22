@@ -423,7 +423,7 @@
           </div>
           <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Aset ini.</h6>
           <div class="modal-body text-center">
-            <h3><u><?php echo $delaset->nama_aset; ?></u></h3>
+            <h3><b><?php echo $delaset->nama_aset; ?></b></h3>
             
           </div>
           
@@ -438,6 +438,30 @@
       </div>
     </div>
   <?php } ?>
+
+  <div class="modal fade" id="delkat">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title"><b>Konfirmasi Hapus Kategori</b></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <h6 class="text-muted ml-3 mt-2">Anda akan menghapus semua data transaksi pada Kategori ini.</h6>
+          <div class="modal-body text-center">
+            <h3>N4M4 K4T3G0R1NY4</h3>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+            <form action="" method="post">
+              <input type="hidden" id="id_aset" name="id_aset" value="">
+              <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Kategori">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <div class="row">
     <div class="col-md-2">
@@ -455,12 +479,12 @@
               <div class="modal-body mx-2">
                 <div class="md-form mb-3">
                   <label data-error="wrong" data-success="right" for="jenislaporan">Kategori Uraian</label>
-                  <input type="text" class="form-control" type="text" placeholder="..." name="nama_kat_lr" required>
+                  <input type="text" class="form-control" type="text" placeholder="" name="nama_kat_lr" required>
                 </div>
 
                 <div class="md-form mb-3">
                   <label data-error="wrong" data-success="right" for="aset">Sub Kategori Uraian</label>
-                  <input type="text" class="form-control" type="text" placeholder="..." name="nama_kategori" required>
+                  <input type="text" class="form-control" type="text" placeholder="" name="nama_kategori" required>
                 </div>
 
                 <div class="md-form mb-2">
@@ -471,11 +495,6 @@
                     <option value="K">Kredit</option>
                   </select>
                 </div>
-
-
-
-
-
               </div>
               <div class="modal-footer d-flex justify-content-center">
                 <button class="btn btn-info">Simpan</button>
@@ -522,7 +541,6 @@
           <div class="col-2" style="font-size:1vw;">
             <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
             <div class="card">
-
               <div class="card-header">
                 <h3 class="card-title"><b>
                     Optimalisasi Aset</b><br></h3>
@@ -563,8 +581,8 @@
                   </form>
                 </ul>
               </div>
-
             </div>
+
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>Rekap Tahun</b></h3>
@@ -592,6 +610,34 @@
                       </a>
                     </li>
                   <?php } ?>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card collapsed-card">
+              <div class="card-header">
+                <h3 class="card-title"><b>Daftar Kategori</b></h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus text-orange"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item">
+                  <div class="input-group p-1">
+                  <button type="button" class="btn btn-block btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <b class="text-dark ml-2">PENDAPATAN</b>
+                </li>
+                <li class="nav-item " id="namaaset<?php echo $row_a->id_aset; ?>">
+                      <div class="nav-link">
+                        <a href="" id="" style="border-radius:0px; color:#343a40; ">Biaya Sewa Assets</a>
+                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat"><i class="fas fa-times text-orange"></i></button>
+                      </div>
+                </li>
                 </ul>
               </div>
             </div>
@@ -700,7 +746,6 @@
                 </h3>
                 <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
                     <i class="far fa-file-alt mr-1"></i> View All</button></a>
-                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalkategori"><i class="fas fa-plus mr-1" data-toggle="tooltip" title="Tambah Kategori Uraian" data-placement="top"></i>Add Category</button>
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
                     <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
