@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2020 at 03:31 AM
+-- Generation Time: Jun 22, 2020 at 08:37 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -31,16 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `files` (
   `id_files` int(11) NOT NULL,
   `nama_file` varchar(255) NOT NULL,
-  `id_transaksi` int(11) DEFAULT NULL,
+  `file_id_transaksi` int(11) DEFAULT NULL,
   `ukuran_file` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `files`
---
-
-INSERT INTO `files` (`id_files`, `nama_file`, `id_transaksi`, `ukuran_file`) VALUES
-(3, '1301171750_Laporan.pdf', 15, 423525);
 
 -- --------------------------------------------------------
 
@@ -82,8 +75,9 @@ INSERT INTO `tb_kategori` (`id_kategori`, `nama_kategori`, `id_kat_lr_kat`) VALU
 (1, 'Biaya Perjalanan Dinas', 3),
 (2, 'Sewa Assets', 3),
 (3, 'Biaya Operasional', 3),
-(7, 'Biaya Listrik/Telp/Air', 4),
-(8, 'Biaya Bank', 5);
+(9, 'Sewa Hotel/PYD', 3),
+(10, 'ssksksk', 6),
+(11, 'ereqqwqe', 5);
 
 -- --------------------------------------------------------
 
@@ -103,8 +97,8 @@ CREATE TABLE `tb_kategori_laba_rugi` (
 
 INSERT INTO `tb_kategori_laba_rugi` (`id_kat_laba_rugi`, `nama_kat_lr`, `jenis_transaksi`) VALUES
 (3, 'pendapatan', 'DEBIT'),
-(4, 'biaya umum', 'KREDIT'),
-(5, 'biaya bunga & penyusutan', 'KREDIT');
+(5, 'biaya bunga & penyusutan', 'KREDIT'),
+(6, 'kategorisad', 'KREDIT');
 
 -- --------------------------------------------------------
 
@@ -129,8 +123,7 @@ CREATE TABLE `tb_transaksi` (
 --
 
 INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`, `saldo`, `transaksi_id_aset`, `transaksi_id_kategori`, `waktuupdate`) VALUES
-(2020, '2020-03-30', 15, 'asdasdasd', 'KREDIT', 55444, 1, 2, '2020-06-19 06:57:09'),
-(2020, '2020-06-09', 19, 'asasasdasdw', 'DEBIT', 22222, 1, 3, '2020-06-19 07:24:00');
+(2020, '2020-06-20', 28, '<p>dasdwad</p>', 'D1', 1333, 1, 2, '2020-06-22 05:41:10');
 
 --
 -- Indexes for dumped tables
@@ -141,7 +134,7 @@ INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`,
 --
 ALTER TABLE `files`
   ADD PRIMARY KEY (`id_files`),
-  ADD KEY `id_transaksi` (`id_transaksi`);
+  ADD KEY `id_transaksi` (`file_id_transaksi`);
 
 --
 -- Indexes for table `tb_aset`
@@ -190,19 +183,19 @@ ALTER TABLE `tb_aset`
 -- AUTO_INCREMENT for table `tb_kategori`
 --
 ALTER TABLE `tb_kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori_laba_rugi`
 --
 ALTER TABLE `tb_kategori_laba_rugi`
-  MODIFY `id_kat_laba_rugi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kat_laba_rugi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
@@ -212,7 +205,7 @@ ALTER TABLE `tb_transaksi`
 -- Constraints for table `files`
 --
 ALTER TABLE `files`
-  ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `tb_transaksi` (`id_transaksi`);
+  ADD CONSTRAINT `files_transaksi_fkid` FOREIGN KEY (`file_id_transaksi`) REFERENCES `tb_transaksi` (`id_transaksi`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tb_kategori`
@@ -224,8 +217,8 @@ ALTER TABLE `tb_kategori`
 -- Constraints for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`transaksi_id_kategori`) REFERENCES `tb_kategori` (`id_kategori`),
-  ADD CONSTRAINT `transaksi_aset_id` FOREIGN KEY (`transaksi_id_aset`) REFERENCES `tb_aset` (`id_aset`) ON DELETE CASCADE;
+  ADD CONSTRAINT `transaksi_aset_id` FOREIGN KEY (`transaksi_id_aset`) REFERENCES `tb_aset` (`id_aset`) ON DELETE CASCADE,
+  ADD CONSTRAINT `transaksi_kategori_idfk` FOREIGN KEY (`transaksi_id_kategori`) REFERENCES `tb_kategori` (`id_kategori`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
