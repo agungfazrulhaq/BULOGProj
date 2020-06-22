@@ -515,7 +515,7 @@
           </div>
       </section>
 
-      <section class="content" style="font-family:Tahoma;">
+      <section class="content">
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
             <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
