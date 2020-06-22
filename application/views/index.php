@@ -72,14 +72,16 @@
               <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
               <select class="form-control select2" style="width: 100%;" name="kategori" required>
                 <option selected="selected" value="">Pilih Kategori</option>
+                <optgroup label="PENDAPATAN">
                 <?php foreach ($kategori as $row_k) { ?>
                   <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
                 <?php } ?>
+                </optgroup>
               </select>
             </div>
             <div class="md-form mb-2">
               <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-              <textarea type="textarea" class="form-control textarea validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="12uraian"></textarea>
+              <textarea type="textarea" class="form-control textarea validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
 
             <div class="md-form mb-2">
@@ -220,7 +222,7 @@
                 </div>
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-                  <textarea type="textarea" class="form-control validate" name="uraian" value="" required></textarea>
+                  <textarea type="textarea" class="form-control validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
@@ -933,7 +935,6 @@
         //-->
       </script>
       <script type='text/javascript'>
-          <!--
           var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
           var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
           var date = new Date();
