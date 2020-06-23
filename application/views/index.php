@@ -153,8 +153,8 @@
                     <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</span>
                       <span class="mailbox-attachment-size clearfix mt-1">
                         <span id="ukuranfile">1,245 KB</span> KB
-                        <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                        <a href="#" class="btn btn-default btn-sm float-right mr-1 pr-2 pl-2"><i class="fas fa-trash-alt"></i></a>
+                        <a href="#" id="downloadthefile" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                        <a href="#" id="deletethefile" class="btn btn-default btn-sm float-right mr-1 pr-2 pl-2"><i class="fas fa-trash-alt"></i></a>
                       </span>
                   </div>
                 </li>
@@ -1295,6 +1295,7 @@
             document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
             document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
             document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/");?>"+id_transaksi;
+            document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/");?>"+id_transaksi;
             document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
             document.getElementById("id_transaksi_file").value = id_transaksi;
 
