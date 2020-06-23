@@ -11,6 +11,7 @@ class Home extends CI_Controller {
         $this->load->model("M_data");
         $this->load->library('form_validation');
         $this->load->library('datatables');
+        $this->load->helper(array('url','download'));
     }
 
 	public function index()
@@ -153,6 +154,15 @@ class Home extends CI_Controller {
         $data__->deleteCat_lr();
 
         return redirect(base_url());
+    }
+
+    public function download_file($id_transaksi=null){
+        $getfile = $this->db->query("SELECT * FROM files WHERE file_id_transaksi=".$id_transaksi);
+        $getfile_ = $getfile->row();
+
+        force_download($_SERVER['DOCUMENT_ROOT']."/OpasetBulog/upload/".$getfile_->nama_file,NULL);
+
+        redirect(base_url());
     }
 
 }

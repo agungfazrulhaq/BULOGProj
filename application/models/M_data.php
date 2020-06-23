@@ -226,15 +226,16 @@ class M_data extends CI_Model
         // INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
         // INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori;";
 
-        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori,waktuupdate,nama_kat_lr');
+        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori,waktuupdate,nama_kat_lr,nama_file,ukuran_file');
         $this->datatables->from('tb_transaksi');
         $this->datatables->join('tb_kategori', "transaksi_id_kategori = id_kategori");
         $this->datatables->join('tb_aset', "transaksi_id_aset = id_aset");
         $this->datatables->join('tb_kategori_laba_rugi',"id_kat_laba_rugi = id_kat_lr_kat");
+        $this->datatables->join('files',"id_transaksi = file_id_transaksi",'left');
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
         $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7" data-time="$9" data-lr="$10" data-nkat="$11">
+        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7" data-time="$9" data-lr="$10" data-nkat="$11" data-namfile="$12" data-sizefile="$13">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
         <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
@@ -244,18 +245,19 @@ class M_data extends CI_Model
         <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori');
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
 
     public function getAset_Transaksi($id_aset, $monthdate, $yeardate)
     {
-        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori,waktuupdate,nama_kat_lr');
+        $this->datatables->select('id_transaksi,tanggal,ref,uraian,saldo,nama_kategori,nama_aset,transaksi_id_aset,transaksi_id_kategori,waktuupdate,nama_kat_lr,nama_file,ukuran_file');
         $this->datatables->from('tb_transaksi');
         $this->datatables->join('tb_kategori', "transaksi_id_kategori = id_kategori");
         $this->datatables->join('tb_aset', "transaksi_id_aset = id_aset");
         $this->datatables->join('tb_kategori_laba_rugi',"id_kat_laba_rugi = id_kat_lr_kat");
+        $this->datatables->join('files',"id_transaksi = file_id_transaksi",'left');
 
         // $buttons = '<a href="javascript:void(0);" class="edit_record btn btn-info btn-xs" data-kode="$1" data-nama="$2" data-harga="$3" data-kategori="$4">Edit</a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-xs" data-kode="$1">Hapus</a>'
         // $sql_ = $this->db->query($sql);
@@ -283,7 +285,7 @@ class M_data extends CI_Model
         }
 
         $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7" data-time="$9" data-lr="$10" data-nkat="$11">
+        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7" data-time="$9" data-lr="$10" data-nkat="$11" data-namfile="$12" data-sizefile="$13">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
         <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
@@ -293,7 +295,7 @@ class M_data extends CI_Model
         <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori');
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
@@ -362,12 +364,19 @@ class M_data extends CI_Model
     public function uploadFile(){
         $post = $this->input->post();
         if(!empty($_FILES['file_transaksi']['name'])){
+            $que_file_existance = $this->db->query("SELECT * FROM files where file_id_transaksi=".$post['id_transaksi']);
+            if($que_file_existance->num_rows() == 1){
+                $getFileex = $que_file_existance->row();
+                unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
+                $delfile__ = $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$post['id_transaksi']);
+            }
+
             $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/OpasetBulog/upload/';
             $uploadfile = $uploaddir.basename($_FILES['file_transaksi']['name']);
             $allowedExts = array(".pdf",".jpg",".png","jpeg");
             $namafile = $_FILES['file_transaksi']['name'];
             if(move_uploaded_file($_FILES['file_transaksi']['tmp_name'],$uploadfile)){
-                $queryUpload = "INSERT INTO files(id_transaksi,nama_file,ukuran_file)
+                $queryUpload = "INSERT INTO files(file_id_transaksi,nama_file,ukuran_file)
                                 VALUES(".$post['id_transaksi'].",'".$_FILES['file_transaksi']['name']."','".$_FILES['file_transaksi']['size']."')";
                 $this->db->query($queryUpload);
             }
