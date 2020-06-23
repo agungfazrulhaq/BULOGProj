@@ -16,7 +16,7 @@
             <tbody>
             <?php foreach($transaksi as $tranc){ ?>
             <tr>
-                <td></td>
+                <td><?php echo $tranc->tanggal; ?></td>
             </tr>
             <?php } ?>
             </tbody>

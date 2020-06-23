@@ -47,7 +47,8 @@ class M_data extends CI_Model
                                     tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
                                     FROM tb_transaksi 
                                     INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
-                                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori;");
+                                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+                                    ORDER BY tb_transaksi.tanggal;");
         return $query->result();
     }
 
