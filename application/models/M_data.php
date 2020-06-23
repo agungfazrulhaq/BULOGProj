@@ -41,6 +41,17 @@ class M_data extends CI_Model
         return $query->result();
     }
 
+    public function getTransaksitoPdf()
+    {
+        $query = $this->db->query("SELECT tb_transaksi.id_transaksi, tb_transaksi.tanggal, tb_transaksi.ref, tb_transaksi.uraian, 
+                                    tb_transaksi.saldo, tb_kategori.nama_kategori, tb_aset.nama_aset 
+                                    FROM tb_transaksi 
+                                    INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
+                                    INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+                                    ORDER BY tb_transaksi.tanggal;");
+        return $query->result();
+    }
+
     public function addTransaksi()
     {
         $post = $this->input->post();
@@ -113,6 +124,12 @@ class M_data extends CI_Model
     {
         $post = $this->input->post();
         $id = $post['id_transaksi'];
+        $que_file_existance = $this->db->query("SELECT * FROM files where file_id_transaksi=".$id_transaksi);
+        if($que_file_existance->num_rows() == 1){
+            $getFileex = $que_file_existance->row();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
+            $delfile__ = $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$id_transaksi);
+        }
         return $this->db->delete($this->_tabletransaksi, array("id_transaksi" => $id));
     }
 
@@ -456,6 +473,15 @@ class M_data extends CI_Model
         $post = $this->input->post();
         $id = $post['id_kategori_lr'];
         return $this->db->delete($this->_tablekategori_lr, array("id_kat_laba_rugi" => $id));
+    }
+
+    public function delFile($id_transaksi){
+        $que_file_existance = $this->db->query("SELECT * FROM files where file_id_transaksi=".$id_transaksi);
+        if($que_file_existance->num_rows() == 1){
+            $getFileex = $que_file_existance->row();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
+            $delfile__ = $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$id_transaksi);
+        }
     }
 
 }

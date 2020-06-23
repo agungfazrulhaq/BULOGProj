@@ -113,10 +113,40 @@ class Home extends CI_Controller {
         echo $this->M_data->getAset_Transaksi($id_aset,$monthdate,$yeardate);
     }
 
-    public function pdfrender(){
-        $this->load->view('pdfrender.php');
+    public function pdfrender($curr_aset=null,$curr_month=null,$curr_year=null){
+        $data["datatahun"] = $this->M_data->getYears();
+        $data["aset"] = $this->M_data->getAset();
+        $data["kategori"] = $this->M_data->getKategori();
+        if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
+            $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($id_aset,$monthdate,$yeardate);
+        }
+        else{
+            $data["transaksi"] = $this->M_data->getTransaksi();
+        }
+        $data["files"] = $this->M_data->getFiles();
+        $data["allcategory"] = $this->M_data->getAllCat();
+        $data["dataModel"] = $this->load->model("M_data");
+        
+        $this->load->view('pdfrender.php',$data);
 
         return redirect(base_url());
+    }
+
+    public function previewpdf($curr_aset=null,$curr_month=null,$curr_year=null){
+        $data["datatahun"] = $this->M_data->getYears();
+        $data["aset"] = $this->M_data->getAset();
+        $data["kategori"] = $this->M_data->getKategori();
+        if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
+            $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($id_aset,$monthdate,$yeardate);
+        }
+        else{
+            $data["transaksi"] = $this->M_data->getTransaksi();
+        }
+        $data["files"] = $this->M_data->getFiles();
+        $data["allcategory"] = $this->M_data->getAllCat();
+        $data["dataModel"] = $this->load->model("M_data");
+        
+        $this->load->view('previewpdf.php',$data);
     }
 
     public function upload(){
@@ -159,10 +189,18 @@ class Home extends CI_Controller {
     public function download_file($id_transaksi=null){
         $getfile = $this->db->query("SELECT * FROM files WHERE file_id_transaksi=".$id_transaksi);
         $getfile_ = $getfile->row();
+        if($getfile->num_rows()==1){
+            force_download($_SERVER['DOCUMENT_ROOT']."/OpasetBulog/upload/".$getfile_->nama_file,NULL);
+        }
 
-        force_download($_SERVER['DOCUMENT_ROOT']."/OpasetBulog/upload/".$getfile_->nama_file,NULL);
+        return redirect(base_url());
+    }
 
-        redirect(base_url());
+    public function delfile($id_transaksi=null){
+        $data__ = $this->M_data;
+        $data__->delFile($id_transaksi);
+
+        return redirect(base_url());
     }
 
 }
