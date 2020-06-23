@@ -31,7 +31,7 @@
 </head>
 <style>
   .page-item.active .page-link {
-    color: ;
+    color:white !important;
     background-color: #17a2b8 !important;
     border: 1px solid #17a2b8;
   }
@@ -553,12 +553,9 @@
   <div class="wrapper">
 
   <nav class="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
-  <a class="navbar-brand font-weight-bold" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
+  <a class="navbar-brand font-weight-normal" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="navbar-toggler mt-1" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i></a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-dot-circle"></i>
@@ -705,11 +702,11 @@
               </div>
             </div>
 
-            <div class="card collapsed-card">
+            <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>Daftar Kategori</b></h3>
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus text-orange"></i>
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus text-orange"></i>
                   </button>
                 </div>
               </div>
@@ -721,9 +718,9 @@
                     </div>
                   </li>
                   <?php foreach ($allcategory as $row_cat) { ?>
-                    <li class="nav-item">
+                    <li class="nav-item " data-toggle="collapse" href="#multiCollapseExample<?php echo $row_cat->id_kat_laba_rugi; ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
                       <div class="nav-link pt-0 pb-0">
-                        <b class="text-dark "><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
+                        <b class="text-dark" style="font-size:0.85vw;"><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
                         <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi; ?>"><i class="fas fa-trash text-red"></i></button>
                       </div>
                     </li>
@@ -734,9 +731,9 @@
 
                       if ($id_kat_lr == $id_kat) {
                       ?>
-                        <li class="nav-item " id="namaaset">
-                          <div class="nav-link">
-                            <span id="" style="border-radius:0px; color:#343a40; "><?php echo $row_kt->nama_kategori; ?></span>
+                        <li class="nav-item collapse multi-collapse" id="multiCollapseExample<?php echo $row_cat->id_kat_laba_rugi; ?>" id="namaaset">
+                          <div class="nav-link bg-white text-dark">
+                            <span id=""><?php echo $row_kt->nama_kategori; ?></span>
                             <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkat<?php echo $row_kt->id_kategori; ?>"><i class="fas fa-times text-orange"></i></button>
                           </div>
                         </li>
@@ -860,7 +857,7 @@
                 </div>
               </div>
               <div class="card-body table-responsive-sm" style="font-size:1vw;">
-                <table class="table table-hover table-sm" style="width:100%" id="tbmaster">
+                <table class="table table-hover table-sm" style="width:100%;" id="tbmaster">
                   <thead class="">
                     <tr>
                       <th>AKSI</th>
