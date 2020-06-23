@@ -48,8 +48,8 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <form action="<?php echo site_url('Home/add') ?>" method="post" enctype="multipart/form-data">
-          <div class="modal-header text-center">
-            <h4 class="modal-title">Masukkan Data [Transaksi]</h4>
+          <div class="modal-header">
+            <h4 class="modal-title font-weight-bold">Masukkan Data [Transaksi]</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -152,8 +152,9 @@
                   <div class="mailbox-attachment-info">
                     <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</span>
                       <span class="mailbox-attachment-size clearfix mt-1">
-                        <span id="ukuranfile"></span> KB
-                        <a href="" class="btn btn-default btn-sm float-right" id="downloadthefile"><i class="fas fa-cloud-download-alt"></i></a>
+                        <span id="ukuranfile">1,245 KB</span> KB
+                        <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                        <a href="#" class="btn btn-default btn-sm float-right mr-1 pr-2 pl-2"><i class="fas fa-trash-alt"></i></a>
                       </span>
                   </div>
                 </li>
@@ -549,7 +550,19 @@
 
   <div class="wrapper">
 
-
+  <div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">Collapsed content</h4>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
 
     <div class="content-wrapper">
       <section class="content-header">
@@ -578,7 +591,8 @@
       <section class="content">
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
-            <button type="button" class="btn btn-block btn-info mb-2" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+            <button type="button" class="btn btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+            
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>
@@ -601,9 +615,9 @@
                       $link_showaset .= $row_a->id_aset . "/0/0";
                     }
                     ?>
-                    <li class="nav-item " id="namaaset<?php echo $row_a->id_aset; ?>">
-                      <div class="nav-link">
-                        <a href="<?php echo site_url($link_showaset); ?>" id="" style="border-radius:0px; color:#343a40; "> <?php echo $row_a->nama_aset; ?></a>
+                    <li class="nav-item">
+                      <div class="nav-link" id="namaaset<?php echo $row_a->id_aset; ?>" style="border-radius:0px;">
+                        <a href="<?php echo site_url($link_showaset); ?>" id="" style="color:#343a40;"> <?php echo $row_a->nama_aset; ?></a>
                         <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delaset<?php echo $row_a->id_aset; ?>"><i class="fas fa-times text-orange"></i></button>
                       </div>
                     </li>
@@ -789,7 +803,7 @@
                       if (isset($curr_month)) {
                       ?>
                         var bulanaktif = document.getElementById("month<?php echo $curr_month; ?>");
-                        bulanaktif.className += " bg-info active";
+                        bulanaktif.className += " font-weight-bold bg-info active";
                       <?php
                       }
                       ?>
@@ -982,7 +996,7 @@
         if (isset($curr_year)) {
         ?>
           var tahunaktif = document.getElementById("ftahun<?php echo $curr_year; ?>");
-          tahunaktif.className += " bg-info active";
+          tahunaktif.className += " font-weight-bold bg-info active";
         <?php
         }
         ?>
@@ -992,7 +1006,7 @@
         if (isset($curr_aset)) {
         ?>
           var bulanaktif = document.getElementById("namaaset<?php echo $curr_aset; ?>");
-          bulanaktif.className += " bg-info  active";
+          bulanaktif.className += " font-weight-bold bg-info active";
         <?php
         }
         ?>
