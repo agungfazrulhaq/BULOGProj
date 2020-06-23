@@ -547,22 +547,60 @@
   </div>
   <!-- end ALL Modal Control -->
 
+  
+
 
   <div class="wrapper">
 
-  <div class="pos-f-t">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <h4 class="text-white">Collapsed content</h4>
-      <span class="text-muted">Toggleable via the navbar brand.</span>
-    </div>
-  </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav class="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
+  <a class="navbar-brand font-weight-bold" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="navbar-toggler mt-1" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-dot-circle"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+      <span class="nav-link p-0 mt-2"><div id="clock"></div></span>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+        <span class="toastrDefaultError" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Log Out <i class="fas fa-sign-out-alt"></i></span>
+        </a>
+        
+      </li>
+      
+    </ul>
   </nav>
-</div>
 
     <div class="content-wrapper">
       <section class="content-header">
@@ -572,8 +610,8 @@
               <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             </div>
             <div class="col-6">
-              <div class="pt-2 text-center">
-                <h1 style="font-size:2vw;"><b>LAPORAN KEUANGAN UB. OPASET <br>KANTOR WILAYAH SULAWESI SELATAN & BARAT</b></h1>
+              <div class="text-center">
+                <h1 style="font-size:4vw; font-family:bebas;"><marquee truespeed scrolldelay="16">Butuh dana hubungi LEBAH GANTENG @bajeng.com eaa #ling</marquee></h1>
               </div>
             </div>
             <div class="col-3">
@@ -815,13 +853,9 @@
                     <i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
-                    <span class="btn btn-dark btn-sm breadcrumb-item mr-1">
-                      <div id="clock"></div>
-                    </span>
                     <button type="button" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
                         <i class="fas fa-print mr-1"></i> Cetak </span>
                     </button>
-                    <span class="btn btn-danger btn-sm toastrDefaultError mr-1" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Log Out <i class="fas fa-sign-out-alt"></i></span>
                   </div>
                 </div>
               </div>
