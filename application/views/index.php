@@ -130,7 +130,7 @@
                 <span class="mailbox-read-time float-right text-right bg-light p-1 pl-2 pr-2 rounded">
                   <code>
                     User : Muhammad Fachrizal Ramdani <br>
-                    <span id="tanggal_update">15 Feb. 2015</span> <br>
+                    <span id="tanggal_update">--:--:--</span> <br>
                     Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
@@ -150,9 +150,9 @@
                 <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
-                    <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</spin>
+                    <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</span>
                       <span class="mailbox-attachment-size clearfix mt-1">
-                        <span>1,245 KB</span>
+                        <span id="ukuranfile">1,245 KB</span> KB
                         <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
                         <a href="#" class="btn btn-default btn-sm float-right mr-1 pr-2 pl-2"><i class="fas fa-trash-alt"></i></a>
                       </span>
@@ -180,7 +180,7 @@
                       <div class="btn btn-default btn-file">
                         <i class="fas fa-paperclip"></i> Tambah Bukti Pembayaran
                         <input type="hidden" name="id_transaksi" id="id_transaksi_file">
-                        <input type="file" name="attachment">
+                        <input type="file" name="file_transaksi">
                       </div>
                       <button class="btn btn-info">Add</button>
                   </form>
@@ -1281,6 +1281,11 @@
             var tanggalupdate = $(this).data('time');
             var name_lr = $(this).data('lr');
             var name_kat = $(this).data('nkat');
+            var nama_file = $(this).data('namfile');
+            var ukuran_file = $(this).data('sizefile');
+
+            var float_ukuran = parseFloat(ukuran_file);
+            var size_file = float_ukuran/1024;
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalView').modal('show');
             var jenistransaksi = "";
@@ -1316,14 +1321,14 @@
             document.getElementById("jen_tranview").innerHTML = jenis_tranc;
             document.getElementById("refview").innerHTML = ref;
             document.getElementById("namekat").innerHTML = name_kat;
+            document.getElementById("nama_file").innerHTML = nama_file;
             document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
             document.getElementById("asetview").innerHTML = aset;
             document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             document.getElementById("uraianview").innerHTML = uraian;
             document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
-            var lelelele = "<span class='mailbox-attachment-size clearfix mt-1'><span>1,245 KB</span><a href='#' class='btn btn-default btn-sm float-right'><i class='fas fa-cloud-download-alt'></i></a></span>";
-            document.getElementById("nama_file").innerHTML = lelele;
-
+            document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
+            document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/");?>"+id_transaksi;
             document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
             document.getElementById("id_transaksi_file").value = id_transaksi;
 
