@@ -878,9 +878,17 @@
                 <ul class="nav nav-pills ml-auto p-0">
                   <li class="nav-item pr-1"><a class="btn btn-warning text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
                   <li class="nav-item" hidden><a class="nav-link" href="#tab_2" data-toggle="tab">Tab 2</a></li>
-                  <li class="nav-item pr-1"><a class="bg-white" href="#tab_3" data-toggle="tab"><button class="btn btn-info btn-sm">Buat Jurnal <i class="far fa-edit"></i></button></a></li>
+                  <?php 
+                    if(isset($curr_aset) and isset($curr_year) and isset($curr_month)){
+                      if($curr_month>0 and $curr_month<13 and $curr_aset>0 and $curr_year>0){
+                  ?>
+                  <li class="nav-item pr-1"><a class="bg-white" href="#tab_3" data-toggle="tab"><button class="btn btn-info btn-sm" onclick="cetaktukar()">Buat Jurnal <i class="far fa-edit"></i></button></a></li>
+                  <?php
+                      }
+                    }
+                  ?>
                   <li class="nav-item "></li>
-                  <li class="nav-item"><a class=""><button type="button" class="btn bg-olive btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan"><i class="fas fa-print mr-1"></i> Cetak </span>
+                  <li class="nav-item" id="cetakbtn"><a class=""><button type="button" class="btn bg-olive btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan"><i class="fas fa-print mr-1"></i> Cetak </span>
                       </button></a></li>
 
                 </ul>
@@ -1177,7 +1185,11 @@
         var year = (yy < 1000) ? yy + 1900 : yy;
         document.getElementById('hari').innerHTML = months[month] + ' ' + year;
       </script>
-
+      <script>
+      function cetaktukar(){
+        document.getElementById("cetakbtn").outerHTML = "";
+      }
+      </script>
       <script>
         $(document).ready(function() {
           var buttonCommon = {
