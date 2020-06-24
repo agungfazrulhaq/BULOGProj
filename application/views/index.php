@@ -68,6 +68,12 @@
                 <?php } ?>
               </select>
             </div>
+
+            <div class="md-form mb-2">
+              <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
+              <textarea type="textarea" class="form-control validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            </div>
+
             <div class="md-form mb-2">
               <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
               <select class="form-control select2" style="width: 100%;" name="kategori" required>
@@ -87,10 +93,6 @@
                   </optgroup>
                 <?php } ?>
               </select>
-            </div>
-            <div class="md-form mb-2">
-              <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
-              <textarea type="textarea" class="form-control textarea validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
 
             <div class="md-form mb-2">
@@ -225,18 +227,31 @@
                     <?php } ?>
                   </select>
                 </div>
-                <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                  <select class="form-control custom-select" style="width: 100%;" id="selectkategori" name="kategori" required>
-                    <?php foreach ($kategori as $row_k) { ?>
-                      <?php ?>
-                      <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
+
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-pass">Uraian</label>
                   <textarea type="textarea" class="form-control validate" name="uraian" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                </div>
+
+                <div class="md-form mb-2">
+                  <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
+                  <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                    <option selected="selected" value="">Pilih Kategori</option>
+                    <?php foreach ($allcategory as $K_row__) { ?>
+                      <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
+                        <?php foreach ($kategori as $row_k) { ?>
+                          <?php
+                          $id_kat__1 = $row_k->id_kat_lr_kat;
+                          $id_kat__2 = $K_row__->id_kat_laba_rugi;
+                          ?>
+                          <?php if ($id_kat__1 == $id_kat__2) { ?>
+                            <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+
+                          <?php } ?>
+                        <?php } ?>
+                      </optgroup>
+                    <?php } ?>
+                  </select>
                 </div>
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
@@ -940,17 +955,6 @@
       <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
-      <script>
-        $(function() {
-          // Summernote
-          $('.textarea').summernote({
-            toolbar: [
-              // [groupName, [list of button]]
-              ['style', ['bold', 'italic', 'underline', 'clear']],
-            ]
-          });
-        })
-      </script>
       <script type="text/javascript">
         var rupiah = document.getElementById('rupiah');
         rupiah.addEventListener('keyup', function(e) {
