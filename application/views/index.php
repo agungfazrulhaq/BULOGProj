@@ -863,7 +863,9 @@
                     <i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 <div class="card-tools">
                   <div class="input-group input-group-sm mt-0">
-                    <button type="button" class="btn btn-info btn-sm mr-1" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
+                  <button class="btn btn-dark btn-sm ml-2 mr-1" id="tableall" data-toggle="pill" href="#tableall" role="tab" aria-controls="tableall" aria-selected="true">
+                    <i class="far fa-file-alt mr-1"></i> Buat Jurnal </button>
+                    <button type="button" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
                         <i class="fas fa-print mr-1"></i> Cetak </span>
                     </button>
                   </div>
