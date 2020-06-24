@@ -635,9 +635,11 @@
               <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             </div>
             <div class="col-6">
-              <!-- <div class="text-center">
-                <h1 style="font-size:4vw; font-family:bebas;"><marquee truespeed scrolldelay="16">Butuh dana hubungi LEBAH GANTENG @bajeng.com eaa #ling</marquee></h1>
-              </div> -->
+              <div class="card card-outline card-info mb-0 pb-0">
+                <div class="card-body">
+                  <h1><marquee scrolldelay="6" truespeed="truespeed">Mantappp</marquee></h1>
+                </div>
+              </div>
             </div>
             <div class="col-3">
               <div class="info-box mb-0 bg-light">
