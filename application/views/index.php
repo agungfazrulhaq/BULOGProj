@@ -31,7 +31,7 @@
 </head>
 <style>
   .page-item.active .page-link {
-    color:white !important;
+    color: white !important;
     background-color: #17a2b8 !important;
     border: 1px solid #17a2b8;
   }
@@ -151,11 +151,11 @@
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
                     <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</span>
-                      <span class="mailbox-attachment-size clearfix mt-1">
-                        <span id="ukuranfile">1,245 KB</span> KB
-                        <a href="#" id="downloadthefile" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                        <a href="#" id="deletethefile" class="btn btn-default btn-sm float-right mr-1 pr-2 pl-2"><i class="fas fa-trash-alt"></i></a>
-                      </span>
+                    <span class="mailbox-attachment-size clearfix mt-1">
+                      <span id="ukuranfile">1,245 KB</span> KB
+                      <a href="#" id="downloadthefile" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                      <a href="#" id="deletethefile" class="btn btn-default btn-sm float-right mr-1 pr-2 pl-2"><i class="fas fa-trash-alt"></i></a>
+                    </span>
                   </div>
                 </li>
                 <!-- <li>
@@ -547,57 +547,59 @@
   </div>
   <!-- end ALL Modal Control -->
 
-  
+
 
 
   <div class="wrapper">
 
-  <nav class="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
-  <a class="navbar-brand font-weight-normal" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-dot-circle"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+    <nav class="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
+      <a class="navbar-brand font-weight-normal" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-dot-circle"></i>
+            <span class="badge badge-warning navbar-badge">15</span>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-    </ul>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">15 Notifications</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> 4 new messages
+              <span class="float-right text-muted text-sm">3 mins</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-users mr-2"></i> 8 friend requests
+              <span class="float-right text-muted text-sm">12 hours</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-file mr-2"></i> 3 new reports
+              <span class="float-right text-muted text-sm">2 days</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          </div>
+        </li>
+      </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-      <span class="nav-link p-0 mt-2"><div id="clock"></div></span>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-        <span class="toastrDefaultError" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Log Out <i class="fas fa-sign-out-alt"></i></span>
-        </a>
-        
-      </li>
-      
-    </ul>
-  </nav>
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <span class="nav-link p-0 mt-2">
+            <div id="clock"></div>
+          </span>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <span class="toastrDefaultError" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Keluar <i class="fas fa-sign-out-alt"></i></span>
+          </a>
+
+        </li>
+
+      </ul>
+    </nav>
 
     <div class="content-wrapper">
       <section class="content-header">
@@ -608,7 +610,9 @@
             </div>
             <div class="col-6">
               <div class="text-center">
-                <h1 style="font-size:4vw; font-family:bebas;"><marquee truespeed scrolldelay="16">Butuh dana hubungi LEBAH GANTENG @bajeng.com eaa #ling</marquee></h1>
+                <h1 style="font-size:4vw; font-family:bebas;">
+                  <marquee truespeed scrolldelay="16">Butuh dana hubungi LEBAH GANTENG @bajeng.com eaa #ling</marquee>
+                </h1>
               </div>
             </div>
             <div class="col-3">
@@ -627,7 +631,7 @@
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
             <button type="button" class="btn btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
-            
+
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>
@@ -1282,7 +1286,7 @@
             var ukuran_file = $(this).data('sizefile');
 
             var float_ukuran = parseFloat(ukuran_file);
-            var size_file = float_ukuran/1024;
+            var size_file = float_ukuran / 1024;
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalView').modal('show');
             var jenistransaksi = "";
@@ -1325,8 +1329,8 @@
             document.getElementById("uraianview").innerHTML = uraian;
             document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
             document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
-            document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/");?>"+id_transaksi;
-            document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/");?>"+id_transaksi;
+            document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/"); ?>" + id_transaksi;
+            document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/"); ?>" + id_transaksi;
             document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
             document.getElementById("id_transaksi_file").value = id_transaksi;
 
