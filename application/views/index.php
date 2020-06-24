@@ -876,7 +876,7 @@
                   <a href="<?php echo base_url(); ?>"><button class="btn bg-olive btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data"><i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 </h3>
                 <ul class="nav nav-pills ml-auto p-0">
-                  <li class="nav-item pr-1"><a class="btn btn-warning text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
+                  <li class="nav-item pr-1"><a class="btn btn-secondary text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
                   <li class="nav-item" hidden><a class="nav-link" href="#tab_2" data-toggle="tab">Tab 2</a></li>
                   <?php 
                     if(isset($curr_aset) and isset($curr_year) and isset($curr_month)){
