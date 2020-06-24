@@ -373,7 +373,7 @@
                   <span class="btn btn-dark disabled">Export Ke : </span>
 
                   <button type="button" class="btn btn-sm btn-warning">
-                    <span class="p-2">PDF</span>
+                    <span class="p-2 text-white">PDF</span>
                   </button>
                   <button type="button" class="btn btn-sm btn-success">
                     <span class="p-1">EXCEL</span>
@@ -772,12 +772,12 @@
               </div>
             </div>
           </div>
+          
           <div class="col-md-10">
-            <div class="card card-info card-outline">
-              <div class="card-header">
+            <div class="card card-outline card-info">
+              <div class="card-header d-flex p-2">
                 <h3 class="card-title">
-                  <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-dark btn-sm">Dashboard</button>
+                  <div class="btn-group dropdown"><button type="button" class="btn btn-dark btn-sm">Dashboard</button>
                     <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <?php
                       if (isset($curr_month)) {
@@ -873,55 +873,83 @@
                     </script>
                   </div>
                   </b>
+                  <a href="<?php echo base_url(); ?>"><button class="btn bg-olive btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data"><i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 </h3>
-                <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data">
-                    <i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
-                <div class="card-tools">
-                  <div class="input-group input-group-sm mt-0">
-                  <button class="btn btn-dark btn-sm ml-2 mr-1" id="tableall" data-toggle="pill" href="#tableall" role="tab" aria-controls="tableall" aria-selected="true">
-                    <i class="far fa-file-alt mr-1"></i> Buat Jurnal </button>
-                    <button type="button" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan">
-                        <i class="fas fa-print mr-1"></i> Cetak </span>
-                    </button>
+                <ul class="nav nav-pills ml-auto p-0">
+                  <li class="nav-item pr-1"><a class="btn bg-gray btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
+                  <li class="nav-item" hidden><a class="nav-link" href="#tab_2" data-toggle="tab">Tab 2</a></li>
+                  <li class="nav-item pr-1"><a class="bg-white" href="#tab_3" data-toggle="tab"><button class="btn btn-info btn-sm">Buat Jurnal <i class="far fa-edit"></i></button></a></li>
+                  <li class="nav-item "></li>
+                  <li class="nav-item"><a class=""><button type="button" class="btn bg-olive btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan"><i class="fas fa-print mr-1"></i> Cetak </span>
+                      </button></a></li>
+
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1" style="font-size:1vw;">
+                    <div class="table-responsive-sm">
+                      <table class="table table-hover table-sm" style="width:100%;" id="tbmaster">
+                        <thead class="">
+                          <tr>
+                            <th>AKSI</th>
+                            <th class="text-center">TANGGAL</th>
+                            <th>REF</th>
+                            <th class="text-center" style="width:15%">ASET</th>
+                            <th class="text-center" style="width:40%">URAIAN</th>
+                            <th></th>
+                            <th>SALDO</th>
+                          </tr>
+                        </thead>
+                        <tfoot class="">
+                          <?php
+                          $total_saldo = 0;
+                          foreach ($transaksi as $t_row) {
+                            if (strpos($t_row->ref, 'D') !== false) {
+                              $total_saldo += $t_row->saldo;
+                            } else {
+                              $total_saldo -= $t_row->saldo;
+                            }
+                          }
+                          ?>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right font-weight-light">Total Saldo = </td>
+                            <td></td>
+                            <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
                   </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_2">
+                    The European languages are members of the same family. Their separate existence is a myth.
+                    For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+                    in their grammar, their pronunciation and their most common words. Everyone realizes why a
+                    new common language would be desirable: one could refuse to pay expensive translators. To
+                    achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+                    words. If several languages coalesce, the grammar of the resulting language is more simple
+                    and regular than that of the individual languages.
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_3">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum.
+                  </div>
+                  
+                  <!-- /.tab-pane -->
                 </div>
-              </div>
-              <div class="card-body table-responsive-sm" style="font-size:1vw;">
-                <table class="table table-hover table-sm" style="width:100%;" id="tbmaster">
-                  <thead class="">
-                    <tr>
-                      <th>AKSI</th>
-                      <th class="text-center">TANGGAL</th>
-                      <th>REF</th>
-                      <th class="text-center" style="width:15%">ASET</th>
-                      <th class="text-center" style="width:40%">URAIAN</th>
-                      <th></th>
-                      <th>SALDO</th>
-                    </tr>
-                  </thead>
-                  <tfoot class="">
-                    <?php
-                    $total_saldo = 0;
-                    foreach ($transaksi as $t_row) {
-                      if (strpos($t_row->ref, 'D') !== false) {
-                        $total_saldo += $t_row->saldo;
-                      } else {
-                        $total_saldo -= $t_row->saldo;
-                      }
-                    }
-                    ?>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td class="text-right font-weight-light">Total Saldo = </td>
-                      <td></td>
-                      <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
             </div>
           </div>
       </section>
