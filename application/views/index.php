@@ -578,7 +578,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-dot-circle"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
+            <span class="badge badge-danger navbar-badge">15</span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span class="dropdown-item dropdown-header">15 Notifications</span>
@@ -876,7 +876,7 @@
                   <a href="<?php echo base_url(); ?>"><button class="btn bg-olive btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data"><i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 </h3>
                 <ul class="nav nav-pills ml-auto p-0">
-                  <li class="nav-item pr-1"><a class="btn bg-gray btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
+                  <li class="nav-item pr-1"><a class="btn btn-warning text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
                   <li class="nav-item" hidden><a class="nav-link" href="#tab_2" data-toggle="tab">Tab 2</a></li>
                   <li class="nav-item pr-1"><a class="bg-white" href="#tab_3" data-toggle="tab"><button class="btn btn-info btn-sm">Buat Jurnal <i class="far fa-edit"></i></button></a></li>
                   <li class="nav-item "></li>
@@ -937,13 +937,54 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_3">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    It has survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+                  <div class="card card-default">
+                    <div class="card-header">
+                      <h3 class="card-title">Jurnal <b>BARUGA LAPPO ASE</b></h3>
+
+                      <div class="card-tools">
+                      <b>1 November - 30 November, 2019 </b>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div class="form-group">
+                            <label>Jurnal</label>
+                            <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
+                          </div>
+                          <div class="form-group">
+                            <label>Biaya</label>
+                            <input type="text" class="form-control" placeholder="(Biaya ... )">
+                          </div>
+                          <!-- /.form-group -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>KAS</label>
+                            <input type="text" class="form-control" placeholder="" value="RP.15.000">
+                          </div>
+                          
+                          <div class="form-group col-md-4">
+                          <label>Tambah Jurnal</label>
+                            <button class="btn bg-teal"><i class="fas fa-plus"></i></button>
+                          </div>
+                          <!-- /.form-group -->
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                    <div class="card-title text-wight-bold">
+                      Total Saldo = <span class="btn-sm bg-teal">Rp. 45,000,000.00</span>
+                      </div>
+                      <div class="card-title float-right">
+                        <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button>
+                        <button class="btn btn-sm bg-olive"><i class="fas fa-print"></i> Cetak Jurnal</button>
+                      </div>
+                    </div>
+                  </div>
                   </div>
                   
                   <!-- /.tab-pane -->
