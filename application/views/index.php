@@ -346,9 +346,11 @@
               </div>
 
               <div class="modal-footer d-flex justify-content-center">
+                <a href="<?php echo base_url('Home/previewpdf/');?>">
                 <button type="button" class="btn btn-sm btn-default">
                   <span class="p-2">LIHAT</span>
                 </button>
+                </a>
                 <div class="btn-group">
 
                   <span class="btn btn-dark disabled">Export Ke : </span>
