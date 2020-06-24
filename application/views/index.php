@@ -116,11 +116,13 @@
   <div class="modal fade" id="modalView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
-        <div class="card card-info card-outline">
+        <div class="card card-orange card-outline">
           <div class="card-header font-weight-bold">
             <span class="" id="jen_tranview"></span> [<span id="refview">codeREF</span>] <span id="tanggalview"></span>
-            <i class="ml-5 fas fa-bookmark text-info"></i>
-            <span class="font-weight-normal">Kategori :(<span id="name_lr">not_found</span>), "<span id="namekat">not_found</span>"</span>
+            <i class="ml-3 fas fa-bookmark text-info"></i>
+            <span class="font-weight-normal">Kategori :[ <span id="name_lr">not_found</span> ] 
+            <i class="ml-2 fas fa-chevron-circle-right text-info"></i>
+            Sub Kategori :[ <span id="namekat">not_found</span> ] </span>
             <button type="button" class="btn btn-danger pl-3 pr-3 float-right btn-sm" data-dismiss="modal"><span aria-hidden="true">X</span></button>
           </div>
 
@@ -128,7 +130,7 @@
             <div class="mailbox-read-info">
               <h3><b>NOMINAL TRANSAKSI : &nbsp;Rp. <span id="saldoview">Saldo</span></b>
                 <span class="mailbox-read-time float-right text-right bg-light p-1 pl-2 pr-2 rounded">
-                  <code>
+                  <code class="text-orange">
                     User : Muhammad Fachrizal Ramdani <br>
                     <span id="tanggal_update">--:--:--</span> <br>
                     Tanggal Pembuatan Laporan (Timestamp)</code>
@@ -555,7 +557,7 @@
   <div class="wrapper">
 
   <nav class="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
-  <a class="navbar-brand font-weight-normal" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
+  <a class="navbar-brand font-weight-bold" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
@@ -723,7 +725,7 @@
                     <li class="nav-item " data-toggle="collapse" href="#multiCollapseExample<?php echo $row_cat->id_kat_laba_rugi; ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
                       <div class="nav-link pt-0 pb-0">
                         <b class="text-dark" style="font-size:0.85vw;"><i class="fas fa-bookmark text-info"></i> <?php echo strtoupper($row_cat->nama_kat_lr); ?></b>
-                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi; ?>"><i class="fas fa-trash text-red"></i></button>
+                        <button type="button" class="float-right btn btn-xs" data-toggle="modal" data-target="#delkate<?php echo $row_cat->id_kat_laba_rugi; ?>"><i class="fas fa-eraser text-red"></i></button>
                       </div>
                     </li>
                     <?php foreach ($kategori as $row_kt) { ?>
