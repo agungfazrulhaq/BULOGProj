@@ -585,7 +585,7 @@
             <div class="col-3">
               <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             </div>
-            <div class="col-6">
+            <div class="col-6">s
 
             </div>
 
