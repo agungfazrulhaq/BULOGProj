@@ -365,17 +365,34 @@
 
               <div class="modal-footer d-flex justify-content-center">
                 <a href="">
-                  <button type="button" class="btn btn-sm btn-default" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>
-                    <span class="p-2">LIHAT</span>
+                  <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
+                  <button type="button" class="btn btn-sm btn-default">
+                    <span class="p-2" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'>LIHAT</span>
                   </button>
+                  <?php } 
+                  else {?>
+                  <button type="button" class="btn btn-sm btn-default">
+                    <span class="p-2"  onclick='alertFilter()'>LIHAT</span>
+                  </button>
+                  <?php } ?>
+                  
                 </a>
                 <div class="btn-group">
 
                   <span class="btn btn-dark disabled">Export Ke : </span>
 
+                  <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
                   <button type="button" class="btn btn-sm btn-warning">
-                    <span class="p-2 text-white" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>PDF</span>
+                    <span class="p-2 text-white" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'>PDF</span>
                   </button>
+                  
+                  <?php } 
+                  else {?>
+                  <button type="button" class="btn btn-sm btn-warning">
+                    <span class="p-2 text-white" onclick='alertFilter()'>PDF</span>
+                  </button>
+                  <?php } ?>
+                  
                   <button type="button" class="btn btn-sm btn-success">
                     <span class="p-1">EXCEL</span>
                   </button>
@@ -1100,13 +1117,24 @@
         });
         </script>
       <script type="text/javascript">
-        function functionPreviewpdf(jenlap, id_aset, bulan){
-          window.open("<?php echo base_url("Home/previewpdf/");?>"+id_aset+"/"+bulan+"/"+"2019/");
+        function functionPreviewpdf(jenlap, id_aset, bulan, tahun){
+          if(jenlap=="mutasi"){
+            window.open("<?php echo base_url("Home/previewpdf/");?>"+id_aset+"/"+bulan+"/"+tahun);
+          }
         }
       </script>
+      
+      <script type="text/javascript">
+        function alertFilter(){
+          alert("Tidak ada filter yang terpilih untuk pencetakan!");
+        }
+      </script>
+
       <script type="text/javascript">
         function functionRenderpdf(jenlap, id_aset, bulan){
-          window.open("<?php echo base_url("Home/pdfrender/");?>"+id_aset+"/"+bulan+"/"+"2019/");
+          if(jenlap == "mutasi" ){
+            window.open("<?php echo base_url("Home/pdfrender/");?>"+id_aset+"/"+bulan+"/"+"2019/");
+          }
         }
       </script>
       <script type="text/javascript">
