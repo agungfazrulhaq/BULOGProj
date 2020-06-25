@@ -225,8 +225,7 @@
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                  <select class="form-control select2" style="width: 100%;" name="kategori" required>
-                    <option selected="selected" value="">Pilih Kategori</option>
+                  <select class="form-control select2" id="selectkategori" style="width: 100%;" name="kategori" required>
                     <?php foreach ($allcategory as $K_row__) { ?>
                       <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
                         <?php foreach ($kategori as $row_k) { ?>
@@ -301,18 +300,38 @@
               </div>
 
               <div class="modal-footer d-flex justify-content-center">
-                <a href="">
-                  <button type="button" class="btn btn-sm bg-info" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>
-                    <span class=""><i class="fas fa-info"></i> LIHAT</span>
+                <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
+                  <button type="button" class="btn btn-sm bg-info">
+                    <span class="" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'><i class=" fas fa-file-pdf"> </i> LIHAT</span>
                   </button>
-                </a>
+                <?php 
+                } 
+                else {
+                ?>
+                  <button type="button" class="btn btn-sm bg-info">
+                    <span class="p-2" onclick='alertFilter()'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
+                  </button>
+                <?php
+                }  
+                ?>
                 <div class="">
 
                   <span class="btn bg-grey">Export Ke : </span>
 
+                <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
                   <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
-                    <span class="" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>PDF</span>
+                    <span class="" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'>PDF</span>
                   </button>
+                <?php 
+                } 
+                else {
+                ?>
+                  <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
+                    <span class="" onclick='alertFilter()'>PDF</span>
+                  </button>
+                <?php
+                }
+                ?>
                   <button type="button" class="btn text-olive btn-sm"><i class=" fas fa-file-excel"></i>
                     <span class="">EXCEL</span>
                   </button>
@@ -1039,13 +1058,24 @@
         });
       </script>
       <script type="text/javascript">
-        function functionPreviewpdf(jenlap, id_aset, bulan) {
-          window.open("<?php echo base_url("Home/previewpdf/"); ?>" + id_aset + "/" + bulan + "/" + "2019/");
+        function functionPreviewpdf(jenlap,id_aset,bulan,tahun) {
+          if(jenlap=="mutasi"){
+            window.open("<?php echo base_url("Home/previewpdf/"); ?>" + id_aset + "/" + bulan + "/" + tahun);
+          }
         }
       </script>
+      
       <script type="text/javascript">
-        function functionRenderpdf(jenlap, id_aset, bulan) {
-          window.open("<?php echo base_url("Home/pdfrender/"); ?>" + id_aset + "/" + bulan + "/" + "2019/");
+        function alertFilter() {
+          alert("filter sebelum melakukan percetakan");
+        }
+      </script>
+
+      <script type="text/javascript">
+        function functionRenderpdf(jenlap,id_aset,bulan,tahun) {
+          if(jenlap=="mutasi"){
+            window.open("<?php echo base_url("Home/pdfrender/"); ?>" + id_aset + "/" + bulan + "/" + tahun);  
+          }
         }
       </script>
       <script type="text/javascript">
