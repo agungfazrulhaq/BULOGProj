@@ -114,20 +114,15 @@ class Home extends CI_Controller {
     }
 
     public function pdfrender($curr_aset=null,$curr_month=null,$curr_year=null){
-        $data["datatahun"] = $this->M_data->getYears();
-        $data["aset"] = $this->M_data->getAset();
-        $data["kategori"] = $this->M_data->getKategori();
         if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
-            $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($id_aset,$monthdate,$yeardate);
+            $data["curr_aset"] = $curr_aset;
+            $data["curr_month"] = $curr_month;
+            $data["curr_year"] = $curr_year; 
         }
-        else{
-            $data["transaksi"] = $this->M_data->getTransaksi();
-        }
-        $data["files"] = $this->M_data->getFiles();
-        $data["allcategory"] = $this->M_data->getAllCat();
-        $data["dataModel"] = $this->load->model("M_data");
-        
+        $data['dummy'] = 0;
         $this->load->view('pdfrender.php',$data);
+
+        return redirect(base_url());
     }
 
     public function previewpdf($curr_aset=null,$curr_month=null,$curr_year=null){
@@ -141,10 +136,9 @@ class Home extends CI_Controller {
             $data["curr_year"] = $curr_year; 
         }
         else{
-            $data["transaksi"] = $this->M_data->getTransaksi();
+            $data["transaksi"] = $this->M_data->getTransaksitoPdf();
         }
         $data["files"] = $this->M_data->getFiles();
-        $data["allcategory"] = $this->M_data->getAllCat();
         $data["dataModel"] = $this->load->model("M_data");
         
         $this->load->view('previewpdf.php',$data);

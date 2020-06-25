@@ -372,7 +372,7 @@
                   <span class="btn btn-dark disabled">Export Ke : </span>
 
                   <button type="button" class="btn btn-sm btn-warning">
-                    <span class="p-2 text-white" onclick="functionRenderpdf()">PDF</span>
+                    <span class="p-2 text-white" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>PDF</span>
                   </button>
                   <button type="button" class="btn btn-sm btn-success">
                     <span class="p-1">EXCEL</span>
@@ -536,7 +536,12 @@
               <div class="modal-body mx-2">
                 <div class="md-form mb-3">
                   <label data-error="wrong" data-success="right" for="jenislaporan">Kategori Uraian</label>
-                  <input type="text" class="form-control" type="text" placeholder="" name="nama_kat_lr" required>
+                  <input type="text" autocomplete="off" class="form-control" type="text" placeholder="" name="nama_kat_lr" list="Category__" required>
+                  <datalist id="Category__">
+                    <?php foreach($allcategory as $row_c){?>
+                      <option value="<?php echo strtoupper($row_c->nama_kat_lr);?>"></option>
+                    <?php }?>
+                  </datalist>
                 </div>
 
                 <div class="md-form mb-3">
@@ -1040,8 +1045,8 @@
         }
       </script>
       <script type="text/javascript">
-        function functionRenderpdf(){
-          window.open("<?php echo base_url("Home/pdfrender/");?>");
+        function functionRenderpdf(jenlap, id_aset, bulan){
+          window.open("<?php echo base_url("Home/pdfrender/");?>"+id_aset+"/"+bulan+"/"+"2019/");
         }
       </script>
       <script type="text/javascript">
