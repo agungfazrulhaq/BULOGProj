@@ -657,6 +657,7 @@
                     <div class="text-right info-box-content font-weight-light mr-2" style="font-size:1vw;">
                       <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
                       <span class="info-box-number">NIP : 1103174125</span>
+                      <span class="info-box-number">BIDANG CATUR</span>
                     </div>
                   </div>
                   <img class="mb-0 p-0 img-fluid rounded" width="7%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
