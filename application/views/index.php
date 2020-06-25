@@ -303,7 +303,7 @@
                   <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio" required>
                     <option value="null" selected>Pilih Jenis Laporan</option>
                     <option value="mutasi">Laporan Mutasi Kas Aset</option>
-                    <option value="mutasi">Jurnal Laporan Mutasi Kas Aset</option>
+                    <option value="jurnalmutasi">Jurnal Laporan Mutasi Kas Aset</option>
                     <option value="laba">Laporan Laba Rugi</option>
                     <option value="neraca">Laporan Neraca</option>
                   </select>
@@ -311,7 +311,7 @@
                 <div id="UB">
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="aset">Unit Bisnis</label>
-                    <select class="form-control custom-select" id="aset" style="width: 100%;" name="aset" required>
+                    <select class="form-control custom-select" id="asetmutasi_" style="width: 100%;" name="asetmutasi" required>
                       <option selected="selected" value="">Pilih Unit</option>
                       <?php foreach ($aset as $row_a) { ?>
                         <option value='<?php echo $row_a->id_aset; ?>'><?php echo $row_a->nama_aset; ?></option>
@@ -320,28 +320,27 @@
                   </div>
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="bulan">Bulan</label>
-                    <select class="form-control select2" style="width: 100%;" id="bulan" name="customRadio" required>
+                    <select class="form-control select2" style="width: 100%;" id="bulanmutasi" name="waktumutasi" required>
                       <option value="">Pilih Bulan</option>
-                      <option value="">1 Tahun</option>
-                      <option value="">Januari</option>
-                      <option value="">Februari</option>
-                      <option value="">Maret</option>
-                      <option value="">April</option>
-                      <option value="">Mei</option>
-                      <option value="">Juni</option>
-                      <option value="">Juli</option>
-                      <option value="">Agustus</option>
-                      <option value="">September</option>
-                      <option value="">Oktober</option>
-                      <option value="">Nopember</option>
-                      <option value="">Desember</option>
+                      <option value="1">Januari</option>
+                      <option value="2">Februari</option>
+                      <option value="3">Maret</option>
+                      <option value="4">April</option>
+                      <option value="5">Mei</option>
+                      <option value="6">Juni</option>
+                      <option value="7">Juli</option>
+                      <option value="8">Agustus</option>
+                      <option value="9">September</option>
+                      <option value="10">Oktober</option>
+                      <option value="11">Nopember</option>
+                      <option value="12">Desember</option>
                     </select>
                   </div>
                 </div>
                 <div id="BL">
                   <div class="md-form mb-2">
                     <label data-error="wrong" data-success="right" for="bulanL">Bulan</label>
-                    <select class="form-control select2" style="width: 100%;" id="bulanL" name="customRadio" required>
+                    <select class="form-control select2" style="width: 100%;" id="bulanL" name="labarugi" required>
                       <option value="">Pilih Bulan</option>
                       <option value="">1 Tahun</option>
                       <option value="">Akumulasi</option>
@@ -363,8 +362,8 @@
               </div>
 
               <div class="modal-footer d-flex justify-content-center">
-                <a href="<?php echo base_url('Home/previewpdf/'); ?>">
-                  <button type="button" class="btn btn-sm btn-default">
+                <a href="">
+                  <button type="button" class="btn btn-sm btn-default" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>
                     <span class="p-2">LIHAT</span>
                   </button>
                 </a>
@@ -373,7 +372,7 @@
                   <span class="btn btn-dark disabled">Export Ke : </span>
 
                   <button type="button" class="btn btn-sm btn-warning">
-                    <span class="p-2 text-white">PDF</span>
+                    <span class="p-2 text-white" onclick="functionRenderpdf()">PDF</span>
                   </button>
                   <button type="button" class="btn btn-sm btn-success">
                     <span class="p-1">EXCEL</span>
@@ -383,7 +382,6 @@
             </div>
           </div>
         </div>
-      </form>
     </div>
   </div>
   </div>
@@ -1036,6 +1034,16 @@
       <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 
+      <script type="text/javascript">
+        function functionPreviewpdf(jenlap, id_aset, bulan){
+          window.open("<?php echo base_url("Home/previewpdf/");?>"+id_aset+"/"+bulan+"/"+"2019/");
+        }
+      </script>
+      <script type="text/javascript">
+        function functionRenderpdf(){
+          window.open("<?php echo base_url("Home/pdfrender/");?>");
+        }
+      </script>
       <script type="text/javascript">
         var rupiah = document.getElementById('rupiah');
         rupiah.addEventListener('keyup', function(e) {

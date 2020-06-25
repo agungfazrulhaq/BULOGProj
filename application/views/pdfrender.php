@@ -1,12 +1,35 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/plugins/dompdf/autoload.inc.php';
+//index.php
+//include autoloader
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/OpasetBulog/plugins/'.'dompdf/autoload.inc.php';
+
+// reference the Dompdf namespace
 
 use Dompdf\Dompdf;
 
+//initialize dompdf class
+
 $document = new Dompdf();
 
-// $html = '
-//  <style>
+
+// //$document->loadHtml($html);
+$page = file_get_contents(base_url("Home/previewpdf"));
+
+// //$document->loadHtml($page);
+
+// $connect = mysqli_connect("localhost", "root", "", "testing1");
+
+// $query = "
+// 	SELECT category.category_name, product.product_name, product.product_price
+// 	FROM product 
+// 	INNER JOIN category 
+// 	ON category.category_id = product.category_id
+// ";
+// $result = mysqli_query($connect, $query);
+
+// $output = "
+// 	<style>
 // table {
 //     font-family: arial, sans-serif;
 //     border-collapse: collapse;
@@ -24,58 +47,31 @@ $document = new Dompdf();
 // }
 // </style>
 // <table>
-//   <tr>
-//     <th>Company</th>
-//     <th>Contact</th>
-//     <th>Country</th>
-//   </tr>
-//   <tr>
-//     <td>Alfreds Futterkiste</td>
-//     <td>Maria Anders</td>
-//     <td>Germany</td>
-//   </tr>
-//   <tr>
-//     <td>Centro comercial Moctezuma</td>
-//     <td>Francisco Chang</td>
-//     <td>Mexico</td>
-//   </tr>
-//   <tr>
-//     <td>Ernst Handel</td>
-//     <td>Roland Mendel</td>
-//     <td>Austria</td>
-//   </tr>
-//   <tr>
-//     <td>Island Trading</td>
-//     <td>Helen Bennett</td>
-//     <td>UK</td>
-//   </tr>
-//   <tr>
-//     <td>Laughing Bacchus Winecellars</td>
-//     <td>Yoshi Tannamuri</td>
-//     <td>Canada</td>
-//   </tr>
-//   <tr>
-//     <td>Magazzini Alimentari Riuniti</td>
-//     <td>Giovanni Rovelli</td>
-//     <td>Italy</td>
-//   </tr>
-// </table>
-// ';
+// 	<tr>
+// 		<th>Category</th>
+// 		<th>Product Name</th>
+// 		<th>Price</th>
+// 	</tr>
+// ";
 
-$html = '
-        <table style="font-family:Calibri, sans-serif;" border=1>
-        <tr>  
-        <th>TGL</th>
-          <th>REF</th>
-          <th>URAIAN</th>
-          <th>DEBET</th>
-          <th>KREDIT</th>
-          <th>SALDO</th>
-        </tr>
-        </table>
-';
+// while($row = mysqli_fetch_array($result))
+// {
+// 	$output .= '
+// 		<tr>
+// 			<td>'.$row["category_name"].'</td>
+// 			<td>'.$row["product_name"].'</td>
+// 			<td>$'.$row["product_price"].'</td>
+// 		</tr>
+// 	';
+// }
 
-$document->loadHtml($html);
+// $output .= '</table>';
+
+//echo $output;
+
+$document->loadHtml($page);
+
+//set page size and orientation
 
 $document->setPaper('A4', 'landscape');
 
@@ -85,8 +81,9 @@ $document->render();
 
 //Get output of generated pdf in Browser
 
-$document->stream("Laporan_Mutasi", array("Attachment" => false));
+$document->stream("Webslesson", array("Attachment"=>0));
 //1  = Download
 //0 = Preview
 
-exit(0);
+
+?>

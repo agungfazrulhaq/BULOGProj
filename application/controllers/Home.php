@@ -128,8 +128,6 @@ class Home extends CI_Controller {
         $data["dataModel"] = $this->load->model("M_data");
         
         $this->load->view('pdfrender.php',$data);
-
-        return redirect(base_url());
     }
 
     public function previewpdf($curr_aset=null,$curr_month=null,$curr_year=null){
@@ -137,7 +135,10 @@ class Home extends CI_Controller {
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
         if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
-            $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($id_aset,$monthdate,$yeardate);
+            $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($curr_aset,$curr_month,$curr_year);
+            $data["curr_aset"] = $curr_aset;
+            $data["curr_month"] = $curr_month;
+            $data["curr_year"] = $curr_year; 
         }
         else{
             $data["transaksi"] = $this->M_data->getTransaksi();

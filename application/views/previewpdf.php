@@ -34,12 +34,52 @@
     </head>
     <body>
 
+    <?php if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){ ?>
         <center>
         <b style="text-size:10px;">MUTASI KAS UB OPASET DIVRE SULSELBAR</b><br>
-        <b style="text-size:10px;">UNIT BARUGA LAPPO ASE</b><br>
-        <b style="text-size:10px;">BULAN : NOVEMBER 2019</b>
+        <?php 
+        foreach($aset as $rows){ 
+            if($rows->id_aset == $curr_aset){
+            ?>
+            <b style="text-size:10px;">UNIT <?php echo $rows->nama_aset;?></b><br>
+        <?php
+            } 
+        }
+    ?>
+        <b style="text-size:10px;">BULAN : <?php if (isset($curr_month)) {
+                        if ($curr_month == 0) {
+                          echo "Bulan";
+                        } else if ($curr_month == 1) {
+                          echo "JANUARI";
+                        } else if ($curr_month == 2) {
+                          echo "FEBRUARI";
+                        } else if ($curr_month == 3) {
+                          echo "MARET";
+                        } else if ($curr_month == 4) {
+                          echo "APRIL";
+                        } else if ($curr_month == 5) {
+                          echo "MEI";
+                        } else if ($curr_month == 6) {
+                          echo "JUNI";
+                        } else if ($curr_month == 7) {
+                          echo "JULI";
+                        } else if ($curr_month == 8) {
+                          echo "AGUSTUS";
+                        } else if ($curr_month == 9) {
+                          echo "SEPTEMBER";
+                        } else if ($curr_month == 10) {
+                          echo "OKTOBER";
+                        } else if ($curr_month == 11) {
+                          echo "NOVEMBER";
+                        } else if ($curr_month == 12) {
+                          echo "DESEMBER";
+                        }
+                    } 
+                        echo "&nbsp;".$curr_year;
+                        ?></b>
         
         </center>
+    <?php } ?>
         <br>
         <table>
             <tr>  
@@ -54,6 +94,8 @@
             $debcounter = 0;
             $krecounter = 0;
             $curr_saldo = 0;
+            $currdeb = 0;
+            $currkre = 0;
             ?>
             <tbody>
             <?php foreach($transaksi as $tranc){ ?>
@@ -100,7 +142,8 @@
                 echo chop($uraian______,"<br>"); ?></td>
                 <?php 
                 if(strpos($tranc->ref,"D")!==false){ 
-                    $curr_saldo += $tranc->saldo;    
+                    $curr_saldo += $tranc->saldo;
+                    $currdeb += $tranc->saldo;
                 ?>
                 <td class="saldokanan">&nbsp;&nbsp;<?php echo number_format($tranc->saldo, 2);?>&nbsp;&nbsp;</td>
                 <td></td>
@@ -108,6 +151,7 @@
                 } 
                 else{
                     $curr_saldo -= $tranc->saldo;
+                    $currkre += $tranc->saldo;
                 ?>
                 <td></td>
                 <td class="saldokanan">&nbsp;&nbsp;<?php echo number_format($tranc->saldo, 2);?>&nbsp;&nbsp;</td>
@@ -116,12 +160,28 @@
             </tr>
             <?php } ?>
             <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+                <td></td>
+                <td colspan="2"></td>
+                <td>&nbsp;</td>
+                <td class="saldokanan"></td>
+                <td class="saldokanan"></td>
+                <td class="saldokanan"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+                <td>&nbsp;</td>
+                <td class="saldokanan"></td>
+                <td class="saldokanan"></td>
+                <td class="saldokanan"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+                <td><b>JUMLAH</b></td>
+                <td class="saldokanan"><b><?php echo number_format($currdeb, 2); ?></b></td>
+                <td class="saldokanan"><b><?php echo number_format($currkre, 2); ?></b></td>
+                <td class="saldokanan"><b><?php echo number_format($curr_saldo, 2); ?></b></td>
             </tr>
             </tbody>
         </table>
