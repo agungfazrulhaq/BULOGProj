@@ -18,8 +18,6 @@
   <link rel="stylesheet" href="<?php echo base_url('plugins/daterangepicker/daterangepicker.css') ?>">
   <!-- Toastr -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css') ?>">
-  <!-- summernote -->
-  <link rel="stylesheet" href="<?php echo base_url('plugins/summernote/summernote-bs4.css') ?>">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/select2/css/select2.min.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') ?>">
@@ -43,7 +41,7 @@
   }
 </style>
 
-<body class="layout-top-nav pace-orange" style="height: auto;" >
+<body class="layout-top-nav pace-orange" style="height: auto;">
 
   <!-- ALL Modal Control -->
   <div class="modal fade bd-example-modal-lg" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -164,16 +162,6 @@
                     </span>
                   </div>
                 </li>
-                <!-- <li>
-                  <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> File yang di sertakan.pdf</a>
-                    <span class="mailbox-attachment-size clearfix mt-1">
-                      <span>1,245 KB</span>
-                      <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                    </span>
-                  </div>
-                </li> -->
               </ul>
             </div>
 
@@ -310,74 +298,23 @@
                     <option value="neraca">Laporan Neraca</option>
                   </select>
                 </div>
-                <div id="UB">
-                  <div class="md-form mb-2">
-                    <label data-error="wrong" data-success="right" for="aset">Unit Bisnis</label>
-                    <select class="form-control custom-select" id="asetmutasi_" style="width: 100%;" name="asetmutasi" required>
-                      <option selected="selected" value="">Pilih Unit</option>
-                      <?php foreach ($aset as $row_a) { ?>
-                        <option value='<?php echo $row_a->id_aset; ?>'><?php echo $row_a->nama_aset; ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                  <div class="md-form mb-2">
-                    <label data-error="wrong" data-success="right" for="bulan">Bulan</label>
-                    <select class="form-control select2" style="width: 100%;" id="bulanmutasi" name="waktumutasi" required>
-                      <option value="">Pilih Bulan</option>
-                      <option value="1">Januari</option>
-                      <option value="2">Februari</option>
-                      <option value="3">Maret</option>
-                      <option value="4">April</option>
-                      <option value="5">Mei</option>
-                      <option value="6">Juni</option>
-                      <option value="7">Juli</option>
-                      <option value="8">Agustus</option>
-                      <option value="9">September</option>
-                      <option value="10">Oktober</option>
-                      <option value="11">Nopember</option>
-                      <option value="12">Desember</option>
-                    </select>
-                  </div>
-                </div>
-                <div id="BL">
-                  <div class="md-form mb-2">
-                    <label data-error="wrong" data-success="right" for="bulanL">Bulan</label>
-                    <select class="form-control select2" style="width: 100%;" id="bulanL" name="labarugi" required>
-                      <option value="">Pilih Bulan</option>
-                      <option value="">1 Tahun</option>
-                      <option value="">Akumulasi</option>
-                      <option value="">Januari</option>
-                      <option value="">Februari</option>
-                      <option value="">Maret</option>
-                      <option value="">April</option>
-                      <option value="">Mei</option>
-                      <option value="">Juni</option>
-                      <option value="">Juli</option>
-                      <option value="">Agustus</option>
-                      <option value="">September</option>
-                      <option value="">Oktober</option>
-                      <option value="">Nopember</option>
-                      <option value="">Desember</option>
-                    </select>
-                  </div>
-                </div>
               </div>
 
               <div class="modal-footer d-flex justify-content-center">
                 <a href="">
-                  <button type="button" class="btn btn-sm btn-default" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>
-                    <span class="p-2">LIHAT</span>
+                  <button type="button" class="btn btn-sm bg-info" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>
+                    <span class=""><i class="fas fa-info"></i> LIHAT</span>
                   </button>
                 </a>
-                <div class="btn-group">
+                <div class="">
 
-                  <span class="btn btn-dark disabled">Export Ke : </span>
+                  <span class="btn bg-grey">Export Ke : </span>
 
-                  <button type="button" class="btn btn-sm btn-warning">
-                    <span class="p-2 text-white" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>PDF</span>
+                  <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
+                    <span class="" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>PDF</span>
                   </button>
-                  <button type="button" class="btn btn-sm btn-success">
-                    <span class="p-1">EXCEL</span>
+                  <button type="button" class="btn text-olive btn-sm"><i class=" fas fa-file-excel"></i>
+                    <span class="">EXCEL</span>
                   </button>
                 </div>
               </div>
@@ -540,9 +477,9 @@
                   <label data-error="wrong" data-success="right" for="jenislaporan">Kategori Uraian</label>
                   <input type="text" autocomplete="off" class="form-control" type="text" placeholder="" name="nama_kat_lr" list="Category__" required>
                   <datalist id="Category__">
-                    <?php foreach($allcategory as $row_c){?>
-                      <option value="<?php echo strtoupper($row_c->nama_kat_lr);?>"></option>
-                    <?php }?>
+                    <?php foreach ($allcategory as $row_c) { ?>
+                      <option value="<?php echo strtoupper($row_c->nama_kat_lr); ?>"></option>
+                    <?php } ?>
                   </datalist>
                 </div>
 
@@ -563,12 +500,12 @@
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email"><u>Pilih Jenis Laba pada Kategori ini.</u></label><br>
                   <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" required>
-                          <label for="customRadio1" class="custom-control-label">LABA RUGI KOTOR</label>
+                    <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" required>
+                    <label for="customRadio1" class="custom-control-label">LABA RUGI KOTOR</label>
                   </div>
                   <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" required>
-                          <label for="customRadio2" class="custom-control-label">LABA RUGI USAHA</label>
+                    <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" required>
+                    <label for="customRadio2" class="custom-control-label">LABA RUGI USAHA</label>
                   </div>
                 </div>
               </div>
@@ -582,7 +519,7 @@
   </div>
   </div>
   <!-- end ALL Modal Control -->
-  
+
   <div class="wrapper">
 
     <nav class="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
@@ -648,19 +585,22 @@
             <div class="col-3">
               <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             </div>
-            <div class="info-box mb-0 col-9">
-              <div class="col-md-8">
-                
+            <div class="col-6">
+
             </div>
 
-                <div class="col-md-3">
-                    <div class="text-right info-box-content font-weight-light mr-2" style="font-size:1vw;">
-                      <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
-                      <span class="info-box-number">NIP : 1103174125</span>
-                      <span class="info-box-number">BIDANG CATUR</span>
-                    </div>
-                  </div>
-                  <img class="mb-0 p-0 img-fluid rounded" width="7%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
+            <div class="col-3">
+              <div class="info-box mb-0 p-0">
+                <div class="text-right info-box-content font-weight-light mr-2" style="font-size:1vw;">
+                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
+                  <span class="info-box-number">NIP : 1103174125</span>
+                  <span class="info-box-number">BIDANG CATUR</span>
+                </div>
+
+                <img class="mb-0 p-0 img-fluid " width="27%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
+
+              </div>
+
             </div>
           </div>
       </section>
@@ -786,7 +726,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="col-md-10">
             <div class="card card-outline card-info">
               <div class="card-header d-flex p-2">
@@ -890,16 +830,16 @@
                   <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data"><i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 </h3>
                 <ul class="nav nav-pills ml-auto p-0">
-                  <li class="nav-item pr-1"><a class="btn btn-secondary text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
+                  <li class="nav-item pr-1"><a class="btn btn-secondary text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-arrow-left" data-toggle="tooltip" title="Dasboard"></i></a></li>
                   <li class="nav-item" hidden><a class="nav-link" href="#tab_2" data-toggle="tab">Tab 2</a></li>
-                  <?php 
-                    if(isset($curr_aset) and isset($curr_year) and isset($curr_month)){
-                      if($curr_month>0 and $curr_month<13 and $curr_aset>0 and $curr_year>0){
-                  ?>
-                  <li class="nav-item pr-1"><a class="bg-white" href="#tab_3" data-toggle="tab"><button class="btn btn-info btn-sm" onclick="cetaktukar()">Buat Jurnal <i class="far fa-edit"></i></button></a></li>
                   <?php
-                      }
+                  if (isset($curr_aset) and isset($curr_year) and isset($curr_month)) {
+                    if ($curr_month > 0 and $curr_month < 13 and $curr_aset > 0 and $curr_year > 0) {
+                  ?>
+                      <li class="nav-item pr-1"><a class="bg-white" href="#tab_3" data-toggle="tab"><button class="btn btn-info btn-sm" onclick="cetaktukar()">Buat Jurnal <i class="far fa-edit"></i></button></a></li>
+                  <?php
                     }
+                  }
                   ?>
                   <li class="nav-item "></li>
                   <li class="nav-item" id="cetakbtn"><a class=""><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan"><i class="fas fa-print mr-1"></i> Cetak </span>
@@ -921,6 +861,7 @@
                             <th class="text-center" style="width:40%">URAIAN</th>
                             <th></th>
                             <th>SALDO</th>
+                            <th><i class="fas fa-paperclip"></i></th>
                           </tr>
                         </thead>
                         <tfoot class="">
@@ -959,17 +900,17 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_3">
-                  <div class="card card-default">
-                    <div class="card-header">
-                      <h3 class="card-title">Jurnal <b>BARUGA LAPPO ASE</b></h3>
+                    <div class="card card-default">
+                      <div class="card-header">
+                        <h3 class="card-title">Jurnal <b>BARUGA LAPPO ASE</b></h3>
 
-                      <div class="card-tools">
-                      <b>1 November - 30 November, 2019 </b>
+                        <div class="card-tools">
+                          <b>1 November - 30 November, 2019 </b>
+                        </div>
                       </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                      <!-- <div class="after-add-more"><div class="col-md-8">
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <!-- <div class="after-add-more"><div class="col-md-8">
                           <div class="form-group">
                             <label>Jurnal</label>
                             <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
@@ -1034,20 +975,20 @@
                         </div>
                     </div> -->
 
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                    <div class="card-title text-wight-bold">
-                      Total Saldo = <span class="btn-sm bg-success">Rp. 45,000,000.00</span>
                       </div>
-                      <div class="card-title float-right">
-                        <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button>
-                        <button class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</button>
+                      <!-- /.card-body -->
+                      <div class="card-footer">
+                        <div class="card-title text-wight-bold">
+                          Total Saldo = <span class="btn-sm bg-success">Rp. 45,000,000.00</span>
+                        </div>
+                        <div class="card-title float-right">
+                          <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button>
+                          <button class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  </div>
-                  
+
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
@@ -1081,8 +1022,6 @@
       <!-- InputMask -->
       <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
       <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
-      <!-- Summernote -->
-      <script src="<?php echo base_url(); ?>plugins/summernote/summernote-bs4.min.js"></script>
       <!-- pace-progress -->
       <script src="<?php echo base_url(); ?>plugins/pace-progress/pace.min.js"></script>
       <!-- AdminLTE App -->
@@ -1090,23 +1029,23 @@
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
       <script type="text/javascript">
         $(document).ready(function() {
-          $(".add-more").click(function(){ 
-              var html = $(".copy").html();
-              $(".after-add-more").after(html);
+          $(".add-more").click(function() {
+            var html = $(".copy").html();
+            $(".after-add-more").after(html);
           });
-          $("body").on("click",".remove",function(){ 
-              $(this).parents(".control-group").remove();
+          $("body").on("click", ".remove", function() {
+            $(this).parents(".control-group").remove();
           });
         });
-        </script>
+      </script>
       <script type="text/javascript">
-        function functionPreviewpdf(jenlap, id_aset, bulan){
-          window.open("<?php echo base_url("Home/previewpdf/");?>"+id_aset+"/"+bulan+"/"+"2019/");
+        function functionPreviewpdf(jenlap, id_aset, bulan) {
+          window.open("<?php echo base_url("Home/previewpdf/"); ?>" + id_aset + "/" + bulan + "/" + "2019/");
         }
       </script>
       <script type="text/javascript">
-        function functionRenderpdf(jenlap, id_aset, bulan){
-          window.open("<?php echo base_url("Home/pdfrender/");?>"+id_aset+"/"+bulan+"/"+"2019/");
+        function functionRenderpdf(jenlap, id_aset, bulan) {
+          window.open("<?php echo base_url("Home/pdfrender/"); ?>" + id_aset + "/" + bulan + "/" + "2019/");
         }
       </script>
       <script type="text/javascript">
@@ -1137,31 +1076,31 @@
       </script>
 
       <script>
-        $('#UB').hide();
-        $("#jenislaporan").change(function() {
-          if ($(this).val() == "mutasi") {
-            $('#UB').show();
-            $('#aset', '#bulan').attr('required', '');
-            $('#aset', '#bulan').attr('data-error', 'This field is required.');
-          } else {
-            $('#UB').hide();
-            $('#aset', '#bulan').removeAttr('required');
-            $('#aset', '#bulan').removeAttr('data-error');
-          }
-        });
+        // $('#UB').hide();
+        // $("#jenislaporan").change(function() {
+        //   if ($(this).val() == "mutasi") {
+        //     $('#UB').show();
+        //     $('#aset', '#bulan').attr('required', '');
+        //     $('#aset', '#bulan').attr('data-error', 'This field is required.');
+        //   } else {
+        //     $('#UB').hide();
+        //     $('#aset', '#bulan').removeAttr('required');
+        //     $('#aset', '#bulan').removeAttr('data-error');
+        //   }
+        // });
 
-        $('#BL').hide();
-        $("#jenislaporan").change(function() {
-          if ($(this).val() == "laba") {
-            $('#BL').show();
-            $('#bulanL').attr('required', '');
-            $('#bulanL').attr('data-error', 'This field is required.');
-          } else {
-            $('#BL').hide();
-            $('#bulanL').removeAttr('required');
-            $('#bulanL').removeAttr('data-error');
-          }
-        });
+        // $('#BL').hide();
+        // $("#jenislaporan").change(function() {
+        //   if ($(this).val() == "laba") {
+        //     $('#BL').show();
+        //     $('#bulanL').attr('required', '');
+        //     $('#bulanL').attr('data-error', 'This field is required.');
+        //   } else {
+        //     $('#BL').hide();
+        //     $('#bulanL').removeAttr('required');
+        //     $('#bulanL').removeAttr('data-error');
+        //   }
+        // });
 
 
         $('.select2').select2()
@@ -1261,9 +1200,9 @@
         document.getElementById('hari').innerHTML = months[month] + ' ' + year;
       </script>
       <script>
-      function cetaktukar(){
-        document.getElementById("cetakbtn").outerHTML = "";
-      }
+        function cetaktukar() {
+          document.getElementById("cetakbtn").outerHTML = "";
+        }
       </script>
       <script>
         $(document).ready(function() {
@@ -1294,7 +1233,7 @@
           $('#tbmaster').DataTable({
             "responsive": true,
             "autoWidth": true,
-            "searching": true,  
+            "searching": true,
             "paging": true,
             "info": true,
             "ordering": true,
@@ -1455,9 +1394,9 @@
             var name_kat = $(this).data('nkat');
             var nama_file = $(this).data('namfile');
             var ukuran_file = $(this).data('sizefile');
-
             var float_ukuran = parseFloat(ukuran_file);
             var size_file = float_ukuran / 1024;
+
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalView').modal('show');
             var jenistransaksi = "";
