@@ -265,7 +265,7 @@
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <input type="submit" class="btn btn-info" value="simpan">
+                <input type="submit" class="btn btn-info" value="Simpan">
               </div>
             </div>
           </div>
@@ -526,48 +526,38 @@
       <a class="navbar-brand font-weight-bold" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
       <!-- Left navbar links -->
       <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-dot-circle"></i>
-            <span class="badge badge-danger navbar-badge">15</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <span class="dropdown-item dropdown-header">15 Notifications</span>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-envelope mr-2"></i> 4 new messages
-                <span class="float-right text-muted text-sm">3 mins</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-users mr-2"></i> 8 friend requests
-                <span class="float-right text-muted text-sm">12 hours</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-file mr-2"></i> 3 new reports
-                <span class="float-right text-muted text-sm">2 days</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-            </div>
-        </li>
+        
       </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+          <img src="<?php echo base_url(); ?>/dist/img/pict.jpg" class="rounded-circle mr-1" width="20" height="20" alt="logo">
+                    <u>Muhammad Fachrizal Ramdani</u>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">BIDANG CATUR</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+            <div class="info-box mb-1 p-0">
+                <div class="text-right info-box-content font-weight-light" style="font-size:0.8vw;">
+                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
+                  <span class="info-box-number">NIP : 1103174125</span>
+                </div>
+
+                <img class="mb-0 p-0 img-fluid rounded" width="27%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
+
+              </div>
+            </a>
+            </div>
+        </li>
         <li class="nav-item">
           <span class="nav-link p-0 mt-2">
             <div id="clock"></div>
           </span>
         </li>
+        
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <span class="toastrDefaultError" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Keluar <i class="fas fa-sign-out-alt"></i></span>
@@ -579,37 +569,13 @@
     </nav>
 
     <div class="content-wrapper">
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-3">
-              
-            </div>
-            <div class="col-6">
-            <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
-            </div>
+      
 
-            <div class="col-3">
-              <div class="info-box mb-0 p-0">
-                <div class="text-right info-box-content font-weight-light mr-2" style="font-size:1vw;">
-                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
-                  <span class="info-box-number">NIP : 1103174125</span>
-                  <span class="info-box-number">BIDANG CATUR</span>
-                </div>
-
-                <img class="mb-0 p-0 img-fluid " width="27%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
-
-              </div>
-
-            </div>
-          </div>
-      </section>
-
-      <section class="content">
+      <section class="content mt-3">
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
-            <button type="button" class="btn btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
-
+          <img class="img-fluid mb-2 shadow-sm bg-white p-2 rounded" width="100%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
+            <button type="button" class="btn shadow-sm btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>
