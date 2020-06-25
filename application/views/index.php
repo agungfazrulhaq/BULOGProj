@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/fontawesome-free/css/all.min.css') ?>">
+  <!-- pace-progress -->
+  <link rel="stylesheet" href="<?php echo base_url('plugins/pace-progress/themes/black/pace-theme-flat-top.css') ?>">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="<?php echo base_url('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
   <!-- daterange picker -->
@@ -41,7 +43,7 @@
   }
 </style>
 
-<body class="layout-top-nav" style="height: auto;">
+<body class="layout-top-nav pace-orange" style="height: auto;" >
 
   <!-- ALL Modal Control -->
   <div class="modal fade bd-example-modal-lg" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -546,13 +548,25 @@
                   <input type="text" class="form-control" type="text" placeholder="" name="nama_kategori" required>
                 </div>
 
-                <div class="md-form mb-2">
+                <div class="md-form mb-4">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
                   <select class="custom-select" style="width: 100%;" id="selectJenis" name="jenis_transaksi_kat" required>
                     <option value="">Pilih Jenis Transaksi</option>
                     <option value="D">Debit</option>
                     <option value="K">Kredit</option>
                   </select>
+                </div>
+
+                <div class="md-form mb-2">
+                  <label data-error="wrong" data-success="right" for="defaultForm-email"><u>Pilih Jenis Laba pada Kategori ini.</u></label><br>
+                  <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" required>
+                          <label for="customRadio1" class="custom-control-label">LABA RUGI KOTOR</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" required>
+                          <label for="customRadio2" class="custom-control-label">LABA RUGI USAHA</label>
+                  </div>
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
@@ -565,10 +579,7 @@
   </div>
   </div>
   <!-- end ALL Modal Control -->
-
-
-
-
+  
   <div class="wrapper">
 
     <nav class="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
@@ -634,21 +645,18 @@
             <div class="col-3">
               <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             </div>
-            <div class="col-6">
-              <div class="card card-outline card-info mb-0 pb-0">
-                <div class="card-body">
-                  <h1><marquee scrolldelay="6" truespeed="truespeed">Mantappp</marquee></h1>
-                </div>
-              </div>
+            <div class="info-box mb-0 col-9">
+              <div class="col-md-8">
+                
             </div>
-            <div class="col-3">
-              <div class="info-box mb-0 bg-light">
-                <div class="info-box-content font-weight-light  mr-2" style="font-size:1vw;">
-                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
-                  <span class="info-box-number">NIP : 1103174125</span>
-                </div>
-                <img class="img-fluid rounded" width="20%" height="20%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
-              </div>
+
+                <div class="col-md-3">
+                    <div class="text-right info-box-content font-weight-light mr-2" style="font-size:1vw;">
+                      <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
+                      <span class="info-box-number">NIP : 1103174125</span>
+                    </div>
+                  </div>
+                  <img class="mb-0 p-0 img-fluid rounded" width="7%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
             </div>
           </div>
       </section>
@@ -875,7 +883,7 @@
                     </script>
                   </div>
                   </b>
-                  <a href="<?php echo base_url(); ?>"><button class="btn bg-olive btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data"><i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
+                  <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data"><i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 </h3>
                 <ul class="nav nav-pills ml-auto p-0">
                   <li class="nav-item pr-1"><a class="btn btn-secondary text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-table" data-toggle="tooltip" title="Dasboard"></i></a></li>
@@ -890,7 +898,7 @@
                     }
                   ?>
                   <li class="nav-item "></li>
-                  <li class="nav-item" id="cetakbtn"><a class=""><button type="button" class="btn bg-olive btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan"><i class="fas fa-print mr-1"></i> Cetak </span>
+                  <li class="nav-item" id="cetakbtn"><a class=""><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCetak"><span data-toggle="tooltip" title="Laporan Keuangan"><i class="fas fa-print mr-1"></i> Cetak </span>
                       </button></a></li>
 
                 </ul>
@@ -957,8 +965,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-8">
+                      <!-- <div class="after-add-more"><div class="col-md-8">
                           <div class="form-group">
                             <label>Jurnal</label>
                             <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
@@ -967,31 +974,71 @@
                             <label>Biaya</label>
                             <input type="text" class="form-control" placeholder="(Biaya ... )">
                           </div>
-                          <!-- /.form-group -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-4">
                           <div class="form-group">
-                            <label>KAS</label>
+                            <label>Jumlah</label>
+                            <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
+                          </div></div>
+                          <div class="col-md-4">
+                          <div class="form-group">
+                          <label>Jenis Transaksi</label>
+                          <select type="text" class="form-control custom-select">
+                            <option selected>Pilih..</option>
+                            <option>Pendapatan</option>
+                            <option>Pengeluaran</option>
+                          </select>
+                          </div>
+                          <div class="form-group">
+                            <label>Kas</label>
                             <input type="text" class="form-control" placeholder="" value="RP.15.000">
-                          </div>
-                          
-                          <div class="form-group col-md-4">
-                          <label>Tambah Jurnal</label>
-                            <button class="btn bg-teal"><i class="fas fa-plus"></i></button>
-                          </div>
-                          <!-- /.form-group -->
+                          </div></div>
+                        <div class="btn-group"> 
+                          <button class="btn btn-success add-more" data-toggle="tooltip" title="Tambah Form"><i class="fas fa-plus"></i></button>
                         </div>
-                      </div>
+                        </div>
+                        
+                        <div class="copy hide">
+                        <div class="control-group">
+                          <div class="form-group">
+                                            <label>Jurnal</label>
+                                            <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
+                                          </div>
+                                          <div class="form-group">
+                                            <label>Biaya</label>
+                                            <input type="text" class="form-control" placeholder="(Biaya ... )">
+                                          </div>
+                                          <div class="form-group">
+                                            <label>Jumlah</label>
+                                            <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
+                                          </div>
+                                          <div class="form-group">
+                                                <label>Jenis Transaksi</label>
+                                                <select type="text" class="form-control custom-select">
+                                                <option selected>Pilih..</option>
+                                                <option>Pendapatan</option>
+                                                <option>Pengeluaran</option>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                            <label>Kas</label>
+                                            <input type="text" class="form-control" placeholder="" value="RP.15.000">
+                                            </div>
+                          <div class="btn-group"> 
+                          <button class="btn bg-maroon remove" data-toggle="tooltip" title="Hapus Form"><i class="fas fa-trash"></i></button>
+                          </div>
+                        </div>
+                    </div> -->
+
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                     <div class="card-title text-wight-bold">
-                      Total Saldo = <span class="btn-sm bg-teal">Rp. 45,000,000.00</span>
+                      Total Saldo = <span class="btn-sm bg-success">Rp. 45,000,000.00</span>
                       </div>
                       <div class="card-title float-right">
                         <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button>
-                        <button class="btn btn-sm bg-olive"><i class="fas fa-print"></i> Cetak Jurnal</button>
+                        <button class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</button>
                       </div>
                     </div>
                   </div>
@@ -1032,10 +1079,22 @@
       <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
       <!-- Summernote -->
       <script src="<?php echo base_url(); ?>plugins/summernote/summernote-bs4.min.js"></script>
+      <!-- pace-progress -->
+      <script src="<?php echo base_url(); ?>plugins/pace-progress/pace.min.js"></script>
       <!-- AdminLTE App -->
       <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
-
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $(".add-more").click(function(){ 
+              var html = $(".copy").html();
+              $(".after-add-more").after(html);
+          });
+          $("body").on("click",".remove",function(){ 
+              $(this).parents(".control-group").remove();
+          });
+        });
+        </script>
       <script type="text/javascript">
         var rupiah = document.getElementById('rupiah');
         rupiah.addEventListener('keyup', function(e) {
@@ -1221,7 +1280,7 @@
           $('#tbmaster').DataTable({
             "responsive": true,
             "autoWidth": true,
-            "searching": true,
+            "searching": true,  
             "paging": true,
             "info": true,
             "ordering": true,
