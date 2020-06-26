@@ -113,19 +113,19 @@ class Home extends CI_Controller {
         echo $this->M_data->getAset_Transaksi($id_aset,$monthdate,$yeardate);
     }
 
-    public function pdfrender($curr_aset=null,$curr_month=null,$curr_year=null){
+    public function pdfmutasirender($curr_aset=null,$curr_month=null,$curr_year=null){
         if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
             $data["curr_aset"] = $curr_aset;
             $data["curr_month"] = $curr_month;
             $data["curr_year"] = $curr_year; 
         }
         $data['dummy'] = 0;
-        $this->load->view('pdfrender.php',$data);
+        $this->load->view('pdfrmutasiender.php',$data);
 
         return redirect(base_url());
     }
 
-    public function previewpdf($curr_aset=null,$curr_month=null,$curr_year=null){
+    public function previewmutasipdf($curr_aset=null,$curr_month=null,$curr_year=null){
         $data["datatahun"] = $this->M_data->getYears();
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
@@ -141,7 +141,7 @@ class Home extends CI_Controller {
         $data["files"] = $this->M_data->getFiles();
         $data["dataModel"] = $this->load->model("M_data");
         
-        $this->load->view('previewpdf.php',$data);
+        $this->load->view('previewmutasipdf.php',$data);
     }
 
     public function upload(){

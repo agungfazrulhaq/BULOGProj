@@ -39,6 +39,10 @@
   .page-link {
     color: grey !important;
   }
+
+  .hiddencheck{
+    visibility: hidden;
+  }
 </style>
 
 <body class="layout-top-nav pace-orange" style="height: auto;">
@@ -290,7 +294,7 @@
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="jenislaporan">Jenis Laporan</label>
                   <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio" required>
-                    <option value="null" selected>Pilih Jenis Laporan</option>
+                    <option value="" selected>Pilih Jenis Laporan</option>
                     <option value="mutasi">Laporan Mutasi Kas Aset</option>
                     <option value="jurnalmutasi">Jurnal Laporan Mutasi Kas Aset</option>
                     <option value="laba">Laporan Laba Rugi</option>
@@ -518,12 +522,16 @@
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email"><u>Pilih Jenis Laba pada Kategori ini.</u></label><br>
+                  
                   <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" required>
+                    <input class="custom-control-input" type="hidden" id="customRadio3" name="laba" value="lain" checked>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="customRadio1" name="laba" value="kotor">
                     <label for="customRadio1" class="custom-control-label">LABA RUGI KOTOR</label>
                   </div>
                   <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" required>
+                    <input class="custom-control-input" type="radio" id="customRadio2" name="laba" value="usaha">
                     <label for="customRadio2" class="custom-control-label">LABA RUGI USAHA</label>
                   </div>
                 </div>
@@ -843,10 +851,10 @@
                             <th class="text-center">TANGGAL</th>
                             <th>REF</th>
                             <th class="text-center" style="width:15%">ASET</th>
+                            <th class="text-center"><i class="fas fa-paperclip ml-3"></i></th>
                             <th class="text-center" style="width:40%">URAIAN</th>
                             <th></th>
                             <th>SALDO</th>
-                            <th><i class="fas fa-paperclip"></i></th>
                           </tr>
                         </thead>
                         <tfoot class="">
@@ -867,7 +875,7 @@
                             <td></td>
                             <td class="text-right font-weight-light">Total Saldo = </td>
                             <td></td>
-                            <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
+                            <td colspan="2" class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
                           </tr>
                         </tfoot>
                       </table>
@@ -1026,7 +1034,7 @@
       <script type="text/javascript">
         function functionPreviewpdf(jenlap,id_aset,bulan,tahun) {
           if(jenlap=="mutasi"){
-            window.open("<?php echo base_url("Home/previewpdf/"); ?>" + id_aset + "/" + bulan + "/" + tahun);
+            window.open("<?php echo base_url("Home/previewmutasipdf/"); ?>" + id_aset + "/" + bulan + "/" + tahun);
           }
         }
       </script>
@@ -1040,7 +1048,7 @@
       <script type="text/javascript">
         function functionRenderpdf(jenlap,id_aset,bulan,tahun) {
           if(jenlap=="mutasi"){
-            window.open("<?php echo base_url("Home/pdfrender/"); ?>" + id_aset + "/" + bulan + "/" + tahun);  
+            window.open("<?php echo base_url("Home/pdfmutasirender/"); ?>" + id_aset + "/" + bulan + "/" + tahun);  
           }
         }
       </script>
@@ -1294,6 +1302,12 @@
                 className: "text-center"
               },
               {
+                "data": "file_check",
+                className: "text-center",
+                "bSortable": false,
+                "bSearchable": false
+              },
+              {
                 "data": "uraian",
                 className: "text-left"
               },
@@ -1308,6 +1322,7 @@
                 className: "text-left",
                 render: $.fn.dataTable.render.number(',', '.', 2, 'Rp.')
               }
+              
             ],
 
 
@@ -1393,6 +1408,7 @@
             var float_ukuran = parseFloat(ukuran_file);
             var size_file = float_ukuran / 1024;
 
+            
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalView').modal('show');
             var jenistransaksi = "";
@@ -1424,17 +1440,22 @@
             weekday[4] = "Kamis";
             weekday[5] = "Jum'at";
             weekday[6] = "Sabtu";
+            if(ukuran_file>0){
+              document.getElementById("nama_file").innerHTML = nama_file;
+              document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
+            }
+            else{
+              document.getElementById("elemfile1").outerHTML = "";
+            }
             document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()] + ", " + tanggalupdate;
             document.getElementById("jen_tranview").innerHTML = jenis_tranc;
             document.getElementById("refview").innerHTML = ref;
             document.getElementById("namekat").innerHTML = name_kat;
-            document.getElementById("nama_file").innerHTML = nama_file;
             document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
             document.getElementById("asetview").innerHTML = aset;
             document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             document.getElementById("uraianview").innerHTML = uraian;
             document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
-            document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
             document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/"); ?>" + id_transaksi;
             document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/"); ?>" + id_transaksi;
             document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
