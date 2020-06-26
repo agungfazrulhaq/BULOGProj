@@ -873,8 +873,8 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="text-right font-weight-light">Total Saldo = </td>
                             <td></td>
+                            <td class="text-right font-weight-light">Total Saldo = </td>
                             <td colspan="2" class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
                           </tr>
                         </tfoot>
