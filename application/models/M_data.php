@@ -265,9 +265,7 @@ class M_data extends CI_Model
         <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-        </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
-
-        $this->datatables->add_column('file_check','<span class="hiddencheck$2"><i class="fas fa-check" ></i></span>','id_transaksi,ukuran_file');
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
@@ -317,8 +315,7 @@ class M_data extends CI_Model
         <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-        </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
-        $this->datatables->add_column('file_check','<span class="hiddencheck$2"><i class="fas fa-check" ></i></span>','id_transaksi,ukuran_file');
+      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
@@ -443,7 +440,6 @@ class M_data extends CI_Model
         $nama_kat_lr = $post['nama_kat_lr'];
         $nama_kat = $post['nama_kategori'];
         $jen_tran = $post['jenis_transaksi_kat'];
-        $jen_laba = $post['laba'];
 
         if($jen_tran == "D"){
             $jenis_transaksi__ = "DEBIT";
@@ -455,7 +451,7 @@ class M_data extends CI_Model
         $cari_name_lr = strtolower($nama_kat_lr);
         $query_kat__ = $this->db->query("SELECT * FROM tb_kategori_laba_rugi WHERE nama_kat_lr='".$cari_name_lr."';");
         if($query_kat__->num_rows()==0){
-            $this->db->query("INSERT INTO tb_kategori_laba_rugi(nama_kat_lr,jenis_transaksi,jenis_laba_rugi) VALUES('".$cari_name_lr."','".$jenis_transaksi__."','".$jen_laba."')");
+            $this->db->query("INSERT INTO tb_kategori_laba_rugi(nama_kat_lr,jenis_transaksi) VALUES('".$cari_name_lr."','".$jenis_transaksi__."')");
         }
         $result_id_kat = $this->db->query("SELECT id_kat_laba_rugi FROM tb_kategori_laba_rugi WHERE nama_kat_lr='".$cari_name_lr."'");
         $id_kat___ = $result_id_kat->row();

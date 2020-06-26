@@ -24,7 +24,7 @@ $document->loadHtml($page);
 
 //set page size and orientation
 
-$document->setPaper('A4', 'potrait');
+$document->setPaper('A4', 'landscape');
 
 //Render the HTML as PDF
 
