@@ -394,7 +394,7 @@
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
           <form action="<?php echo site_url("Home/del") ?>" method="post">
-            <input type="hidden" id="id_transaksi" name="id_transaksi">
+            <input type="hidden" id="id_transaksi" name="id_transaksi" value="">
             <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Data">
           </form>
         </div>
