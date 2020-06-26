@@ -16,7 +16,7 @@ $document = new Dompdf();
 // //$document->loadHtml($html);
 
 if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
-  $page = file_get_contents(base_url("Home/previewpdf/".$curr_aset."/".$curr_month."/".$curr_year));
+  $page = file_get_contents(base_url("Home/previewmutasipdf/".$curr_aset."/".$curr_month."/".$curr_year));
 }
 
 
