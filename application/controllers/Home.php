@@ -120,7 +120,7 @@ class Home extends CI_Controller {
             $data["curr_year"] = $curr_year; 
         }
         $data['dummy'] = 0;
-        $this->load->view('pdfrmutasiender.php',$data);
+        $this->load->view('pdfmutasirender.php',$data);
 
         return redirect(base_url());
     }

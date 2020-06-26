@@ -33,7 +33,7 @@
     </style>
     </head>
     <body>
-
+    <center>
     <?php if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){ ?>
         <center>
         <b style="text-size:10px;">MUTASI KAS UB OPASET DIVRE SULSELBAR</b><br>
@@ -251,7 +251,7 @@
         }
     }
     ?>
-
+    </center>
     <script>
     // document.getElementById("tdtgl<?php echo $tranc->id_transaksi;?>").outerHTML = "";
     // window.print();

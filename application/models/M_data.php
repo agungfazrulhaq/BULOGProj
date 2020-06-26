@@ -317,7 +317,8 @@ class M_data extends CI_Model
         <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
           <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
         </button>
-      </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
+        </div>', 'id_transaksi,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,ref,saldo,nama_aset,waktuupdate,nama_kat_lr,nama_kategori,nama_file,ukuran_file');
+        $this->datatables->add_column('file_check','<span class="hiddencheck$2"><i class="fas fa-check" ></i></span>','id_transaksi,ukuran_file');
         // $sql_ = $this->db->query($sql);
         return $this->datatables->generate();
     }
