@@ -895,72 +895,67 @@
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
-                        <!-- <div class="after-add-more"><div class="col-md-8">
-                          <div class="form-group">
-                            <label>Jurnal</label>
-                            <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
-                          </div>
-                          <div class="form-group">
-                            <label>Biaya</label>
-                            <input type="text" class="form-control" placeholder="(Biaya ... )">
-                          </div>
-                          <div class="form-group">
-                            <label>Jumlah</label>
-                            <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
-                          </div></div>
-                          <div class="col-md-4">
-                          <div class="form-group">
-                          <label>Jenis Transaksi</label>
-                          <select type="text" class="form-control custom-select">
-                            <option selected>Pilih..</option>
-                            <option>Pendapatan</option>
-                            <option>Pengeluaran</option>
-                          </select>
-                          </div>
-                          <div class="form-group">
-                            <label>Kas</label>
-                            <input type="text" class="form-control" placeholder="" value="RP.15.000">
-                          </div></div>
-                        <div class="btn-group"> 
-                          <button class="btn btn-success add-more" data-toggle="tooltip" title="Tambah Form"><i class="fas fa-plus"></i></button>
+                        <div class="items" data-group="test">
+                          <!-- Repeater Content -->
                         </div>
+                        <div id="repeater">
+                        <!-- Repeater Heading -->
+                        <div class="repeater-heading">
+                            <button class="btn btn-info btn-sm repeater-add-btn">
+                               <i class="fas fa-plus"></i> Buat Form
+                            </button>
                         </div>
                         
-                        <div class="copy hide">
-                        <div class="control-group">
-                          <div class="form-group">
-                                            <label>Jurnal</label>
-                                            <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
-                                          </div>
-                                          <div class="form-group">
-                                            <label>Biaya</label>
-                                            <input type="text" class="form-control" placeholder="(Biaya ... )">
-                                          </div>
-                                          <div class="form-group">
-                                            <label>Jumlah</label>
-                                            <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
-                                          </div>
-                                          <div class="form-group">
-                                                <label>Jenis Transaksi</label>
-                                                <select type="text" class="form-control custom-select">
-                                                <option selected>Pilih..</option>
-                                                <option>Pendapatan</option>
-                                                <option>Pengeluaran</option>
+                        <!-- Repeater Items -->
+                      <div class="items" data-group="test">
+                        <hr>
+                          <div class="row">
+                            <div class="col-md-8">
+                              <div class="form-group">
+                                <label>Jurnal</label>
+                                <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
+                              </div>
+                              <div class="form-group">
+                                <label>Biaya</label>
+                                <input type="text" class="form-control" placeholder="(Biaya ... )">
+                              </div>
+                              <div class="form-group">
+                                <label>Jumlah</label>
+                                <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                  <label>Jenis Transaksi</label>
+                                  <select type="text" class="form-control custom-select">
+                                  <option selected>Pilih..</option>
+                                  <option>Pendapatan</option>
+                                  <option>Pengeluaran</option>
 
-                                                </select>
-                                            </div>
+                                  </select>
+                              </div>
 
-                                            <div class="form-group">
-                                            <label>Kas</label>
-                                            <input type="text" class="form-control" placeholder="" value="RP.15.000">
-                                            </div>
-                          <div class="btn-group"> 
-                          <button class="btn bg-maroon remove" data-toggle="tooltip" title="Hapus Form"><i class="fas fa-trash"></i></button>
+                              <div class="form-group">
+                              <label>Kas</label>
+                              <input type="text" class="form-control" placeholder="" value="RP.15.000">
+                              </div>
+                          
+                              <div class="form-group">
+                                  <label>Option :</label>
+                                  <div class="btn-group">
+                                  <div class="pull-right repeater-remove-btn">
+                                      <button id="remove-btn" class="btn btn-sm btn-danger" onclick="$(this).parents('.items').remove()">
+                                        <i class="fas fa-times"></i> Hapus Form
+                                      </button>
+                                  </div>
+                                </div>
+                             </div>
+                            </div>
                           </div>
                         </div>
-                    </div> -->
-
+                        </div>
                       </div>
+
                       <!-- /.card-body -->
                       <div class="card-footer">
                         <div class="card-title text-wight-bold">
@@ -1007,20 +1002,18 @@
       <!-- InputMask -->
       <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
       <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
+      <!-- repeater form -->
+      <script src="<?php echo base_url(); ?>plugins/repeater/repeater.js"></script>
       <!-- pace-progress -->
       <script src="<?php echo base_url(); ?>plugins/pace-progress/pace.min.js"></script>
       <!-- AdminLTE App -->
       <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
       <script type="text/javascript">
-        $(document).ready(function() {
-          $(".add-more").click(function() {
-            var html = $(".copy").html();
-            $(".after-add-more").after(html);
-          });
-          $("body").on("click", ".remove", function() {
-            $(this).parents(".control-group").remove();
-          });
+        $(function(){
+
+        $("#repeater").createRepeater();
+
         });
       </script>
       <script type="text/javascript">
