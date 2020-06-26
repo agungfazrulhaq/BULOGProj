@@ -1,0 +1,55 @@
+
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Warning</p>
+<p>Message:  file_get_contents(previewpdf.php): failed to open stream: No such file or directory</p>
+<p>Filename: views/pdfrender.php</p>
+<p>Line Number: 17</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: D:\AGUNG\XAMPP\htdocs\OpasetBulog\application\views\pdfrender.php<br />
+			Line: 17<br />
+			Function: file_get_contents			</p>
+
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: D:\AGUNG\XAMPP\htdocs\OpasetBulog\application\controllers\Home.php<br />
+			Line: 130<br />
+			Function: view			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: D:\AGUNG\XAMPP\htdocs\OpasetBulog\index.php<br />
+			Line: 315<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>%PDF-1.3
+1 0 obj
+<< /Type /Catalog
+/Outlines 2 0 R
+/Pages 3 
