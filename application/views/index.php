@@ -246,13 +246,6 @@
                     <?php } ?>
                   </select>
                 </div>
-                <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="defaultForm-email">Jenis Transaksi</label>
-                  <select class="custom-select" style="width: 100%;" id="selectJenis" name="customRadio" required>
-                    <option value="D">Debit</option>
-                    <option value="K">Kredit</option>
-                  </select>
-                </div>
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-pass">Jumlah</label>
@@ -883,13 +876,6 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_2">
-                    The European languages are members of the same family. Their separate existence is a myth.
-                    For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                    in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                    new common language would be desirable: one could refuse to pay expensive translators. To
-                    achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                    words. If several languages coalesce, the grammar of the resulting language is more simple
-                    and regular than that of the individual languages.
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_3">
@@ -1073,33 +1059,6 @@
       </script>
 
       <script>
-        // $('#UB').hide();
-        // $("#jenislaporan").change(function() {
-        //   if ($(this).val() == "mutasi") {
-        //     $('#UB').show();
-        //     $('#aset', '#bulan').attr('required', '');
-        //     $('#aset', '#bulan').attr('data-error', 'This field is required.');
-        //   } else {
-        //     $('#UB').hide();
-        //     $('#aset', '#bulan').removeAttr('required');
-        //     $('#aset', '#bulan').removeAttr('data-error');
-        //   }
-        // });
-
-        // $('#BL').hide();
-        // $("#jenislaporan").change(function() {
-        //   if ($(this).val() == "laba") {
-        //     $('#BL').show();
-        //     $('#bulanL').attr('required', '');
-        //     $('#bulanL').attr('data-error', 'This field is required.');
-        //   } else {
-        //     $('#BL').hide();
-        //     $('#bulanL').removeAttr('required');
-        //     $('#bulanL').removeAttr('data-error');
-        //   }
-        // });
-
-
         $('.select2').select2()
 
         $('.select2bs4').select2({
@@ -1241,8 +1200,8 @@
             "processing": true,
             "serverSide": true,
             "lengthMenu": [
-              [10, 25, -1],
-              [10, 25, "All"]
+              [15, 25, -1],
+              [15, 25, "All"]
             ],
             "fixedColumns": true,
             "scrollCollapse": true,
