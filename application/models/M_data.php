@@ -14,6 +14,19 @@ class M_data extends CI_Model
     public $uraian;
     public $ref;
 
+    public function delete()
+    {
+        $post = $this->input->post();
+        $id = $post['id_transaksi'];
+        $que_file_existance = $this->db->query("SELECT * FROM files WHERE file_id_transaksi=".$id);
+        if($que_file_existance->num_rows() == 1){
+            $getFileex = $que_file_existance->row();
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
+            $delfile__ = $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$id);
+        }
+        return $this->db->delete($this->_tabletransaksi, array("id_transaksi" => $id));
+    }
+
     public function getAset()
     {
         return $this->db->get($this->_tableaset)->result();
@@ -118,19 +131,6 @@ class M_data extends CI_Model
         $nama_aset = $post['nama_aset'];
 
         return $this->db->query("INSERT INTO tb_aset(nama_aset) VALUES('" . $nama_aset . "');");
-    }
-
-    public function delete()
-    {
-        $post = $this->input->post();
-        $id = $post['id_transaksi'];
-        $que_file_existance = $this->db->query("SELECT * FROM files where file_id_transaksi=".$post['id_transaksi']);
-        if($que_file_existance->num_rows() == 1){
-            $getFileex = $que_file_existance->row();
-            unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
-            $delfile__ = $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$post['id_transaksi']);
-        }
-        return $this->db->delete($this->_tabletransaksi, array("id_transaksi" => $id));
     }
 
     public function rulesadd()

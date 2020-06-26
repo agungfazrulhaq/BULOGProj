@@ -43,7 +43,8 @@ class Home extends CI_Controller {
     }
 
     public function del(){
-        if ($this->M_data->delete()) {
+        $data_ = $this->M_data;
+        if ($data_->delete()) {
             $this->session->set_flashdata('successdel', 'Berhasil menghapus data');
             redirect(site_url());
         }

@@ -286,8 +286,8 @@
               <div class="modal-body mx-2">
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="jenislaporan">Jenis Laporan</label>
-                  <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio" required>
-                    <option value="" selected>Pilih Jenis Laporan</option>
+                  <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio">
+                    <option value="">Pilih Jenis Laporan</option>
                     <option value="mutasi">Laporan Mutasi Kas Aset</option>
                     <option value="laba">Laporan Laba Rugi</option>
                     <option value="neraca">Laporan Neraca</option>
@@ -385,8 +385,8 @@
 
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
-          <form action="<?php echo site_url("Home/del") ?>" method="post">
-            <input type="hidden" id="id_transaksi" name="id_transaksi">
+          <form action="<?php echo site_url("Home/del"); ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="id_transaksi_dam" name="id_transaksi" value="">
             <input type="submit" style="color:white;" class="btn btn-danger btn-sm" value="Hapus Data">
           </form>
         </div>
@@ -1077,6 +1077,10 @@
             toastr.success('Berhasil Menghapus Data');
           <?php } ?>
 
+          <?php if ($this->session->flashdata('faildel')) { ?>
+            toastr.error('Tidak dapat Menghapus Data');
+          <?php } ?>
+
           <?php if ($this->session->flashdata('successupdate')) { ?>
             toastr.success('Berhasil Menyimpan Data');
           <?php } ?>
@@ -1342,7 +1346,6 @@
             document.getElementById("tanggaldel").innerHTML = tanggal;
             document.getElementById("asetdel").innerHTML = aset;
             document.getElementById("saldodel").innerHTML = saldo;
-            document.getElementById("id_transaksi").innerHTML = id_transaksi;
           });
           $('#tbmaster').on('click', '.viewdata', function() {
             var id_transaksi = $(this).data('id');
