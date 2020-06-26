@@ -289,7 +289,6 @@
                   <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio">
                     <option value="">Pilih Jenis Laporan</option>
                     <option value="mutasi">Laporan Mutasi Kas Aset</option>
-                    <option value="jurnalmutasi">Jurnal Laporan Mutasi Kas Aset</option>
                     <option value="laba">Laporan Laba Rugi</option>
                     <option value="neraca">Laporan Neraca</option>
                   </select>
