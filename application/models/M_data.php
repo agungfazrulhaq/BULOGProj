@@ -21,8 +21,8 @@ class M_data extends CI_Model
         $que_file_existance = $this->db->query("SELECT * FROM files WHERE file_id_transaksi=".$id);
         if($que_file_existance->num_rows() == 1){
             $getFileex = $que_file_existance->row();
-            unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
             $delfile__ = $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$id);
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
         }
         return $this->db->delete($this->_tabletransaksi, array("id_transaksi" => $id));
     }

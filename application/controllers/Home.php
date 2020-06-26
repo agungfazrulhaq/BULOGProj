@@ -46,11 +46,11 @@ class Home extends CI_Controller {
         $data_ = $this->M_data;
         if ($data_->delete()) {
             $this->session->set_flashdata('successdel', 'Berhasil menghapus data');
-            redirect(site_url());
+            redirect(base_url());
         }
         else{
             $this->session->set_flashdata('faildel', 'Berhasil menghapus data');
-            redirect(site_url());
+            redirect(base_url());
         }
     }
 
