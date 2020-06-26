@@ -39,10 +39,6 @@
   .page-link {
     color: grey !important;
   }
-
-  .hiddencheck{
-    visibility: hidden;
-  }
 </style>
 
 <body class="layout-top-nav pace-orange" style="height: auto;">
@@ -229,7 +225,8 @@
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                  <select class="form-control select2" id="selectkategori" style="width: 100%;" name="kategori" required>
+                  <select class="form-control select2" style="width: 100%;" name="kategori" required>
+                    <option selected="selected" value="">Pilih Kategori</option>
                     <?php foreach ($allcategory as $K_row__) { ?>
                       <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
                         <?php foreach ($kategori as $row_k) { ?>
@@ -268,7 +265,7 @@
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <input type="submit" class="btn btn-info" value="Simpan">
+                <input type="submit" class="btn btn-info" value="simpan">
               </div>
             </div>
           </div>
@@ -294,7 +291,7 @@
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="jenislaporan">Jenis Laporan</label>
                   <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio" required>
-                    <option value="" selected>Pilih Jenis Laporan</option>
+                    <option value="null" selected>Pilih Jenis Laporan</option>
                     <option value="mutasi">Laporan Mutasi Kas Aset</option>
                     <option value="jurnalmutasi">Jurnal Laporan Mutasi Kas Aset</option>
                     <option value="laba">Laporan Laba Rugi</option>
@@ -304,38 +301,18 @@
               </div>
 
               <div class="modal-footer d-flex justify-content-center">
-                <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
-                  <button type="button" class="btn btn-sm bg-info">
-                    <span class="" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'><i class=" fas fa-file-pdf"> </i> LIHAT</span>
+                <a href="">
+                  <button type="button" class="btn btn-sm bg-info" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>
+                    <span class=""><i class="fas fa-info"></i> LIHAT</span>
                   </button>
-                <?php 
-                } 
-                else {
-                ?>
-                  <button type="button" class="btn btn-sm bg-info">
-                    <span class="p-2" onclick='alertFilter()'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
-                  </button>
-                <?php
-                }  
-                ?>
+                </a>
                 <div class="">
 
                   <span class="btn bg-grey">Export Ke : </span>
 
-                <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
                   <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
-                    <span class="" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'>PDF</span>
+                    <span class="" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,document.getElementById("asetmutasi_").value,document.getElementById("bulanmutasi").value)'>PDF</span>
                   </button>
-                <?php 
-                } 
-                else {
-                ?>
-                  <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
-                    <span class="" onclick='alertFilter()'>PDF</span>
-                  </button>
-                <?php
-                }
-                ?>
                   <button type="button" class="btn text-olive btn-sm"><i class=" fas fa-file-excel"></i>
                     <span class="">EXCEL</span>
                   </button>
@@ -522,16 +499,12 @@
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email"><u>Pilih Jenis Laba pada Kategori ini.</u></label><br>
-                  
                   <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="hidden" id="customRadio3" name="laba" value="lain" checked>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="customRadio1" name="laba" value="kotor">
+                    <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" required>
                     <label for="customRadio1" class="custom-control-label">LABA RUGI KOTOR</label>
                   </div>
                   <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="customRadio2" name="laba" value="usaha">
+                    <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" required>
                     <label for="customRadio2" class="custom-control-label">LABA RUGI USAHA</label>
                   </div>
                 </div>
@@ -553,38 +526,48 @@
       <a class="navbar-brand font-weight-bold" href="#">LAPORAN KEUANGAN UB. OPASET KANTOR WILAYAH SULAWESI SELATAN & BARAT</a>
       <!-- Left navbar links -->
       <ul class="navbar-nav">
-        
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-dot-circle"></i>
+            <span class="badge badge-danger navbar-badge">15</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">15 Notifications</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> 4 new messages
+              <span class="float-right text-muted text-sm">3 mins</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <span class="dropdown-item dropdown-header">15 Notifications</span>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-envelope mr-2"></i> 4 new messages
+                <span class="float-right text-muted text-sm">3 mins</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-users mr-2"></i> 8 friend requests
+                <span class="float-right text-muted text-sm">12 hours</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-file mr-2"></i> 3 new reports
+                <span class="float-right text-muted text-sm">2 days</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            </div>
+        </li>
       </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-          <img src="<?php echo base_url(); ?>/dist/img/pict.jpg" class="rounded-circle mr-1" width="20" height="20" alt="logo">
-                    <u>Muhammad Fachrizal Ramdani</u>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">BIDANG CATUR</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <div class="info-box mb-1 p-0">
-                <div class="text-right info-box-content font-weight-light" style="font-size:0.8vw;">
-                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
-                  <span class="info-box-number">NIP : 1103174125</span>
-                </div>
-
-                <img class="mb-0 p-0 img-fluid rounded" width="27%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
-
-              </div>
-            </a>
-            </div>
-        </li>
         <li class="nav-item">
           <span class="nav-link p-0 mt-2">
             <div id="clock"></div>
           </span>
         </li>
-        
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <span class="toastrDefaultError" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Keluar <i class="fas fa-sign-out-alt"></i></span>
@@ -596,13 +579,37 @@
     </nav>
 
     <div class="content-wrapper">
-      
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-3">
+              <img class="img-fluid" height="60%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
+            </div>
+            <div class="col-6">
 
-      <section class="content mt-3">
+            </div>
+
+            <div class="col-3">
+              <div class="info-box mb-0 p-0">
+                <div class="text-right info-box-content font-weight-light mr-2" style="font-size:1vw;">
+                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
+                  <span class="info-box-number">NIP : 1103174125</span>
+                  <span class="info-box-number">BIDANG CATUR</span>
+                </div>
+
+                <img class="mb-0 p-0 img-fluid " width="27%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
+
+              </div>
+
+            </div>
+          </div>
+      </section>
+
+      <section class="content">
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
-          <img class="img-fluid mb-2 shadow-sm bg-white p-2 rounded" width="100%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
-            <button type="button" class="btn shadow-sm btn-block btn-info mb-2 font-weight-regular" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+            <button type="button" class="btn btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>
@@ -851,10 +858,10 @@
                             <th class="text-center">TANGGAL</th>
                             <th>REF</th>
                             <th class="text-center" style="width:15%">ASET</th>
-                            <th class="text-center"><i class="fas fa-paperclip ml-3"></i></th>
                             <th class="text-center" style="width:40%">URAIAN</th>
                             <th></th>
                             <th>SALDO</th>
+                            <th><i class="fas fa-paperclip"></i></th>
                           </tr>
                         </thead>
                         <tfoot class="">
@@ -873,9 +880,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td class="text-right font-weight-light">Total Saldo = </td>
-                            <td colspan="2" class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
+                            <td></td>
+                            <td class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
                           </tr>
                         </tfoot>
                       </table>
@@ -903,67 +910,72 @@
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
-                        <div class="items" data-group="test">
-                          <!-- Repeater Content -->
+                        <!-- <div class="after-add-more"><div class="col-md-8">
+                          <div class="form-group">
+                            <label>Jurnal</label>
+                            <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
+                          </div>
+                          <div class="form-group">
+                            <label>Biaya</label>
+                            <input type="text" class="form-control" placeholder="(Biaya ... )">
+                          </div>
+                          <div class="form-group">
+                            <label>Jumlah</label>
+                            <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
+                          </div></div>
+                          <div class="col-md-4">
+                          <div class="form-group">
+                          <label>Jenis Transaksi</label>
+                          <select type="text" class="form-control custom-select">
+                            <option selected>Pilih..</option>
+                            <option>Pendapatan</option>
+                            <option>Pengeluaran</option>
+                          </select>
+                          </div>
+                          <div class="form-group">
+                            <label>Kas</label>
+                            <input type="text" class="form-control" placeholder="" value="RP.15.000">
+                          </div></div>
+                        <div class="btn-group"> 
+                          <button class="btn btn-success add-more" data-toggle="tooltip" title="Tambah Form"><i class="fas fa-plus"></i></button>
                         </div>
-                        <div id="repeater">
-                        <!-- Repeater Heading -->
-                        <div class="repeater-heading">
-                            <button class="btn bg-olive btn-sm repeater-add-btn">
-                               <i class="fas fa-plus"></i> Buat Form
-                            </button>
                         </div>
                         
-                        <!-- Repeater Items -->
-                      <div class="items" data-group="test">
-                        <hr>
-                          <div class="row">
-                            <div class="col-md-8">
-                              <div class="form-group">
-                                <label>Jurnal</label>
-                                <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
-                              </div>
-                              <div class="form-group">
-                                <label>Biaya</label>
-                                <input type="text" class="form-control" placeholder="(Biaya ... )">
-                              </div>
-                              <div class="form-group">
-                                <label>Jumlah</label>
-                                <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                  <label>Jenis Transaksi</label>
-                                  <select type="text" class="form-control custom-select">
-                                  <option selected>Pilih..</option>
-                                  <option>Pendapatan</option>
-                                  <option>Pengeluaran</option>
+                        <div class="copy hide">
+                        <div class="control-group">
+                          <div class="form-group">
+                                            <label>Jurnal</label>
+                                            <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
+                                          </div>
+                                          <div class="form-group">
+                                            <label>Biaya</label>
+                                            <input type="text" class="form-control" placeholder="(Biaya ... )">
+                                          </div>
+                                          <div class="form-group">
+                                            <label>Jumlah</label>
+                                            <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
+                                          </div>
+                                          <div class="form-group">
+                                                <label>Jenis Transaksi</label>
+                                                <select type="text" class="form-control custom-select">
+                                                <option selected>Pilih..</option>
+                                                <option>Pendapatan</option>
+                                                <option>Pengeluaran</option>
 
-                                  </select>
-                              </div>
+                                                </select>
+                                            </div>
 
-                              <div class="form-group">
-                              <label>Kas</label>
-                              <input type="text" class="form-control" placeholder="" value="RP.15.000">
-                              </div>
-                          
-                              <div class="form-group">
-                                  <label>Option :</label>
-                                  <div class="btn-group">
-                                  <div class="pull-right repeater-remove-btn">
-                                      <button id="remove-btn" class="btn btn-sm btn-danger" onclick="$(this).parents('.items').remove()">
-                                        <i class="fas fa-times"></i> Hapus Form
-                                      </button>
-                                  </div>
-                                </div>
-                             </div>
-                            </div>
+                                            <div class="form-group">
+                                            <label>Kas</label>
+                                            <input type="text" class="form-control" placeholder="" value="RP.15.000">
+                                            </div>
+                          <div class="btn-group"> 
+                          <button class="btn bg-maroon remove" data-toggle="tooltip" title="Hapus Form"><i class="fas fa-trash"></i></button>
                           </div>
                         </div>
-                        </div>
-                      </div>
+                    </div> -->
 
+                      </div>
                       <!-- /.card-body -->
                       <div class="card-footer">
                         <div class="card-title text-wight-bold">
@@ -1010,39 +1022,30 @@
       <!-- InputMask -->
       <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
       <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
-      <!-- repeater form -->
-      <script src="<?php echo base_url(); ?>plugins/repeater/repeater.js"></script>
       <!-- pace-progress -->
       <script src="<?php echo base_url(); ?>plugins/pace-progress/pace.min.js"></script>
       <!-- AdminLTE App -->
       <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
       <script type="text/javascript">
-        $(function(){
-
-        $("#repeater").createRepeater();
-
+        $(document).ready(function() {
+          $(".add-more").click(function() {
+            var html = $(".copy").html();
+            $(".after-add-more").after(html);
+          });
+          $("body").on("click", ".remove", function() {
+            $(this).parents(".control-group").remove();
+          });
         });
       </script>
       <script type="text/javascript">
-        function functionPreviewpdf(jenlap,id_aset,bulan,tahun) {
-          if(jenlap=="mutasi"){
-            window.open("<?php echo base_url("Home/previewmutasipdf/"); ?>" + id_aset + "/" + bulan + "/" + tahun);
-          }
+        function functionPreviewpdf(jenlap, id_aset, bulan) {
+          window.open("<?php echo base_url("Home/previewpdf/"); ?>" + id_aset + "/" + bulan + "/" + "2019/");
         }
       </script>
-      
       <script type="text/javascript">
-        function alertFilter() {
-          alert("filter sebelum melakukan percetakan");
-        }
-      </script>
-
-      <script type="text/javascript">
-        function functionRenderpdf(jenlap,id_aset,bulan,tahun) {
-          if(jenlap=="mutasi"){
-            window.open("<?php echo base_url("Home/pdfmutasirender/"); ?>" + id_aset + "/" + bulan + "/" + tahun);  
-          }
+        function functionRenderpdf(jenlap, id_aset, bulan) {
+          window.open("<?php echo base_url("Home/pdfrender/"); ?>" + id_aset + "/" + bulan + "/" + "2019/");
         }
       </script>
       <script type="text/javascript">
@@ -1295,12 +1298,6 @@
                 className: "text-center"
               },
               {
-                "data": "file_check",
-                className: "text-center",
-                "bSortable": false,
-                "bSearchable": false
-              },
-              {
                 "data": "uraian",
                 className: "text-left"
               },
@@ -1315,7 +1312,6 @@
                 className: "text-left",
                 render: $.fn.dataTable.render.number(',', '.', 2, 'Rp.')
               }
-              
             ],
 
 
@@ -1401,7 +1397,6 @@
             var float_ukuran = parseFloat(ukuran_file);
             var size_file = float_ukuran / 1024;
 
-            
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalView').modal('show');
             var jenistransaksi = "";
@@ -1433,22 +1428,17 @@
             weekday[4] = "Kamis";
             weekday[5] = "Jum'at";
             weekday[6] = "Sabtu";
-            if(ukuran_file>0){
-              document.getElementById("nama_file").innerHTML = nama_file;
-              document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
-            }
-            else{
-              document.getElementById("elemfile1").outerHTML = "";
-            }
             document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()] + ", " + tanggalupdate;
             document.getElementById("jen_tranview").innerHTML = jenis_tranc;
             document.getElementById("refview").innerHTML = ref;
             document.getElementById("namekat").innerHTML = name_kat;
+            document.getElementById("nama_file").innerHTML = nama_file;
             document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
             document.getElementById("asetview").innerHTML = aset;
             document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             document.getElementById("uraianview").innerHTML = uraian;
             document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
+            document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
             document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/"); ?>" + id_transaksi;
             document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/"); ?>" + id_transaksi;
             document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
