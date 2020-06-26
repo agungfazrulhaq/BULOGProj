@@ -851,7 +851,7 @@
                             <th class="text-center">TANGGAL</th>
                             <th>REF</th>
                             <th class="text-center" style="width:15%">ASET</th>
-                            <th class="text-center"><i class="fas fa-paperclip ml-3"></i></th>
+                            <th class="text-center" "><i class="fas fa-file-archive ml-3" title="BUKTI TRANSAKSI"></i></th>
                             <th class="text-center" style="width:40%">URAIAN</th>
                             <th></th>
                             <th>SALDO</th>
