@@ -901,7 +901,7 @@
                         <div id="repeater">
                         <!-- Repeater Heading -->
                         <div class="repeater-heading">
-                            <button class="btn btn-info btn-sm repeater-add-btn">
+                            <button class="btn bg-olive btn-sm repeater-add-btn">
                                <i class="fas fa-plus"></i> Buat Form
                             </button>
                         </div>
