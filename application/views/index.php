@@ -602,7 +602,7 @@
         <div class="row">
           <div class="col-2" style="font-size:1vw;">
           <img class="img-fluid mb-2 shadow-sm bg-white p-2 rounded" width="100%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
-            <button type="button" class="btn shadow-sm btn-block btn-info mb-2 font-weight-regular" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+            <button type="button" class="btn shadow-sm btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>
@@ -873,8 +873,8 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td class="text-right font-weight-light">Total Saldo = </td>
+                            <td></td>
                             <td colspan="2" class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
                           </tr>
                         </tfoot>
@@ -1384,6 +1384,7 @@
             document.getElementById("tanggaldel").innerHTML = tanggal;
             document.getElementById("asetdel").innerHTML = aset;
             document.getElementById("saldodel").innerHTML = saldo;
+            document.getElementById("id_transaksi").innerHTML = id_transaksi;
           });
           $('#tbmaster').on('click', '.viewdata', function() {
             var id_transaksi = $(this).data('id');
