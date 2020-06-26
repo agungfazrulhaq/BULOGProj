@@ -514,11 +514,8 @@
                 </div>
 
                 <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="defaultForm-email"><u>Pilih Jenis Laba pada Kategori ini.</u></label><br>
+                  <label data-error="wrong" data-success="right" for="defaultForm-email"><u>Pilih Jenis Laba pada Kategori ini.</u></label>
                   
-                  <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="hidden" id="customRadio3" name="laba" value="lain" checked>
-                  </div>
                   <div class="custom-control custom-radio">
                     <input class="custom-control-input" type="radio" id="customRadio1" name="laba" value="kotor">
                     <label for="customRadio1" class="custom-control-label">LABA RUGI KOTOR</label>
@@ -526,6 +523,9 @@
                   <div class="custom-control custom-radio">
                     <input class="custom-control-input" type="radio" id="customRadio2" name="laba" value="usaha">
                     <label for="customRadio2" class="custom-control-label">LABA RUGI USAHA</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="hidden" id="customRadio3" name="laba" value="lain" checked>
                   </div>
                 </div>
               </div>
@@ -866,8 +866,8 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="text-right font-weight-light">Total Saldo = </td>
                             <td></td>
+                            <td class="text-right font-weight-light">Total Saldo = </td>
                             <td colspan="2" class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
                           </tr>
                         </tfoot>
