@@ -1,14 +1,14 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_data extends CI_Model
+class M_user extends CI_Model
 {
-    private $_table = "tb_users";
+    private $_table = "tb_user";
 
     public function doLogin(){
 		$post = $this->input->post();
 
         // cari user berdasarkan email dan username
-        $this->db->where('email', $post["username"]);
+        $this->db->where('nip', $post["nip"]);
         $user = $this->db->get($this->_table)->row();
 
         // jika user terdaftar
@@ -23,7 +23,7 @@ class M_data extends CI_Model
                 return true;
             }
         }
-        
+        $this->session->set_flashdata('failedlogin','Gagal Login');
         // login gagal
 		return false;
     }

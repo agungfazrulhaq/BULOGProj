@@ -14,15 +14,15 @@ class Login extends CI_Controller {
             if($this->M_user->doLogin()){
                 redirect(site_url());
             }
-
-            $this->load->view("login.php");
         }
+        
+        $this->load->view("login.php");
+        
     }
 
     public function logout(){
         $this->session->sess_destroy();
-        redirect(site_url("login.php"));
+        $this->session->set_flashdata('successlogout', 'Berhasil menghapus data');
+        redirect(site_url("Login/"));
     }
-    
-
 }

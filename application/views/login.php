@@ -9,15 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="<?php echo base_url('plugins/toastr/toastr.min.css') ?>">
   <style>
     body {
   margin: 0;
@@ -33,7 +35,7 @@ video {
     height: auto;
     z-index: -100;
     transform: translateX(-50%) translateY(-50%);
- background: url('dist/img/FinalOutput.webm') no-repeat;
+ background: url('<?php echo base_url();?>dist/img/FinalOutput.webm') no-repeat;
   background-size: cover;
   transition: 1s opacity;
 }
@@ -96,8 +98,8 @@ a:hover{
   </style>
 </head>
 <body class="hold-transition login-page">
-  <video poster="dist/img/FinalOutput.webm" id="bgvid" playsinline autoplay muted loop>
-  <source src="dist/img/FinalOutput.webm" type="video/webm">
+  <video poster="<?php echo base_url();?>dist/img/FinalOutput.webm" id="bgvid" playsinline autoplay muted loop>
+  <source src="<?php echo base_url();?>dist/img/FinalOutput.webm" type="video/webm">
 
 </video>
 
@@ -105,14 +107,14 @@ a:hover{
   <div class="card">
   <div class="card-body login-card-body">
   <div class="login-logo">
-  <img class="img-fluid" width="120" height="120" src="dist/img/Logo.png"  alt="Logo Bulog">
+  <img class="img-fluid" width="120" height="120" src="<?php echo base_url();?>dist/img/Logo.png"  alt="Logo Bulog">
   <h2 class="text-dark"><b>BULOG <br>KANWIL SULSELBAR</b></h2>
   </div>
       <p class="login-box-msg">Masukkan Akun Anda</p>
 
-      <form action="../../index3.html" method="post">
+      <form action="<?php echo site_url("Login/")?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" data-toggle="tooltip" data-placement="left" title="Masukkan NOMOR INDUK PEGAWAI" placeholder="NIP" name="nip">
+          <input type="text" class="form-control" data-toggle="tooltip" data-placement="left" title="Masukkan NOMOR INDUK PEGAWAI" placeholder="NIP" name="nip">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -142,17 +144,31 @@ a:hover{
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="<?php echo base_url();?>dist/js/adminlte.min.js"></script>
+<!-- Toastr -->
+<script src="<?php echo base_url(); ?>plugins/toastr/toastr.min.js"></script>
 <script>
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
   });
 
 </script>
+<script>
+$(document).ready(function(){
+   <?php if ($this->session->flashdata('successlogout')) { ?>
+      toastr.success('Berhasil Log out');
+   <?php } ?>
+
+   <?php if ($this->session->flashdata('failedlogin')) { ?>
+      toastr.error('Gagal Log in');
+   <?php } ?>
+});
+</script>
+
 <script>
   var vid = document.getElementById("bgvid");
 var pauseButton = document.querySelector("#polina button");

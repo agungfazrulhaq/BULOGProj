@@ -109,6 +109,8 @@
               </div>
             </div>
 
+            <input type="hidden" id="user_add" value="<?php echo $this->session->userdata('user_logged')->id_user;?>" name="user_update">
+
           </div>
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-info">Simpan</button>
@@ -137,7 +139,7 @@
               <h3><b>NOMINAL TRANSAKSI : &nbsp;Rp. <span id="saldoview">Saldo</span></b>
                 <span class="mailbox-read-time float-right text-right bg-light p-1 pl-2 pr-2 rounded">
                   <code class="text-orange">
-                    User : Muhammad Fachrizal Ramdani <br>
+                    User : <span id="userupdate"> Unknown </span> <br>
                     <span id="tanggal_update">--:--:--</span> <br>
                     Tanggal Pembuatan Laporan (Timestamp)</code>
                 </span>
@@ -260,6 +262,7 @@
 
                 </div>
               </div>
+              <input type="hidden" id="user_add" value="<?php echo $this->session->userdata('user_logged')->id_user;?>" name="user_update">
               <div class="modal-footer d-flex justify-content-center">
                 <input type="submit" class="btn btn-info" value="Simpan">
               </div>
@@ -553,20 +556,20 @@
       <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
-          <img src="<?php echo base_url(); ?>/dist/img/pict.jpg" class="rounded-circle mr-1" width="20" height="20" alt="logo">
-                    <u>Muhammad Fachrizal Ramdani</u>
+          <img src="<?php echo base_url(); ?>/upload/profile/<?php echo $this->session->userdata('user_logged')->file_foto;?>" class="rounded-circle mr-1" width="20" height="20" alt="logo">
+                    <u><?php echo $this->session->userdata('user_logged')->nama;?></u>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">BIDANG CATUR</span>
+            <span class="dropdown-item dropdown-header"><?php echo $this->session->userdata('user_logged')->bidang;?></span>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
             <div class="info-box mb-1 p-0">
                 <div class="text-right info-box-content font-weight-light" style="font-size:0.8vw;">
-                  <span class="info-box-text">Muhammad Fachrizal Ramdani</span>
-                  <span class="info-box-number">NIP : 1103174125</span>
+                  <span class="info-box-text"><?php echo $this->session->userdata('user_logged')->nama;?></span>
+                  <span class="info-box-number">NIP : <?php echo $this->session->userdata('user_logged')->nip;?></span>
                 </div>
 
-                <img class="mb-0 p-0 img-fluid rounded" width="27%" src="<?php echo base_url(); ?>/dist/img/pict.jpg" alt="photo">
+                <img class="mb-0 p-0 img-fluid rounded" width="27%" src="<?php echo base_url(); ?>/upload/profile/<?php echo $this->session->userdata('user_logged')->file_foto;?>" alt="photo">
 
               </div>
             </a>
@@ -579,8 +582,8 @@
         </li>
         
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <span class="toastrDefaultError" data-toggle="modal" data-target="#delaset" data-placement="bottom" title="Keluar">Keluar <i class="fas fa-sign-out-alt"></i></span>
+          <a class="nav-link" href="<?php echo site_url()?>Login/logout">
+            <span class="toastr"  data-toggle="" title="Keluar">Keluar <i class="fas fa-sign-out-alt"></i></span>
           </a>
 
         </li>
@@ -1361,6 +1364,7 @@
             var name_kat = $(this).data('nkat');
             var nama_file = $(this).data('namfile');
             var ukuran_file = $(this).data('sizefile');
+            var nama_user = $(this).data('user');
             var float_ukuran = parseFloat(ukuran_file);
             var size_file = float_ukuran / 1024;
 
@@ -1407,6 +1411,7 @@
             document.getElementById("jen_tranview").innerHTML = jenis_tranc;
             document.getElementById("refview").innerHTML = ref;
             document.getElementById("namekat").innerHTML = name_kat;
+            document.getElementById("userupdate").innerHTML = nama_user;
             document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
             document.getElementById("asetview").innerHTML = aset;
             document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');

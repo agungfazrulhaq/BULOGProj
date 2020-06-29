@@ -12,6 +12,8 @@ class Home extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('datatables');
         $this->load->helper(array('url','download'));
+        $this->load->model("M_user");
+        if($this->M_user->isNotLogin()) redirect(site_url('Login/'));
     }
 
 	public function index()
