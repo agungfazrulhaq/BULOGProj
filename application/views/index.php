@@ -141,7 +141,7 @@
                   <code class="text-orange">
                     User : <span id="userupdate"> Unknown </span> <br>
                     <span id="tanggal_update">--:--:--</span> <br>
-                    Tanggal Pembuatan Laporan (Timestamp)</code>
+                    Waktu Pembuatan Laporan (Timestamp)</code>
                 </span>
               </h3>
               <h4 class="font-weight-normal pt-1" id="asetview"></h4>
@@ -516,7 +516,7 @@
                   </select>
                 </div>
 
-                <div class="md-form mb-2">
+                <div class="md-form mb-0">
                   <label data-error="wrong" data-success="right" for="defaultForm-email"><u>Pilih Jenis Laba pada Kategori ini.</u></label>
                   
                   <div class="custom-control custom-radio">
@@ -560,7 +560,7 @@
                     <u><?php echo $this->session->userdata('user_logged')->nama;?></u>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header"><?php echo $this->session->userdata('user_logged')->bidang;?></span>
+            <span class="dropdown-item dropdown-header">BIDANG : <?php echo $this->session->userdata('user_logged')->bidang;?></span>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
             <div class="info-box mb-1 p-0">
@@ -568,9 +568,7 @@
                   <span class="info-box-text"><?php echo $this->session->userdata('user_logged')->nama;?></span>
                   <span class="info-box-number">NIP : <?php echo $this->session->userdata('user_logged')->nip;?></span>
                 </div>
-
                 <img class="mb-0 p-0 img-fluid rounded" width="27%" src="<?php echo base_url(); ?>/upload/profile/<?php echo $this->session->userdata('user_logged')->file_foto;?>" alt="photo">
-
               </div>
             </a>
             </div>
