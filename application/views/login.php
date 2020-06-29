@@ -98,8 +98,8 @@ a:hover{
   </style>
 </head>
 <body class="hold-transition login-page">
-  <video poster="<?php echo base_url();?>dist/img/FinalOutput.webm" id="bgvid" playsinline autoplay muted loop>
-  <source src="<?php echo base_url();?>dist/img/FinalOutput.webm" type="video/webm">
+  <video poster="<?php echo base_url();?>dist/img/bglogin.webm" id="bgvid" playsinline autoplay muted loop>
+  <source src="<?php echo base_url();?>dist/img/bglogin.webm" type="video/webm">
 
 </video>
 
