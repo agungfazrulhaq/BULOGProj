@@ -63,6 +63,21 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
+    public function previewlabapdf(){
+        $data['allcat'] = $this->M_data->getAllCat();
+        $data['kategori'] = $this->M_data->getKategori();
+        $data['aset'] = $this->M_data->getAset();
+        $data['rpincat'] = $this->M_data->getLRTransaksi();
+        // foreach($data['kategori'] as $row_kat){
+        //     foreach($data['aset'] as $row_aset){
+
+        //     }
+        //     $data_row = "''"
+        // }
+
+        $this->load->view("pdflabapreview.php",$data);
+    }
+
     public function showaset(){
         $id_aset = $this->uri->segment(3);
         $monthdate = $this->uri->segment(4);

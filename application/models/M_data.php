@@ -494,4 +494,21 @@ class M_data extends CI_Model
         }
     }
 
+    public function getRpPerCat($id_kategori){
+        $query__ = "SELECT SUM(saldo) as rp, transaksi_id_aset 
+                    FROM tb_transaksi WHERE transaksi_id_kategori=".$id_kategori." 
+                    GROUP BY transaksi_id_aset";
+        $query = $this->db->query($query__);
+        return $query->result();
+    }
+
+    public function getLRTransaksi(){
+        $query = $this->db->query('SELECT SUM(saldo) as rp, transaksi_id_aset as aid, transaksi_id_kategori as kid, jenis_transaksi
+                                    FROM tb_transaksi 
+                                    LEFT JOIN tb_kategori ON transaksi_id_kategori=id_kategori 
+                                    LEFT JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi 
+                                    GROUP BY transaksi_id_aset, transaksi_id_kategori');
+        return $query->result();
+    }
+
 }
