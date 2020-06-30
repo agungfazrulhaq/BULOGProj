@@ -47,7 +47,7 @@ foreach($aset as $row_as){
 <p><b> UB. OPASET DIVRE SULSELBAR <br>
 <br>
 LAPORAN&emsp;:&emsp;LABA (RUGI)<br>
-PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
+PERIODE&emsp; :&emsp;-</b></p>
   <table>
     <thead>
       <tr>
@@ -94,7 +94,8 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
       <?php
       $countpart = 1; 
       foreach($allcat as $row_kat){
-            if($row_kat->jenis_laba_rugi == 'kotor'){  
+            if($row_kat->jenis_laba_rugi == 'kotor'){
+                $jumlah_perkat = array(0,0,0);  
         ?>
       <tr>
         <td class="ram"><b><?php echo $countpart?></b></td>
@@ -113,6 +114,8 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
         <td class="ram"><b><?php echo $countpart?>.<?php echo $countpart_ ?></b></td>
         <?php $countpart_+=1;?>
         <td ><?php echo ucfirst($row_k->nama_kategori); ?></td>
+        <?php $elem_aset = 0;?>
+        <?php $count_total = 0;?>
         <?php foreach($aset as $row_aset){?>
             <td>
             <?php
@@ -120,7 +123,7 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
             $elem_aset = 0;
             foreach($rpincat as $rp){
                 if(($rp->aid == $row_aset->id_aset) and ($rp->kid == $row_k->id_kategori)){
-                    echo $rp->rp;
+                    echo number_format($rp->rp, 2);
                     if($rp->jenis_transaksi == "DEBIT"){
                         $labarugi+=$rp->rp;
                         $labarugi_peraset[$elem_aset]+=$rp->rp;
@@ -130,15 +133,25 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
                         $labarugi_peraset[$elem_aset]-=$rp->rp;
                     }
                     $rpcount = 1;
+                    $jumlah_perkat[$elem_aset]+=$rp->rp;
+                    $count_total += $rp->rp;
                 }
             }
             if($rpcount == 0){
                 echo "-";
             }
+            $elem_aset+=1;
             ?>
             </td>
         <?php } ?>
-        <td class="tj"></td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                                ?></td>
       </tr>
       <?php 
             }
@@ -149,10 +162,28 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
       <tr>
         <td >&nbsp;</td>
         <td ><b>Jumlah <?php echo ucwords($row_kat->nama_kat_lr); ?></b></td>
+        <?php $count = 0?>
+        <?php $count_total = 0;?>
         <?php foreach($aset as $row_aset){?>
-            <td></td>
+            <td><?php
+                if($jumlah_perkat[$count]==0){
+                    echo "-";
+                } 
+                else{
+                    echo "<b>".number_format($jumlah_perkat[$count], 2)."</b>";
+                }
+                $count_total += $jumlah_perkat[$count];
+                ?></td>
+            <?php $count+=1;?>
         <?php } ?>
-        <td class="tj">&nbsp;</td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                                ?></td>
       </tr>
       <tr>
         <td >&nbsp;</td>
@@ -170,11 +201,27 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
         <td ></td>
         <td ><b>LABA RUGI KOTOR</b></td>
         <?php $countelem_aset=0;?>
+        <?php $count_total=0;?>
         <?php foreach($aset as $row_aset){?>
-            <td><?php echo $labarugi_peraset[$countelem_aset];?></td>
+            <td><?php
+                if($labarugi_peraset[$countelem_aset]==0){
+                    echo "-";
+                }
+                else{
+                    echo "<b>".number_format($labarugi_peraset[$countelem_aset], 2)."</b>";
+                }
+                $count_total += $labarugi_peraset[$countelem_aset];
+                ?></td>
             <?php $countelem_aset+=1;?>
         <?php } ?>
-        <td class="tj"></td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                                ?></td>
       </tr>
       <tr>
         <td >&nbsp;</td>
@@ -187,7 +234,8 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
       <?php
       $countpart = 1; 
       foreach($allcat as $row_kat){
-            if($row_kat->jenis_laba_rugi == 'usaha'){  
+            if($row_kat->jenis_laba_rugi == 'usaha'){ 
+                $jumlah_perkat = array(0,0,0);   
         ?>
       <tr>
         <td class="ram"><b><?php echo $countpart?></b></td>
@@ -206,13 +254,16 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
         <td class="ram"><b><?php echo $countpart?>.<?php echo $countpart_ ?></b></td>
         <?php $countpart_+=1;?>
         <td ><?php echo ucfirst($row_k->nama_kategori); ?></td>
+        <?php $elem_aset = 0;?>
+        <?php $count_total = 0;?>
         <?php foreach($aset as $row_aset){?>
             <td>
             <?php
             $rpcount = 0;
+            $elem_aset = 0;
             foreach($rpincat as $rp){
                 if(($rp->aid == $row_aset->id_aset) and ($rp->kid == $row_k->id_kategori)){
-                    echo $rp->rp;
+                    echo number_format($rp->rp, 2);
                     if($rp->jenis_transaksi == "DEBIT"){
                         $labarugi+=$rp->rp;
                         $labarugi_peraset[$elem_aset]+=$rp->rp;
@@ -222,15 +273,25 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
                         $labarugi_peraset[$elem_aset]-=$rp->rp;
                     }
                     $rpcount = 1;
+                    $jumlah_perkat[$elem_aset]+=$rp->rp;
+                    $count_total += $rp->rp;
                 }
             }
             if($rpcount == 0){
                 echo "-";
             }
+            $elem_aset+=1;
             ?>
             </td>
         <?php } ?>
-        <td class="tj"></td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                            ?></td>
       </tr>
       <?php 
             }
@@ -241,10 +302,21 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
       <tr>
         <td >&nbsp;</td>
         <td ><b>Jumlah <?php echo ucwords($row_kat->nama_kat_lr); ?></b></td>
+        <?php $count = 0?>
+        <?php $count_total = 0;?>
         <?php foreach($aset as $row_aset){?>
-            <td></td>
+            <td><?php
+                if($jumlah_perkat[$count]==0){
+                    echo "-";
+                } 
+                else{
+                    echo "<b>".number_format($jumlah_perkat[$count], 2)."</b>";
+                }
+                $count_total += $jumlah_perkat[$count];
+                ?></td>
+            <?php $count+=1;?>
         <?php } ?>
-        <td class="tj">&nbsp;</td>
+        <td class="tj">&nbsp; <?php echo "<b>".$count_total."</b>";?></td>
       </tr>
       <tr>
             <td></td>
@@ -263,11 +335,20 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
         <td ></td>
         <td ><b>LABA RUGI USAHA</b></td>
         <?php $countelem_aset = 0?>
+        <?php $count_total = 0;?>
         <?php foreach($aset as $row_aset){?>
-            <td><?php echo $labarugi_peraset[$countelem_aset];?></td>
+            <td><?php 
+                if($labarugi_peraset[$countelem_aset]==0){
+                    echo "-";
+                }
+                else{
+                    echo "<b>".number_format($labarugi_peraset[$countelem_aset], 2)."</b>";
+                }
+                $count_total += $labarugi_peraset[$countelem_aset];
+                ?></td>
             <?php $countelem_aset+=1;?>
         <?php } ?>
-        <td class="tj"></td>
+        <td class="tj">&nbsp; <?php echo "<b>".$count_total."</b>" ?>;</td>
       </tr>
       <tr>
         <td >&nbsp;</td>
@@ -294,18 +375,21 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
         $countpart_ = 1;
         foreach($kategori as $row_k){
             if($row_k->id_kat_lr_kat == $row_kat->id_kat_laba_rugi){
+                $jumlah_perkat = array(0,0,0);  
         ?>
       <tr>
         <td class="ram"><b><?php echo $countpart?>.<?php echo $countpart_ ?></b></td>
         <?php $countpart_+=1;?>
         <td ><?php echo ucfirst($row_k->nama_kategori); ?></td>
+        <?php $elem_aset = 0;?>
+        <?php $count_total = 0;?>
         <?php foreach($aset as $row_aset){?>
             <td>
             <?php
             $rpcount = 0;
             foreach($rpincat as $rp){
                 if(($rp->aid == $row_aset->id_aset) and ($rp->kid == $row_k->id_kategori)){
-                    echo $rp->rp;
+                    echo number_format($rp->rp, 2);
                     if($rp->jenis_transaksi == "DEBIT"){
                         $labarugi+=$rp->rp;
                         $labarugi_peraset[$elem_aset]+=$rp->rp;
@@ -315,27 +399,56 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
                         $labarugi_peraset[$elem_aset]-=$rp->rp;
                     }
                     $rpcount = 1;
+                    $jumlah_perkat[$elem_aset]+=$rp->rp;
+                    $count_total+=$rp->rp;
                 }
             }
             if($rpcount == 0){
                 echo "-";
             }
+            $elem_aset+=1;
             ?>
             </td>
         <?php } ?>
-        <td class="tj"></td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                                ?></td>
       </tr>
       <?php 
             }
-        } 
+        }
+        $countpart +=1; 
     ?>
       <tr>
         <td >&nbsp;</td>
         <td ><b>Jumlah <?php echo ucwords($row_kat->nama_kat_lr); ?></b></td>
+        <?php $count = 0;?>
+        <?php $count_total = 0;?>
         <?php foreach($aset as $row_aset){?>
-            <td></td>
+            <td><?php
+                if($jumlah_perkat[$count]==0){
+                    echo "-";
+                } 
+                else{
+                    echo "<b>".number_format($jumlah_perkat[$count], 2)."</b>";
+                }
+                $count_total += $jumlah_perkat[$count];
+                ?></td>
+            <?php $count+=1;?>
         <?php } ?>
-        <td class="tj">&nbsp;</td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                            ?></td>
       </tr>
       <tr>
         <td >&nbsp;</td>
@@ -353,20 +466,28 @@ PERIODE&emsp; :&emsp;01 JANUARI - 31 OKTOBER 2019</b></p>
       <tr>
         <td class="ram"><b></b></td>
         <td ><b>LABA RUGI</b></td>
-        <?php $countelem_aset = 0?>
+        <?php $countelem_aset=0;?>
+        <?php $count_total=0;?>
         <?php foreach($aset as $row_aset){?>
-            <td><?php echo $labarugi_peraset[$countelem_aset];?></td>
+            <td><?php
+                if($labarugi_peraset[$countelem_aset]==0){
+                    echo "-";
+                }
+                else{
+                    echo "<b>".number_format($labarugi_peraset[$countelem_aset], 2)."</b>";
+                }
+                $count_total += $labarugi_peraset[$countelem_aset];
+                ?></td>
             <?php $countelem_aset+=1;?>
         <?php } ?>
-        <td class="tj"></td>
-      </tr>
-      <tr>
-        <td ></td>
-        <td >&nbsp;</td>
-        <?php foreach($aset as $row_aset){?>
-            <td></td>
-        <?php } ?>
-        <td class="tj"1></td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                                ?></td>
       </tr>
 
     </tbody>

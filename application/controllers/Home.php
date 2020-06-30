@@ -143,6 +143,12 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
+    public function pdflabarender(){
+        $this->load->view('pdflabarender.php');
+
+        return redirect(base_url());
+    }
+
     public function previewmutasipdf($curr_aset=null,$curr_month=null,$curr_year=null){
         $data["datatahun"] = $this->M_data->getYears();
         $data["aset"] = $this->M_data->getAset();
@@ -164,7 +170,12 @@ class Home extends CI_Controller {
 
     public function upload(){
         $data_ = $this->M_data;
-        $data_->uploadFile();
+        if($data_->uploadFile()){
+            $this->session->set_flashdata('successupload', 'Data berhasil disimpan');
+        }
+        else{
+            $this->session->set_flashdata('failupload', 'Data berhasil disimpan');
+        }
 
         return redirect(base_url());
     }
@@ -211,7 +222,13 @@ class Home extends CI_Controller {
 
     public function delfile($id_transaksi=null){
         $data__ = $this->M_data;
-        $data__->delFile($id_transaksi);
+
+        if($data__->delFile($id_transaksi)){
+            $this->session->set_flashdata('successdelfile', 'Berhasil Menghapus data');
+        }
+        else{
+            $this->session->set_flashdata('faildelfile', 'Gagal Menghapus data');
+        }
 
         return redirect(base_url());
     }

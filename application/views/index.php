@@ -82,6 +82,7 @@
               <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
               <select class="form-control select2" style="width: 100%;" name="kategori" required>
                 <option selected="selected" value="">Pilih Kategori</option>
+                <option selected="selected" value="saldoawal">Saldo Awal</option>
                 <?php foreach ($allcategory as $K_row__) { ?>
                   <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
                     <?php foreach ($kategori as $row_k) { ?>
@@ -297,7 +298,6 @@
                   </select>
                 </div>
               </div>
-
               <div class="modal-footer d-flex justify-content-center">
                 <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
                   <button type="button" class="btn btn-sm bg-info">
@@ -1016,6 +1016,9 @@
           if(jenlap=="mutasi"){
             window.open("<?php echo base_url("Home/previewmutasipdf/"); ?>" + id_aset + "/" + bulan + "/" + tahun);
           }
+          else if(jenlap=="laba"){
+            window.open("<?php echo base_url("Home/previewlabapdf/"); ?>");
+          }
         }
       </script>
       
@@ -1029,6 +1032,9 @@
         function functionRenderpdf(jenlap,id_aset,bulan,tahun) {
           if(jenlap=="mutasi"){
             window.open("<?php echo base_url("Home/pdfmutasirender/"); ?>" + id_aset + "/" + bulan + "/" + tahun);  
+          }
+          else if(jenlap=="laba"){
+            window.open("<?php echo base_url("Home/pdflabarender/"); ?>");  
           }
         }
       </script>
@@ -1089,6 +1095,14 @@
 
           <?php if ($this->session->flashdata('successaddcat')) { ?>
             toastr.success('Berhasil Menyimpan Kategori');
+          <?php } ?>
+
+          <?php if ($this->session->flashdata('successupload')) { ?>
+            toastr.success('Berhasil Menyimpan Bukti Transaksi');
+          <?php } ?>
+
+          <?php if ($this->session->flashdata('failupload')) { ?>
+            toastr.error('Upload Gagal, Cek kembali ukuran dan tipe file');
           <?php } ?>
 
           $('[data-toggle="tooltip"]').tooltip();
