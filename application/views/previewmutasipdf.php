@@ -10,16 +10,6 @@
     td.borderright0{
         border-right:0px solid;
     }
-    table,td, th{
-        font-family:Arial, Helvetica, sans-serif; 
-        font-size:12px; 
-        border-collapse:collapse;
-        border:1px solid;
-    }
-
-    th{
-        text-align:center;
-    }
 
     .saldokanan{
         text-align:right;
@@ -30,10 +20,35 @@
         text-align:center;
     }
 
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    }
+
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+
+    th {
+    text-align: center;
+    height: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+
+    .ram {
+    text-align:left;
+    padding-left:15px;
+    }
+
+    .tj{
+    background-color: #DCDCDC;
+    }
+
     </style>
     </head>
     <body>
-    <center>
     <?php if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){ ?>
         <center>
         <b style="text-size:10px;">MUTASI KAS UB OPASET DIVRE SULSELBAR</b><br>
@@ -45,6 +60,26 @@
         <?php
             } 
         }
+        
+    $rowspannya = array();
+    $countrows_ = 0;
+    foreach($transaksi as $tranc){
+        if(isset($dateprev)){
+            if($dateprev == $tranc->tanggal){
+                $countrows_ +=1;
+            }
+            else{
+                array_push($rowspannya,$countrows_);
+                $countrows_ = 1;
+                $dateprev = $tranc->tanggal;
+            }
+        }
+        else{
+            $dateprev = $tranc->tanggal;
+            $countrows_ +=1;
+        }
+    }
+    array_push($rowspannya,$countrows_);
     ?>
         <b style="text-size:10px;">BULAN : <?php if (isset($curr_month)) {
                         if ($curr_month == 0) {
@@ -82,14 +117,16 @@
     <?php } ?>
         <br>
         <table>
-            <tr>  
-                <th id="WOIWOI">TGL</th>
-                <th colspan='2'>REF</th>
-                <th>URAIAN</th>
+            <thead> 
+            <tr> 
+                <th id="WOIWOI" width=5px>TGL</th>
+                <th colspan='2' width="15px">REF</th>
+                <th width="300px">URAIAN</th>
                 <th>DEBET</th>
                 <th>KREDIT</th>
                 <th>SALDO</th>
             </tr>
+            </thead>
             <?php 
             $debcounter = 0;
             $krecounter = 0;
@@ -100,7 +137,7 @@
             <tbody>
             <?php foreach($transaksi as $tranc){ ?>
             <tr>
-                <td class="aligntengah" id="tdtgl<?php echo $tranc->id_transaksi;?>" rowspans="0"><?php echo date("d",strtotime($tranc->tanggal)); ?></td>
+                <td class="aligntengah" id="tdtgl<?php echo $tranc->id_transaksi;?>"><?php echo date("d",strtotime($tranc->tanggal)); ?></td>
                 <?php
                     if(strpos($tranc->ref,"D")!==false){
                         $ref_ = "D";
@@ -185,27 +222,6 @@
             </tr>
             </tbody>
         </table>
-    <?php
-    $rowspannya = array();
-    $countrows_ = 0;
-    foreach($transaksi as $tranc){
-        if(isset($dateprev)){
-            if($dateprev == $tranc->tanggal){
-                $countrows_ +=1;
-            }
-            else{
-                array_push($rowspannya,$countrows_);
-                $countrows_ = 1;
-                $dateprev = $tranc->tanggal;
-            }
-        }
-        else{
-            $dateprev = $tranc->tanggal;
-            $countrows_ +=1;
-        }
-    }
-    array_push($rowspannya,$countrows_);
-
     $countrows = 0;
     foreach($transaksi as $tranc){
         if(isset($dateprev_)){
@@ -251,7 +267,6 @@
         }
     }
     ?>
-    </center>
     <script>
     // document.getElementById("tdtgl<?php echo $tranc->id_transaksi;?>").outerHTML = "";
     // window.print();

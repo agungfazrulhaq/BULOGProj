@@ -10,7 +10,7 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->model("M_data");
         $this->load->library('form_validation');
-        $this->load->library('datatables');
+        $this->load->library(array('datatables','pdf'));
         $this->load->helper(array('url','download'));
         $this->load->model("M_user");
         if($this->M_user->isNotLogin()) redirect(site_url('Login/'));
@@ -61,21 +61,6 @@ class Home extends CI_Controller {
         $data__->delcheck();
 
         return redirect(base_url());
-    }
-
-    public function previewlabapdf(){
-        $data['allcat'] = $this->M_data->getAllCat();
-        $data['kategori'] = $this->M_data->getKategori();
-        $data['aset'] = $this->M_data->getAset();
-        $data['rpincat'] = $this->M_data->getLRTransaksi();
-        // foreach($data['kategori'] as $row_kat){
-        //     foreach($data['aset'] as $row_aset){
-
-        //     }
-        //     $data_row = "''"
-        // }
-
-        $this->load->view("pdflabapreview.php",$data);
     }
 
     public function showaset(){
@@ -132,21 +117,43 @@ class Home extends CI_Controller {
     }
 
     public function pdfmutasirender($curr_aset=null,$curr_month=null,$curr_year=null){
+        $data["datatahun"] = $this->M_data->getYears();
+        $data["aset"] = $this->M_data->getAset();
+        $data["kategori"] = $this->M_data->getKategori();
         if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
+            $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($curr_aset,$curr_month,$curr_year);
             $data["curr_aset"] = $curr_aset;
             $data["curr_month"] = $curr_month;
             $data["curr_year"] = $curr_year; 
         }
-        $data['dummy'] = 0;
-        $this->load->view('pdfmutasirender.php',$data);
+        else{
+            $data["transaksi"] = $this->M_data->getTransaksitoPdf();
+        }
+        
+        $this->load->library('pdf');
 
-        return redirect(base_url());
+        $this->pdf->setPaper('letter', 'potrait');
+        $this->pdf->filename = "laporan-mutasi".$curr_month.".pdf";
+        $this->pdf->load_view('previewmutasipdf',$data);
     }
 
     public function pdflabarender(){
-        $this->load->view('pdflabarender.php');
+        $data['allcat'] = $this->M_data->getAllCat();
+        $data['kategori'] = $this->M_data->getKategori();
+        $data['aset'] = $this->M_data->getAset();
+        $data['rpincat'] = $this->M_data->getLRTransaksi();
+        // foreach($data['kategori'] as $row_kat){
+        //     foreach($data['aset'] as $row_aset){
 
-        return redirect(base_url());
+        //     }
+        //     $data_row = "''"
+        // }
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('letter', 'landscape');
+        $this->pdf->filename = "laporan-labarugi.pdf";
+        $this->pdf->load_view('pdflabapreview',$data);
+    
     }
 
     public function previewmutasipdf($curr_aset=null,$curr_month=null,$curr_year=null){
@@ -166,6 +173,21 @@ class Home extends CI_Controller {
         $data["dataModel"] = $this->load->model("M_data");
         
         $this->load->view('previewmutasipdf.php',$data);
+    }
+
+    public function previewlabapdf(){
+        $data['allcat'] = $this->M_data->getAllCat();
+        $data['kategori'] = $this->M_data->getKategori();
+        $data['aset'] = $this->M_data->getAset();
+        $data['rpincat'] = $this->M_data->getLRTransaksi();
+        // foreach($data['kategori'] as $row_kat){
+        //     foreach($data['aset'] as $row_aset){
+
+        //     }
+        //     $data_row = "''"
+        // }
+
+        $this->load->view("pdflabapreview.php",$data);
     }
 
     public function upload(){
