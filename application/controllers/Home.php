@@ -150,9 +150,9 @@ class Home extends CI_Controller {
         // }
         $this->load->library('pdf');
 
-        $this->pdf->setPaper('letter', 'landscape');
+        $this->pdf->setPaper('A4', 'landscape');
         $this->pdf->filename = "laporan-labarugi.pdf";
-        $this->pdf->load_view('pdflabapreview',$data);
+        $this->pdf->load_view('pdflabarender',$data);
     
     }
 
