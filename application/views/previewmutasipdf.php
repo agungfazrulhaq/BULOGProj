@@ -3,6 +3,9 @@
     <head>
         <title>Preview PDF</title>
     <style>
+        
+    
+
     td.borderleft0{
         border-left:0px solid;
     }
@@ -21,13 +24,26 @@
     }
 
     body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:12px;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;;
+    font-size:10px;
     }
 
     table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    border-top:0px solid black;
+    border-right:0px solid black;
+    border-left:0px solid black;
+    }
+
+    td{
+        border-left:1px solid black;
+        border-right:1px solid black;
+    }
+
+    th.border0head{
+        border:0px solid;
+        text-align:center;
     }
 
     th {
@@ -46,14 +62,20 @@
     background-color: #DCDCDC;
     }
 
+
     </style>
     </head>
     <body>
-    <?php if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){ ?>
-        <center>
+    
+        <br>
+        <table style="page-break-inside: avoid;">
+            <thead>
+                <tr style="border-left:0px solid;">
+                    <th style="border-left:0px solid;" colspan="7" class="border0head">
+            <?php if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){ ?>
         <b style="text-size:10px;">MUTASI KAS UB OPASET DIVRE SULSELBAR</b><br>
         <?php 
-        foreach($aset as $rows){ 
+        foreach($aset as $rows){
             if($rows->id_aset == $curr_aset){
             ?>
             <b style="text-size:10px;">UNIT <?php echo $rows->nama_aset;?></b><br>
@@ -61,26 +83,26 @@
             } 
         }
         
-    $rowspannya = array();
-    $countrows_ = 0;
-    foreach($transaksi as $tranc){
-        if(isset($dateprev)){
-            if($dateprev == $tranc->tanggal){
-                $countrows_ +=1;
+        $rowspannya = array();
+        $countrows_ = 0;
+        foreach($transaksi as $tranc){
+            if(isset($dateprev)){
+                if($dateprev == $tranc->tanggal){
+                    $countrows_ +=1;
+                }
+                else{
+                    array_push($rowspannya,$countrows_);
+                    $countrows_ = 1;
+                    $dateprev = $tranc->tanggal;
+                }
             }
             else{
-                array_push($rowspannya,$countrows_);
-                $countrows_ = 1;
                 $dateprev = $tranc->tanggal;
+                $countrows_ +=1;
             }
         }
-        else{
-            $dateprev = $tranc->tanggal;
-            $countrows_ +=1;
-        }
-    }
-    array_push($rowspannya,$countrows_);
-    ?>
+        array_push($rowspannya,$countrows_);
+        ?>
         <b style="text-size:10px;">BULAN : <?php if (isset($curr_month)) {
                         if ($curr_month == 0) {
                           echo "Bulan";
@@ -112,19 +134,17 @@
                     } 
                         echo "&nbsp;".$curr_year;
                         ?></b>
-        
-        </center>
+                        <br>&nbsp;
     <?php } ?>
-        <br>
-        <table>
-            <thead> 
-            <tr> 
-                <th id="WOIWOI" width=5px>TGL</th>
-                <th colspan='2' width="15px">REF</th>
-                <th width="300px">URAIAN</th>
-                <th>DEBET</th>
-                <th>KREDIT</th>
-                <th>SALDO</th>
+                </th>
+                </tr>
+            <tr style="border:1px solid black;"> 
+                <th style="border:1px solid black;" id="WOIWOI" width=5px>TGL</th>
+                <th style="border:1px solid black;" colspan='2' width="15px">REF</th>
+                <th style="border:1px solid black;" width="300px">URAIAN</th>
+                <th style="border:1px solid black;" >DEBET</th>
+                <th style="border:1px solid black;" >KREDIT</th>
+                <th style="border:1px solid black;" >SALDO</th>
             </tr>
             </thead>
             <?php 
@@ -133,11 +153,37 @@
             $curr_saldo = 0;
             $currdeb = 0;
             $currkre = 0;
+            $countrows = 0;
+            $index_ = 0;
             ?>
             <tbody>
             <?php foreach($transaksi as $tranc){ ?>
-            <tr>
-                <td class="aligntengah" id="tdtgl<?php echo $tranc->id_transaksi;?>"><?php echo date("d",strtotime($tranc->tanggal)); ?></td>
+            <tr dontbreak="true">
+                <?php
+                        if(isset($dateprev_)){
+                            if($dateprev_ == $tranc->tanggal){
+                            }else{
+                                $id_transaksi_2brs = $tranc->id_transaksi;
+                                $dateprev_ = $tranc->tanggal;?>
+                                <td style="text-align:center;" rowspan="<?php echo $rowspannya[$index_];?>">
+                                    <?php echo date("d",strtotime($tranc->tanggal));?>
+                                </td>
+                                <?php
+                                $index_+=1;
+                            }
+                        }
+                        else{
+                            $id_transaksi_2brs = $tranc->id_transaksi;
+                            $dateprev_ = $tranc->tanggal;
+                            ?>
+                            <td style="text-align:center;" rowspan="<?php echo $rowspannya[$index_];?>">
+                                <?php echo date("d",strtotime($tranc->tanggal));?>
+                            </td>
+                            <?php
+                            $index_+=1;
+                        }
+                ?>
+                <!-- <td class="aligntengah" id="tdtgl<?php echo $tranc->id_transaksi;?>"><?php echo date("d",strtotime($tranc->tanggal)); ?></td> -->
                 <?php
                     if(strpos($tranc->ref,"D")!==false){
                         $ref_ = "D";
@@ -222,27 +268,7 @@
             </tr>
             </tbody>
         </table>
-    $countrows = 0;
-    foreach($transaksi as $tranc){
-        if(isset($dateprev_)){
-            if($dateprev_ == $tranc->tanggal){
-                ?>
-                <script>
-                document.getElementById("tdtgl<?php echo $tranc->id_transaksi;?>").outerHTML = "";
-                </script>
-                <?php
-            }else{
-                $id_transaksi_2brs = $tranc->id_transaksi;
-                $dateprev_ = $tranc->tanggal;
-            }
-        }
-        else{
-            $id_transaksi_2brs = $tranc->id_transaksi;
-            $dateprev_ = $tranc->tanggal;
-        }
-        
-    }
-    $index_ = 0;
+    <?php 
     foreach($transaksi as $tranc){
         if(isset($dateprev__)){
             if($dateprev__ == $tranc->tanggal){

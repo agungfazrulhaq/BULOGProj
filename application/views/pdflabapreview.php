@@ -234,8 +234,11 @@ PERIODE&emsp; :&emsp;-</b></p>
       <?php
       $countpart = 1; 
       foreach($allcat as $row_kat){
-            if($row_kat->jenis_laba_rugi == 'usaha'){ 
-                $jumlah_perkat = array(0,0,0);   
+            if($row_kat->jenis_laba_rugi == 'usaha'){
+                $jumlah_perkat = array();
+                foreach($aset as $a){
+                    array_push($jumlah_perkat, 0);
+                } 
         ?>
       <tr>
         <td class="ram"><b><?php echo $countpart?></b></td>
