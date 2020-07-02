@@ -38,7 +38,10 @@ thead {
 <body>
 <?php 
 $labarugi = 0;
-$labarugi_peraset = array(0,0,0);
+$labarugi_peraset = array();
+foreach($aset as $a){
+    array_push($labarugi_peraset, 0);
+}
 $countaset=0;
 foreach($aset as $row_as){
     $countaset+=1;
@@ -95,7 +98,10 @@ PERIODE&emsp; :&emsp;-</b></p>
       $countpart = 1; 
       foreach($allcat as $row_kat){
             if($row_kat->jenis_laba_rugi == 'kotor'){
-                $jumlah_perkat = array(0,0,0);  
+                $jumlah_perkat = array();
+                foreach($aset as $a){
+                    array_push($jumlah_perkat, 0);
+                }  
         ?>
       <tr>
         <td class="ram"><b><?php echo $countpart?></b></td>
@@ -378,7 +384,10 @@ PERIODE&emsp; :&emsp;-</b></p>
         $countpart_ = 1;
         foreach($kategori as $row_k){
             if($row_k->id_kat_lr_kat == $row_kat->id_kat_laba_rugi){
-                $jumlah_perkat = array(0,0,0);  
+                $jumlah_perkat = array();
+                foreach($aset as $a){
+                    array_push($jumlah_perkat, 0);
+                }  
         ?>
       <tr>
         <td class="ram"><b><?php echo $countpart?>.<?php echo $countpart_ ?></b></td>
