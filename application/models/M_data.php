@@ -389,22 +389,23 @@ class M_data extends CI_Model
 
     public function uploadFile(){
         $post = $this->input->post();
-        if(!empty($_FILES['file_transaksi']['name'])){
+        if(!empty($_FILES['file_transaksi']['name']) and $_FILES['file_transaksi']['size'] < 10000000){
             $que_file_existance = $this->db->query("SELECT * FROM files where file_id_transaksi=".$post['id_transaksi']);
             if($que_file_existance->num_rows() == 1){
                 $getFileex = $que_file_existance->row();
                 unlink($_SERVER['DOCUMENT_ROOT'] . '/OpasetBulog/upload/'.$getFileex->nama_file);
-                $delfile__ = $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$post['id_transaksi']);
+                return $this->db->query("DELETE FROM files WHERE file_id_transaksi=".$post['id_transaksi']);
             }
 
             $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/OpasetBulog/upload/';
             $uploadfile = $uploaddir.basename($_FILES['file_transaksi']['name']);
-            $allowedExts = array(".pdf",".jpg",".png","jpeg");
+            $allowedExts = array(".pdf",".jpg",".png",".jpeg");
+            
             $namafile = $_FILES['file_transaksi']['name'];
             if(move_uploaded_file($_FILES['file_transaksi']['tmp_name'],$uploadfile)){
                 $queryUpload = "INSERT INTO files(file_id_transaksi,nama_file,ukuran_file)
                                 VALUES(".$post['id_transaksi'].",'".$_FILES['file_transaksi']['name']."','".$_FILES['file_transaksi']['size']."')";
-                $this->db->query($queryUpload);
+                return $this->db->query($queryUpload);
             }
         }
     }
