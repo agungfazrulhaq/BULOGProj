@@ -912,12 +912,17 @@
                                 <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
                               </div>
                               <div class="form-group">
-                                <label>Biaya</label>
-                                <input type="text" class="form-control" placeholder="(Biaya ... )">
+                              <label>Uraian</label>
+                                  <select type="text" class="form-control custom-select">
+                                  <option selected>Pilih..</option>
+                                  <option>Pendapatan</option>
+                                  <option>Pengeluaran</option>
+
+                                  </select>
                               </div>
                               <div class="form-group">
                                 <label>Jumlah</label>
-                                <input type="number" class="form-control col-5" placeholder="(Jumlah ... )">
+                                <input type="number" class="form-control col-4" placeholder="(Jumlah ... )">
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -932,10 +937,38 @@
                               </div>
 
                               <div class="form-group">
-                              <label>Kas</label>
-                              <input type="text" class="form-control" placeholder="" value="RP.15.000">
+                              <label>Biaya PPh 4(2)</label>
+                                <div class="input-group mb-1">
+                                    <div class="input-group-prepend col-md-6">
+                                        <span class="input-group-text btn-block" widht="100%">
+                                          <input type="checkbox" class="mr-1"> 
+                                          PYD
+                                        </span>
+                                      </div>
+                                      <input type="text" class="form-control">
+                                  </div>
+
+                                <div class="input-group mb-1">
+                                    <div class="input-group-prepend col-md-6">
+                                        <span class="input-group-text btn-block" widht="100%">
+                                        <input type="checkbox" class="mr-1">
+                                          Hutang PPN
+                                        </span>
+                                      </div>
+                                      <input type="text" class="form-control">
+                                  </div>
+
+                                  <div class="input-group mb-1">
+                                    <div class="input-group-prepend col-md-6" widht="100%">
+                                        <span class="input-group-text btn-block">
+                                        <input type="checkbox" class="mr-1">
+                                          Hutang PPh 4 (2)
+                                        </span>
+                                      </div>
+                                      <input type="text" class="form-control">
+                                  </div>
                               </div>
-                          
+
                               <div class="form-group">
                                   <label>Option :</label>
                                   <div class="btn-group">
