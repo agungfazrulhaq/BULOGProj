@@ -82,7 +82,7 @@
               <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
               <select class="form-control select2" style="width: 100%;" name="kategori" required>
                 <option selected="selected" value="">Pilih Kategori</option>
-                <option selected="selected" value="saldoawal">Saldo Awal</option>
+                <option class="font-weight-bold" value="saldoawal">SALDO AWAL</option>
                 <?php foreach ($allcategory as $K_row__) { ?>
                   <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
                     <?php foreach ($kategori as $row_k) { ?>
@@ -232,7 +232,8 @@
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                  <select class="form-control select2" id="selectkategori" style="width: 100%;" name="kategori" required>
+                  <select class="form-control select2" id="selectkategori" style="width: 100%;" name="kategori" required>  
+                    <option class="font-weight-bold" value="saldoawal">SALDO AWAL</option>
                     <?php foreach ($allcategory as $K_row__) { ?>
                       <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
                         <?php foreach ($kategori as $row_k) { ?>

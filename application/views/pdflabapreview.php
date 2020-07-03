@@ -325,7 +325,7 @@ PERIODE&emsp; :&emsp;-</b></p>
                 ?></td>
             <?php $count+=1;?>
         <?php } ?>
-        <td class="tj">&nbsp; <?php echo "<b>".$count_total."</b>";?></td>
+        <td class="tj">&nbsp; <?php echo "<b>".number_format($count_total,2)."</b>";?></td>
       </tr>
       <tr>
             <td></td>
@@ -357,7 +357,7 @@ PERIODE&emsp; :&emsp;-</b></p>
                 ?></td>
             <?php $countelem_aset+=1;?>
         <?php } ?>
-        <td class="tj">&nbsp; <?php echo "<b>".$count_total."</b>" ?>;</td>
+        <td class="tj">&nbsp; <?php echo "<b>".number_format($count_total,2)."</b>"; ?></td>
       </tr>
       <tr>
         <td >&nbsp;</td>

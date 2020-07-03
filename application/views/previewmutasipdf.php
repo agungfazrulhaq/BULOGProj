@@ -24,16 +24,16 @@
     }
 
     body {
-    font-family: Tahoma, Verdana, Segoe, sans-serif;;
-    font-size:10px;
+        font-family: Tahoma, Verdana, Segoe, sans-serif;;
+        font-size:10px;
     }
 
     table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    border-top:0px solid black;
-    border-right:0px solid black;
-    border-left:0px solid black;
+        border: 1px solid black;
+        border-collapse: collapse;
+        border-top:0px solid black;
+        border-right:0px solid black;
+        border-left:0px solid black;
     }
 
     td{
@@ -47,19 +47,19 @@
     }
 
     th {
-    text-align: center;
-    height: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+        text-align: center;
+        height: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .ram {
-    text-align:left;
-    padding-left:15px;
+        text-align:left;
+        padding-left:15px;
     }
 
     .tj{
-    background-color: #DCDCDC;
+        background-color: #DCDCDC;
     }
 
 
@@ -157,6 +157,35 @@
             $index_ = 0;
             ?>
             <tbody>
+            <tr>
+                <td style="border:1px solid black;" id="WOIWOI" width=5px>&nbsp;</td>
+                <td style="border:1px solid black;" colspan='2' width="15px"></td>
+                <td style="border:1px solid black;" width="300px"></td>
+                <td style="border:1px solid black;" ></td>
+                <td style="border:1px solid black;" ></td>
+                <td style="border:1px solid black;" ></td>
+        
+            </tr>
+            <?php foreach($saldoawal as $sald){?>
+            <tr>
+                <td style="border:1px solid black;" id="WOIWOI" width=5px>1</td>
+                <td style="border:1px solid black;" colspan='2' width="15px"></td>
+                <td style="border:1px solid black;" width="300px"><b><?php echo $sald->uraian;?></b></td>
+                <td style="border:1px solid black;text-align:center;" >-</td>
+                <td style="border:1px solid black;text-align:center;" >-</td>
+                <td style="border:1px solid black;" class="saldokanan" ><b><?php echo number_format($sald->saldo,2);?></b>&nbsp;&nbsp;</td>
+                <?php $curr_saldo+=$sald->saldo;?>
+            </tr>
+            <?php }?>
+            <tr>
+                <td style="border:1px solid black;" id="WOIWOI" width=5px>&nbsp;</td>
+                <td style="border:1px solid black;" colspan='2' width="15px"></td>
+                <td style="border:1px solid black;" width="300px"></td>
+                <td style="border:1px solid black;" ></td>
+                <td style="border:1px solid black;" ></td>
+                <td style="border:1px solid black;" ></td>
+        
+            </tr>
             <?php foreach($transaksi as $tranc){ ?>
             <tr dontbreak="true">
                 <?php

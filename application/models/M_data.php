@@ -61,6 +61,7 @@ class M_data extends CI_Model
                                     FROM tb_transaksi 
                                     INNER JOIN tb_aset ON tb_transaksi.transaksi_id_aset=tb_aset.id_aset 
                                     INNER JOIN tb_kategori ON tb_transaksi.transaksi_id_kategori=tb_kategori.id_kategori
+                                    WHERE transaksi_id_kategori NOT IN(SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal')
                                     ORDER BY tb_transaksi.tanggal;");
         return $query->result();
     }
@@ -71,58 +72,68 @@ class M_data extends CI_Model
 
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
         $month_ = $date_y->format('m');
-
-        $looking_for_ref__query = $this->db->query("SELECT id_kategori,jenis_transaksi FROM tb_kategori INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi WHERE id_kategori=".$post['kategori']);
-        $row_lfr = $looking_for_ref__query->row();
-        if(isset($row_lfr)){
-            if ($row_lfr->jenis_transaksi =="DEBIT") {
-                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
-                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                WHERE jenis_transaksi='DEBIT';");
-                $refangka = $query_ref__->num_rows()+1;
-                for($i = 1;$i<=$refangka;$i++){
-                    $currref = "D".$i;
-                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
-                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                    WHERE ref='".$currref."';");
-                    $result_query_refgen = $query_refgen->num_rows();
-                    if($result_query_refgen == 0){
-                        $ref_ = $currref;
-                        break;
-                    }
-                }
-            } 
-            else {
-                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
-                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                WHERE jenis_transaksi='KREDIT';");
-                $refangka = $query_ref__->num_rows()+1;
-                for($i = 1;$i<=$refangka;$i++){
-                    $currref = "K".$i;
-                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
-                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                    WHERE ref='".$currref."';");
-                    $result_query_refgen = $query_refgen->num_rows();
-                    if($result_query_refgen == 0){
-                        $ref_ = $currref;
-                        break;
-                    }
-                }
-                
-            }
-        }
+        
         $saldo_1 = str_replace(".", "", $post['saldo']);
         $saldo_ = str_replace(",", ".", $saldo_1);
         $saldo = floatval($saldo_);
         $year_ = $date_y->format('Y');
-        return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun,transaksi_id_user) 
-                                    VALUES('" . $ref_ . "','" . $post['tanggal'] . "','" . $post['aset'] . "','"
-            . $post['kategori'] . "','" . $post['uraian'] . "','"
-            . $saldo . "','" . $year_ . "',".$post['user_update'].")");
+
+        if($post['kategori']='saldoawal'){
+            return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun,transaksi_id_user,saldoawal) 
+                                        VALUES('-','" . $post['tanggal'] . "','" . $post['aset'] . "',
+                                        (SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal'),'" . $post['uraian'] . "','"
+                                        . $saldo . "','" . $year_ . "',".$post['user_update'].",1)");
+        }
+        else{
+            $looking_for_ref__query = $this->db->query("SELECT id_kategori,jenis_transaksi FROM tb_kategori INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi WHERE id_kategori=".$post['kategori']);
+            $row_lfr = $looking_for_ref__query->row();
+            if(isset($row_lfr)){
+                if ($row_lfr->jenis_transaksi =="DEBIT") {
+                    $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE jenis_transaksi='DEBIT';");
+                    $refangka = $query_ref__->num_rows()+1;
+                    for($i = 1;$i<=$refangka;$i++){
+                        $currref = "D".$i;
+                        $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                        INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                        INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                        WHERE ref='".$currref."';");
+                        $result_query_refgen = $query_refgen->num_rows();
+                        if($result_query_refgen == 0){
+                            $ref_ = $currref;
+                            break;
+                        }
+                    }
+                } 
+                else {
+                    $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE jenis_transaksi='KREDIT';");
+                    $refangka = $query_ref__->num_rows()+1;
+                    for($i = 1;$i<=$refangka;$i++){
+                        $currref = "K".$i;
+                        $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                        INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                        INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                        WHERE ref='".$currref."';");
+                        $result_query_refgen = $query_refgen->num_rows();
+                        if($result_query_refgen == 0){
+                            $ref_ = $currref;
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun,transaksi_id_user) 
+                                        VALUES('" . $ref_ . "','" . $post['tanggal'] . "','" . $post['aset'] . "','"
+                . $post['kategori'] . "','" . $post['uraian'] . "','"
+                . $saldo . "','" . $year_ . "',".$post['user_update'].")");
+        }
+        
     }
 
     public function addAset()
@@ -232,7 +243,9 @@ class M_data extends CI_Model
         else{
             $sql .="WHERE tb_transaksi.transaksi_id_aset=".$id_aset;
         }
-        $sql .=" ORDER BY tb_transaksi.tanggal"; 
+        $sql .=" AND 
+                    transaksi_id_kategori NOT IN(SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal')
+                    ORDER BY tb_transaksi.tanggal"; 
 
         $sql_ = $this->db->query($sql);
         return $sql_->result();
@@ -332,59 +345,71 @@ class M_data extends CI_Model
         $date_y = DateTime::createFromFormat("Y-m-d", $post['tanggal']);
         $month_ = $date_y->format('m');
         $id_transaksi = $post['id_transaksi'];
-
-        $looking_for_ref__query = $this->db->query("SELECT id_kategori,jenis_transaksi FROM tb_kategori INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi WHERE id_kategori=".$post['kategori']);
-        $row_lfr = $looking_for_ref__query->row();
-        if(isset($row_lfr)){
-            if ($row_lfr->jenis_transaksi =="DEBIT") {
-                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
-                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                WHERE jenis_transaksi='DEBIT';");
-                $refangka = $query_ref__->num_rows()+1;
-                for($i = 1;$i<=$refangka;$i++){
-                    $currref = "D".$i;
-                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
-                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                    WHERE ref='".$currref."';");
-                    $result_query_refgen = $query_refgen->num_rows();
-                    if($result_query_refgen == 0){
-                        $ref_ = $currref;
-                        break;
-                    }
-                }
-            } 
-            else {
-                $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
-                                                INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                WHERE jenis_transaksi='KREDIT';");
-                $refangka = $query_ref__->num_rows()+1;
-                for($i = 1;$i<=$refangka;$i++){
-                    $currref = "K".$i;
-                    $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
-                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
-                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
-                                                    WHERE ref='".$currref."';");
-                    $result_query_refgen = $query_refgen->num_rows();
-                    if($result_query_refgen == 0){
-                        $ref_ = $currref;
-                        break;
-                    }
-                }
-                
-            }
-        }
-
+        
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');
-        $sql___ = "UPDATE tb_transaksi 
-                    SET ref ='" . $ref_ . "' , tanggal = '" . $post['tanggal'] . "' , transaksi_id_aset = '" . $post['aset'] . "',
-                    transaksi_id_kategori = '" . $post['kategori'] . "',uraian = '" . $post['uraian'] . "',saldo = " . $saldo . ", tahun = '" . $year_ . "'
-                    ,transaksi_id_user = ".$post['user_update']."
-                    WHERE id_transaksi=" . $id_transaksi;
-        return $this->db->query($sql___);
+
+        if($post['kategori']='saldoawal'){
+            return $this->db->query("UPDATE tb_transaksi 
+                                    SET ref ='-' , tanggal = '" . $post['tanggal'] . "' , transaksi_id_aset = '" . $post['aset'] . "',
+                                    transaksi_id_kategori = '1',uraian = '" . $post['uraian'] . "',saldo = " . $saldo . ", tahun = '" . $year_ . "'
+                                    ,transaksi_id_user = ".$post['user_update']."
+                                    WHERE id_transaksi=" . $id_transaksi.";");
+        }
+        else{
+            $looking_for_ref__query = $this->db->query("SELECT id_kategori,jenis_transaksi FROM tb_kategori INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi WHERE id_kategori=".$post['kategori']);
+            $row_lfr = $looking_for_ref__query->row();
+            if(isset($row_lfr)){
+                if ($row_lfr->jenis_transaksi =="DEBIT") {
+                    $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE jenis_transaksi='DEBIT';");
+                    $refangka = $query_ref__->num_rows()+1;
+                    for($i = 1;$i<=$refangka;$i++){
+                        $currref = "D".$i;
+                        $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                        INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                        INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                        WHERE ref='".$currref."';");
+                        $result_query_refgen = $query_refgen->num_rows();
+                        if($result_query_refgen == 0){
+                            $ref_ = $currref;
+                            break;
+                        }
+                    }
+                } 
+                else {
+                    $query_ref__ = $this->db->query("SELECT * FROM tb_transaksi 
+                                                    INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                    INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                    WHERE jenis_transaksi='KREDIT';");
+                    $refangka = $query_ref__->num_rows()+1;
+                    for($i = 1;$i<=$refangka;$i++){
+                        $currref = "K".$i;
+                        $query_refgen = $this->db->query("SELECT * FROM tb_transaksi 
+                                                        INNER JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                                        INNER JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                                        WHERE ref='".$currref."';");
+                        $result_query_refgen = $query_refgen->num_rows();
+                        if($result_query_refgen == 0){
+                            $ref_ = $currref;
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            $sql___ = "UPDATE tb_transaksi 
+                        SET ref ='" . $ref_ . "' , tanggal = '" . $post['tanggal'] . "' , transaksi_id_aset = '" . $post['aset'] . "',
+                        transaksi_id_kategori = '" . $post['kategori'] . "',uraian = '" . $post['uraian'] . "',saldo = " . $saldo . ", tahun = '" . $year_ . "'
+                        ,transaksi_id_user = ".$post['user_update']."
+                        WHERE id_transaksi=" . $id_transaksi;
+            return $this->db->query($sql___);
+        
+        }
+
+        
     }
 
     public function uploadFile(){
@@ -469,7 +494,11 @@ class M_data extends CI_Model
     }
 
     public function getAllCat(){
-        $allcat = $this->db->query("SELECT * FROM tb_kategori_laba_rugi");
+        $allcat = $this->db->query("SELECT * FROM tb_kategori_laba_rugi 
+                                    WHERE id_kat_laba_rugi 
+                                    NOT IN(SELECT id_kat_laba_rugi 
+                                            FROM tb_kategori_laba_rugi 
+                                            WHERE nama_kat_lr='saldo awal')");
         
         return $allcat->result();
     }
@@ -509,6 +538,15 @@ class M_data extends CI_Model
                                     LEFT JOIN tb_kategori ON transaksi_id_kategori=id_kategori 
                                     LEFT JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi 
                                     GROUP BY transaksi_id_aset, transaksi_id_kategori');
+        return $query->result();
+    }
+
+    public function getSaldoAwalMonth($aset,$month,$year){
+        $query = $this->db->query('SELECT * FROM tb_transaksi WHERE transaksi_id_kategori=(SELECT id_kategori FROM tb_kategori 
+                                    WHERE nama_kategori="Saldo Awal") 
+                                    AND MONTH(tanggal)='.$month
+                                    .' AND transaksi_id_aset='.$aset
+                                    .' AND YEAR(tanggal)='.$year);
         return $query->result();
     }
 

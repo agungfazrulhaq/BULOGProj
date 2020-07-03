@@ -160,6 +160,7 @@ class Home extends CI_Controller {
         $data["datatahun"] = $this->M_data->getYears();
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
+        $data["saldoawal"] = $this->M_data->getSaldoAwalMonth($curr_aset,$curr_month,$curr_year);
         if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
             $data["transaksi"] = $this->M_data->getAset_Transaksi_filter_toPdf($curr_aset,$curr_month,$curr_year);
             $data["curr_aset"] = $curr_aset;
