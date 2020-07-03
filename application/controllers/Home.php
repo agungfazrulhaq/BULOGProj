@@ -120,6 +120,7 @@ class Home extends CI_Controller {
         $data["datatahun"] = $this->M_data->getYears();
         $data["aset"] = $this->M_data->getAset();
         $data["kategori"] = $this->M_data->getKategori();
+        $data["saldoawal"] = $this->M_data->getSaldoAwalMonth($curr_aset,$curr_month,$curr_year);
         if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){
             $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($curr_aset,$curr_month,$curr_year);
             $data["curr_aset"] = $curr_aset;
@@ -132,7 +133,7 @@ class Home extends CI_Controller {
         
         $this->load->library('pdf');
 
-        $this->pdf->setPaper('letter', 'potrait');
+        $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "laporan-mutasi".$curr_month.".pdf";
         $this->pdf->load_view('previewmutasipdf',$data);
     }
