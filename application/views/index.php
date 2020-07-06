@@ -907,36 +907,50 @@
                         <hr>
                           <div class="row">
                             <div class="col-md-8">
+
                               <div class="form-group">
                                 <label>Jurnal</label>
                                 <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
                               </div>
-                              <div class="form-group">
-                              <label>Uraian</label>
+                              <div class="form-group input-group">
+                                <div class="col-7">
+                                  <label>Uraian</label>
                                   <select type="text" class="form-control custom-select">
                                   <option selected>Pilih..</option>
+                                  <optgroup style="font-style:normal;" label="Aktiva">
                                   <option>Pendapatan</option>
+                                  <option>Biaya PPh 4(2)</option>
                                   <option>Pengeluaran</option>
-
                                   </select>
-                              </div>
-                              <div class="form-group">
+                                  </optgroup>
+                                </div>
+                                <div class="col-4">
                                 <label>Jumlah</label>
-                                <input type="number" class="form-control col-4" placeholder="(Jumlah ... )">
+                                  <input type="number" class="form-control" placeholder="(Jumlah...)">
+                                </div>
+                                <div class="col-1">
+                                <label>Option</label>
+                                  <button class="btn bg-olive btn-block"><i class="fas fa-plus"></i></button>
+                                </div>
+
                               </div>
+
+                              <div class="form-group">
+                                  <label>Option :</label>
+                                  <div class="btn-group">
+                                  <div class="pull-right repeater-remove-btn">
+                                      <button id="remove-btn" class="btn btn-sm btn-danger" onclick="$(this).parents('.items').remove()">
+                                        <i class="fas fa-times"></i> Hapus Form
+                                      </button>
+                                  </div>
+                                </div>
+                             </div> 
+
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                  <label>Jenis Transaksi</label>
-                                  <select type="text" class="form-control custom-select">
-                                  <option selected>Pilih..</option>
-                                  <option>Pendapatan</option>
-                                  <option>Pengeluaran</option>
+                            
 
-                                  </select>
-                              </div>
-
-                              <div class="form-group">
+                              <div class="form-group ml-2 card bg-light">
+                              <div class="p-2">
                               <label>Biaya PPh 4(2)</label>
                                 <div class="input-group mb-1">
                                     <div class="input-group-prepend col-md-6">
@@ -968,22 +982,12 @@
                                       <input type="text" class="form-control">
                                   </div>
                               </div>
+                              </div>
 
-                              <div class="form-group">
-                                  <label>Option :</label>
-                                  <div class="btn-group">
-                                  <div class="pull-right repeater-remove-btn">
-                                      <button id="remove-btn" class="btn btn-sm btn-danger" onclick="$(this).parents('.items').remove()">
-                                        <i class="fas fa-times"></i> Hapus Form
-                                      </button>
-                                  </div>
-                                </div>
-                             </div>
                             </div>
                           </div>
                         </div>
                         </div>
-                      </div>
 
                       <!-- /.card-body -->
                       <div class="card-footer">
