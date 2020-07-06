@@ -309,7 +309,7 @@
                 else {
                 ?>
                   <button type="button" class="btn btn-sm bg-info">
-                    <span class="p-2" onclick='alertFilter()'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
+                    <span class="p-2" onclick='alertFilter(document.getElementById("jenislaporan").value)'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
                   </button>
                 <?php
                 }  
@@ -327,7 +327,7 @@
                 else {
                 ?>
                   <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
-                    <span class="" onclick='alertFilter()'>PDF</span>
+                    <span class="" onclick='alertFilter(document.getElementById("jenislaporan").value)'>PDF</span>
                   </button>
                 <?php
                 }
@@ -1057,8 +1057,13 @@
       </script>
       
       <script type="text/javascript">
-        function alertFilter() {
-          alert("filter sebelum melakukan percetakan");
+        function alertFilter(jenlap) {
+          if(jenlap=="mutasi"){
+            alert("filter sebelum melakukan percetakan");
+          }
+          else if(jenlap=="laba"){
+            window.open("<?php echo base_url("Home/pdflabarender/"); ?>");
+          }
         }
       </script>
 
