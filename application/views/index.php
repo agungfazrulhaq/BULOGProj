@@ -750,7 +750,8 @@
                         } else if ($curr_month == 12) {
                           echo "Desember";
                         }
-                      } else {
+                      } 
+                      else {
                         echo "Bulan";
                       }
                       ?>
@@ -883,10 +884,57 @@
                   <div class="tab-pane" id="tab_3">
                     <div class="card card-default">
                       <div class="card-header">
-                        <h3 class="card-title">Jurnal <b>BARUGA LAPPO ASE</b></h3>
+                        <h3 class="card-title">Jurnal <b>
+                        <?php 
+                        if(isset($curr_aset)){
+                          foreach($aset as $rowa){
+                            if($rowa->id_aset == $curr_aset){
+                              echo $rowa->nama_aset;
+                            }
+                          }
+                        }
+                        else{
+                          echo "-";
+                        }
+                        ?></b></h3>
 
                         <div class="card-tools">
-                          <b>1 November - 30 November, 2019 </b>
+                          <b>
+                          <?php
+                          if (isset($curr_month)) {
+                            if ($curr_month == 0) {
+                              echo "Bulan";
+                            } else if ($curr_month == 1) {
+                              echo "Januari";
+                            } else if ($curr_month == 2) {
+                              echo "Februari";
+                            } else if ($curr_month == 3) {
+                              echo "Maret";
+                            } else if ($curr_month == 4) {
+                              echo "April";
+                            } else if ($curr_month == 5) {
+                              echo "Mei";
+                            } else if ($curr_month == 6) {
+                              echo "Juni";
+                            } else if ($curr_month == 7) {
+                              echo "Juli";
+                            } else if ($curr_month == 8) {
+                              echo "Agustus";
+                            } else if ($curr_month == 9) {
+                              echo "September";
+                            } else if ($curr_month == 10) {
+                              echo "Oktober";
+                            } else if ($curr_month == 11) {
+                              echo "November";
+                            } else if ($curr_month == 12) {
+                              echo "Desember";
+                            }
+                          }
+                          else{
+                            echo "-";
+                          }
+                          ?>
+                          , <?php if(isset($curr_year)) echo $curr_year;?> </b>
                         </div>
                       </div>
                       <!-- /.card-header -->
