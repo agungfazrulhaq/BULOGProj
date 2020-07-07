@@ -309,7 +309,7 @@
                 else {
                 ?>
                   <button type="button" class="btn btn-sm bg-info">
-                    <span class="p-2" onclick='alertFilter(document.getElementById("jenislaporan").value)'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
+                    <span class="p-2" onclick='alertLihat(document.getElementById("jenislaporan").value)'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
                   </button>
                 <?php
                 }  
@@ -1115,6 +1115,14 @@
           }
           else if(jenlap=="laba"){
             window.open("<?php echo base_url("Home/pdflabarender/"); ?>");
+          }
+        }
+        function alertLihat(jenlap) {
+          if(jenlap=="mutasi"){
+            alert("filter sebelum melakukan percetakan");
+          }
+          else if(jenlap=="laba"){
+            window.open("<?php echo base_url("Home/previewlabapdf/"); ?>");
           }
         }
       </script>
