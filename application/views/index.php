@@ -122,7 +122,7 @@
     </div>
   </div>
 
-  <div class="modal" id="modalview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="card card-orange card-outline">
@@ -232,8 +232,7 @@
 
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Kategori</label>
-                  <select class="form-control select2" id="selectkategori" style="width: 100%;" name="kategori" required>  
-                    <option class="font-weight-bold" value="saldoawal">SALDO AWAL</option>
+                  <select class="form-control" id="selectkategori" style="width: 100%;" name="kategori" required>  
                     <?php foreach ($allcategory as $K_row__) { ?>
                       <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
                         <?php foreach ($kategori as $row_k) { ?>
@@ -248,6 +247,7 @@
                         <?php } ?>
                       </optgroup>
                     <?php } ?>
+                    <option class="font-weight-bold" value="saldoawal" id="saldoawalupdateindex">SALDO AWAL</option>
                   </select>
                 </div>
 
@@ -1407,6 +1407,13 @@
             $('[name="uraian"]').val(uraian);
             $('[name="saldo"]').val(saldo);
             $('[name="tanggal"]').val(tanggal);
+            if(kategori==1){
+              document.getElementById("saldoawalupdateindex").disabled= false;
+              document.getElementById("saldoawalupdateindex").selected= true;
+            }
+            else{
+              document.getElementById("saldoawalupdateindex").disabled= true;
+            }
             localStorage.setItem("Select1", aset);
             $('#selectaset').find('option').each(function(i, e) {
               if ($(e).val() == localStorage.getItem("Select1")) {
