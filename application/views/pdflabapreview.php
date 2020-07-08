@@ -125,8 +125,6 @@ PERIODE&emsp; :&emsp;-</b></p>
         <?php foreach($aset as $row_aset){?>
             <td>
             <?php
-            $rpcount = 0;
-            $elem_aset = 0;
             foreach($rpincat as $rp){
                 if(($rp->aid == $row_aset->id_aset) and ($rp->kid == $row_k->id_kategori)){
                     echo number_format($rp->rp, 2);
@@ -268,8 +266,6 @@ PERIODE&emsp; :&emsp;-</b></p>
         <?php foreach($aset as $row_aset){?>
             <td>
             <?php
-            $rpcount = 0;
-            $elem_aset = 0;
             foreach($rpincat as $rp){
                 if(($rp->aid == $row_aset->id_aset) and ($rp->kid == $row_k->id_kategori)){
                     echo number_format($rp->rp, 2);
