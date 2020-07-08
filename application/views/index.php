@@ -122,7 +122,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="modalView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="card card-orange card-outline">
@@ -1107,25 +1107,6 @@
           }
         }
       </script>
-      
-      <script type="text/javascript">
-        function alertFilter(jenlap) {
-          if(jenlap=="mutasi"){
-            alert("filter sebelum melakukan percetakan");
-          }
-          else if(jenlap=="laba"){
-            window.open("<?php echo base_url("Home/pdflabarender/"); ?>");
-          }
-        }
-        function alertLihat(jenlap) {
-          if(jenlap=="mutasi"){
-            alert("filter sebelum melakukan percetakan");
-          }
-          else if(jenlap=="laba"){
-            window.open("<?php echo base_url("Home/previewlabapdf/"); ?>");
-          }
-        }
-      </script>
 
       <script type="text/javascript">
         function functionRenderpdf(jenlap,id_aset,bulan,tahun) {
@@ -1478,10 +1459,6 @@
             var nama_user = $(this).data('user');
             var float_ukuran = parseFloat(ukuran_file);
             var size_file = float_ukuran / 1024;
-
-            
-            $('[name="id_transaksi"]').val(id_transaksi);
-            $('#modalView').modal('show');
             var jenistransaksi = "";
             if (ref.includes("K")) {
               jenistransaksi = "KREDIT";
@@ -1511,6 +1488,10 @@
             weekday[4] = "Kamis";
             weekday[5] = "Jum'at";
             weekday[6] = "Sabtu";
+
+            
+            $('[name="id_transaksi"]').val(id_transaksi);
+            $('#modalview').modal('show');
             if(ukuran_file>0){
               document.getElementById("nama_file").innerHTML = nama_file;
               document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
@@ -1518,23 +1499,41 @@
             else{
               document.getElementById("elemfile1").outerHTML = "";
             }
-            document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()] + ", " + tanggalupdate;
-            document.getElementById("jen_tranview").innerHTML = jenis_tranc;
-            document.getElementById("refview").innerHTML = ref;
-            document.getElementById("namekat").innerHTML = name_kat;
-            document.getElementById("userupdate").innerHTML = nama_user;
-            document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
-            document.getElementById("asetview").innerHTML = aset;
-            document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-            document.getElementById("uraianview").innerHTML = uraian;
-            document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
-            document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/"); ?>" + id_transaksi;
-            document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/"); ?>" + id_transaksi;
-            document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
-            document.getElementById("id_transaksi_file").value = id_transaksi;
+              document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()] + ", " + tanggalupdate;
+              document.getElementById("jen_tranview").innerHTML = jenis_tranc;
+              document.getElementById("refview").innerHTML = ref;
+              document.getElementById("namekat").innerHTML = name_kat;
+              document.getElementById("userupdate").innerHTML = nama_user;
+              document.getElementById("tanggalview").innerHTML = weekday[nd.getDay()] + ", " + nd.getDate() + "-" + (nd.getMonth() + 1) + "-" + nd.getFullYear();
+              document.getElementById("asetview").innerHTML = aset;
+              document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+              document.getElementById("uraianview").innerHTML = uraian;
+              document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
+              document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/"); ?>" + id_transaksi;
+              document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/"); ?>" + id_transaksi;
+              document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
+              document.getElementById("id_transaksi_file").value = id_transaksi;
 
           });
         });
+      </script>
+      <script type="text/javascript">
+        function alertFilter(jenlap) {
+          if(jenlap=="mutasi"){
+            alert("filter sebelum melakukan percetakan");
+          }
+          else if(jenlap=="laba"){
+            window.open("<?php echo base_url("Home/pdflabarender/"); ?>");
+          }
+        }
+        function alertLihat(jenlap) {
+          if(jenlap=="mutasi"){
+            alert("filter sebelum melakukan percetakan");
+          }
+          else if(jenlap=="laba"){
+            window.open("<?php echo base_url("Home/previewlabapdf/"); ?>");
+          }
+        }
       </script>
 </body>
 

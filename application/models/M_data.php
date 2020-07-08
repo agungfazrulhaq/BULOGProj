@@ -322,7 +322,7 @@ class M_data extends CI_Model
         }
 
         $this->datatables->add_column('view', '<div class="btn-group">
-        <button class="btn btn-info btn-sm viewdata" data-toggle="modal"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7" data-time="$9" data-lr="$10" data-nkat="$11" data-namfile="$12" data-sizefile="$13" data-user="$14" data-nip="$15">
+        <button class="btn btn-info btn-sm viewdata" data-toggle="modal" data-target="#modalview"  data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$9" data-uraian="$5" data-ref="$6" data-saldo="$7" data-time="$9" data-lr="$10" data-nkat="$11" data-namfile="$12" data-sizefile="$13" data-user="$14" data-nip="$15">
         <i class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i></button>
 
         <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
