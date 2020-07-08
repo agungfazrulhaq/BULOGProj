@@ -349,7 +349,7 @@ class M_data extends CI_Model
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');
 
-        if($post['kategori']='saldoawal'){
+        if($post['kategori']=='saldoawal'){
             return $this->db->query("UPDATE tb_transaksi 
                                     SET ref ='-' , tanggal = '" . $post['tanggal'] . "' , transaksi_id_aset = '" . $post['aset'] . "',
                                     transaksi_id_kategori = '1',uraian = '" . $post['uraian'] . "',saldo = " . $saldo . ", tahun = '" . $year_ . "'
