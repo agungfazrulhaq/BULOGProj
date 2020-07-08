@@ -857,10 +857,10 @@
                           <?php
                           $total_saldo = 0;
                           foreach ($transaksi as $t_row) {
-                            if (strpos($t_row->ref, 'D') !== false) {
-                              $total_saldo += $t_row->saldo;
-                            } else {
+                            if (strpos($t_row->ref, 'K') !== false) {
                               $total_saldo -= $t_row->saldo;
+                            } else {
+                              $total_saldo += $t_row->saldo;
                             }
                           }
                           ?>
