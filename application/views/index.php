@@ -122,7 +122,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="modalview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal" id="modalview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="card card-orange card-outline">
@@ -132,7 +132,7 @@
             <span class="font-weight-normal">Kategori :[ <span id="name_lr">not_found</span> ]
               <i class="ml-2 fas fa-chevron-circle-right text-info"></i>
               Sub Kategori :[ <span id="namekat">not_found</span> ] </span>
-            <button type="button" class="btn btn-danger pl-3 pr-3 float-right btn-sm" data-dismiss="modal"><span aria-hidden="true">X</span></button>
+            <button type="button" data-dismiss="modal" class="btn btn-danger pl-3 pr-3 float-right btn-sm" ><span aria-hidden="true">X</span></button>
           </div>
 
           <div class="card-body p-0">

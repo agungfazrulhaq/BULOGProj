@@ -78,7 +78,7 @@ class M_data extends CI_Model
         $saldo = floatval($saldo_);
         $year_ = $date_y->format('Y');
 
-        if($post['kategori']='saldoawal'){
+        if($post['kategori']=='saldoawal'){
             return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun,transaksi_id_user,saldoawal) 
                                         VALUES('-','" . $post['tanggal'] . "','" . $post['aset'] . "',
                                         (SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal'),'" . $post['uraian'] . "','"
