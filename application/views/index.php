@@ -290,13 +290,24 @@
               </div>
               <div class="modal-body mx-2">
                 <div class="md-form mb-2">
-                  <label data-error="wrong" data-success="right" for="jenislaporan">Jenis Laporan</label>
-                  <select class="form-control custom-select" style="width: 100%;" id="jenislaporan" name="customRadio">
+                  <label data-error="wrong" data-success="right" for="seeAnotherField">Jenis Laporan</label>
+                  <select class="form-control custom-select" style="width: 100%;" id="seeAnotherField" name="customRadio">
                     <option value="">Pilih Jenis Laporan</option>
                     <option value="mutasi">Laporan Mutasi Kas Aset</option>
-                    <option value="laba">Laporan Laba Rugi</option>
+                    <option value="yes" >Laporan Laba Rugi</option>
                     <option value="neraca">Laporan Neraca</option>
                   </select>
+                </div>
+                <div class="md-form mb-2" id="otherFieldDiv">
+                  <label data-error="wrong" data-success="right" for="otherField">Date range :</label>
+                  <div class="input-group" id="otherField">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control float-right" id="reservation">
+                  </div>
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
@@ -874,7 +885,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="text-right font-weight-light">Total Saldo = </td>
+                            <td class="text-right font-weight-light">Total = </td>
                             <td colspan="2" class="text-left"><b><?php echo "Rp. " . number_format($total_saldo, 2); ?></b></td>
                           </tr>
                         </tfoot>
@@ -1087,6 +1098,8 @@
       <!-- InputMask -->
       <script src="<?php echo base_url(); ?>plugins/moment/moment.min.js"></script>
       <script src="<?php echo base_url(); ?>plugins/inputmask/jquery.inputmask.min.js"></script>
+      <!-- date-range-picker -->
+      <script src="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker.js"></script>
       <!-- repeater form -->
       <script src="<?php echo base_url(); ?>plugins/repeater/repeater.js"></script>
       <!-- pace-progress -->
@@ -1094,6 +1107,22 @@
       <!-- AdminLTE App -->
       <script src="<?php echo base_url(); ?>dist/js/adminlte.min.js"></script>
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
+      <script>
+          $("#seeAnotherField").change(function() {
+          if ($(this).val() == "yes") {
+          $('#otherFieldDiv').show();
+          $('#otherField').attr('required', '');
+          $('#otherField').attr('data-error', 'This field is required.');
+          } else {
+          $('#otherFieldDiv').hide();
+          $('#otherField').removeAttr('required');
+          $('#otherField').removeAttr('data-error');
+          }
+          });
+          $("#seeAnotherField").trigger("change");
+      
+          $('#reservation').daterangepicker()
+      </script>
       <script type="text/javascript">
         $(function(){
 
