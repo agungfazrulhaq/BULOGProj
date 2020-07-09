@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2020 at 08:43 AM
+-- Generation Time: Jul 09, 2020 at 03:02 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -295,7 +295,8 @@ INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`,
 (2020, '2020-01-28', 262, 'Setor Pendapatan Sewa ATM Center BNI ke Rek RM\r\n', 'K49', 50000000, 9, 14, '2020-07-08 06:34:29', 1, NULL),
 (2020, '2020-01-28', 263, 'Penarikan Ke Kas PPh 4(2) atas sewa lahan PT Trimasindo Global Perkasa \r\n', 'K50', 6500000, 9, 22, '2020-07-08 06:34:54', 1, NULL),
 (2020, '2020-01-28', 264, 'Penarikan Ke Kas atas jaminan sewa Mess Malino 2019\r\n', 'K51', 875000, 9, 14, '2020-07-08 06:36:41', 1, NULL),
-(2020, '2020-01-28', 265, 'Penarikan ke Kas atas Penerimaan Dropping biaya pembangunan penggantian AC ATM Center\r\n', 'K52', 34693000, 9, 14, '2020-07-08 06:37:02', 1, NULL);
+(2020, '2020-01-28', 265, 'Penarikan ke Kas atas Penerimaan Dropping biaya pembangunan penggantian AC ATM Center\r\n', 'K52', 34693000, 9, 14, '2020-07-08 06:37:02', 1, NULL),
+(2020, '2020-01-29', 266, 'Terima Sewa Kamar dari Acara Baruga Lappo Ase an (ST. Dayatul Qolbi) tgl 23 Februari 2020																\r\n', 'D78', 225000, 2, 13, '2020-07-09 00:26:55', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -408,7 +409,7 @@ ALTER TABLE `tb_kategori_laba_rugi`
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
