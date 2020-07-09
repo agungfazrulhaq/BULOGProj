@@ -152,6 +152,9 @@ PERIODE&emsp; :&emsp;-</b></p>
                                 if($count_total==0){
                                     echo "-";
                                 }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
+                                }
                                 else{
                                     echo "<b>".number_format($count_total,2)."</b>";
                                 }
@@ -184,6 +187,9 @@ PERIODE&emsp; :&emsp;-</b></p>
                                 if($count_total==0){
                                     echo "-";
                                 }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
+                                }
                                 else{
                                     echo "<b>".number_format($count_total,2)."</b>";
                                 }
@@ -211,6 +217,10 @@ PERIODE&emsp; :&emsp;-</b></p>
                 if($labarugi_peraset[$countelem_aset]==0){
                     echo "-";
                 }
+                else if($labarugi_peraset[$countelem_aset]<0){
+                    $labarugi_peraset__ = $labarugi_peraset[$countelem_aset]*(-1);
+                    echo "<b>(".number_format($labarugi_peraset__, 2).")</b>";
+                }
                 else{
                     echo "<b>".number_format($labarugi_peraset[$countelem_aset], 2)."</b>";
                 }
@@ -221,6 +231,9 @@ PERIODE&emsp; :&emsp;-</b></p>
         <td class="tj">&nbsp; <?php 
                                 if($count_total==0){
                                     echo "-";
+                                }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
                                 }
                                 else{
                                     echo "<b>".number_format($count_total,2)."</b>";
@@ -293,6 +306,9 @@ PERIODE&emsp; :&emsp;-</b></p>
                                 if($count_total==0){
                                     echo "-";
                                 }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
+                                }
                                 else{
                                     echo "<b>".number_format($count_total,2)."</b>";
                                 }
@@ -314,6 +330,10 @@ PERIODE&emsp; :&emsp;-</b></p>
                 if($jumlah_perkat[$count]==0){
                     echo "-";
                 } 
+                else if($jumlah_perkat[$count]<0){
+                    $jumlah_perkat__ = $jumlah_perkat[$count] * (-1);
+                    echo "<b>(".number_format($jumlah_perkat__ , 2).")</b>";
+                }
                 else{
                     echo "<b>".number_format($jumlah_perkat[$count], 2)."</b>";
                 }
@@ -321,7 +341,17 @@ PERIODE&emsp; :&emsp;-</b></p>
                 ?></td>
             <?php $count+=1;?>
         <?php } ?>
-        <td class="tj">&nbsp; <?php echo "<b>".number_format($count_total,2)."</b>";?></td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                            ?></td>
       </tr>
       <tr>
             <td></td>
@@ -346,6 +376,10 @@ PERIODE&emsp; :&emsp;-</b></p>
                 if($labarugi_peraset[$countelem_aset]==0){
                     echo "-";
                 }
+                else if($labarugi_peraset[$countelem_aset]<0){
+                    $labarugi_peraset__ = $labarugi_peraset[$countelem_aset]*(-1);
+                    echo "<b>(".number_format($labarugi_peraset__, 2).")</b>";
+                }
                 else{
                     echo "<b>".number_format($labarugi_peraset[$countelem_aset], 2)."</b>";
                 }
@@ -353,7 +387,17 @@ PERIODE&emsp; :&emsp;-</b></p>
                 ?></td>
             <?php $countelem_aset+=1;?>
         <?php } ?>
-        <td class="tj">&nbsp; <?php echo "<b>".number_format($count_total,2)."</b>"; ?></td>
+        <td class="tj">&nbsp; <?php 
+                                if($count_total==0){
+                                    echo "-";
+                                }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
+                                }
+                                else{
+                                    echo "<b>".number_format($count_total,2)."</b>";
+                                }
+                            ?></td>
       </tr>
       <tr>
         <td >&nbsp;</td>
@@ -422,6 +466,9 @@ PERIODE&emsp; :&emsp;-</b></p>
                                 if($count_total==0){
                                     echo "-";
                                 }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
+                                }
                                 else{
                                     echo "<b>".number_format($count_total,2)."</b>";
                                 }
@@ -453,6 +500,9 @@ PERIODE&emsp; :&emsp;-</b></p>
                                 if($count_total==0){
                                     echo "-";
                                 }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
+                                }
                                 else{
                                     echo "<b>".number_format($count_total,2)."</b>";
                                 }
@@ -481,6 +531,10 @@ PERIODE&emsp; :&emsp;-</b></p>
                 if($labarugi_peraset[$countelem_aset]==0){
                     echo "-";
                 }
+                else if($labarugi_peraset[$countelem_aset]<0){
+                    $labarugi_peraset__ = $labarugi_peraset[$countelem_aset]*(-1);
+                    echo "<b>(".number_format($labarugi_peraset__, 2).")</b>";
+                }
                 else{
                     echo "<b>".number_format($labarugi_peraset[$countelem_aset], 2)."</b>";
                 }
@@ -491,6 +545,9 @@ PERIODE&emsp; :&emsp;-</b></p>
         <td class="tj">&nbsp; <?php 
                                 if($count_total==0){
                                     echo "-";
+                                }
+                                else if($count_total<0){
+                                    echo "<b>(".number_format(-$count_total,2).")</b>";
                                 }
                                 else{
                                     echo "<b>".number_format($count_total,2)."</b>";

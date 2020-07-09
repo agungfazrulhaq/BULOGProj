@@ -529,7 +529,11 @@
                     <label for="customRadio2" class="custom-control-label">LABA RUGI USAHA</label>
                   </div>
                   <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="hidden" id="customRadio3" name="laba" value="lain" checked>
+                    <input class="custom-control-input" type="radio" id="customRadio3" name="laba" value="lain">
+                    <label for="customRadio2" class="custom-control-label">LABA RUGI LAIN-LAIN</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="customRadio4" name="laba" value="none" checked>
                   </div>
                 </div>
               </div>
