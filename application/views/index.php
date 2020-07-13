@@ -122,6 +122,70 @@
     </div>
   </div>
 
+  <div class="modal fade bd-example-modal-sm" id="modalsaldoawal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Generate Saldo Awal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form class="form-horizontal" action="<?php echo base_url('Home/generatesaldoawal/');?>" method='post'>
+          <fieldset>
+          <!-- Select Basic -->
+          <div class="form-group">
+            <label data-error="wrong" data-success="right" for="aset" class="col-md-4 control-label">Aset</label>
+                <div class="col-md-12">
+                  <select class="form-control" id="selectaset" name="aset" required>
+                    <?php foreach ($aset as $row_a) { ?>
+                      <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="bulan">Bulan</label>
+            <div class="col-md-12">
+              <select id="bulansaldoawal" name="bulan" class="form-control">
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="tahun">Tahun</label>  
+            <div class="col-md-12">
+            <input id="tahun" name="tahun" type="text" placeholder="ex. 2020" class="form-control input-md" required="">
+              
+            </div>
+          </div>
+
+          </fieldset>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" value="Generate">
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="modalview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
@@ -132,7 +196,7 @@
             <span class="font-weight-normal">Kategori :[ <span id="name_lr">not_found</span> ]
               <i class="ml-2 fas fa-chevron-circle-right text-info"></i>
               Sub Kategori :[ <span id="namekat">not_found</span> ] </span>
-            <button type="button" data-dismiss="modal" class="btn btn-danger pl-3 pr-3 float-right btn-sm" ><span aria-hidden="true">X</span></button>
+            <button type="button" data-dismiss="modal" data-toggle="modal" class="btn btn-danger pl-3 pr-3 float-right btn-sm" >X</button>
           </div>
 
           <div class="card-body p-0">
@@ -151,7 +215,7 @@
             <div class="mailbox-read-message">
               <div class="text-justify font-weight-light p-3 bg-light rounded">
                 <h6 class="font-weight-bold">Uraian :</h6>
-                <p id="uraianview" class="pl-3">URAIANNYA APA</p>
+                <p id="uraianview" class="uraianview_ pl-3">URAIANNYA APA</p>
                 <br>
               </div>
             </div>
@@ -200,7 +264,7 @@
 
   <div class="row">
     <div class="col-md-2">
-      <form action="<?php echo site_url('Home/update/') ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo site_url('Home/update/'); ?>" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -613,6 +677,7 @@
           <div class="col-2" style="font-size:1vw;">
           <img class="img-fluid mb-2 shadow-sm bg-white p-2 rounded" width="100%" src="<?php echo base_url("dist/img/logo dash.png"); ?>" alt="Logo Bulog">
             <button type="button" class="btn shadow-sm btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalLoginForm"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Masukkan Data Transaksi</span></button>
+            <button type="button" class="btn shadow-sm btn-block btn-info mb-2 font-weight-light" data-toggle="modal" data-target="#modalsaldoawal"><span data-toggle="tooltip" title="Tambahkan Data" data-placement="top"> Generate Saldo Awal</span></button>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>
@@ -959,14 +1024,124 @@
                         </div>
                         <div id="repeater">
                         <!-- Repeater Heading -->
-                        <div class="repeater-heading">
-                            <button class="btn bg-olive btn-sm repeater-add-btn">
-                               <i class="fas fa-plus"></i> Buat Form
+                        <div class="">
+                            <button class="btn bg-olive btn-sm" data-toggle="modal" data-target="#addJurnal">
+                               <i class="fas fa-plus"></i> Add Jurnal
                             </button>
+
+                            <!-- Jurnal Form -->
+                            <div class="modal fade" id="addJurnal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <form class="form-horizontal">
+                                      <fieldset>
+
+                                      <!-- Form Name -->
+                                      <legend>Add Jurnal</legend>
+
+                                      
+
+                                  </div>
+                                  <div class="modal-body">
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="namajurnal">Nama Jurnal</label>  
+                                        <div class="col-md-10">
+                                        <input id="namajurnal" name="namajurnal" type="text" placeholder="Jurnal untuk pencatatan .." class="form-control input-md" required="">
+                                          
+                                        </div>
+                                      </div>
+
+                                      <!-- Select Basic -->
+                                      <div class="form-group">
+                                        <label class="col-md-4 control-label" for="kategoritransaksi">Select Basic</label>
+                                        <div class="col-md-6">
+                                          <select id="kategoritransaksi" name="kategoritransaksi" class="form-control">
+                                          <option selected="selected" value="">Pilih Kategori</option>
+                                          <option class="font-weight-bold" value="saldoawal">SALDO AWAL</option>
+                                          <?php foreach ($allcategory as $K_row__) { ?>
+                                            <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
+                                              <?php foreach ($kategori as $row_k) { ?>
+                                                <?php
+                                                $id_kat__1 = $row_k->id_kat_lr_kat;
+                                                $id_kat__2 = $K_row__->id_kat_laba_rugi;
+                                                ?>
+                                                <?php if ($id_kat__1 == $id_kat__2) { ?>
+                                                  <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+
+                                                <?php } ?>
+                                              <?php } ?>
+                                            </optgroup>
+                                          <?php } ?>
+                                          </select>
+                                        </div>
+                                      </div>
+
+                                      <!-- Multiple Checkboxes -->
+                                      <div class="form-group">
+                                        <div class="col-md-4">
+                                        <div class="checkbox">
+                                          <label for="pyd_stat-0">
+                                            <input type="checkbox" name="pyd_stat" id="pyd_stat-0" value="1">
+                                            PYD
+                                          </label>
+                                        </div>
+                                        </div>
+                                      </div>
+
+                                      </fieldset>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary" Value="Save changes">
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
                         </div>
+                        <br>
+
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Action</th>
+                              <th scope="col">Nama Jurnal</th>
+                              <th scope="col">Kategori Transaksi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">
+                              <div class="btn-group">
+                              <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
+                                <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
+                              </button>
+                              
+                              <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
+                                <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
+                              </button> </div></th>
+                              <td>Jurnal untuk mencatat penerimaan charge</td>
+                              <td>Penerimaan Charge</td>
+                            </tr>
+                            <tr>
+                              <th scope="row"><div class="btn-group">
+                              <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
+                                <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
+                              </button>
+                              
+                              <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
+                                <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
+                              </button> </div></th>
+                              <td>Jurnal untuk mencatat penerimaan fee</td>
+                              <td>Penerimaan Fee</td>
+                            </tr>
+                          </tbody>
+                        </table>
                         
                         <!-- Repeater Items -->
-                      <div class="items" data-group="test">
+                      <!-- <div class="items" data-group="test">
                         <hr>
                           <div class="row">
                             <div class="col-md-8">
@@ -1050,7 +1225,7 @@
                             </div>
                           </div>
                         </div>
-                        </div>
+                        </div> -->
 
                       <!-- /.card-body -->
                       <div class="card-footer">
@@ -1058,7 +1233,7 @@
                           Total Saldo = <span class="btn-sm bg-success">Rp. 45,000,000.00</span>
                         </div>
                         <div class="card-title float-right">
-                          <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button>
+                          <!-- <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button> -->
                           <button class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</button>
                         </div>
                       </div>
@@ -1467,22 +1642,6 @@
               }
             });
           });
-          $('#tbmaster').on('click', '.deletedata', function() {
-            var id_transaksi = $(this).data('id');
-            var tanggal = $(this).data('tanggal');
-            var aset = $(this).data('aset');
-            var kategori = $(this).data('kategori');
-            var uraian = $(this).data('uraian');
-            var ref = $(this).data('ref');
-            var saldo = $(this).data('saldo');
-            $('[name="id_transaksi"]').val(id_transaksi);
-            $('#modaldel').modal('show');
-            document.getElementById("data_id").innerHTML = "record_id(" + id_transaksi + ")";
-            document.getElementById("refdel").innerHTML = ref;
-            document.getElementById("tanggaldel").innerHTML = tanggal;
-            document.getElementById("asetdel").innerHTML = aset;
-            document.getElementById("saldodel").innerHTML = saldo;
-          });
           $('#tbmaster').on('click', '.viewdata', function() {
             var id_transaksi = $(this).data('id');
             var tanggal = $(this).data('tanggal');
@@ -1532,6 +1691,8 @@
             
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalview').modal('show');
+            var modal = $(this);
+            modal.find('.uraianview_').text(uraian);
             if(ukuran_file>0){
               document.getElementById("nama_file").innerHTML = nama_file;
               document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
@@ -1555,6 +1716,23 @@
               document.getElementById("id_transaksi_file").value = id_transaksi;
 
           });
+          $('#tbmaster').on('click', '.deletedata', function() {
+            var id_transaksi = $(this).data('id');
+            var tanggal = $(this).data('tanggal');
+            var aset = $(this).data('aset');
+            var kategori = $(this).data('kategori');
+            var uraian = $(this).data('uraian');
+            var ref = $(this).data('ref');
+            var saldo = $(this).data('saldo');
+            $('[name="id_transaksi"]').val(id_transaksi);
+            $('#modaldel').modal('show');
+            document.getElementById("data_id").innerHTML = "record_id(" + id_transaksi + ")";
+            document.getElementById("refdel").innerHTML = ref;
+            document.getElementById("tanggaldel").innerHTML = tanggal;
+            document.getElementById("asetdel").innerHTML = aset;
+            document.getElementById("saldodel").innerHTML = saldo;
+          });
+          
         });
       </script>
       <script type="text/javascript">

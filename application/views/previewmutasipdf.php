@@ -83,6 +83,8 @@
             } 
         }
         
+        $ind_months = array('Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
+
         $rowspannya = array();
         $countrows_ = 0;
         foreach($transaksi as $tranc){
@@ -161,7 +163,7 @@
             <tr>
                 <td style="border:1px solid black;text-align:center;" id="WOIWOI" width=5px>1</td>
                 <td style="border:1px solid black;" colspan='2' width="15px"></td>
-                <td style="border:1px solid black;" width="300px"><b><?php echo $sald->uraian;?></b></td>
+                <td style="border:1px solid black;" width="300px"><b>Saldo awal bulan <?php echo $ind_months[$curr_month-1];?>&nbsp;<?php echo $curr_year;?></b></td>
                 <td style="border:1px solid black;text-align:center;" >-</td>
                 <td style="border:1px solid black;text-align:center;" >-</td>
                 <td style="border:1px solid black;" class="saldokanan" ><b><?php echo number_format($sald->saldo,2);?></b>&nbsp;&nbsp;</td>
@@ -273,10 +275,10 @@
             <tr>
                 <td></td>
                 <td colspan="2"></td>
-                <td>&nbsp;</td>
+                <td><b>Saldo akhir bulan <?php echo $ind_months[$curr_month-1];?>&nbsp;<?php echo $curr_year;?></b></td>
                 <td class="saldokanan"></td>
                 <td class="saldokanan"></td>
-                <td class="saldokanan"></td>
+                <td class="saldokanan"><b><?php echo number_format($curr_saldo, 2); ?></b></td>
             </tr>
             <tr>
                 <td></td>

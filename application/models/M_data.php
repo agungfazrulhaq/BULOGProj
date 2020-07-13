@@ -550,4 +550,71 @@ class M_data extends CI_Model
         return $query->result();
     }
 
+    public function genSaldoawal(){
+        $post = $this->input->post();
+        $cek_query = $this->db->query("SELECT * FROM tb_transaksi 
+                                        WHERE 
+                                        transaksi_id_aset=".$post['aset']." 
+                                        and MONTH(tanggal)=".$post['bulan']." 
+                                        and YEAR(tanggal)=".$post['tahun']);
+        if($cek_query->num_rows()==0){
+            $ind_months=array('Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
+            $saldo = 0;
+            $lastmonth = $post['bulan'] - 1;
+            $tahunpost = $post['tahun'];
+            if($lastmonth == 0){
+                $lastmonth = 12;
+                $tahunpost -= 1;
+            }
+            $transaksi_list = $this->db->query("SELECT saldo,jenis_transaksi FROM tb_transaksi 
+                                                JOIN tb_kategori ON transaksi_id_kategori = id_kategori
+                                                JOIN tb_kategori_laba_rugi ON id_kat_lr_kat = id_kat_laba_rugi
+                                                WHERE 
+                                                transaksi_id_aset=".$post['aset']."
+                                                and MONTH(tanggal)=".$lastmonth."
+                                                and YEAR(tanggal)=".$tahunpost."
+                                                ");
+            $transaksi = $transaksi_list->result();
+            foreach($transaksi as $tranc){
+                if($tranc->jenis_transaksi == "DEBIT"){
+                    $saldo += $tranc->saldo;
+                }
+                else{
+                    $saldo -= $tranc->saldo;
+                }
+            }
+
+            return $this->db->query("INSERT INTO tb_transaksi(ref,tanggal,transaksi_id_aset,transaksi_id_kategori,uraian,saldo,tahun,saldoawal) 
+                                        VALUES('-','" .$post['tahun']."-".$post['bulan']."-1','" . $post['aset'] . "',
+                                        (SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal'),'Saldo awal bulan ".$ind_months[$post['bulan']-1]." ".$post['tahun']."','"
+                                        . $saldo . "','" . $post['tahun'] . "',1)");
+
+        }
+        else{
+            $saldo = 0;
+            $transaksi = $transaksi_list->result();
+            foreach($transaksi as $tranc){
+                if($tranc->jenis_transaksi == "DEBIT"){
+                    $saldo += $tranc->saldo;
+                }
+                else{
+                    $saldo -= $tranc->saldo;
+                }
+            }
+            $lastmonth = $post['bulan'] - 1;
+            $tahunpost = $post['tahun'];
+            if($lastmonth == 0){
+                $lastmonth = 12;
+                $tahunpost -= 1;
+            }
+            return $this->db->query("UPDATE tb_transaksi SET saldo=".$saldo. 
+                                        "WHERE
+                                        transaksi_id_kategori=(SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal') and
+                                        transaksi_id_aset=".$post['aset']."
+                                        and MONTH(tanggal)=".$lastmonth."
+                                        and YEAR(tanggal)=".$tahunpost."
+                                        ");
+        }
+    }
+
 }

@@ -257,4 +257,17 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
+    public function generatesaldoawal(){
+        $data_ = $this->M_data;
+
+        if($data_->genSaldoawal()){
+            $this->session->set_flashdata('successsaldo', 'Berhasil Generate saldo awal');
+        }
+        else{
+            $this->session->set_flashdata('failedsaldo', 'Gagal Generate saldo awal');
+        }
+
+        return redirect(base_url());
+    }
+
 }
