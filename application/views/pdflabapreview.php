@@ -46,11 +46,19 @@ $countaset=0;
 foreach($aset as $row_as){
     $countaset+=1;
 }
+
+$periode_render = explode('-',$periode);
+$index_periode = 0;
+foreach($periode_render as $periode_){
+    $dump = $periode_
+    $periode_render[$index_periode] = $dump;
+}
+
 ?>
 <p><b> UB. OPASET DIVRE SULSELBAR <br>
 <br>
 LAPORAN&emsp;:&emsp;LABA (RUGI)<br>
-PERIODE&emsp; :&emsp;-</b></p>
+PERIODE&emsp; :&emsp;<?php echo $periode;?></b></p>
   <table>
     <thead>
       <tr>

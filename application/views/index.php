@@ -138,7 +138,7 @@
           <div class="form-group">
             <label data-error="wrong" data-success="right" for="aset" class="col-md-4 control-label">Aset</label>
                 <div class="col-md-12">
-                  <select class="form-control" id="selectaset" name="aset" required>
+                  <select class="form-control" id="selectaset_sa" name="aset" required>
                     <?php foreach ($aset as $row_a) { ?>
                       <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
                     <?php } ?>
@@ -276,13 +276,13 @@
               </div>
               <div class="modal-body mx-2">
                 <div class="md-form mb-2">
-                  <input type="hidden" id="id_transaksi" class="form-control validate" name="id_transaksi">
+                  <input type="hidden" id="id_transaksi" class="form-control validate" name="id_transaksi" value="">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Tanggal</label>
                   <input type="date" id="formupdatetanggal" class="form-control validate" name="tanggal" value="" required>
                 </div>
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="defaultForm-email">Aset</label>
-                  <select class="form-control custom-select" style="width: 100%;" id="selectaset" name="aset" required>
+                  <select class="form-control" style="width: 100%;" id="selectaset" name="aset" required>
                     <?php foreach ($aset as $row_a) { ?>
                       <option value="<?php echo $row_a->id_aset; ?>"><?php echo $row_a->nama_aset; ?></option>
                     <?php } ?>
@@ -355,10 +355,10 @@
               <div class="modal-body mx-2">
                 <div class="md-form mb-2">
                   <label data-error="wrong" data-success="right" for="seeAnotherField">Jenis Laporan</label>
-                  <select class="form-control custom-select" style="width: 100%;" id="seeAnotherField" name="customRadio">
+                  <select class="form-control custom-select" style="width: 100%;" id="seeAnotherField" name="jenislaporan">
                     <option value="">Pilih Jenis Laporan</option>
                     <option value="mutasi">Laporan Mutasi Kas Aset</option>
-                    <option value="yes" >Laporan Laba Rugi</option>
+                    <option value="laba" >Laporan Laba Rugi</option>
                     <option value="neraca">Laporan Neraca</option>
                   </select>
                 </div>
@@ -375,38 +375,16 @@
                 </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
-                <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
                   <button type="button" class="btn btn-sm bg-info">
-                    <span class="" onclick='functionPreviewpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'><i class=" fas fa-file-pdf"> </i> LIHAT</span>
+                    <span class="p-2" onclick='alertLihat(document.getElementById("seeAnotherField").value)'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
                   </button>
-                <?php 
-                } 
-                else {
-                ?>
-                  <button type="button" class="btn btn-sm bg-info">
-                    <span class="p-2" onclick='alertLihat(document.getElementById("jenislaporan").value)'><i class=" fas fa-file-pdf"></i>&nbsp; LIHAT</span>
-                  </button>
-                <?php
-                }  
-                ?>
+                
                 <div class="">
 
                   <span class="btn bg-grey">Export Ke : </span>
-
-                <?php if(isset($curr_month) and isset($curr_year) and isset($curr_aset)){?>
-                  <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
-                    <span class="" onclick='functionRenderpdf(document.getElementById("jenislaporan").value,<?php echo $curr_aset; ?> ,<?php echo $curr_month; ?>,<?php echo $curr_year; ?>)'>PDF</span>
-                  </button>
-                <?php 
-                } 
-                else {
-                ?>
                   <button type="button" class="btn btn-sm text-orange"><i class=" fas fa-file-pdf"></i>
                     <span class="" onclick='alertFilter(document.getElementById("jenislaporan").value)'>PDF</span>
                   </button>
-                <?php
-                }
-                ?>
                   <button type="button" class="btn text-olive btn-sm"><i class=" fas fa-file-excel"></i>
                     <span class="">EXCEL</span>
                   </button>
@@ -1059,10 +1037,10 @@
                                         <div class="col-md-6">
                                           <select id="kategoritransaksi" name="kategoritransaksi" class="form-control">
                                           <option selected="selected" value="">Pilih Kategori</option>
-                                          <option class="font-weight-bold" value="saldoawal">SALDO AWAL</option>
+                                          
                                           <?php foreach ($allcategory as $K_row__) { ?>
                                             <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
-                                              <?php foreach ($kategori as $row_k) { ?>
+                                              <?php foreach ($katforjurnal as $row_k) { ?>
                                                 <?php
                                                 $id_kat__1 = $row_k->id_kat_lr_kat;
                                                 $id_kat__2 = $K_row__->id_kat_laba_rugi;
@@ -1094,6 +1072,9 @@
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="hidden" name="bulanjurnal" value="<?php echo $curr_month;?>">
+                                    <input type="hidden" name="asetjurnal" value="<?php echo $curr_aset;?>">
+                                    <input type="hidden" name="tahunjurnal" value="<?php echo $curr_year;?>">
                                     <input type="submit" class="btn btn-primary" Value="Save changes">
                                   </div>
                                   </form>
@@ -1284,7 +1265,7 @@
       <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
       <script>
           $("#seeAnotherField").change(function() {
-          if ($(this).val() == "yes") {
+          if ($(this).val() == "laba") {
           $('#otherFieldDiv').show();
           $('#otherField').attr('required', '');
           $('#otherField').attr('data-error', 'This field is required.');
@@ -1746,10 +1727,23 @@
         }
         function alertLihat(jenlap) {
           if(jenlap=="mutasi"){
-            alert("filter sebelum melakukan percetakan");
+            <?php 
+            if(isset($curr_aset) and isset($curr_month) and isset($curr_year)){ 
+            ?>
+            window.open("<?php echo base_url("Home/previewmutasipdf/".$curr_aset."/".$curr_month."/".$curr_year); ?>");
+            <?php
+            }
+            else{
+            ?>
+            alert("Lakukan filter terlebih dahulu");
+            <?php
+            }
+            ?>
           }
           else if(jenlap=="laba"){
-            window.open("<?php echo base_url("Home/previewlabapdf/"); ?>");
+            var reservation = document.getElementById("reservation").value;
+            var getreserv = reservation.split('/').join('').split(' ').join('');
+            window.open("<?php echo base_url("Home/previewlabapdf/"); ?>"+getreserv);
           }
         }
       </script>

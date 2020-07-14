@@ -79,6 +79,7 @@ class Home extends CI_Controller {
         $data["transaksi"] = $this->M_data->getAset_Transaksi_filter($id_aset,$monthdate,$yeardate);
         $data["json_url"] = "getTransaksiJsonFiltered/".$id_aset."/".$monthdate."/".$yeardate."/";
         $data["dataModel"] = $this->load->model("M_data");
+        $data["katforjurnal"] = $this->M_data->getJurnalCat($id_aset);
 
 		$this->load->view('index.php',$data);
     }
@@ -182,6 +183,7 @@ class Home extends CI_Controller {
         $data['kategori'] = $this->M_data->getKategori();
         $data['aset'] = $this->M_data->getAset();
         $data['rpincat'] = $this->M_data->getLRTransaksi();
+        $data['periode'] = $this->uri->segment(3);
         // foreach($data['kategori'] as $row_kat){
         //     foreach($data['aset'] as $row_aset){
 

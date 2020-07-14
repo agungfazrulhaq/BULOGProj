@@ -348,6 +348,7 @@ class M_data extends CI_Model
         
         $saldo = $post['saldo'];
         $year_ = $date_y->format('Y');
+        
 
         if($post['kategori']=='saldoawal'){
             return $this->db->query("UPDATE tb_transaksi 
@@ -591,6 +592,22 @@ class M_data extends CI_Model
 
         }
         else{
+            $ind_months=array('Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
+            $saldo = 0;
+            $lastmonth = $post['bulan'] - 1;
+            $tahunpost = $post['tahun'];
+            if($lastmonth == 0){
+                $lastmonth = 12;
+                $tahunpost -= 1;
+            }
+            $transaksi_list = $this->db->query("SELECT saldo,jenis_transaksi FROM tb_transaksi 
+                                                JOIN tb_kategori ON transaksi_id_kategori = id_kategori
+                                                JOIN tb_kategori_laba_rugi ON id_kat_lr_kat = id_kat_laba_rugi
+                                                WHERE 
+                                                transaksi_id_aset=".$post['aset']."
+                                                and MONTH(tanggal)=".$lastmonth."
+                                                and YEAR(tanggal)=".$tahunpost."
+                                                ");
             $saldo = 0;
             $transaksi = $transaksi_list->result();
             foreach($transaksi as $tranc){
@@ -601,19 +618,36 @@ class M_data extends CI_Model
                     $saldo -= $tranc->saldo;
                 }
             }
-            $lastmonth = $post['bulan'] - 1;
-            $tahunpost = $post['tahun'];
-            if($lastmonth == 0){
-                $lastmonth = 12;
-                $tahunpost -= 1;
-            }
             return $this->db->query("UPDATE tb_transaksi SET saldo=".$saldo. 
-                                        "WHERE
+                                        " WHERE
                                         transaksi_id_kategori=(SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal') and
                                         transaksi_id_aset=".$post['aset']."
-                                        and MONTH(tanggal)=".$lastmonth."
-                                        and YEAR(tanggal)=".$tahunpost."
+                                        and MONTH(tanggal)=".$post['bulan']."
+                                        and YEAR(tanggal)=".$post['tahun']."
                                         ");
+        }
+    }
+
+    public function getJurnalCat($id_aset){
+        $kategori_ = $this->db->query("SELECT DISTINCT nama_kategori,id_kategori,id_kat_lr_kat
+                                        FROM tb_transaksi
+                                        JOIN tb_kategori ON transaksi_id_kategori=id_kategori
+                                        JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                        WHERE transaksi_id_aset=".$id_aset." 
+                                        and transaksi_id_kategori NOT IN 
+                                                (SELECT id_kategori FROM tb_kategori WHERE nama_kategori='Saldo Awal')");
+        return $kategori_->result();
+    }
+
+    public function addJurnal(){
+        $post = $this->input->post();
+
+        if($post['pyd_stat']==1){
+            return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,jurnal_id_kategori,nama_jurnal,pyd_stat)
+                                        VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].")")
+        }
+        else{
+
         }
     }
 
