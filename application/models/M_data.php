@@ -642,12 +642,15 @@ class M_data extends CI_Model
     public function addJurnal(){
         $post = $this->input->post();
 
-        if($post['pyd_stat']==1){
-            return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,jurnal_id_kategori,nama_jurnal,pyd_stat)
-                                        VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].")")
+        if(isset($post['pyd_stat'])){
+            if($post['pyd_stat']==1){
+                return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,jurnal_id_kategori,nama_jurnal,pyd_stat)
+                                            VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].",".$post['kategoritransaksi'].",'".$post['namajurnal']."',1)");
+            }    
         }
         else{
-
+            return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,jurnal_id_kategori,nama_jurnal,pyd_stat)
+                                        VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].",".$post['kategoritransaksi'].",'".$post['namajurnal']."',0)");
         }
     }
 

@@ -272,4 +272,14 @@ class Home extends CI_Controller {
         return redirect(base_url());
     }
 
+    public function addjurnal(){
+        $data_ = $this->M_data;
+        
+        if($data_->addJurnal()){
+            $this->session->set_flashdata('successjurnal','Berhasil menambahkan jurnal');
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
 }

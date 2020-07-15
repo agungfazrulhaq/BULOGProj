@@ -1012,7 +1012,7 @@
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" action='<?php echo site_url('Home/addjurnal');?>' method='post'>
                                       <fieldset>
 
                                       <!-- Form Name -->

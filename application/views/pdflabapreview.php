@@ -47,12 +47,12 @@ foreach($aset as $row_as){
     $countaset+=1;
 }
 
-$periode_render = explode('-',$periode);
-$index_periode = 0;
-foreach($periode_render as $periode_){
-    $dump = $periode_
-    $periode_render[$index_periode] = $dump;
-}
+// $periode_render = explode('-',$periode);
+// $index_periode = 0;
+// foreach($periode_render as $periode_){
+//     $dump = $periode_
+//     $periode_render[$index_periode] = $dump;
+// }
 
 ?>
 <p><b> UB. OPASET DIVRE SULSELBAR <br>
