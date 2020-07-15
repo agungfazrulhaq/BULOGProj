@@ -43,6 +43,8 @@
   .hiddencheck{
     visibility: hidden;
   }
+
+  .pointer {cursor: pointer;}
 </style>
 
 <body class="layout-top-nav pace-orange" style="height: auto;">
@@ -777,7 +779,7 @@
             <div class="card card-outline card-info">
               <div class="card-header d-flex p-2">
                 <h3 class="card-title">
-                  <div class="btn-group dropdown"><button type="button" class="btn btn-dark btn-sm">Dashboard</button>
+                  <div class="btn-group dropdown"><button type="button" class="btn btn-dark btn-sm">Home</button>
                     <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <?php
                       if (isset($curr_month)) {
@@ -877,7 +879,7 @@
                   <a href="<?php echo base_url(); ?>"><button class="btn btn-success btn-sm ml-2" data-toggle="tooltip" title="Perlihatkan Semua Data"><i class="far fa-file-alt mr-1"></i> Lihat Semua </button></a>
                 </h3>
                 <ul class="nav nav-pills ml-auto p-0">
-                  <li class="nav-item pr-1"><a class="btn btn-secondary text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-arrow-left" data-toggle="tooltip" title="Dasboard"></i></a></li>
+                  <li class="nav-item pr-1"><a class="btn btn-secondary text-white btn-sm" href="#tab_1" data-toggle="tab"><i class="fas fa-arrow-left" data-toggle="tooltip" title="Kembali"></i></a></li>
                   <li class="nav-item" hidden><a class="nav-link" href="#tab_2" data-toggle="tab">Tab 2</a></li>
                   <?php
                   if (isset($curr_aset) and isset($curr_year) and isset($curr_month)) {
@@ -1012,7 +1014,7 @@
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <form class="form-horizontal" action='<?php echo site_url('Home/addjurnal');?>' method='post'>
+                                    <form class="form-horizontal" action='<?php echo site_url('Home/addjurnal/'.$curr_aset."/".$curr_month."/".$curr_year);?>' method='post'>
                                       <fieldset>
 
                                       <!-- Form Name -->
@@ -1084,16 +1086,63 @@
                         </div>
                         <br>
 
-                        <table class="table table-striped">
+                        <table class="table table-sm" id="accordion">
                           <thead>
                             <tr>
                               <th scope="col">Action</th>
                               <th scope="col">Nama Jurnal</th>
                               <th scope="col">Kategori Transaksi</th>
+                              <th scope="col">Kas</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                          <?php foreach($datajurnal as $jurnal){ ?>
+                            <tr class="clickable-row pointer" role="button" data-toggle="collapse" data-target="#collapse<?php echo $jurnal->id_jurnal;?>" aria-expanded="false" aria-controls="collapse<?php echo $jurnal->id_jurnal;?>">
+                              <td scope="row" rowspan=2>
+                              <div class="btn-group">
+                              <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
+                                <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
+                              </button>
+                              
+                              <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
+                                <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
+                              </button> </div></td>
+                              <td style="border-bottom:hidden;"><?php echo $jurnal->nama_jurnal;?></td>
+                              <td style="border-bottom:hidden;"><?php echo $jurnal->nama_kategori;?></td>
+                              <td style="border-bottom:hidden;"><?php echo "Rp. " . number_format($jurnal->kas, 2);?></td>
+                              
+                                
+                            </tr>
+                            <tr class="">
+                                <td colspan=2>
+                                  <div id="collapse<?php echo $jurnal->id_jurnal;?>" style="border-top:hidden;" class="collapse multi-collapse table-secondary card table-light">
+                                  <div class="card-body p-0">
+                                  <ul class="nav nav-pills flex-column">
+                                    
+                                      <li class="nav-item">
+                                        <div class="nav-link" style="border-radius:0px;">
+                                          <a href="" id="" style="color:#343a40;"> Biaya Pegawai </a>
+                                          <button type="button" class="float-right btn btn-xs" data-toggle="modal"><i class="fas fa-times text-orange"></i></button>
+                                        </div>
+                                      </li>
+                                    <li class="nav-item">
+                                      <form action="" method="post" enctype="multipart/form-data">
+                                        <div class="input-group p-1">
+                                          <input type="text" class="form-control" type="text" placeholder="Tambah Transaksi" name="nama_aset" required>
+                                          <span class="input-group-append">
+                                            <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
+                                          </span>
+                                        </div>
+                                    </li>
+                                    </form>
+                                  </ul>
+                                </div>
+                                  </div>
+                                  </td>
+                                  </td>
+                            </tr>
+                            <?php } ?>
+                            <!-- <tr>
                               <th scope="row">
                               <div class="btn-group">
                               <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
@@ -1117,9 +1166,22 @@
                               </button> </div></th>
                               <td>Jurnal untuk mencatat penerimaan fee</td>
                               <td>Penerimaan Fee</td>
-                            </tr>
+                            </tr> -->
                           </tbody>
                         </table>
+                        <p>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          Link with href
+                        </a>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          Button with data-target
+                        </button>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </div>
+                      </div>
                         
                         <!-- Repeater Items -->
                       <!-- <div class="items" data-group="test">

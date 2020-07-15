@@ -41,7 +41,8 @@ class Home extends CI_Controller {
         else{
             $this->session->set_flashdata('failed', 'Input Data Gagal');
         }
-        return redirect(base_url());
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function del(){
@@ -80,6 +81,7 @@ class Home extends CI_Controller {
         $data["json_url"] = "getTransaksiJsonFiltered/".$id_aset."/".$monthdate."/".$yeardate."/";
         $data["dataModel"] = $this->load->model("M_data");
         $data["katforjurnal"] = $this->M_data->getJurnalCat($id_aset);
+        $data["datajurnal"] = $this->M_data->getJurnal($id_aset,$monthdate,$yeardate);
 
 		$this->load->view('index.php',$data);
     }
@@ -176,6 +178,13 @@ class Home extends CI_Controller {
         $data["dataModel"] = $this->load->model("M_data");
         
         $this->load->view('previewmutasipdf.php',$data);
+    }
+
+    public function previewjurnalpdf($curr_aset=null,$curr_month=null,$curr_year=null){
+        $data["aset"] =$this->M_data->getAsetbyId($curr_aset);
+        $data["month"] = $curr_month;
+        $data["year"] = $curr_year;
+        $this->load->view('pdfjurnalpreview.php',$data);
     }
 
     public function previewlabapdf(){
@@ -275,11 +284,15 @@ class Home extends CI_Controller {
     public function addjurnal(){
         $data_ = $this->M_data;
         
+        $id_aset = $this->uri->segment(3);
+        $monthdate = $this->uri->segment(4);
+        $yeardate = $this->uri->segment(5);
+
         if($data_->addJurnal()){
             $this->session->set_flashdata('successjurnal','Berhasil menambahkan jurnal');
         }
-
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        
+        return redirect(base_url("Home/showaset/".$id_aset."/".$monthdate."/".$yeardate."#tab_3"));
     }
 
 }

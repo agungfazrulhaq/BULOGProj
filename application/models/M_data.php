@@ -32,6 +32,11 @@ class M_data extends CI_Model
         return $this->db->get($this->_tableaset)->result();
     }
 
+    public function getAsetbyId($id_aset)
+    {
+        return $this->db->query("SELECT * FROM tb_aset WHERE id_aset=".$id_aset)->row();
+    }
+
     public function getYears()
     {
         $sql = "SELECT DISTINCT YEAR(tanggal) as years FROM tb_transaksi ORDER BY YEAR(tanggal)";
@@ -652,6 +657,15 @@ class M_data extends CI_Model
             return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,jurnal_id_kategori,nama_jurnal,pyd_stat)
                                         VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].",".$post['kategoritransaksi'].",'".$post['namajurnal']."',0)");
         }
+    }
+
+    public function getJurnal($id_aset,$month,$year){
+        return $this->db->query("SELECT id_jurnal,id_kategori,id_aset,jenis_transaksi,nama_aset,nama_kategori,SUM(saldo) as kas,nama_jurnal FROM tb_jurnal 
+                                    JOIN tb_aset ON id_aset=jurnal_id_aset
+                                    JOIN tb_kategori ON id_kategori=jurnal_id_kategori
+                                    JOIN tb_kategori_laba_rugi ON id_kat_lr_kat = id_kat_laba_rugi
+                                    JOIN tb_transaksi ON transaksi_id_kategori=id_kategori
+                                    GROUP BY (id_kategori)")->result();
     }
 
 }
