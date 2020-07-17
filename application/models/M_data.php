@@ -646,26 +646,54 @@ class M_data extends CI_Model
 
     public function addJurnal(){
         $post = $this->input->post();
-
+        $pyd_stats = 0;
         if(isset($post['pyd_stat'])){
             if($post['pyd_stat']==1){
-                return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,jurnal_id_kategori,nama_jurnal,pyd_stat)
-                                            VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].",".$post['kategoritransaksi'].",'".$post['namajurnal']."',1)");
+                $pyd_stats=1;
             }    
         }
         else{
-            return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,jurnal_id_kategori,nama_jurnal,pyd_stat)
-                                        VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].",".$post['kategoritransaksi'].",'".$post['namajurnal']."',0)");
+            $pyd_stats = 0;
         }
+
+        return $this->db->query("INSERT INTO tb_jurnal(bulan,tahun,jurnal_id_aset,nama_jurnal,pyd_stat)
+                                            VALUES (".$post['bulanjurnal'].",".$post['tahunjurnal'].",".$post['asetjurnal'].",'".$post['namajurnal']."',".$pyd_stats.")");
     }
 
     public function getJurnal($id_aset,$month,$year){
-        return $this->db->query("SELECT id_jurnal,id_kategori,id_aset,jenis_transaksi,nama_aset,nama_kategori,SUM(saldo) as kas,nama_jurnal FROM tb_jurnal 
+        // return $this->db->query("SELECT id_jurnal,id_kategori,id_aset,jenis_transaksi,nama_aset,nama_kategori,SUM(saldo) as kas,nama_jurnal FROM tb_jurnal 
+        //                             JOIN tb_aset ON id_aset=jurnal_id_aset
+        //                             JOIN tb_kategori ON id_kategori=jurnal_id_kategori
+        //                             JOIN tb_kategori_laba_rugi ON id_kat_lr_kat = id_kat_laba_rugi
+        //                             JOIN tb_transaksi ON transaksi_id_kategori=id_kategori
+        //                             GROUP BY (id_kategori)")->result();
+
+        return $this->db->query("SELECT * FROM tb_jurnal
                                     JOIN tb_aset ON id_aset=jurnal_id_aset
-                                    JOIN tb_kategori ON id_kategori=jurnal_id_kategori
-                                    JOIN tb_kategori_laba_rugi ON id_kat_lr_kat = id_kat_laba_rugi
-                                    JOIN tb_transaksi ON transaksi_id_kategori=id_kategori
-                                    GROUP BY (id_kategori)")->result();
+                                    WHERE id_aset=".$id_aset."
+                                    AND bulan=".$month."
+                                    AND tahun=".$year."
+                                    ")->result();
+    }
+
+    public function addTransaksiJurnal(){
+        $post = $this->input->post();
+
+        return $this->db->query("INSERT INTO tb_jurnal_transaksi(jt_id_jurnal,jt_id_kategori,nama_jt)
+                                 VALUES(".$post['idjurnal'].",".$post['kategorijt'].",'".$post['namajt']."');");
+    }
+
+    public function getJurnalTransaksi($id_aset,$monthdate,$yeardate){
+        return $this->db->query("SELECT nama_jt,id_kategori, SUM(saldo) as salds,id_jurnal,id_jt 
+                                 FROM tb_jurnal_transaksi
+                                 JOIN tb_jurnal ON id_jurnal=jt_id_jurnal
+                                 JOIN tb_kategori ON jt_id_kategori=id_kategori
+                                 JOIN tb_transaksi ON id_kategori=transaksi_id_kategori
+                                 WHERE jurnal_id_aset=".$id_aset."
+                                 AND tb_jurnal.bulan=".$monthdate."
+                                 AND tb_jurnal.tahun=".$yeardate."
+                                 GROUP BY(id_jt)")->result();
+
     }
 
 }

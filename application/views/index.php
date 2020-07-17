@@ -1014,14 +1014,10 @@
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <form class="form-horizontal" action='<?php echo site_url('Home/addjurnal/'.$curr_aset."/".$curr_month."/".$curr_year);?>' method='post'>
+                                    <form class="form-horizontal" action='<?php echo site_url('Home/addjurnal/'.$curr_aset."/".$curr_month."/".$curr_year);?>' method='post' autocomplete="off">
                                       <fieldset>
-
                                       <!-- Form Name -->
-                                      <legend>Add Jurnal</legend>
-
-                                      
-
+                                      <legend class="" style="margin-bottom:-5px;">Add Jurnal</legend>
                                   </div>
                                   <div class="modal-body">
                                     <!-- Text input-->
@@ -1030,31 +1026,6 @@
                                         <div class="col-md-10">
                                         <input id="namajurnal" name="namajurnal" type="text" placeholder="Jurnal untuk pencatatan .." class="form-control input-md" required="">
                                           
-                                        </div>
-                                      </div>
-
-                                      <!-- Select Basic -->
-                                      <div class="form-group">
-                                        <label class="col-md-4 control-label" for="kategoritransaksi">Select Basic</label>
-                                        <div class="col-md-6">
-                                          <select id="kategoritransaksi" name="kategoritransaksi" class="form-control">
-                                          <option selected="selected" value="">Pilih Kategori</option>
-                                          
-                                          <?php foreach ($allcategory as $K_row__) { ?>
-                                            <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
-                                              <?php foreach ($katforjurnal as $row_k) { ?>
-                                                <?php
-                                                $id_kat__1 = $row_k->id_kat_lr_kat;
-                                                $id_kat__2 = $K_row__->id_kat_laba_rugi;
-                                                ?>
-                                                <?php if ($id_kat__1 == $id_kat__2) { ?>
-                                                  <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
-
-                                                <?php } ?>
-                                              <?php } ?>
-                                            </optgroup>
-                                          <?php } ?>
-                                          </select>
                                         </div>
                                       </div>
 
@@ -1091,7 +1062,6 @@
                             <tr>
                               <th scope="col">Action</th>
                               <th scope="col">Nama Jurnal</th>
-                              <th scope="col">Kategori Transaksi</th>
                               <th scope="col">Kas</th>
                             </tr>
                           </thead>
@@ -1103,172 +1073,80 @@
                               <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
                                 <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
                               </button>
-                              
                               <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
                                 <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
                               </button> </div></td>
                               <td style="border-bottom:hidden;"><?php echo $jurnal->nama_jurnal;?></td>
-                              <td style="border-bottom:hidden;"><?php echo $jurnal->nama_kategori;?></td>
-                              <td style="border-bottom:hidden;"><?php echo "Rp. " . number_format($jurnal->kas, 2);?></td>
+                                    <?php
+                                    $kas = 0;
+                                    foreach($datatransaksijurnal as $datajt){
+                                      ?>
+                                      <?php if($datajt->id_jurnal == $jurnal->id_jurnal){?>
+                                        <?php $kas+=$datajt->salds; ?>
+                                      <?php } ?>
+                                    <?php } ?>
+                              <td style="border-bottom:hidden;"><?php echo "Rp. " . number_format($kas, 2); ?></td>
+                              <td> </td>
                               
                                 
                             </tr>
                             <tr class="">
-                                <td colspan=2>
-                                  <div id="collapse<?php echo $jurnal->id_jurnal;?>" style="border-top:hidden;" class="collapse multi-collapse table-secondary card table-light">
+                                <td>
+                                  <div id="collapse<?php echo $jurnal->id_jurnal;?>" style="" class="collapse multi-collapse table-secondary card">
                                   <div class="card-body p-0">
-                                  <ul class="nav nav-pills flex-column">
-                                    
-                                      <li class="nav-item">
-                                        <div class="nav-link" style="border-radius:0px;">
-                                          <a href="" id="" style="color:#343a40;"> Biaya Pegawai </a>
-                                          <button type="button" class="float-right btn btn-xs" data-toggle="modal"><i class="fas fa-times text-orange"></i></button>
-                                        </div>
-                                      </li>
-                                    <li class="nav-item">
-                                      <form action="" method="post" enctype="multipart/form-data">
-                                        <div class="input-group p-1">
-                                          <input type="text" class="form-control" type="text" placeholder="Tambah Transaksi" name="nama_aset" required>
-                                          <span class="input-group-append">
-                                            <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Tambah"><i class="fas fa-plus"></i></button>
-                                          </span>
-                                        </div>
+                                  <ul class="list-group p-0">
+                                    <?php foreach($datatransaksijurnal as $datajt){?>
+                                      <?php if($datajt->id_jurnal == $jurnal->id_jurnal){?>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                      <?php echo $datajt->nama_jt;?>
+                                      <div class="group">
+                                      <span class="badge badge-info badge-pill"><?php echo "Rp. " . number_format($datajt->salds, 2);?></span>
+                                      <button type="button" class="btn btn-xs" data-toggle="modal" data-target=""><i class="fas fa-times text-orange"></i></button>
+                                      </div>
                                     </li>
+                                      <?php } ?>
+                                    <?php } ?>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <form action="<?php echo site_url("Home/addjt/");?>" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                      <div class="form-group input-group col-md-6">
+                                        <input type="text" class="form-control" id="inputNamajt" name="namajt">
+                                      </div>
+                                      <div class="form-group input-group col-md-4">
+                                        <select id="inputKatjt" name="kategorijt" class="form-control">
+                                        <option selected="selected" value="">Pilih Kategori</option>
+                                          
+                                          <?php foreach ($allcategory as $K_row__) { ?>
+                                            <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
+                                              <?php foreach ($katforjurnal as $row_k) { ?>
+                                                <?php
+                                                $id_kat__1 = $row_k->id_kat_lr_kat;
+                                                $id_kat__2 = $K_row__->id_kat_laba_rugi;
+                                                ?>
+                                                <?php if ($id_kat__1 == $id_kat__2) { ?>
+                                                  <option value="<?php echo $row_k->id_kategori; ?>"> <?php echo $row_k->nama_kategori; ?></option>
+
+                                                <?php } ?>
+                                              <?php } ?>
+                                            </optgroup>
+                                          <?php } ?>
+                                        </select>
+                                      </div>
+                                      <input type="hidden" name="idjurnal" value="<?php echo $jurnal->id_jurnal;?>">
+                                      <div class="form-group col-md-2">
+                                        <button type="submit" class="btn btn-info"><i class="fas fa-plus"></i></button>
+                                      </div>
+                                    </div>
                                     </form>
-                                  </ul>
+                                    </li>
+                                    </ul>
                                 </div>
-                                  </div>
-                                  </td>
-                                  </td>
+                                </div>
+                                </td>
                             </tr>
                             <?php } ?>
-                            <!-- <tr>
-                              <th scope="row">
-                              <div class="btn-group">
-                              <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
-                                <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
-                              </button>
-                              
-                              <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
-                                <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
-                              </button> </div></th>
-                              <td>Jurnal untuk mencatat penerimaan charge</td>
-                              <td>Penerimaan Charge</td>
-                            </tr>
-                            <tr>
-                              <th scope="row"><div class="btn-group">
-                              <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
-                                <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
-                              </button>
-                              
-                              <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
-                                <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
-                              </button> </div></th>
-                              <td>Jurnal untuk mencatat penerimaan fee</td>
-                              <td>Penerimaan Fee</td>
-                            </tr> -->
-                          </tbody>
-                        </table>
-                        <p>
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          Link with href
-                        </a>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                          Button with data-target
-                        </button>
-                      </p>
-                      <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                        </div>
-                      </div>
-                        
-                        <!-- Repeater Items -->
-                      <!-- <div class="items" data-group="test">
-                        <hr>
-                          <div class="row">
-                            <div class="col-md-8">
-
-                              <div class="form-group">
-                                <label>Jurnal</label>
-                                <input type="text" class="form-control" placeholder="(Jurnal untuk mencatat ... )">
-                              </div>
-                              <div class="form-group input-group">
-                                <div class="col-7">
-                                  <label>Uraian</label>
-                                  <select type="text" class="form-control custom-select">
-                                  <option selected>Pilih..</option>
-                                  <optgroup style="font-style:normal;" label="Aktiva">
-                                  <option>Pendapatan</option>
-                                  <option>Biaya PPh 4(2)</option>
-                                  <option>Pengeluaran</option>
-                                  </select>
-                                  </optgroup>
-                                </div>
-                                <div class="col-4">
-                                <label>Jumlah</label>
-                                  <input type="number" class="form-control" placeholder="(Jumlah...)">
-                                </div>
-                                <div class="col-1">
-                                <label>Option</label>
-                                  <button class="btn bg-olive btn-block"><i class="fas fa-plus"></i></button>
-                                </div>
-
-                              </div>
-
-                              <div class="form-group">
-                                  <label>Option :</label>
-                                  <div class="btn-group">
-                                  <div class="pull-right repeater-remove-btn">
-                                      <button id="remove-btn" class="btn btn-sm btn-danger" onclick="$(this).parents('.items').remove()">
-                                        <i class="fas fa-times"></i> Hapus Form
-                                      </button>
-                                  </div>
-                                </div>
-                             </div> 
-
-                            </div>
-                            
-
-                              <div class="form-group ml-2 card bg-light">
-                              <div class="p-2">
-                              <label>Biaya PPh 4(2)</label>
-                                <div class="input-group mb-1">
-                                    <div class="input-group-prepend col-md-6">
-                                        <span class="input-group-text btn-block" widht="100%">
-                                          <input type="checkbox" class="mr-1"> 
-                                          PYD
-                                        </span>
-                                      </div>
-                                      <input type="text" class="form-control">
-                                  </div>
-
-                                <div class="input-group mb-1">
-                                    <div class="input-group-prepend col-md-6">
-                                        <span class="input-group-text btn-block" widht="100%">
-                                        <input type="checkbox" class="mr-1">
-                                          Hutang PPN
-                                        </span>
-                                      </div>
-                                      <input type="text" class="form-control">
-                                  </div>
-
-                                  <div class="input-group mb-1">
-                                    <div class="input-group-prepend col-md-6" widht="100%">
-                                        <span class="input-group-text btn-block">
-                                        <input type="checkbox" class="mr-1">
-                                          Hutang PPh 4 (2)
-                                        </span>
-                                      </div>
-                                      <input type="text" class="form-control">
-                                  </div>
-                              </div>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                        </div> -->
+                      </table>
+                          
 
                       <!-- /.card-body -->
                       <div class="card-footer">

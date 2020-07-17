@@ -82,6 +82,7 @@ class Home extends CI_Controller {
         $data["dataModel"] = $this->load->model("M_data");
         $data["katforjurnal"] = $this->M_data->getJurnalCat($id_aset);
         $data["datajurnal"] = $this->M_data->getJurnal($id_aset,$monthdate,$yeardate);
+        $data["datatransaksijurnal"] = $this->M_data->getJurnalTransaksi($id_aset,$monthdate,$yeardate);
 
 		$this->load->view('index.php',$data);
     }
@@ -293,6 +294,15 @@ class Home extends CI_Controller {
         }
         
         return redirect(base_url("Home/showaset/".$id_aset."/".$monthdate."/".$yeardate."#tab_3"));
+    }
+
+    public function addjt(){
+        $data_ = $this->M_data;
+        if($data_->addTransaksiJurnal()){
+            $this->session->set_flashdata('successjurnaltransaksi','Berhasil menambahkan jurnal');
+        }
+
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
 }
