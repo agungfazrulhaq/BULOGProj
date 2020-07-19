@@ -42,26 +42,27 @@ class Home extends CI_Controller {
             $this->session->set_flashdata('failed', 'Input Data Gagal');
         }
 
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function del(){
         $data_ = $this->M_data;
         if ($data_->delete()) {
             $this->session->set_flashdata('successdel', 'Berhasil menghapus data');
-            redirect(base_url());
+            
         }
         else{
             $this->session->set_flashdata('faildel', 'Berhasil menghapus data');
-            redirect(base_url());
+            
         }
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function deletechecked(){
         $data__ = $this->M_data;
         $data__->delcheck();
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function showaset(){
@@ -91,7 +92,7 @@ class Home extends CI_Controller {
         $data_ = $this->M_data;
         $data_->addAset();
         
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function update(){
@@ -107,7 +108,7 @@ class Home extends CI_Controller {
             $this->session->set_flashdata('failedupdate', 'Input Data Gagal');
         }
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function getTransaksiJson(){
@@ -185,6 +186,9 @@ class Home extends CI_Controller {
         $data["aset"] =$this->M_data->getAsetbyId($curr_aset);
         $data["month"] = $curr_month;
         $data["year"] = $curr_year;
+        $data["jurnal"] = $this->M_data->getDataJurnal($curr_aset,$curr_month,$curr_year);
+        $data["jurnaljt"] = $this->M_data->getDataJurnalTransaksi($curr_aset,$curr_month,$curr_year);
+
         $this->load->view('pdfjurnalpreview.php',$data);
     }
 
@@ -213,14 +217,14 @@ class Home extends CI_Controller {
             $this->session->set_flashdata('failupload', 'Data berhasil disimpan');
         }
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function asetdel(){
         $data__ = $this->M_data;
         $data__->deleteAset();
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function katadd(){
@@ -236,14 +240,14 @@ class Home extends CI_Controller {
         $data__ = $this->M_data;
         $data__->deleteCat();
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function delcat_lr(){
         $data__ = $this->M_data;
         $data__->deleteCat_lr();
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function download_file($id_transaksi=null){
@@ -253,7 +257,7 @@ class Home extends CI_Controller {
             force_download($_SERVER['DOCUMENT_ROOT']."/OpasetBulog/upload/".$getfile_->nama_file,NULL);
         }
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function delfile($id_transaksi=null){
@@ -266,7 +270,7 @@ class Home extends CI_Controller {
             $this->session->set_flashdata('faildelfile', 'Gagal Menghapus data');
         }
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function generatesaldoawal(){
@@ -279,7 +283,7 @@ class Home extends CI_Controller {
             $this->session->set_flashdata('failedsaldo', 'Gagal Generate saldo awal');
         }
 
-        return redirect(base_url());
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function addjurnal(){
@@ -293,7 +297,7 @@ class Home extends CI_Controller {
             $this->session->set_flashdata('successjurnal','Berhasil menambahkan jurnal');
         }
         
-        return redirect(base_url("Home/showaset/".$id_aset."/".$monthdate."/".$yeardate."#tab_3"));
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function addjt(){

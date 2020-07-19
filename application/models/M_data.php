@@ -696,4 +696,22 @@ class M_data extends CI_Model
 
     }
 
+    public function getDataJurnal($id_aset,$month,$year){
+        return $this->db->query("SELECT * FROM tb_jurnal
+                                WHERE jurnal_id_aset=".$id_aset."
+                                AND bulan=".$month."
+                                AND tahun=".$year)->result();
+    }
+
+    public function getDataJurnalTransaksi($id_aset,$month,$year){
+        return $this->db->query("SELECT jt_id_jurnal,nama_jt,SUM(saldo) as kas 
+                                FROM tb_jurnal_transaksi
+                                JOIN tb_jurnal ON jt_id_jurnal=id_jurnal
+                                JOIN tb_kategori ON jt_id_kategori=id_kategori
+                                JOIN tb_transaksi ON id_kategori=transaksi_id_kategori
+                                JOIN tb_kategori_laba_rugi ON id_kat_lr_kat=id_kat_laba_rugi
+                                WHERE jt_id_jurnal in (SELECT id_jurnal FROM tb_jurnal WHERE jurnal_id_aset=".$id_aset." AND bulan=".$month." AND tahun=".$year.")
+                                GROUP BY(id_jt)")->result();
+    }
+
 }

@@ -21,7 +21,7 @@
     <table>
         <tbody>
         <!-- Per Jurnal -->
-        <tr>
+        <!-- <tr>
             <td colspan='4'>(Jurnal untuk mencatat sesuatu)</td>
 
         </tr>
@@ -31,52 +31,81 @@
             <td></td>
         </tr>
         <tr>
-            <td width=10px>&nbsp;</td>
-            <td >Biaya sesuatu</td>
+            <td colspan='2'>Biaya PPh 4(2)</td>
+            <td>1,227,273.00</td>
             <td></td>
-            <td>13,500,000.00</td>
+        </tr>
+        <tr>
+            <td width=10px>&nbsp;</td>
+            <td >Pendapatan Sewa</td>
+            <td></td>
+            <td>12,272,723.00</td>
+        </tr>
+        <tr>
+            <td width=10px>&nbsp;</td>
+            <td >PYD</td>
+            <td></td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td width=10px>&nbsp;</td>
+            <td >Hutang PPN</td>
+            <td></td>
+            <td>1,227,273.00</td>
+        </tr>
+        <tr>
+            <td width=10px>&nbsp;</td>
+            <td >Hutang PPh</td>
+            <td></td>
+            <td>1,227,273.00</td>
         </tr>
         <tr>
             <td colspan='4'>
             &nbsp;
             </td>
-        </tr>
-
+        </tr> -->
+        <?php foreach($jurnal as $jurn){?>
         <!-- Per Jurnal -->
         <tr>
-            <td colspan='4'>(Jurnal untuk mencatat sesuatu)</td>
+            <td colspan='4'>(<?php echo $jurn->nama_jurnal; ?>)</td>
 
         </tr>
+        <?php $jumlah_perjurnal = 0;?>
+        <?php foreach($jurnaljt as $jt){?>
+        <?php   if($jt->jt_id_jurnal==$jurn->id_jurnal){?>
         <tr>
-            <td colspan='2'>Kas</td>
-            <td>13,500,000.00</td>
+            <td colspan='2' width="250px"><?php echo $jt->nama_jt;?></td>
+            <td><?php  echo  number_format($jt->kas, 2);?></td>
             <td></td>
         </tr>
+        <?php $jumlah_perjurnal+=$jt->kas;?>
+        <?php   }?>
+        <?php } ?>
         <tr>
             <td width=10px>&nbsp;</td>
-            <td >Biaya sesuatu</td>
+            <td >Kas</td>
             <td></td>
-            <td>13,500,000.00</td>
+            <td><?php echo number_format($jumlah_perjurnal, 2);?></td>
         </tr>
         <tr>
             <td colspan='4'>
             &nbsp;
             </td>
         </tr>
-
+        <?php } ?>
         <!-- Per Jurnal -->
-        <tr>
+        <!-- <tr>
             <td colspan='4'>(Jurnal untuk mencatat sesuatu)</td>
 
         </tr>
         <tr>
-            <td colspan='2'>Kas</td>
+            <td colspan='2'>Biaya sesuatu</td>
             <td>13,500,000.00</td>
             <td></td>
         </tr>
         <tr>
             <td width=10px>&nbsp;</td>
-            <td >Biaya sesuatu</td>
+            <td >Kas</td>
             <td></td>
             <td>13,500,000.00</td>
         </tr>
@@ -84,7 +113,7 @@
             <td colspan='4'>
             &nbsp;
             </td>
-        </tr>
+        </tr> -->
         
         </tbody>
     </table>
