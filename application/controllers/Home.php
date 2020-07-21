@@ -84,6 +84,7 @@ class Home extends CI_Controller {
         $data["katforjurnal"] = $this->M_data->getJurnalCat($id_aset);
         $data["datajurnal"] = $this->M_data->getJurnal($id_aset,$monthdate,$yeardate);
         $data["datatransaksijurnal"] = $this->M_data->getJurnalTransaksi($id_aset,$monthdate,$yeardate);
+        $data["saldoawalbulan"] = $this->M_data->getSaldoAwalMonth($id_aset,$monthdate,$yeardate);
 
 		$this->load->view('index.php',$data);
     }
@@ -188,6 +189,7 @@ class Home extends CI_Controller {
         $data["year"] = $curr_year;
         $data["jurnal"] = $this->M_data->getDataJurnal($curr_aset,$curr_month,$curr_year);
         $data["jurnaljt"] = $this->M_data->getDataJurnalTransaksi($curr_aset,$curr_month,$curr_year);
+        $data["saldoawalbulan"] = $this->M_data->getSaldoAwalMonth($curr_aset,$curr_month,$curr_year);
 
         $this->load->view('pdfjurnalpreview.php',$data);
     }
@@ -305,7 +307,32 @@ class Home extends CI_Controller {
         if($data_->addTransaksiJurnal()){
             $this->session->set_flashdata('successjurnaltransaksi','Berhasil menambahkan jurnal');
         }
+        
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 
+    public function deljurnaltransaksi($id){
+        $data_ = $this->M_data;
+        if($data_->delJurnalTransaksi($id)){
+            $this->session->set_flashdata('successdeljt','Berhasil menghapus data');
+        }
+
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    public function deljurnal($id){
+        $data_ = $this->M_data;
+        if($data_->delJurnal($id)){
+            $this->session->set_flashdata('successdeljurnal','Berhasil menghapus data');
+        }
+        return header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    public function updatejurnal(){
+        $data_ = $this->M_data;
+        if($data_->updateJurnal()){
+            $this->session->set_flashdata('successupdatejurnal','Berhasil update data');
+        }
         return header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 

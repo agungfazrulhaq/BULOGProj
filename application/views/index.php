@@ -905,7 +905,7 @@
                           <tr>
                             <th>AKSI</th>
                             <th class="text-center">TANGGAL</th>
-                            <th>REF</th>
+                            <th class="text-center">REF</th>
                             <th class="text-center" style="width:15%">ASET</th>
                             <th class="text-center" "><i class="fas fa-file-archive ml-3" title="BUKTI TRANSAKSI"></i></th>
                             <th class="text-center" style="width:40%">URAIAN</th>
@@ -1033,11 +1033,19 @@
                                       <div class="form-group">
                                         <div class="col-md-4">
                                         <div class="checkbox">
-                                          <label for="pyd_stat-0">
-                                            <input type="checkbox" name="pyd_stat" id="pyd_stat-0" value="1">
+                                            <input type="checkbox" name="pyd_stat" id="pyd_stat" value="1">
                                             PYD
-                                          </label>
+                                          
                                         </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <div class="col-md-4">
+                                          <label>Jenis Transaksi</label><br>
+                                            <input type="radio" name="radioselectjen" id="jen_tran1" value="1" required> DEBIT
+                                            <input type="radio" name="radioselectjen" id="jen_tran2" value="0" required> KREDIT
+                                        
                                         </div>
                                       </div>
 
@@ -1056,6 +1064,61 @@
                             </div>
                         </div>
                         <br>
+                        <!-- Jurnal Update Modal-->
+                        <div class="modal fade" id="updateJurnal" tabindex="-1" role="dialog" aria-labelledby="updateJurnalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <form class="form-horizontal" action='<?php echo site_url('Home/updatejurnal/');?>' method='post' autocomplete="off">
+                                      <fieldset>
+                                      <!-- Form Name -->
+                                      <legend class="" style="margin-bottom:-5px;">Update Jurnal</legend>
+                                  </div>
+                                  <div class="modal-body">
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="namajurnal">Nama Jurnal</label>  
+                                        <div class="col-md-10">
+                                        <input id="namajurnalupdate" name="namajurnal" type="text" placeholder="Jurnal untuk pencatatan .." class="form-control input-md" required="">
+                                          
+                                        </div>
+                                      </div>
+
+                                      <!-- Multiple Checkboxes -->
+                                      <div class="form-group">
+                                        <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="pyd_stat" id="pyd_stat_update" value="1">
+                                            PYD
+                                          
+                                        </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <div class="col-md-4">
+                                          <label>Jenis Transaksi</label><br>
+                                            <input type="radio" name="radioselectjen" id="jurnalupdate_jen_tran1" value="1" required> DEBIT
+                                            <input type="radio" name="radioselectjen" id="jurnalupdate_jen_tran2" value="0" required> KREDIT
+                                        
+                                        </div>
+                                      </div>
+
+                                      </fieldset>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="hidden" name="bulanjurnal" value="<?php echo $curr_month;?>">
+                                    <input type="hidden" name="asetjurnal" value="<?php echo $curr_aset;?>">
+                                    <input type="hidden" name="tahunjurnal" value="<?php echo $curr_year;?>">
+                                    <input type="hidden" id="idjurnalupdate" name="idjurnalupdate">
+                                    <input type="submit" class="btn btn-primary" Value="Save changes">
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div>  
 
                         <table class="table table-sm" id="accordion">
                           <thead>
@@ -1066,26 +1129,59 @@
                             </tr>
                           </thead>
                           <tbody>
+                          <?php 
+                          $saldoawal_=0;
+                          foreach($saldoawalbulan as $saldoawal){
+                            $saldoawal_+=$saldoawal->saldo;
+                          }?>
+                          <?php $total_saldo_jurnal = $saldoawal_;?>
                           <?php foreach($datajurnal as $jurnal){ ?>
                             <tr class="clickable-row pointer" role="button" data-toggle="collapse" data-target="#collapse<?php echo $jurnal->id_jurnal;?>" aria-expanded="false" aria-controls="collapse<?php echo $jurnal->id_jurnal;?>">
                               <td scope="row" rowspan=2>
                               <div class="btn-group">
-                              <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#modalUpdate" data-id="$1" data-tanggal="$2" data-aset="$3" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7" >
+                              <button type="button" class="btn btn-warning btn-sm data_update" data-toggle="modal" data-target="#updateJurnal" data-id="<?php echo $jurnal->id_jurnal;?>" data-namajurn="<?php echo $jurnal->nama_jurnal;?>" data-pydst="<?php echo $jurnal->pyd_stat;?>" data-jenistrans="<?php echo $jurnal->jenistransaksi_jurnal;?>">
                                 <i class="fas fa-edit" style="color:white;" data-toggle="tooltip" data-placement="bottom" title="Ubah"></i>
                               </button>
-                              <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#modaldel" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
+                              <button type="button" class="btn btn-danger btn-sm deletedata" data-toggle="modal" data-target="#delModalJurnal<?php echo $jurnal->id_jurnal;?>" data-id="$1" data-tanggal="$2" data-aset="$8" data-kategori="$4" data-uraian="$5" data-ref="$6" data-saldo="$7">
                                 <i class="fas fa-trash" data-toggle="tooltip" data-placement="right" title="Hapus"></i>
                               </button> </div></td>
+                              <div class="modal fade" id="delModalJurnal<?php echo $jurnal->id_jurnal;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                                <a href="<?php echo base_url("Home/deljurnal/".$jurnal->id_jurnal);?>"  role="button" type="button" class="btn btn-danger">Ya</a>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
                               <td style="border-bottom:hidden;"><?php echo $jurnal->nama_jurnal;?></td>
                                     <?php
                                     $kas = 0;
                                     foreach($datatransaksijurnal as $datajt){
                                       ?>
                                       <?php if($datajt->id_jurnal == $jurnal->id_jurnal){?>
-                                        <?php $kas+=$datajt->salds; ?>
-                                      <?php } ?>
+                                        <?php $kas+=$datajt->salds;
+                                        } 
+                                        ?>
                                     <?php } ?>
+                                    <?php
+                                    ?>
                               <td style="border-bottom:hidden;"><?php echo "Rp. " . number_format($kas, 2); ?></td>
+                              <?php 
+                                      if($jurnal->jenistransaksi_jurnal==1){
+                                          $total_saldo_jurnal+=$kas;
+                                        }
+                                        else{
+                                          $total_saldo_jurnal-=$kas;
+                                        } 
+                              ?>
                               <td> </td>
                               
                                 
@@ -1097,11 +1193,27 @@
                                   <ul class="list-group p-0">
                                     <?php foreach($datatransaksijurnal as $datajt){?>
                                       <?php if($datajt->id_jurnal == $jurnal->id_jurnal){?>
+                                        <div class="modal fade" id="delModalJt<?php echo $datajt->id_jt;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                                <a href="<?php echo base_url("Home/deljurnaltransaksi/".$datajt->id_jt);?>"  role="button" type="button" class="btn btn-danger">Ya</a>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                       <?php echo $datajt->nama_jt;?>
                                       <div class="group">
                                       <span class="badge badge-info badge-pill"><?php echo "Rp. " . number_format($datajt->salds, 2);?></span>
-                                      <button type="button" class="btn btn-xs" data-toggle="modal" data-target=""><i class="fas fa-times text-orange"></i></button>
+                                      <button data-target="#delModalJt<?php echo $datajt->id_jt;?>" type="button" class="btn btn-xs" data-toggle="modal" data-target=""><i class="fas fa-times text-orange"></i></button>
                                       </div>
                                     </li>
                                       <?php } ?>
@@ -1113,7 +1225,7 @@
                                         <input type="text" class="form-control" id="inputNamajt" name="namajt">
                                       </div>
                                       <div class="form-group input-group col-md-4">
-                                        <select id="inputKatjt" name="kategorijt" class="form-control">
+                                        <select id="inputKatjt" name="kategorijt" class="form-control" style="width:250px;">
                                         <option selected="selected" value="">Pilih Kategori</option>
                                           
                                           <?php foreach ($allcategory as $K_row__) { ?>
@@ -1150,12 +1262,35 @@
 
                       <!-- /.card-body -->
                       <div class="card-footer">
+                        <?php if($total_saldo_jurnal<0){?>
                         <div class="card-title text-wight-bold">
-                          Total Saldo = <span class="btn-sm bg-success">Rp. 45,000,000.00</span>
+                          Total saldo Jurnal = (<span id="totalsaldojurnal" class="btn-sm bg-secondary"><?php echo number_format($total_saldo_jurnal, 2); ?>)</span>
                         </div>
+                        <?php 
+                        }
+                        else{
+                        ?>
+                        <div class="card-title text-wight-bold">
+                          Total saldo Jurnal = <span id="totalsaldojurnal" class="btn-sm bg-secondary"><?php echo number_format($total_saldo_jurnal, 2); ?></span>
+                        </div>
+                        <?php } ?>
+                        <br>
+                        <br>
+                        <?php if($total_saldo<0){?>
+                        <div class="card-title text-wight-bold">
+                          Total saldo Mutasi = (<span id="totalsaldo" class="btn-sm bg-info"><?php echo number_format($total_saldo, 2); ?>)</span>
+                        </div>
+                        <?php 
+                        }
+                        else{
+                        ?>
+                        <div class="card-title text-wight-bold">
+                          Total saldo Mutasi = <span id="totalsaldo" class="btn-sm bg-info"><?php echo number_format($total_saldo, 2); ?></span>
+                        </div>
+                        <?php } ?>
                         <div class="card-title float-right">
                           <!-- <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button> -->
-                          <button class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</button>
+                          <a role="button" type="button" href="<?php echo base_url("Home/previewjurnalpdf/1/1/2020");?>" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</a>
                         </div>
                       </div>
                     </div>
@@ -1475,17 +1610,22 @@
               },
               {
                 "data": "ref",
-                className: "text-left"
+                className: "text-left",
+                "bSortable": false,
+                "bSearchable": false,
+                "visible": false
               },
               {
                 "data": "nama_aset",
                 className: "text-center"
+                
               },
               {
                 "data": "file_check",
                 className: "text-center",
                 "bSortable": false,
-                "bSearchable": false
+                "bSearchable": false,
+                "visible": false
               },
               {
                 "data": "uraian",
@@ -1686,6 +1826,39 @@
             window.open("<?php echo base_url("Home/previewlabapdf/"); ?>"+getreserv);
           }
         }
+      </script>
+      <script>
+      <?php if($total_saldo==$total_saldo_jurnal){?>
+        document.getElementById('totalsaldojurnal').classList.remove("bg-secondary");
+        document.getElementById('totalsaldojurnal').classList.add("bg-info");
+      <?php } ?>
+      </script>
+      <script>
+        $('#updateJurnal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget); // Button that triggered the modal
+          var idjurnal = button.data('id');
+          var namajurn = button.data('namajurn');
+          var jentran = button.data('jenistrans');
+          var pydstat = button.data('pydst'); // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          document.getElementById("namajurnalupdate").value=namajurn;
+          if(jentran==1){
+            document.getElementById("jurnalupdate_jen_tran1").checked=true;
+          }
+          else{
+            document.getElementById("jurnalupdate_jen_tran2").checked=true;
+          }
+
+          if(pydstat == 1){
+            document.getElementById("pyd_stat_update").checked=true;
+          }
+
+          document.getElementById("idjurnalupdate").value=idjurnal;
+
+
+        });
       </script>
 </body>
 
