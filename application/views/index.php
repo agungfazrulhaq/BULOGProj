@@ -1291,7 +1291,7 @@
                         <?php } ?>
                         <div class="card-title float-right">
                           <!-- <button class="btn btn-sm bg-info"><i class="fas fa-save"></i> Save</button> -->
-                          <a role="button" type="button" href="<?php echo base_url("Home/previewjurnalpdf/1/1/2020");?>" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</a>
+                          <a role="button" type="button" href="<?php echo base_url("Home/previewjurnalpdf/".$curr_aset."/".$curr_month."/".$curr_year);?>" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak Jurnal</a>
                         </div>
                       </div>
                     </div>
