@@ -246,7 +246,7 @@
                     <div class="form-group">
                       <div class="btn btn-default btn-file">
                         <i class="fas fa-paperclip"></i> Tambah Bukti Pembayaran
-                        <input type="hidden" name="id_transaksi" id="id_transaksi_file">
+                        <input type="hidden" name="id_transaksi_view" id="id_transaksi_file">
                         <input type="file" name="file_transaksi">
                       </div>
                       <button class="btn btn-info">Add</button>
@@ -940,6 +940,7 @@
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_2">
                   </div>
+                  <?php if (isset($curr_aset) and isset($curr_month) and isset($curr_year)) { ?>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_3">
                     <div class="card card-default">
@@ -1295,7 +1296,7 @@
                       </div>
                     </div>
                   </div>
-
+                  <?php } ?>
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
@@ -1672,7 +1673,7 @@
             var saldo = $(this).data('saldo');
 
             $('#modalUpdate').modal('show');
-            $('[name="id_transaksi"]').val(id_transaksi);
+            $('[name="id_transaksi_view"]').val(id_transaksi);
             $('[name="uraian"]').val(uraian);
             $('[name="saldo"]').val(saldo);
             $('[name="tanggal"]').val(tanggal);
