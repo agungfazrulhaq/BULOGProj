@@ -223,8 +223,8 @@
             </div>
 
             <div class="card-footer bg-white">
-              <ul class="mailbox-attachments d-flex align-items-stretch clearfix mb-0">
-                <li id="elemfile1">
+              <ul id="elemfiles_1" class="mailbox-attachments d-flex align-items-stretch clearfix mb-0">
+                <!-- <li id="elemfile1">
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                   <div class="mailbox-attachment-info">
                     <i class="fas fa-paperclip"></i> <span id="nama_file">No_file</span>
@@ -234,7 +234,7 @@
                       <a href="#" id="deletethefile" class="btn btn-default btn-sm float-right mr-1 pr-2 pl-2"><i class="fas fa-trash-alt"></i></a>
                     </span>
                   </div>
-                </li>
+                </li> -->
               </ul>
             </div>
 
@@ -246,7 +246,7 @@
                     <div class="form-group">
                       <div class="btn btn-default btn-file">
                         <i class="fas fa-paperclip"></i> Tambah Bukti Pembayaran
-                        <input type="hidden" name="id_transaksi_view" id="id_transaksi_file">
+                        <input type="hidden" name="id_transaksi" id="id_transaksi_file">
                         <input type="file" name="file_transaksi">
                       </div>
                       <button class="btn btn-info">Add</button>
@@ -1673,7 +1673,7 @@
             var saldo = $(this).data('saldo');
 
             $('#modalUpdate').modal('show');
-            $('[name="id_transaksi_view"]').val(id_transaksi);
+            $('[name="id_transaksi"]').val(id_transaksi);
             $('[name="uraian"]').val(uraian);
             $('[name="saldo"]').val(saldo);
             $('[name="tanggal"]').val(tanggal);
@@ -1753,15 +1753,14 @@
             
             $('[name="id_transaksi"]').val(id_transaksi);
             $('#modalview').modal('show');
-            var modal = $(this);
-            modal.find('.uraianview_').text(uraian);
-            if(ukuran_file>0){
-              document.getElementById("nama_file").innerHTML = nama_file;
-              document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
-            }
-            else{
-              document.getElementById("elemfile1").outerHTML = "";
-            }
+              if(ukuran_file>0){
+                document.getElementById("elemfiles_1").innerHTML = "<li id='elemfile1'><span class='mailbox-attachment-icon'><i class='far fa-file-pdf'></i></span><div class='mailbox-attachment-info'><i class='fas fa-paperclip'></i> <span id='nama_file'>"+nama_file+"</span><span class='mailbox-attachment-size clearfix mt-1'><span id='ukuranfile'>"+size_file.toFixed(2)+"</span> KB<a href='<?php echo base_url("Home/download_file/"); ?>"+id_transaksi+"' id='downloadthefile' class='btn btn-default btn-sm float-right'><i class='fas fa-cloud-download-alt'></i></a><a href='<?php echo base_url("Home/delfile/"); ?>" + id_transaksi+"' id='deletethefile' class='btn btn-default btn-sm float-right mr-1 pr-2 pl-2'><i class='fas fa-trash-alt'></i></a></span></div></li>";
+                // document.getElementById("nama_file").innerHTML = nama_file;
+                // document.getElementById("ukuranfile").innerHTML = size_file.toFixed(2);
+              }
+              else{
+                document.getElementById("elemfiles_1").innerHTML = "";
+              }
               document.getElementById("tanggal_update").innerHTML = weekday[newest__.getDay()] + ", " + tanggalupdate;
               document.getElementById("jen_tranview").innerHTML = jenis_tranc;
               document.getElementById("refview").innerHTML = ref;
@@ -1772,11 +1771,13 @@
               document.getElementById("saldoview").innerHTML = (saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
               document.getElementById("uraianview").innerHTML = uraian;
               document.getElementById("name_lr").innerHTML = name_lr.toUpperCase();
-              document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/"); ?>" + id_transaksi;
-              document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/"); ?>" + id_transaksi;
+              // document.getElementById("downloadthefile").href = "<?php echo base_url("Home/download_file/"); ?>" + id_transaksi;
+              // document.getElementById("deletethefile").href = "<?php echo base_url("Home/delfile/"); ?>" + id_transaksi;
               document.getElementById("jenistransaksiview").innerHTML = jenistransaksi;
+              
               document.getElementById("id_transaksi_file").value = id_transaksi;
 
+              
           });
           $('#tbmaster').on('click', '.deletedata', function() {
             var id_transaksi = $(this).data('id');
