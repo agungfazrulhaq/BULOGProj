@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 02:19 AM
+-- Generation Time: Jul 21, 2020 at 02:41 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -82,19 +82,44 @@ CREATE TABLE `tb_jurnal` (
   `id_jurnal` int(11) NOT NULL,
   `nama_jurnal` varchar(255) NOT NULL,
   `pyd_stat` tinyint(1) NOT NULL,
-  `jurnal_id_kategori` int(11) NOT NULL,
   `jurnal_id_aset` int(11) NOT NULL,
   `bulan` int(11) NOT NULL,
-  `tahun` int(11) NOT NULL
+  `tahun` int(11) NOT NULL,
+  `jenistransaksi_jurnal` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_jurnal`
 --
 
-INSERT INTO `tb_jurnal` (`id_jurnal`, `nama_jurnal`, `pyd_stat`, `jurnal_id_kategori`, `jurnal_id_aset`, `bulan`, `tahun`) VALUES
-(1, 'Jurnal Untuk Pencatatan Sewa Asset', 0, 12, 1, 1, 2020),
-(4, 'Jurnal untuk pencatatan biaya', 1, 22, 1, 1, 2020);
+INSERT INTO `tb_jurnal` (`id_jurnal`, `nama_jurnal`, `pyd_stat`, `jurnal_id_aset`, `bulan`, `tahun`, `jenistransaksi_jurnal`) VALUES
+(9, 'Jurnal Pencatatan . . .', 1, 1, 1, 2020, 1),
+(10, 'Jurnal untuk pencatatan . . . .', 0, 1, 1, 2020, 0),
+(13, 'Jurnal untuk pencatatan PPN', 0, 6, 1, 2020, 0),
+(14, 'Jurnal untuk pencatatan...', 0, 7, 1, 2020, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jurnal_transaksi`
+--
+
+CREATE TABLE `tb_jurnal_transaksi` (
+  `id_jt` int(11) NOT NULL,
+  `nama_jt` varchar(255) NOT NULL,
+  `jt_id_kategori` int(11) NOT NULL,
+  `jt_id_jurnal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_jurnal_transaksi`
+--
+
+INSERT INTO `tb_jurnal_transaksi` (`id_jt`, `nama_jt`, `jt_id_kategori`, `jt_id_jurnal`) VALUES
+(3, 'Hutang PPN', 33, 10),
+(6, 'Pendapatan sewa', 28, 9),
+(11, 'PPN', 33, 13),
+(12, 'Pembelian voucher', 35, 14);
 
 -- --------------------------------------------------------
 
@@ -244,7 +269,6 @@ INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`,
 (2020, '2020-01-02', 120, 'Biaya belanja keperluan gedung baruga lappo Ase Januari 2020																\r\n', 'K1', 2000000, 1, 14, '2020-07-07 21:01:30', 1, 1),
 (2020, '2020-01-02', 121, 'Pembayaran listrik gedung Baruga lappo ase Januari 2020																\r\n', 'K2', 3697009, 1, 14, '2020-07-07 21:24:01', 1, NULL),
 (2020, '2020-01-02', 122, 'Biaya Laundry Baruga Lappo Ase  																\r\n', 'K3', 700000, 1, 14, '2020-07-07 21:24:37', 1, NULL),
-(2020, '2020-01-06', 123, 'FHIA (Senin 16 Maret 20 Siang)', 'D3', 1000000, 1, 28, '2020-07-07 21:25:53', 1, NULL),
 (2020, '2020-01-06', 124, 'Biaya upah petugas kebersihan baruga lappo Ase Januari a/n Diyan																\r\n', 'K4', 1040000, 1, 20, '2020-07-07 21:26:43', 1, NULL),
 (2020, '2020-01-06', 125, 'Terima PPH 21																\r\n', 'D4', 72300, 1, 32, '2020-07-09 06:32:05', 1, NULL),
 (2020, '2020-01-06', 126, 'Gedung - ADNAN TAHIR (Rabu 12 Januari 20 Siang)\r\n', 'D5', 7325000, 1, 12, '2020-07-07 21:29:25', 1, NULL),
@@ -327,7 +351,6 @@ INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`,
 (2020, '2020-01-28', 213, 'Terima Tambahan AP Gred Kamar an. Siti Dahyawi																\r\n', 'D54', 50000, 2, 13, '2020-07-07 23:00:16', 1, NULL),
 (2020, '2020-01-28', 214, 'Biaya Kebutuhan Wisma Lappo Ase																\r\n', 'K33', 792300, 2, 20, '2020-07-07 22:59:50', 1, NULL),
 (2020, '2020-07-29', 215, 'Terima Sewa Kamar dari Acara Baruga Lappo Ase an (ST. Dayatul Qolbi) tgl 23 Februari 2020																\r\n', 'D51', 225000, 2, 13, '2020-07-07 23:01:11', 1, NULL),
-(2020, '2020-01-01', 216, 'Saldo Awal bulan Januari 2020', '-', 13896959, 1, 1, '2020-07-14 06:20:27', 1, 1),
 (2020, '2020-01-10', 217, 'Pembayaran listrik Lapangan tennis Januari 2020																\r\n', 'K38', 432098, 3, 18, '2020-07-07 23:04:08', 1, NULL),
 (2020, '2020-01-02', 218, 'Pembayaran listrik Gedung Serba Guna Pr Dolog  Januari 2020																\r\n', 'K35', 2367066, 3, 18, '2020-07-07 23:03:11', 1, NULL),
 (2020, '2020-01-10', 219, 'Bayar PPN GOR Bulan Desember 2019																\r\n', 'K36', 1220000, 3, 33, '2020-07-09 06:58:57', 1, NULL),
@@ -347,7 +370,6 @@ INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`,
 (2020, '2020-01-27', 234, 'Terima sewa lapangan bulutangkis bulan Januari 2020 an. PB DEPAG																\r\n', 'D66', 1200000, 3, 12, '2020-07-07 23:12:17', 1, NULL),
 (2020, '2020-01-28', 236, 'Terima sewa lapangan bulutangkis bulan Januari 2020 an. PB LASTON																\r\n', 'D68', 2500000, 3, 12, '2020-07-07 23:12:49', 1, NULL),
 (2020, '2020-01-28', 237, 'Terima sewa lapangan bulutangkis bulan Januari 2020 an. PB SILOAM																\r\n', 'D69', 1080000, 3, 12, '2020-07-07 23:13:05', 1, NULL),
-(2020, '2020-01-01', 238, 'Saldo Awal Bulan Januari 2020', '-', 7580900, 1, 1, '2020-07-14 06:29:49', 1, 1),
 (2020, '2020-01-01', 242, 'Saldo Awal Bulan Januari 2020', '-', 7839844, 6, 1, '2020-07-07 23:16:52', 1, 1),
 (2020, '2020-01-10', 243, 'Bayar PPN CAFE Desember 2019																\r\n', 'K40', 50000, 6, 33, '2020-07-09 06:58:57', 1, NULL),
 (2020, '2020-01-10', 244, 'Bayar PPhPasal 4 Ayat 2 CAFE Desember 2019																\r\n', 'K41', 50000, 6, 34, '2020-07-09 07:05:50', 1, NULL),
@@ -376,7 +398,9 @@ INSERT INTO `tb_transaksi` (`tahun`, `tanggal`, `id_transaksi`, `uraian`, `ref`,
 (2020, '2020-02-01', 267, 'Saldo awal bulan Februari 2020', '-', 5828080, 2, 1, '2020-07-13 08:33:40', NULL, 1),
 (2020, '2020-02-01', 268, 'Saldo awal bulan Februari 2020', '-', 21217795, 3, 1, '2020-07-14 00:22:32', NULL, 1),
 (2020, '2020-02-01', 269, 'Saldo awal bulan Februari 2020', '-', 7580900, 1, 1, '2020-07-14 06:29:29', 1, 1),
-(2020, '2020-01-01', 270, 'Saldo awal bulan Januari 2020', '-', 13896595, 3, 1, '2020-07-14 06:24:11', 1, 1);
+(2020, '2020-01-01', 270, 'Saldo awal bulan Januari 2020', '-', 13896595, 3, 1, '2020-07-14 06:24:11', 1, 1),
+(2020, '2020-07-03', 271, 'Dummy', 'D67', 20000, 1, 27, '2020-07-15 00:28:51', 1, NULL),
+(2020, '2020-07-10', 272, 'Dummy data', 'D81', 240000, 6, 12, '2020-07-15 04:05:06', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -429,7 +453,16 @@ ALTER TABLE `tb_aset`
 -- Indexes for table `tb_jurnal`
 --
 ALTER TABLE `tb_jurnal`
-  ADD PRIMARY KEY (`id_jurnal`);
+  ADD PRIMARY KEY (`id_jurnal`),
+  ADD KEY `fk_jurnal_aset` (`jurnal_id_aset`);
+
+--
+-- Indexes for table `tb_jurnal_transaksi`
+--
+ALTER TABLE `tb_jurnal_transaksi`
+  ADD PRIMARY KEY (`id_jt`),
+  ADD KEY `fk_jt_jurnal` (`jt_id_jurnal`),
+  ADD KEY `fk_kat_jt` (`jt_id_kategori`);
 
 --
 -- Indexes for table `tb_kategori`
@@ -484,7 +517,13 @@ ALTER TABLE `tb_aset`
 -- AUTO_INCREMENT for table `tb_jurnal`
 --
 ALTER TABLE `tb_jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `tb_jurnal_transaksi`
+--
+ALTER TABLE `tb_jurnal_transaksi`
+  MODIFY `id_jt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori`
@@ -502,7 +541,7 @@ ALTER TABLE `tb_kategori_laba_rugi`
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
@@ -519,6 +558,19 @@ ALTER TABLE `tb_user`
 --
 ALTER TABLE `files`
   ADD CONSTRAINT `files_transaksi_fkid` FOREIGN KEY (`file_id_transaksi`) REFERENCES `tb_transaksi` (`id_transaksi`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tb_jurnal`
+--
+ALTER TABLE `tb_jurnal`
+  ADD CONSTRAINT `fk_jurnal_aset` FOREIGN KEY (`jurnal_id_aset`) REFERENCES `tb_aset` (`id_aset`);
+
+--
+-- Constraints for table `tb_jurnal_transaksi`
+--
+ALTER TABLE `tb_jurnal_transaksi`
+  ADD CONSTRAINT `fk_jt_jurnal` FOREIGN KEY (`jt_id_jurnal`) REFERENCES `tb_jurnal` (`id_jurnal`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_kat_jt` FOREIGN KEY (`jt_id_kategori`) REFERENCES `tb_kategori` (`id_kategori`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tb_kategori`
