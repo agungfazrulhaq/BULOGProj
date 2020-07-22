@@ -1231,7 +1231,7 @@
                                           
                                           <?php foreach ($allcategory as $K_row__) { ?>
                                             <optgroup label="<?php echo strtoupper($K_row__->nama_kat_lr); ?>">
-                                              <?php foreach ($katforjurnal as $row_k) { ?>
+                                              <?php foreach ($kategori as $row_k) { ?>
                                                 <?php
                                                 $id_kat__1 = $row_k->id_kat_lr_kat;
                                                 $id_kat__2 = $K_row__->id_kat_laba_rugi;
